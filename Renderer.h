@@ -41,11 +41,6 @@ private:
 	bool LoadShaders();
 	void CreateSpriteVerts();
 
-	unsigned int framebuffer;
-	unsigned int colorBuffers[2];
-	unsigned int pingpongFBO[2];
-	unsigned int pingpongColorbuffers[2];
-	Shader* bloomShader;
 
 	std::unordered_map<std::string, Texture*> _textures;
 	std::vector<SpriteComponent*> _sprites;
