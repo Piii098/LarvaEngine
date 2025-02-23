@@ -82,6 +82,8 @@ void Renderer::Shutdown() {
 void Renderer::Draw() {
 	/*画面クリア*/
 
+	glBindFramebuffer(GL_FRAMEBUFFER, _frameBuffer);
+
 	glClearColor(0.86f, 0.86f, 0.86f, 1.f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
@@ -108,7 +110,24 @@ void Renderer::Draw() {
 	for (auto spri : _sprites) {
 		spri->Draw(_spriteShader);
 	}
-	
+
+	// デフォルトのフレームバッファに戻す
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+	// フレームバッファの内容を画面に描画
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	_frameBufferShader->SetActive();
+
+	// フレームバッファのテクスチャをバインド
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, _renderTexture);
+
+	// スクリーン全体を覆う四角形を描画
+	_screenVerts->SetActive();
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+
 	/*前面に表示*/
 
 	SDL_GL_SwapWindow(_window);
@@ -141,7 +160,32 @@ void Renderer::RemoveSprite(SpriteComponent* sprite) {
 #pragma region プライベート関数
 
 bool Renderer::InitializeFrameBuffer() {
+	// フレームバッファオブジェクトの作成
+	glGenFramebuffers(1, &_frameBuffer);
+	glBindFramebuffer(GL_FRAMEBUFFER, _frameBuffer);
 
+	// カラーテクスチャの作成
+	glGenTextures(1, &_renderTexture);
+	glBindTexture(GL_TEXTURE_2D, _renderTexture);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _screenWidth, _screenHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	// フレームバッファにテクスチャをアタッチ
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+		GL_TEXTURE_2D, _renderTexture, 0);
+
+	// フレームバッファの状態チェック
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+		SDL_Log("Framebuffer is not complete!");
+		return false;
+	}
+
+	// デフォルトのフレームバッファに戻す
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	return true;
 }
 
 void Renderer::ApplyBloom() {
@@ -164,11 +208,31 @@ void Renderer::CreateSpriteVerts() {
 
 	_spriteVerts = new VertexArray(vertices, 4, indices, 6);
 
+	float quadVertices[] = {
+		// positions(x,y,z)    // texture coords(u,v)
+		-1.0f,  1.0f, 0.0f,   0.0f, 1.0f,  // 左上
+		 1.0f,  1.0f, 0.0f,   1.0f, 1.0f,  // 右上
+		 1.0f, -1.0f, 0.0f,   1.0f, 0.0f,  // 右下
+		-1.0f, -1.0f, 0.0f,   0.0f, 0.0f   // 左下
+	};
+
+	unsigned int quadIndices[] = {
+		0, 1, 2,  // 最初の三角形
+		0, 2, 3   // 二番目の三角形
+	};
+
+	_screenVerts = new VertexArray(quadVertices, 4, quadIndices, 6);
 }
+
 
 bool Renderer::LoadShaders() {
 	_spriteShader = new Shader();
 	if (!_spriteShader->Load("Shaders/Sprite.vert", "Shaders/Sprite.frag")) {
+		return false;
+	}
+
+	_frameBufferShader = new Shader();
+	if (!_frameBufferShader->Load("Shaders/FrameBuffer.vert", "Shaders/FrameBuffer.frag")) {
 		return false;
 	}
 

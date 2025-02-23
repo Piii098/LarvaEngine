@@ -96,6 +96,8 @@
     <None Include="Shaders\Bloom.frag" />
     <None Include="Shaders\Bloom.vert" />
     <None Include="Shaders\BlurBloom.frag" />
+    <None Include="Shaders\FrameBuffer.frag" />
+    <None Include="Shaders\FrameBuffer.vert" />
     <None Include="Shaders\Lighting.frag" />
     <None Include="Shaders\Lighting.vert" />
     <None Include="Shaders\Line.frag" />

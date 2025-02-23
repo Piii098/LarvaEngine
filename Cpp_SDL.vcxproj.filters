@@ -248,5 +248,11 @@
     <None Include="Shaders\BlurBloom.frag">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="Shaders\FrameBuffer.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\FrameBuffer.vert">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

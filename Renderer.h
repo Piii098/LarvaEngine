@@ -41,6 +41,10 @@ private:
 	bool LoadShaders();
 	void CreateSpriteVerts();
 
+	unsigned int _frameBuffer;
+	unsigned int _renderTexture;
+	VertexArray* _screenVerts;
+	Shader* _frameBufferShader;
 
 	std::unordered_map<std::string, Texture*> _textures;
 	std::vector<SpriteComponent*> _sprites;

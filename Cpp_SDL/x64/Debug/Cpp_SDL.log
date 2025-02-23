@@ -1,18 +1,4 @@
-﻿  BoxComponent2D.cpp
-D:\Github\Cpp_SDL\Math.h(65,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/BoxComponent2D.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\Math.h(110,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/BoxComponent2D.cpp' をコンパイルしています)
-  
-  SpriteComponent.cpp
-D:\Github\Cpp_SDL\math.h(65,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/SpriteComponent.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\math.h(110,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/SpriteComponent.cpp' をコンパイルしています)
-  
-  Game.cpp
+﻿  Game.cpp
 D:\Github\Cpp_SDL\math.h(65,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Game.cpp' をコンパイルしています)
   
@@ -27,16 +13,7 @@ D:\Github\Cpp_SDL\PhysWorld2D.h(14,8): warning C4099: 'DynamicComponent': タイ
   D:\Github\Cpp_SDL\PhysWorld2D.h(14,8):
   'DynamicComponent' の宣言を確認してください
   
-  PhysWorld2D.cpp
-D:\Github\Cpp_SDL\math.h(65,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'PhysWorld2D.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\math.h(110,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'PhysWorld2D.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\Utilities\Frame.h(12,35): warning C4244: 'return': 'const float' から 'Uint64' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'PhysWorld2D.cpp' をコンパイルしています)
-  
+  VertexArray.cpp
   Renderer.cpp
 D:\Github\Cpp_SDL\math.h(65,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Renderer.cpp' をコンパイルしています)
@@ -46,13 +23,13 @@ D:\Github\Cpp_SDL\math.h(110,15): warning C4244: 'return': 'double' から 'floa
   
 D:\Github\Cpp_SDL\Renderer.cpp(45,51): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
 D:\Github\Cpp_SDL\Renderer.cpp(45,37): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\Renderer.cpp(101,74): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-D:\Github\Cpp_SDL\Renderer.cpp(101,69): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-D:\Github\Cpp_SDL\Renderer.cpp(101,64): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-D:\Github\Cpp_SDL\Renderer.cpp(106,72): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-D:\Github\Cpp_SDL\Renderer.cpp(106,67): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-D:\Github\Cpp_SDL\Renderer.cpp(161,56): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\Renderer.cpp(161,42): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(100,74): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+D:\Github\Cpp_SDL\Renderer.cpp(100,69): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+D:\Github\Cpp_SDL\Renderer.cpp(100,64): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+D:\Github\Cpp_SDL\Renderer.cpp(105,72): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+D:\Github\Cpp_SDL\Renderer.cpp(105,67): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+D:\Github\Cpp_SDL\Renderer.cpp(170,56): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(170,42): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
   コードを生成中...
   Cpp_SDL.vcxproj -> D:\Github\Cpp_SDL\x64\Debug\Cpp_SDL.exe
   'pwsh.exe' は、内部コマンドまたは外部コマンド、
