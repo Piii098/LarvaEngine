@@ -1,13 +1,24 @@
-﻿  RigidbodyComponent.cpp
-D:\Github\Cpp_SDL\Math.h(65,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/RigidbodyComponent.cpp' をコンパイルしています)
+﻿  Renderer.cpp
+D:\Github\Cpp_SDL\math.h(65,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Renderer.cpp' をコンパイルしています)
   
-D:\Github\Cpp_SDL\Math.h(110,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/RigidbodyComponent.cpp' をコンパイルしています)
+D:\Github\Cpp_SDL\math.h(110,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Renderer.cpp' をコンパイルしています)
   
-D:\Github\Cpp_SDL\Utilities\Frame.h(12,35): warning C4244: 'return': 'const float' から 'Uint64' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/RigidbodyComponent.cpp' をコンパイルしています)
-  
+D:\Github\Cpp_SDL\Renderer.cpp(45,51): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(45,37): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(98,74): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+D:\Github\Cpp_SDL\Renderer.cpp(98,69): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+D:\Github\Cpp_SDL\Renderer.cpp(98,64): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+D:\Github\Cpp_SDL\Renderer.cpp(103,72): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+D:\Github\Cpp_SDL\Renderer.cpp(103,67): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+D:\Github\Cpp_SDL\Renderer.cpp(153,59): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(153,45): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(164,75): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(164,61): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(181,59): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(181,45): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(197,1): warning C4715: 'Renderer::InitializeFrameBuffer': 値を返さないコントロール パスがあります。
   Cpp_SDL.vcxproj -> D:\Github\Cpp_SDL\x64\Debug\Cpp_SDL.exe
   'pwsh.exe' は、内部コマンドまたは外部コマンド、
   操作可能なプログラムまたはバッチ ファイルとして認識されていません。

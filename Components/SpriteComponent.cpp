@@ -89,13 +89,9 @@ void SpriteComponent::Draw(Shader* shader) {
 		Matrix4 scaleMat = Matrix4::CreateScale(scaleX * static_cast<float>(_texWidth),  scaleY * static_cast<float>(_texHeight), 1.0f);
 		Matrix4 world = scaleMat * _parent->WorldTransform();
 
-		Matrix4 view = _parent->GetGame()->GetCamera()->GetViewMatrix();
-		Matrix4 worldViewProj = world * view;
-
-		shader->SetMatrixUniform("uWorldTransform", worldViewProj);
+		shader->SetMatrixUniform("uWorldTransform", world);
 		shader->SetVector2Uniform("uTexOffset", Vector2(0.0f, 0.0f));
 		shader->SetVector2Uniform("uTexScale", Vector2(1.0f, 1.0f));
-
 
 		_texture->SetActive();
 

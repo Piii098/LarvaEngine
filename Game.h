@@ -60,6 +60,8 @@ private:
 	bool _isRunning; //ループ継続
 	bool _isUpdating;
 
+	float _brightness;
+
 	std::unordered_map<std::string, Texture*> _textures;
 	std::vector<SpriteComponent*> _sprites;
 	std::vector<GameObject*> _pendingObjects; //保留中のオブジェクト配列

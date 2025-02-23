@@ -239,5 +239,14 @@
     <None Include="Shaders\Line.vert">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="Shaders\Bloom.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Bloom.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\BlurBloom.frag">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

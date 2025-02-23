@@ -78,6 +78,14 @@ void Shader::SetFloatUniform(const char* name, float value) {
 	GLuint loc = glGetUniformLocation(_shaderProgram, name);
 	glUniform1f(loc, value);
 }
+void Shader::SetIntUniform(const char* name, int value) {
+	GLuint loc = glGetUniformLocation(_shaderProgram, name);
+	glUniform1i(loc, value);
+}
+void Shader::SetBoolUniform(const char* name, bool flag) {
+	GLuint loc = glGetUniformLocation(_shaderProgram, name);
+	glUniform1i(loc, static_cast<int>(flag));
+}
 
 
 #pragma endregion

@@ -29,7 +29,8 @@
 Game::Game()
 	: _renderer(nullptr)
 	, _isRunning(true)
-	, _isUpdating(false){
+	, _isUpdating(false)
+	, _brightness(1.f){
 
 }
 
@@ -145,6 +146,14 @@ void Game::ProcessInput() {
 
 	_input->Update(); // インプット
 	
+	if (_input->IsInputDown(InputMap::INPUT_BRIGHT)) {
+		_brightness += 0.1f;
+	}
+	if (_input->IsInputDown(InputMap::INPUT_BLEFT)) {
+		_brightness -= 0.1f;
+	}
+
+	_renderer->SetBrightness(_brightness);
 	
 	_isUpdating = true;
 	for (auto& obj : _objects) {
@@ -189,7 +198,7 @@ void Game::Update() {
 }
 
 void Game::ProcessOutput() {
-
+	_renderer->SetLightPos(_player->Position());
 	_renderer->Draw();
 
 }
@@ -211,6 +220,7 @@ void Game::LoadData() {
 	_player = new Player(this);
 	//TestObject* tesObj = new TestObject(this);
 	_player->PlacePlayerAtSpawn(tileMap->GetTileMapComponent());
+	_renderer->SetLightPos(_player->Position());
 	_camera = new Camera(this);
 }
 

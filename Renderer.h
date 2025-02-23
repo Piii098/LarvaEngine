@@ -29,18 +29,23 @@ public:
 
 	void Draw();
 
-	void SetDrawLine(const Vector2& start, const Vector2& end, const Vector3& color);
-
 	void AddSprite(SpriteComponent* sprite);
 	void RemoveSprite(SpriteComponent* sprite);
-
-	void AddDebugBox();
-
+	void SetBrightness(float brightness) { _brightness = brightness; };
+	void SetLightPos(Vector2 lightPos) { _lightPos = lightPos; };
 private:
 
+	bool InitializeFrameBuffer();
+
+	void ApplyBloom();
 	bool LoadShaders();
 	void CreateSpriteVerts();
 
+	unsigned int framebuffer;
+	unsigned int colorBuffers[2];
+	unsigned int pingpongFBO[2];
+	unsigned int pingpongColorbuffers[2];
+	Shader* bloomShader;
 
 	std::unordered_map<std::string, Texture*> _textures;
 	std::vector<SpriteComponent*> _sprites;
@@ -55,6 +60,9 @@ private:
 
 	float _screenWidth;
 	float _screenHeight;
+
+	float _brightness;
+	Vector2 _lightPos;
 
 	std::vector<SpriteComponent*> _debugBoxes;
 

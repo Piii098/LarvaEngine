@@ -93,6 +93,9 @@
     <None Include="Polygon\VertexArray.h" />
     <None Include="Shaders\Basic.frag" />
     <None Include="Shaders\Basic.vert" />
+    <None Include="Shaders\Bloom.frag" />
+    <None Include="Shaders\Bloom.vert" />
+    <None Include="Shaders\BlurBloom.frag" />
     <None Include="Shaders\Lighting.frag" />
     <None Include="Shaders\Lighting.vert" />
     <None Include="Shaders\Line.frag" />

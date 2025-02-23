@@ -48,8 +48,6 @@ void TileMapSpriteComponent::Draw(Shader* shader) {
 				Matrix4 world = scaleMat * transMat * _parent->WorldTransform();
 
 				// ビュー行列を取得し、最終行列を計算
-				Matrix4 view = _parent->GetGame()->GetCamera()->GetViewMatrix();
-				Matrix4 worldViewProj = world * view;
 
 				int tileRow = tileID / tilesPerRow;
 				int tileCol = tileID % tilesPerRow;
@@ -59,7 +57,7 @@ void TileMapSpriteComponent::Draw(Shader* shader) {
 				Vector2 texOffset = Vector2(tileCol * texScale.x, tileRow * texScale.y); // 切り出す部分の左上
 
 				// シェーダーに行列を設定
-				shader->SetMatrixUniform("uWorldTransform", worldViewProj);
+				shader->SetMatrixUniform("uWorldTransform", world);
 				shader->SetVector2Uniform("uTexOffset", texOffset);
 				shader->SetVector2Uniform("uTexScale", texScale);
 

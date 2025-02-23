@@ -16,6 +16,8 @@ public:
 	void SetVector3Uniform(const char* name, const Vector3& vector);
 	void SetVector2Uniform(const char* name, const Vector2& vector);
 	void SetFloatUniform(const char* name, float value);
+	void SetIntUniform(const char* name, int value);
+	void SetBoolUniform(const char* name, bool flag);
 
 private:
 	bool CompileShader(const std::string& fileName
