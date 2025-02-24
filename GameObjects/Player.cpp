@@ -33,7 +33,7 @@ Player::Player(Game* game)
 
 	_moveInputComp = new MoveInputComponent(this, _dynamicComp->rigidbodyComp);
 	_moveInputComp->MoveSpeed(100.f);
-	_moveInputComp->JumpForce(1000000.f);
+	_moveInputComp->JumpForce(450000.f);
 
 	//new DebugDrawComponent(this, _dynamicComp->boxComp, true);
 }

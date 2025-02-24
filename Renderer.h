@@ -9,6 +9,8 @@ class VertexArray;
 class Shader;
 class Texture;
 class SpriteComponent;
+class BGComponent;
+class TextureComponent;
 
 class Renderer {
 public:
@@ -31,23 +33,43 @@ public:
 
 	void AddSprite(SpriteComponent* sprite);
 	void RemoveSprite(SpriteComponent* sprite);
+	void AddBackground(BGComponent* background);
+	void RemoveBackground(BGComponent* background);
+	void AddTexture(TextureComponent* texture);
+	void RemoveTexture(TextureComponent* texture);
+
 	void SetBrightness(float brightness) { _brightness = brightness; };
 	void SetLightPos(Vector2 lightPos) { _lightPos = lightPos; };
 private:
 
 	bool InitializeFrameBuffer();
 
+	void DrawBackground();
+	void DrawSprite();
+
 	void ApplyBloom();
 	bool LoadShaders();
 	void CreateSpriteVerts();
 
-	unsigned int _frameBuffer;
-	unsigned int _renderTexture;
+	unsigned int _colorBuffer[2];
+	unsigned int _hdrFBO;
 	VertexArray* _screenVerts;
 	Shader* _frameBufferShader;
+	bool _isBloom;
 
-	std::unordered_map<std::string, Texture*> _textures;
+	unsigned int pingpongFBO[2];
+	unsigned int pingpongBuffer[2];
+
+	Shader* _blurShader;               // ガウシアンブラー用シェーダー
+	Shader* _bloomFinalShader;         // 最終合成用シェーダー
+
+	// ブルーム設定
+	float _bloomThreshold = 1.0f;      // 明るい部分とみなす閾値
+	float _bloomIntensity = 0.8f;      // ブルームの強度
+
+	std::vector<BGComponent*> _backgrounds;
 	std::vector<SpriteComponent*> _sprites;
+	std::vector<TextureComponent*> _textures;
 	std::vector<Line*> _lines;
 
 	Game* _game;
@@ -56,6 +78,7 @@ private:
 	SDL_GLContext _context;
 	VertexArray* _spriteVerts;
 	Shader* _spriteShader;
+	Shader* _backgroundShader;
 
 	float _screenWidth;
 	float _screenHeight;

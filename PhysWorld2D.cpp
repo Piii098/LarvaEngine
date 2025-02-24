@@ -87,37 +87,6 @@ void PhysWorld2D::Update() {
     CollisionUpdate();
 }
 
-void PhysWorld2D::HandleCollisions() {
-
-}
-
-
-
-bool PhysWorld2D::SweptAABB(const AABB2D& dynamixBox, const Vector2& velocity, const AABB2D& staticBox, float& collisionTime, Vector2& normal){
-    
-    float tFirst = 0.f;
-    float tLast = 1.f;
-    Vector2 invEntry;
-    Vector2 invExit;
-    Vector2 entry;
-    Vector2 exit;
-
-    if (velocity.x > 0.f) {
-        invEntry.x = staticBox._min.x - dynamixBox._max.x;
-        invExit.x = staticBox._max.x - dynamixBox._min.x;
-    }
-    else {
-        invEntry.x = staticBox._max.x - dynamixBox._min.x;
-        invExit.x = staticBox._min.x - dynamixBox._max.x;
-    }
-
-    if (velocity.y > 0.f) {
-     //   invEntry.y =static.x
-    }
-    
-    return false;
-}
-
 void PhysWorld2D::TestSweepAndPrune(std::function<void(GameObject*, GameObject*)> f)
 {
     // Sort by min.x
@@ -174,16 +143,11 @@ void PhysWorld2D::AddStaticBoxComp(BoxComponent2D* obj) {
     _staticBoxes.push_back(obj);
 }
 
-void PhysWorld2D::DebugDraw() {
-  
-}
-
 #pragma endregion
 
 #pragma region プライベート関数
 
 void PhysWorld2D::CollisionUpdate() {
-    const int subSteps = 5; // サブステップの数
     for (auto compA : _dynamicComps) {
         auto boxA = compA->boxComp;
 

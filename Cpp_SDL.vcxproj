@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Components\AI\AICompoennt.cpp" />
     <ClCompile Include="Components\AI\AIState.cpp" />
+    <ClCompile Include="Components\BGComponent.cpp" />
     <ClCompile Include="Components\BoxComponent2D.cpp" />
     <ClCompile Include="Components\CameraComponent.cpp" />
     <ClCompile Include="Components\CapsuleComponent.cpp" />
@@ -30,14 +31,14 @@
     <ClCompile Include="Components\MoveInputComponent.cpp" />
     <ClCompile Include="Components\RigidbodyComponent.cpp" />
     <ClCompile Include="Components\SpriteComponent.cpp" />
+    <ClCompile Include="Components\TextureComponent.cpp" />
     <ClCompile Include="Components\TileMapComponent.cpp" />
     <ClCompile Include="Components\TileMapSpriteComponent.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObjects\Background.cpp" />
     <ClCompile Include="GameObjects\Camera.cpp" />
-    <ClCompile Include="GameObjects\DynamicObject.cpp" />
     <ClCompile Include="GameObjects\GameObject.cpp" />
     <ClCompile Include="GameObjects\Player.cpp" />
-    <ClCompile Include="GameObjects\StaticObject.cpp" />
     <ClCompile Include="GameObjects\TestObject.cpp" />
     <ClCompile Include="GameObjects\TileMap.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -55,6 +56,7 @@
   <ItemGroup>
     <ClInclude Include="Components\AI\AICompoennt.h" />
     <ClInclude Include="Components\AI\AIState.h" />
+    <ClInclude Include="Components\BGComponent.h" />
     <ClInclude Include="Components\BoxComponent2D.h" />
     <ClInclude Include="Components\CameraComponent.h" />
     <ClInclude Include="Components\CapsuleComponent.h" />
@@ -64,14 +66,14 @@
     <ClInclude Include="Components\MoveInputComponent.h" />
     <ClInclude Include="Components\RigidbodyComponent.h" />
     <ClInclude Include="Components\SpriteComponent.h" />
+    <ClInclude Include="Components\TextureComponent.h" />
     <ClInclude Include="Components\TileMapComponent.h" />
     <ClInclude Include="Components\TileMapSpriteComponent.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameObjects\Background.h" />
     <ClInclude Include="GameObjects\Camera.h" />
-    <ClInclude Include="GameObjects\DynamicObject.h" />
     <ClInclude Include="GameObjects\GameObject.h" />
     <ClInclude Include="GameObjects\Player.h" />
-    <ClInclude Include="GameObjects\StaticObject.h" />
     <ClInclude Include="GameObjects\TestObject.h" />
     <ClInclude Include="GameObjects\TileMap.h" />
     <ClInclude Include="Math.h" />
@@ -91,22 +93,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Polygon\VertexArray.h" />
+    <None Include="Shaders\Background.frag" />
+    <None Include="Shaders\Background.vert" />
     <None Include="Shaders\Basic.frag" />
     <None Include="Shaders\Basic.vert" />
-    <None Include="Shaders\Bloom.frag" />
-    <None Include="Shaders\Bloom.vert" />
-    <None Include="Shaders\BlurBloom.frag" />
+    <None Include="Shaders\BloomFinal.frag" />
+    <None Include="Shaders\Blur.frag" />
+    <None Include="Shaders\BrightFilter.frag" />
     <None Include="Shaders\FrameBuffer.frag" />
     <None Include="Shaders\FrameBuffer.vert" />
-    <None Include="Shaders\Lighting.frag" />
-    <None Include="Shaders\Lighting.vert" />
-    <None Include="Shaders\Line.frag" />
-    <None Include="Shaders\Line.vert" />
+    <None Include="Shaders\LightSprite.frag" />
     <None Include="Shaders\Sprite.frag" />
     <None Include="Shaders\Sprite.vert" />
-    <None Include="Shaders\TileMap.frag" />
-    <None Include="Shaders\TileMap.vert" />
-    <None Include="Shaders\Transform.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

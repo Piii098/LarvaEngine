@@ -55,6 +55,7 @@ void Texture::Unload() {
 }
 
 void Texture::SetActive() {
+	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, _textureID);
 }
 

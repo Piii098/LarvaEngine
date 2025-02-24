@@ -8,66 +8,10 @@
 #include "Singletons/ShaderManager.h"
 #include "Renderer.h"
 
-#pragma region スプライト管理クラス()
-
-SpriteComponent::SpriteManager::SpriteManager() {
-
-}
-
-
-void SpriteComponent::SpriteManager::Load(const std::string& fileName) {
-	Texture* tex = nullptr;
-	auto iter = _textures.find(fileName);// 指定名の要素を探索、もしなければ_textures.end()を返す
-	if (iter == _textures.end())  //キーが存在しないなら
-	{
-		/*連想配列_textureにファイル名とデータを追加*/
-		
-		tex = new Texture();
-
-		if (tex->Load(fileName))
-		{
-			_textures.emplace(fileName, tex);
-		}
-		else
-		{
-			delete tex;
-			tex = nullptr;
-		}
-
-	}
-
-}
-
-void SpriteComponent::SpriteManager::Unload() {
-	for (auto& pair : _textures) {
-		delete pair.second;
-	}
-	_textures.clear();
-}
-
-Texture* SpriteComponent::SpriteManager::GetTexture(const std::string& textureName) {
-	return _textures[textureName];
-}
-
-#pragma endregion
-
-#pragma region スプライト描写クラス
-
-
-
-#pragma endregion
-
-
 #pragma region コンストラクタ：デストラクタ
 
-SpriteComponent::SpriteManager SpriteComponent::s_SpriteManager;
-
 SpriteComponent::SpriteComponent(GameObject* parent, int drawLayer)
-	: Component(parent, drawLayer)
-	, _texture(nullptr)
-	, _texWidth(0)
-	, _texHeight(0){
-
+	: TextureComponent(parent, drawLayer){
 	_parent->GetGame()->GetRenderer()->AddSprite(this);
 }
 
@@ -97,14 +41,6 @@ void SpriteComponent::Draw(Shader* shader) {
 
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 	}
-
-}
-
-void SpriteComponent::SetTexture(const std::string& textureName) {
-	_texture = s_SpriteManager.GetTexture(textureName);
-
-	_texWidth = _texture->Width();
-	_texHeight = _texture->Height();
 
 }
 

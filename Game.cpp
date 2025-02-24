@@ -3,26 +3,20 @@
 #include <iostream>
 #include <algorithm>
 #include <GL/glew.h>
-#include "Components/SpriteComponent.h"
-#include "Components/RigidbodyComponent.h"
-#include "Components/MoveInputComponent.h"
-#include "Components/TileMapSpriteComponent.h"
-#include "Polygon/VertexArray.h"
+#include "Components/TextureComponent.h"
 #include "GameObjects/GameObject.h"
 #include "GameObjects/Player.h"
 #include "Game.h"
 #include "Utilities/Frame.h"
 #include "Utilities/Input.h"
-#include "Utilities/Shader.h"
-#include "Utilities/Texture.h"
-#include "Singletons/ShaderManager.h"
 #include "GameObjects/Camera.h"
 #include "GameObjects/TileMap.h"
 #include "Components/TileMapComponent.h"
 #include "GameObjects/Player.h"
 #include "Renderer.h"
 #include "PhysWorld2D.h"
-#include "GameObjects/TestObject.h"
+#include "GameObjects/Background.h"
+
 
 #pragma region Constructor:Destructer
 
@@ -208,9 +202,10 @@ void Game::LoadData() {
 
 	/*データロード*/
 
-	SpriteComponent::S_SpriteManager().Load("Assets/AKAGE.png");
-	SpriteComponent::S_SpriteManager().Load("Assets/RedBox.png");
-	SpriteComponent::S_SpriteManager().Load("Assets/Tile.png");
+	TextureComponent::S_TextureManager().Load("Assets/AKAGE.png");
+	TextureComponent::S_TextureManager().Load("Assets/RedBox.png");
+	TextureComponent::S_TextureManager().Load("Assets/BG.png");
+	TextureComponent::S_TextureManager().Load("Assets/Tile.png");
 	TileMapComponent::S_TileMapManager().Load("Assets/Test.csv");
 
 	/*ゲームオブジェクト*/
@@ -222,6 +217,7 @@ void Game::LoadData() {
 	_player->PlacePlayerAtSpawn(tileMap->GetTileMapComponent());
 	_renderer->SetLightPos(_player->Position());
 	_camera = new Camera(this);
+	new Background(this);
 }
 
 #pragma endregion

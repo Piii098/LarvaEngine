@@ -44,7 +44,7 @@ void TileMap::CreateCollisionBoxes() {
 			GameObject* obj;
 			float halfTile;
 			switch (_tileMapComp->Tiles()[y][x]) {
-			case 1:case 6:case 7:case8:
+			case 1: case 2: case 6: case 7: case8: case 9:
 				halfTile = _tileMapComp->TileSize() * 0.5f;
 				tileMin = Vector2(x * _tileMapComp->TileSize() - halfTile,
 					(_tileMapComp->MapHeight() - 1 - y) * _tileMapComp->TileSize() - halfTile);
