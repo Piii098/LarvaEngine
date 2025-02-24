@@ -6,7 +6,7 @@ class Frame;
 
 class Component {
 public:
-	Component(GameObject* parent,int updateLayer = 100);
+	Component(GameObject* parent, int updateLayer = 100);
 	virtual ~Component();
 
 	virtual void ProcessInput(Input* input); 

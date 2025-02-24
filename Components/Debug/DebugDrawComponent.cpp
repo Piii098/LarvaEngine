@@ -41,13 +41,9 @@ void DebugDrawComponent::Draw(Shader* shader) {
         Matrix4 scaleMat = Matrix4::CreateScale(boxSize.x, boxSize.y, 1.0f);
         Matrix4 transMat = Matrix4::CreateTranslation(Vector3(boxCenter.x, boxCenter.y, 0.0f));
 
-        Matrix4 world = _boxComp->IsDynamic() ? scaleMat * GetParent()->WorldTransform()
-                                             : scaleMat * transMat * GetParent()->WorldTransform() ;
+        Matrix4 world = scaleMat * transMat ;
 
-        Matrix4 view = _parent->GetGame()->GetCamera()->GetViewMatrix(); // ƒJƒƒ‰ƒrƒ…[‚Ö
-        Matrix4 worldViewProj = world * view;
-
-        shader->SetMatrixUniform("uWorldTransform", worldViewProj);
+        shader->SetMatrixUniform("uWorldTransform", world);
         shader->SetVector2Uniform("uTexOffset", Vector2(0.0f, 0.0f));
         shader->SetVector2Uniform("uTexScale", Vector2(1.0f, 1.0f));
 

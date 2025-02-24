@@ -23,11 +23,29 @@ RigidbodyComponent::~RigidbodyComponent() {
 #pragma region パブリック関数
 
 void RigidbodyComponent::Update(Frame* frame) {
-
+	const float GRAVITY_CONSTANT = 300.f;
 	if (_isGravity) {
-		float gravityForce = _mass * 300.f ;
-		AddForce(Vector2(0, -gravityForce));
+		PhysWorld2D* phys = _parent->GetGame()->GetPhysWorld();
+		PhysWorld2D::CollisionInfo outColl;
+
+		// プレイヤーの足元あたりから下方向にレイをキャスト
+		Vector2 rayStart = _parent->Position() + Vector2(0.f, -1.0f);
+		LineSegment2D ray(rayStart, rayStart + Vector2(0.f, -15));
+
+		if (phys->SegmentCast(ray, outColl, _parent)) {
+			if (outColl._object->Tag() != GameObject::TAG::GROUND) {
+				// 地面以外に衝突した場合、重力を適用
+				float gravityForce = _mass * GRAVITY_CONSTANT;
+				AddForce(Vector2(0, -gravityForce));
+			}
+		}
+		else {
+			// 衝突しない場合、重力を適用
+			float gravityForce = _mass * GRAVITY_CONSTANT;
+			AddForce(Vector2(0, -gravityForce));
+		}
 	}
+
 	
 	/*ニュートン力学*/
 	Vector2 accele; // 加速度を割り出す
@@ -39,7 +57,7 @@ void RigidbodyComponent::Update(Frame* frame) {
 	_velocity *= (1.0f - _drag * frame->DeltaTime());
 
 	Vector2 pos = _parent->Position();
-	
+
 	pos += _velocity * frame->DeltaTime();
 
 	if (pos.y < 20.f) {

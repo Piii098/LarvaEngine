@@ -4,6 +4,7 @@
 #include "Utilities/Collision2D.h"
 #include "Math.h"
 
+class Frame;
 class Game;
 class GameObject;
 class DynamicObject;
@@ -32,9 +33,9 @@ public:
 
 	bool SegmentCast(const LineSegment2D& l, CollisionInfo& outColl, const GameObject* ignoreObj = nullptr);
 
-	void Update();
+	void Update(Frame* frame);
 
-	void CollisionUpdate();
+	void CollisionUpdate(Frame* frame);
 
 	void TestSweepAndPrune(std::function<void(GameObject*, GameObject*)> f);
 

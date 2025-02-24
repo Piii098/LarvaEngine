@@ -7,7 +7,7 @@ class RigidbodyComponent;
 class MoveInputComponent: public Component {
 public:
 
-	MoveInputComponent(GameObject* parent, RigidbodyComponent* rigidbodyComp);
+	MoveInputComponent(GameObject* parent, RigidbodyComponent* rigidbodyComp, int updateLayer = 100);
 	~MoveInputComponent() override;
 
 	void ProcessInput(Input* input) override;
@@ -18,6 +18,8 @@ public:
 
 	void MoveSpeed(float moveSpeed) { _moveSpeed = moveSpeed; };
 	void JumpForce(float jumpForce) { _jumpForce = jumpForce; };
+
+	int Direction() { return _direction; };
 
 	void MaxHorizontalForce(float maxHorizontalForce) { _maxHorizontalForce = maxHorizontalForce; };
 	void MaxVerticalForce(float maxVerticalForce) { _maxVerticalForce = maxVerticalForce; };

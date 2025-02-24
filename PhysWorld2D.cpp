@@ -83,9 +83,12 @@ bool PhysWorld2D::SegmentCast(const LineSegment2D& l, CollisionInfo& outColl, co
 
 
 
-void PhysWorld2D::Update() {
-    CollisionUpdate();
+void PhysWorld2D::Update(Frame* frame) {
+   
+    CollisionUpdate(frame);
+     // 他の物理更新処理
 }
+
 
 void PhysWorld2D::TestSweepAndPrune(std::function<void(GameObject*, GameObject*)> f)
 {
@@ -143,13 +146,23 @@ void PhysWorld2D::AddStaticBoxComp(BoxComponent2D* obj) {
     _staticBoxes.push_back(obj);
 }
 
+
 #pragma endregion
 
 #pragma region プライベート関数
 
-void PhysWorld2D::CollisionUpdate() {
+void PhysWorld2D::CollisionUpdate(Frame* frame) {
+    const int subSteps = 5; // サブステップの数
     for (auto compA : _dynamicComps) {
         auto boxA = compA->boxComp;
+
+        Vector2 velocity = compA->rigidbodyComp->Velocity();
+
+        const float velocityThreshold = 0.01f;
+        if (Math::Abs(velocity.x) < velocityThreshold && Math::Abs(velocity.y) < velocityThreshold) {
+            velocity.x = 0.f;
+            continue;
+        }
 
         if (!boxA->IsCollision()) continue;
 

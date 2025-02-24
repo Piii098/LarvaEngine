@@ -25,8 +25,9 @@ Player::Player(Game* game)
 	_jumpForce = 700.f;
 
 	_dynamicComp = new DynamicComponent(this, true);
-	AABB2D myBox(Vector2(-10.0f, -15.0f), Vector2(10.0f, 15.0f));
+	AABB2D myBox(Vector2(-6.0f, -16.f), Vector2(6.0f, 13.0f));
 	_dynamicComp->boxComp->SetObjectBox(myBox);
+	_dynamicComp->rigidbodyComp->Velocity(Vector2::Zero);
 	_dynamicComp->rigidbodyComp->Mass(50.f);
 	_dynamicComp->rigidbodyComp->IsGravity(true);
 	_dynamicComp->rigidbodyComp->Drag(0.f);
@@ -54,10 +55,10 @@ void Player::InputObject(Input* input) {
 void Player::UpdateObject(Frame* frame) {
 
 
-	if (_dynamicComp->rigidbodyComp->Velocity().x < 0.f) { // ¶Œü‚«‚ÉˆÚ“®‚µ‚½‚ç
+	if (_moveInputComp->Direction() < 0.f) { // ¶Œü‚«‚ÉˆÚ“®‚µ‚½‚ç
 		_spriteComp->FlipX(false);
 	}
-	if (_dynamicComp->rigidbodyComp->Velocity().x > 0.f) {
+	if (_moveInputComp->Direction() > 0.f) {
 		_spriteComp->FlipX(true);
 	}
 	

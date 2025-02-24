@@ -33,30 +33,32 @@ TileMap::~TileMap() {
 void TileMap::CreateCollisionBoxes() {
 	_boxObjects.clear();
 
+	float halfTile = _tileMapComp->TileSize() * 0.5f;
+	Vector2 boxMin(-halfTile, -halfTile);
+	Vector2 boxMax(halfTile, halfTile);
+
+	GameObject* obj;
+	BoxComponent2D* box;
+	Vector2 tilePos;
 	for (int y = 0; y < _tileMapComp->MapHeight(); y++)
 	{
 		for (int x = 0; x < _tileMapComp->MapWidth(); x++)
 		{
-			Vector2 tileMin;
-			Vector2 tileMax;
-			BoxComponent2D* box;
-			DebugDrawComponent* debugBox;
-			GameObject* obj;
-			float halfTile;
+			
 			switch (_tileMapComp->Tiles()[y][x]) {
 			case 1: case 2: case 6: case 7: case8: case 9:
-				halfTile = _tileMapComp->TileSize() * 0.5f;
-				tileMin = Vector2(x * _tileMapComp->TileSize() - halfTile,
-					(_tileMapComp->MapHeight() - 1 - y) * _tileMapComp->TileSize() - halfTile);
-				tileMax = tileMin + Vector2(_tileMapComp->TileSize(), _tileMapComp->TileSize());
-
 				obj = new GameObject(GetGame());
-				obj->Tag(GameObject::TAG::GROUND);
-				box = new BoxComponent2D(obj, true, false); 
 
-				box->SetObjectBox(AABB2D(tileMin, tileMax));
+				// ƒ^ƒCƒ‹‚ÌˆÊ’u‚ðÝ’è
+				tilePos = Vector2(x * _tileMapComp->TileSize(), (_tileMapComp->MapHeight() - 1 - y) * _tileMapComp->TileSize());
+				obj->Position(tilePos);
+
+				obj->Tag(GameObject::TAG::GROUND);
+				box = new BoxComponent2D(obj, true, false);
+
+				box->SetObjectBox(AABB2D(boxMin, boxMax));
 		
-				//debugBox = new DebugDrawComponent(obj, box);
+				//new DebugDrawComponent(obj, box);
 
 				_boxObjects.push_back(obj);
 				break;

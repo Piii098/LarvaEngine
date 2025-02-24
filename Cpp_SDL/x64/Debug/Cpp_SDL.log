@@ -1,31 +1,4 @@
-﻿  BoxComponent2D.cpp
-D:\Github\Cpp_SDL\Math.h(65,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/BoxComponent2D.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\Math.h(110,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/BoxComponent2D.cpp' をコンパイルしています)
-  
-  MoveInputComponent.cpp
-D:\Github\Cpp_SDL\Math.h(65,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/MoveInputComponent.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\Math.h(110,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/MoveInputComponent.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\Utilities\Frame.h(12,35): warning C4244: 'return': 'const float' から 'Uint64' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/MoveInputComponent.cpp' をコンパイルしています)
-  
-  RigidbodyComponent.cpp
-D:\Github\Cpp_SDL\Math.h(65,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/RigidbodyComponent.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\Math.h(110,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/RigidbodyComponent.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\Utilities\Frame.h(12,35): warning C4244: 'return': 'const float' から 'Uint64' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/RigidbodyComponent.cpp' をコンパイルしています)
-  
-  Game.cpp
+﻿  Game.cpp
 D:\Github\Cpp_SDL\math.h(65,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Game.cpp' をコンパイルしています)
   
@@ -35,28 +8,11 @@ D:\Github\Cpp_SDL\math.h(110,15): warning C4244: 'return': 'double' から 'floa
 D:\Github\Cpp_SDL\Utilities\Frame.h(12,35): warning C4244: 'return': 'const float' から 'Uint64' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Game.cpp' をコンパイルしています)
   
-D:\Github\Cpp_SDL\PhysWorld2D.h(14,8): warning C4099: 'DynamicComponent': タイプ名は最初 'class' として使われていましたが 'struct' として使われています。
+D:\Github\Cpp_SDL\PhysWorld2D.h(15,8): warning C4099: 'DynamicComponent': タイプ名は最初 'class' として使われていましたが 'struct' として使われています。
   (ソース ファイル 'Game.cpp' をコンパイルしています)
-  D:\Github\Cpp_SDL\PhysWorld2D.h(14,8):
+  D:\Github\Cpp_SDL\PhysWorld2D.h(15,8):
   'DynamicComponent' の宣言を確認してください
   
-  Player.cpp
-D:\Github\Cpp_SDL\math.h(65,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\math.h(110,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\Utilities\Frame.h(12,35): warning C4244: 'return': 'const float' から 'Uint64' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\PhysWorld2D.h(14,8): warning C4099: 'DynamicComponent': タイプ名は最初 'class' として使われていましたが 'struct' として使われています。
-  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
-  D:\Github\Cpp_SDL\PhysWorld2D.h(14,8):
-  'DynamicComponent' の宣言を確認してください
-  
-D:\Github\Cpp_SDL\GameObjects\Player.cpp(72,17): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\GameObjects\Player.cpp(85,17): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
   PhysWorld2D.cpp
 D:\Github\Cpp_SDL\math.h(65,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'PhysWorld2D.cpp' をコンパイルしています)

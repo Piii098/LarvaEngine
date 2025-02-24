@@ -26,7 +26,7 @@ public:
 	void IsGravity(bool frag) { _isGravity = frag; };
 	void Drag(float drag) { _drag = drag; };
 	float Mass() { return _mass; };
-	Vector2 Velocity() { return _velocity; };
+	const Vector2& Velocity() const { return _velocity; };
 
 
 private:

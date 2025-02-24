@@ -163,6 +163,7 @@ void Game::Update() {
 	_frame->Update(); // フレーム
 
 	/*ゲーム内容*/
+														
 
 	_isUpdating = true;
 	for (auto& obj : _objects) { // 更新処理
@@ -170,7 +171,7 @@ void Game::Update() {
 	}
 	_isUpdating = false;
 
-	_physWorld->Update();
+	_physWorld->Update(_frame);
 
 	for (auto pend : _pendingObjects) { // 待機オブジェクトを更新オブジェクトに追加
 		pend->ComputeWorldTransform();

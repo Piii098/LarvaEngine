@@ -10,8 +10,8 @@
 #include "PhysWorld2D.h"
 #include "Game.h"
 
-MoveInputComponent::MoveInputComponent(GameObject* parent, RigidbodyComponent* rigidbodyComp)
-	: Component(parent)
+MoveInputComponent::MoveInputComponent(GameObject* parent, RigidbodyComponent* rigidbodyComp, int updateLayer)
+	: Component(parent, updateLayer)
 	, _rigidbodyComp(rigidbodyComp)
 	, _moveSpeed(0.f)
 	, _jumpForce(0.f)
@@ -98,7 +98,15 @@ void MoveInputComponent::ProcessInput(Input* input) {
 }
 
 void MoveInputComponent::Update(Frame* frame){
-	_rigidbodyComp->Velocity(Vector2(static_cast<float>(_direction) * _moveSpeed, _rigidbodyComp->Velocity().y));
+	Vector2 currentVelocity = _rigidbodyComp->Velocity();
+	Vector2 desiredVelocity(static_cast<float>(_direction) * _moveSpeed, currentVelocity.y);
+	Vector2 velocityChange = desiredVelocity - currentVelocity;
+
+	// 質量を考慮して力を計算
+	float mass = _rigidbodyComp->Mass(); // 新たに質量を取得する必要があります
+	Vector2 force = velocityChange * mass / frame->DeltaTime();
+
+	_rigidbodyComp->AddForce(force);
 }
 
 #pragma endregion
