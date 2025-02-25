@@ -14,10 +14,10 @@ TestObject::TestObject(Game* game)
 	SpriteComponent* spri = new SpriteComponent(this);
 	spri->SetTexture("Assets/Tama.png");
 	spri->SelfLightColor(Vector3(1, 1, 1));
-	spri->SelfLightIntensity(1);
+	spri->SelfLightIntensity(0.7);
 	DynamicComponent* dyna = new DynamicComponent(this, false);
 	dyna->rigidbodyComp->Mass(10.f);
-	dyna->rigidbodyComp->Velocity(Vector2(0, 0));
+	dyna->rigidbodyComp->Velocity(Vector2(10, 0));
 }
 
 TestObject::~TestObject() {

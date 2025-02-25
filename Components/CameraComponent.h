@@ -11,7 +11,8 @@ public:
 	void ProcessInput(Input* input) override;
 	void Update(Frame* frame) override;
 
-	void Zoom(float zoom) { _zoom = round(zoom); };
+	void Zoom(float zoom) { _zoom = zoom; };
+	float Zoom() { return  _zoom; };
 	void Target(const Vector2& target) { _target = target; };
 	
 	Matrix4 GetViewMatrix() const;

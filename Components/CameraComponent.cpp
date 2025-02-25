@@ -33,9 +33,11 @@ void CameraComponent::Update(Frame* frame) {
 
 Matrix4 CameraComponent::GetViewMatrix() const{
     Matrix4 translation = Matrix4::CreateTranslation(Vector3(-_parent->Position().x, -_parent->Position().y, 0.0f));
-    Matrix4 scale = Matrix4::CreateScale(_zoom, _zoom, 1.f);
+    Matrix4 scale = Matrix4::CreateScale(1, 1, 1);
     return translation * scale;
 }
+
+
 
 #pragma endregion
 

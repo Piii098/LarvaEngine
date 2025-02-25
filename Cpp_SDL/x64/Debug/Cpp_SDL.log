@@ -1,65 +1,38 @@
-﻿  CameraComponent.cpp
-D:\Github\Cpp_SDL\Math.h(65,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/CameraComponent.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\Math.h(110,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/CameraComponent.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\Components\CameraComponent.h(14,39): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/CameraComponent.cpp' をコンパイルしています)
-  
-  DebugDrawComponent.cpp
+﻿  Renderer.cpp
 D:\Github\Cpp_SDL\math.h(65,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/Debug/DebugDrawComponent.cpp' をコンパイルしています)
+  (ソース ファイル 'Renderer.cpp' をコンパイルしています)
   
 D:\Github\Cpp_SDL\math.h(110,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/Debug/DebugDrawComponent.cpp' をコンパイルしています)
+  (ソース ファイル 'Renderer.cpp' をコンパイルしています)
   
-  FollowCameraComponent.cpp
-D:\Github\Cpp_SDL\Math.h(65,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/FollowCameraComponent.cpp' をコンパイルしています)
+D:\Github\Cpp_SDL\GameObjects\GameObject.h(62,116): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Renderer.cpp' をコンパイルしています)
   
-D:\Github\Cpp_SDL\Math.h(110,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/FollowCameraComponent.cpp' をコンパイルしています)
+D:\Github\Cpp_SDL\GameObjects\GameObject.h(62,86): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Renderer.cpp' をコンパイルしています)
   
-D:\Github\Cpp_SDL\Components\CameraComponent.h(14,39): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/FollowCameraComponent.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\Components\FollowCameraComponent.h(12,42): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/FollowCameraComponent.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\Components\FollowCameraComponent.h(13,42): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/FollowCameraComponent.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\Utilities\Frame.h(12,35): warning C4244: 'return': 'const float' から 'Uint64' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/FollowCameraComponent.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\Components\FollowCameraComponent.cpp(28,47): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\Components\FollowCameraComponent.cpp(28,37): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  Camera.cpp
-D:\Github\Cpp_SDL\math.h(65,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'GameObjects/Camera.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\math.h(110,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'GameObjects/Camera.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\Components\CameraComponent.h(14,39): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'GameObjects/Camera.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\Components\FollowCameraComponent.h(12,42): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'GameObjects/Camera.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\Components\FollowCameraComponent.h(13,42): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'GameObjects/Camera.cpp' をコンパイルしています)
-  
-  TestObject.cpp
-D:\Github\Cpp_SDL\math.h(65,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'GameObjects/TestObject.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\math.h(110,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'GameObjects/TestObject.cpp' をコンパイルしています)
-  
-  コードを生成中...
+D:\Github\Cpp_SDL\Renderer.cpp(53,51): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(53,37): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(108,33): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(108,19): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(127,33): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(127,19): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(183,33): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(183,19): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(189,75): warning C4244: '引数': 'float' から 'GLint' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(189,61): warning C4244: '引数': 'float' から 'GLint' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(189,40): warning C4244: '引数': 'float' から 'GLint' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(189,26): warning C4244: '引数': 'float' から 'GLint' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(257,57): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(257,43): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(288,57): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(288,43): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(315,57): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(315,43): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(345,34): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(345,20): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer.cpp(366,72): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+D:\Github\Cpp_SDL\Renderer.cpp(366,67): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
   Cpp_SDL.vcxproj -> D:\Github\Cpp_SDL\x64\Debug\Cpp_SDL.exe
   'pwsh.exe' は、内部コマンドまたは外部コマンド、
   操作可能なプログラムまたはバッチ ファイルとして認識されていません。

@@ -57,8 +57,8 @@ private:
 	VertexArray* _screenVerts;
 	bool _isBloom;
 
-	unsigned int pingpongFBO[2];
-	unsigned int pingpongBuffer[2];
+	unsigned int _pingpongFBO[2];
+	unsigned int _pingpongBuffer[2];
 
 	Shader* _blurShader;               // ガウシアンブラー用シェーダー
 	Shader* _bloomFinalShader;         // 最終合成用シェーダー
@@ -79,8 +79,8 @@ private:
 	Shader* _backgroundShader;
 	Shader* _frameBufferShader;
 
-	unsigned int _lowResFrameBuffer;
-	unsigned int _lowResFrameFBO;
+	unsigned int _upscaleBuffer[2];
+	unsigned int _upscaleFBO;
 	Shader* _upscaleShader;
 
 	float _screenWidth;

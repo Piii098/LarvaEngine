@@ -57,7 +57,7 @@ Player::~Player() {
 void Player::InputObject(Input* input) {
 	if (input->IsInputDown(InputMap::INPUT_BRIGHT)) {
 		TestObject* bullet = new TestObject(GetGame());
-		bullet->Position(Position());
+		bullet->PixelPosition(Position());
 	}
 }
 

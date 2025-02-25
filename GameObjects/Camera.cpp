@@ -12,7 +12,7 @@ Camera::Camera(Game* game)
 
 	_camera = new FollowCameraComponent(this);
 	_camera->Target(GetGame()->GetPlayer()->Position());
-	_zoom = 1.f;
+	_zoom = 1;
 	_camera->Zoom(_zoom);
 	_camera->YOffset(0.f);
 	_camera->AttenRate(7.f);
@@ -45,5 +45,10 @@ void Camera::UpdateObject(Frame* frame) {
 Matrix4 Camera::GetViewMatrix() const {
 	return _camera->GetViewMatrix();
 }
+
+float Camera::Zoom() const {
+	return _camera->Zoom();
+}
+
 
 #pragma endregion

@@ -11,6 +11,7 @@ public:
 	void UpdateObject(Frame* frame) override;
 
 	Matrix4 GetViewMatrix() const;
+	float Zoom() const;
 private:
 	FollowCameraComponent* _camera;
 	float _zoom;

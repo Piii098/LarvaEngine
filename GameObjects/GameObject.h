@@ -59,11 +59,11 @@ public:
 	float Scale() const { return _scale; };
 	float Rotation() const { return _rotation; };
 	void Position(const Vector2 position) { _position = position; _recomputeWorldTransform = true; };
+	void PixelPosition(Vector2 position) { _position = Vector2(static_cast<int>(position.x), static_cast<int>(position.y));}
 	void Scale(float scale) { _scale = scale; _recomputeWorldTransform = true;};
 	void Rotation(float rotation) { _rotation = rotation; _recomputeWorldTransform = true;};
 	void Tag(TAG tag) { _tag = tag; };
 	void State(STATE state) { _state = state; };
-
 private:
 
 	STATE _state;

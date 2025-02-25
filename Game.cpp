@@ -167,7 +167,7 @@ void Game::Update() {
 	/*システム更新*/
 	_frame->Update(); // フレーム
 
-	SDL_Log("FPS : %f", _frame->Fps());
+	//SDL_Log("FPS : %f", _frame->Fps());
 	/*ゲーム内容*/
 														
 
@@ -213,7 +213,7 @@ void Game::LoadData() {
 	TextureComponent::S_TextureManager().Load("Assets/AKAGE.png");
 	TextureComponent::S_TextureManager().Load("Assets/RedBox.png");
 	TextureComponent::S_TextureManager().Load("Assets/BG.png");
-	TextureComponent::S_TextureManager().Load("Assets/Tame.png");
+	TextureComponent::S_TextureManager().Load("Assets/Tama.png");
 	TextureComponent::S_TextureManager().Load("Assets/Tile.png");
 	TileMapComponent::S_TileMapManager().Load("Assets/Test.csv");
 
