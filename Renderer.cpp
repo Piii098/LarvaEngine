@@ -115,11 +115,6 @@ void Renderer::Draw() {
 
 	DrawBackground();
 	DrawSprite();
-
-	// Check HDR Framebuffer Status
-	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
-		SDL_Log("Upscale Framebuffer is not complete!");
-	}
 	
 	_upscaleShader->SetActive();
 
@@ -131,34 +126,13 @@ void Renderer::Draw() {
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, _colorBuffer[1]);
 
-	// Check HDR Framebuffer Status
-	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
-		SDL_Log("Upscale Framebuffer is not complete!");
-	}
-
 	_screenVerts->SetActive();
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
-	/*
-	glBindFramebuffer(GL_FRAMEBUFFER, 0); // デフォルトのフレームバッファに戻す
-	glClear(GL_COLOR_BUFFER_BIT); // フレームバッファの内容を画面に描画
-
-	_bloomFinalShader->SetActive();
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, _upscaleBuffer[0]);
-	_bloomFinalShader->SetIntUniform("uIsBloom", false);
-	_bloomFinalShader->SetFloatUniform("exposure", 1.0f);
-	//float zoom = _game->GetCamera()->Zoom();
-	//_bloomFinalShader->SetFloatUniform("zoom", zoom);
 	
-	_screenVerts->SetActive();
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
-	*/
-
-	/*
 	bool horizontal = true;
 	bool firstIteration = true;
-	int amount = 10;
+	int amount = 20;
 
 	_blurShader->SetActive();
 
@@ -167,17 +141,14 @@ void Renderer::Draw() {
 	{
 		glBindFramebuffer(GL_FRAMEBUFFER, _pingpongFBO[horizontal]);
 		_blurShader->SetIntUniform("horizontal", horizontal);
-		glBindTexture(
-			GL_TEXTURE_2D, firstIteration ? _colorBuffer[1] : _pingpongBuffer[!horizontal]
-		);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture( GL_TEXTURE_2D, firstIteration ? _upscaleBuffer[1] : _pingpongBuffer[!horizontal]);
 		// スクリーン全体を覆う四角形を描画
 		_screenVerts->SetActive();
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 		horizontal = !horizontal;
-		if (firstIteration)
-			firstIteration = false;
+		if (firstIteration) firstIteration = false;
 	}
-	*/
 	
 	glBindFramebuffer(GL_FRAMEBUFFER, 0); // デフォルトのフレームバッファに戻す
 	glViewport(0, 0, _screenWidth, _screenHeight);
@@ -185,10 +156,10 @@ void Renderer::Draw() {
 	
 	_bloomFinalShader->SetActive();
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, _upscaleBuffer[1] );
-	//(GL_TEXTURE1);
-	//glBindTexture(GL_TEXTURE_2D, _pingpongBuffer[!horizontal]);
-	_bloomFinalShader->SetIntUniform("uIsBloom", false);
+	glBindTexture(GL_TEXTURE_2D, _upscaleBuffer[0] );
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, _pingpongBuffer[!horizontal]);
+	_bloomFinalShader->SetIntUniform("uIsBloom", true);
 	_bloomFinalShader->SetFloatUniform("exposure", 1.0f);
 	float zoom = _game->GetCamera()->Zoom();
 	_bloomFinalShader->SetFloatUniform("zoom", zoom);
@@ -447,7 +418,7 @@ bool Renderer::LoadShaders() {
 	}
 
 	_upscaleShader = new Shader();
-	if (!_blurShader->Load("Shaders/FrameBuffer.vert", "Shaders/Upscale.frag")) {
+	if (!_upscaleShader->Load("Shaders/FrameBuffer.vert", "Shaders/Upscale.frag")) {
 		SDL_Log("Failed to laod BlurShader");
 		return false;
 	}

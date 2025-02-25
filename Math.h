@@ -287,6 +287,11 @@ public:
 		z = inZ;
 	}
 
+	static Vector3 fromIntRGB(int r, int g, int b)
+	{
+		return Vector3(r / 255.0f, g / 255.0f, b / 255.0f);
+	}
+
 	// Vector addition (a + b)
 	friend Vector3 operator+(const Vector3& a, const Vector3& b)
 	{
