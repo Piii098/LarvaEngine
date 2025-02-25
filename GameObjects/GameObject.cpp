@@ -20,7 +20,7 @@ GameObject::GameObject(Game* game)
 }
 
 GameObject::~GameObject() {
-	
+	_game->RemoveObject(this);
 }
 
 

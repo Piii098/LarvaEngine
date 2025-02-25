@@ -10,11 +10,11 @@ uniform bool uIsBloom;
 
 void main()
 {             
+    vec2 correntedTexCoords = vec2(TexCoords.x, 1.0 - TexCoords.y);
     if(uIsBloom){
         
-        const float gamma = 1.0;
-        vec2 correntedTexCoords = vec2(TexCoords.x, 1.0 - TexCoords.y);
-        vec3 hdrColor = texture(scene, correntedTexCoords).rgb;      
+        const float gamma = 2.2;
+        vec3 hdrColor = texture(scene, TexCoords).rgb;      
         vec3 bloomColor = texture(bloomBlur, TexCoords).rgb;
         hdrColor += bloomColor; 
  

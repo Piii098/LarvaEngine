@@ -39,8 +39,8 @@ void TileMapSpriteComponent::Draw(Shader* shader) {
 				if (tileID == -1) continue; // -1は空白タイルとして描画しない
 
 				// タイルのワールド座標を計算
-				float dstX = mapX * _tileMapComp->TileSize();
-				float dstY = (_tileMapComp->MapHeight() - 1 - mapY) * _tileMapComp->TileSize();
+				float dstX = mapX * static_cast<float>(_tileMapComp->TileSize());
+				float dstY = (static_cast<float>(_tileMapComp->MapHeight()) - 1 - mapY) * static_cast<float>(_tileMapComp->TileSize());
 
 				// モデル行列を作成
 				Matrix4 scaleMat = Matrix4::CreateScale(static_cast<float>(_tileMapComp->TileSize()), static_cast<float>(_tileMapComp->TileSize()), 1.0f);
@@ -52,7 +52,7 @@ void TileMapSpriteComponent::Draw(Shader* shader) {
 				int tileRow = tileID / tilesPerRow;
 				int tileCol = tileID % tilesPerRow;
 
-				Vector2 texScale(_tileMapComp->TileSize() / static_cast<float>(_texture->Width()), _tileMapComp->TileSize() / static_cast<float>(_texture->Height()));
+				Vector2 texScale(static_cast<float>(_tileMapComp->TileSize()) / static_cast<float>(_texture->Width()), static_cast<float>(_tileMapComp->TileSize()) / static_cast<float>(_texture->Height()));
 
 				Vector2 texOffset = Vector2(tileCol * texScale.x, tileRow * texScale.y); // 切り出す部分の左上
 
@@ -61,8 +61,12 @@ void TileMapSpriteComponent::Draw(Shader* shader) {
 				shader->SetVector2Uniform("uTexOffset", texOffset);
 				shader->SetVector2Uniform("uTexScale", texScale);
 
+				shader->SetVector3Uniform("selfLightColor", _selfLightColor);
+				shader->SetFloatUniform("selfLightIntensity", _selfLightIntensity);
+
 				// テクスチャをアクティブにして描画
 				_texture->SetActive();
+			
 				glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 			}
 		}

@@ -20,7 +20,7 @@ BoxComponent2D::BoxComponent2D(GameObject* parent, bool isCollision, bool isDyna
 }
 
 BoxComponent2D::~BoxComponent2D() {
-	_parent->GetGame()->GetPhysWorld()->RemoveBox(this);
+	_parent->GetGame()->GetPhysWorld()->RemoveStaticBoxComp(this);
 }
 
 #pragma endregion

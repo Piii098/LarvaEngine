@@ -22,7 +22,7 @@ Input::InputManager::InputManager()
 }
 
 Input::InputManager::~InputManager() {
-
+	_keyboradMap.clear();
 }
 #pragma endregion
 
@@ -41,6 +41,8 @@ bool Input::InputManager::IsKey(InputMap input) {
 }
 
 void Input::InputManager::UpdateKeyboard() {
+	SDL_Event event;
+	SDL_PollEvent(&event);
 	const bool* keys = SDL_GetKeyboardState(NULL);
 
 	for (int i = 0; i < SDL_SCANCODE_COUNT;i++) {

@@ -17,7 +17,7 @@ class SpriteComponent : public TextureComponent {
 public:
 
 	SpriteComponent(GameObject* parent, int drawLayer = 150);
-	~SpriteComponent();
+	~SpriteComponent() override;
 
 	virtual void Draw(Shader* shader) override;
 

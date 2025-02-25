@@ -6,11 +6,5 @@ uniform sampler2D screenTexture;
 
 void main()
 {
-    vec4 texColor = texture(screenTexture, TexCoords);
-    
-    // デバッグ用：テクスチャ座標を色として表示
-    // FragColor = vec4(TexCoords.x, TexCoords.y, 0.0, 1.0);
-    
-    // 通常の描画
-    FragColor = texColor;
+    FragColor = texture(screenTexture, TexCoords);
 }

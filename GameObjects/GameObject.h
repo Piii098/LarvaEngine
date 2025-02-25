@@ -62,6 +62,7 @@ public:
 	void Scale(float scale) { _scale = scale; _recomputeWorldTransform = true;};
 	void Rotation(float rotation) { _rotation = rotation; _recomputeWorldTransform = true;};
 	void Tag(TAG tag) { _tag = tag; };
+	void State(STATE state) { _state = state; };
 
 private:
 

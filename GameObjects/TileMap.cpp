@@ -23,7 +23,15 @@ TileMap::TileMap(Game* parent)
 }
 
 TileMap::~TileMap() {
+	for (auto i : _boxObjects) {
+		delete i;
+		i = nullptr;
+	}
 
+	delete _tileMapComp;
+	_tileMapComp = nullptr;
+	delete _tileMapSpriComp;
+	_tileMapSpriComp = nullptr;
 }
 
 #pragma endregion

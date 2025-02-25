@@ -16,26 +16,31 @@ uniform vec3 pointLightColor;
 uniform float pointLightIntensity;    // 光の強度
 uniform float pointLightRadius;       // 光の届く最大距離
 
+uniform vec3 selfLightColor;          // 物体自体の発光色
+uniform float selfLightIntensity;     // 物体自体の発光強度
+
 void main()
 {
     vec4 texColor = texture(uTexture, fragTexCoord);
 
+    // 環境光の計算
     vec3 ambientLight = texColor.rgb * ambientLightColor * ambientLightIntensity;
 
-    // 距離ベースのライティング計算
-    float dist = distance(fragPosition, pointLightPos);
-    float attenuation = clamp(1.0 - dist / pointLightRadius, 0.0, 1.0); // 距離に応じた減衰
+    // 距離ベースのライティング計算（計算を簡略化）
+    vec2 lightDir = pointLightPos - fragPosition;
+    float distSq = dot(lightDir, lightDir);
+    float attenuation = max(1.0 - sqrt(distSq) / pointLightRadius, 0.0); // 距離に応じた減衰を簡略化
     vec3 pointLight = texColor.rgb * pointLightColor * attenuation * pointLightIntensity;
 
+    // 自己発光の計算
+    vec3 selfLight = selfLightColor * selfLightIntensity;
+
     // 環境光と点光源を合成
-    vec3 finalColor = ambientLight + pointLight;
+    vec3 finalColor = ambientLight + pointLight + selfLight;
 
     FragColor = vec4(finalColor, texColor.a); // アルファは元のテクスチャから取得
 
     // 輝度の計算と出力
-    float brightnessValue = dot(FragColor.rgb, vec3(0.2126, 0.7152, 0.0722));
-    if (brightnessValue > 1.0)
-        BrightColor = vec4(FragColor.rgb, FragColor.w);
-    else
-        BrightColor = vec4(0.0, 0.0, 0.0, FragColor.w);
+    float brightnessValue = dot(finalColor, vec3(0.2126, 0.7152, 0.0722)); // FragColor.rgbからfinalColorに変更（不要な操作の削減）
+    BrightColor = brightnessValue > 1.0 ? vec4(finalColor, texColor.a) : vec4(0.0, 0.0, 0.0, texColor.a);
 }

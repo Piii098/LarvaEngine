@@ -37,6 +37,7 @@ void TextureComponent::TextureManager::Load(const std::string& fileName) {
 
 void TextureComponent::TextureManager::Unload() {
 	for (auto& pair : _textures) {
+		pair.second->Unload();
 		delete pair.second;
 	}
 	_textures.clear();
@@ -56,7 +57,9 @@ TextureComponent::TextureComponent(GameObject* parent, int drawLayer)
 	: Component(parent, drawLayer)
 	, _texture(nullptr)
 	, _texWidth(0.f)
-	, _texHeight(0.f) {
+	, _texHeight(0.f)
+	, _selfLightColor(Vector3(1.f,1.f,1.f))
+	, _selfLightIntensity(0.f){
 
 }
 

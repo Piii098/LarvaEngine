@@ -4,7 +4,7 @@
 class TestObject : public GameObject {
 public:
 	TestObject(Game* game);
-	~TestObject();
+	~TestObject() override;
 
 private:
 

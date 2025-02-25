@@ -11,8 +11,8 @@
 
 FollowCameraComponent::FollowCameraComponent(GameObject* parent)
     : CameraComponent(parent)
-    , _xOffset(0.f)
-    , _yOffset(0.f)
+    , _xOffset(0)
+    , _yOffset(0)
     , _attenRate(3.f){
 
 }
@@ -26,8 +26,13 @@ FollowCameraComponent::~FollowCameraComponent() {
 
 void FollowCameraComponent::Update(Frame* frame) {
     Vector2 pos = _target + Vector2(_xOffset, _yOffset);
-    _parent->Position(Vector2::Lerp(_parent->Position(), pos, frame->DeltaTime() * _attenRate));
+    Vector2 newPosition = Vector2::Lerp(_parent->Position(), pos, frame->DeltaTime() * _attenRate);
 
+    // ƒJƒƒ‰‚ÌˆÊ’u‚ð®”’l‚ÉŠÛ‚ß‚é
+    newPosition.x = roundf(newPosition.x);
+    newPosition.y = roundf(newPosition.y);
+
+    _parent->Position(newPosition);
 }
 
 #pragma endregion

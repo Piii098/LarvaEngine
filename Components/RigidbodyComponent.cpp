@@ -10,6 +10,7 @@ RigidbodyComponent::RigidbodyComponent(GameObject* parent, int updateLayer)
 	, _angularSpeed(0.f)
 	, _forwardSpeed(0.f)
 	, _mass(0.f)
+	, _drag(0.f)
 	, _sumOfForces(Vector2::Zero)
 	, _velocity(Vector2::Zero)
 	, _isGravity(false){
@@ -23,7 +24,7 @@ RigidbodyComponent::~RigidbodyComponent() {
 #pragma region パブリック関数
 
 void RigidbodyComponent::Update(Frame* frame) {
-	const float GRAVITY_CONSTANT = 300.f;
+	const float GRAVITY_CONSTANT = 10000.f;
 	if (_isGravity) {
 		PhysWorld2D* phys = _parent->GetGame()->GetPhysWorld();
 		PhysWorld2D::CollisionInfo outColl;
@@ -35,13 +36,13 @@ void RigidbodyComponent::Update(Frame* frame) {
 		if (phys->SegmentCast(ray, outColl, _parent)) {
 			if (outColl._object->Tag() != GameObject::TAG::GROUND) {
 				// 地面以外に衝突した場合、重力を適用
-				float gravityForce = _mass * GRAVITY_CONSTANT;
+				float gravityForce = _mass * GRAVITY_CONSTANT * frame->DeltaTime();
 				AddForce(Vector2(0, -gravityForce));
 			}
 		}
 		else {
 			// 衝突しない場合、重力を適用
-			float gravityForce = _mass * GRAVITY_CONSTANT;
+			float gravityForce = _mass * GRAVITY_CONSTANT * frame->DeltaTime();
 			AddForce(Vector2(0, -gravityForce));
 		}
 	}
@@ -58,14 +59,9 @@ void RigidbodyComponent::Update(Frame* frame) {
 
 	Vector2 pos = _parent->Position();
 
-	pos += _velocity * frame->DeltaTime();
+	//pos += _velocity * frame->DeltaTime();
 
-	if (pos.y < 20.f) {
-		pos.y = 20.f;
-		_velocity.y = 0;
-	}
-
-	_parent->Position(pos);
+	//_parent->Position(pos);
 
 	_sumOfForces = Vector2::Zero;
 

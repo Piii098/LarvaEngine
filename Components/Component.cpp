@@ -8,7 +8,7 @@ Component::Component(GameObject* parent,int updateLayer)
 }
 
 Component::~Component() {
-
+	_parent->RemoveComponent(this);
 }
 
 #pragma region パブリック関数

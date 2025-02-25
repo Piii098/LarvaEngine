@@ -28,6 +28,7 @@ public:
 	float Mass() { return _mass; };
 	const Vector2& Velocity() const { return _velocity; };
 
+	Vector2 NextPos() { return _nextPos; };
 
 private:
 
@@ -39,6 +40,7 @@ private:
 	Vector2 _sumOfForces; //óÕÇÃçáåv
 	Vector2 _velocity; //ë¨ìx
 	
+	Vector2 _nextPos;
 	float _drag;
 
 	bool _isGravity;

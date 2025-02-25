@@ -39,6 +39,9 @@ public:
 	int DrawLayer() const { return _drawLayer; };
 	static TextureManager& S_TextureManager() { return s_TextureManager; };
 
+	void SelfLightColor(Vector3 color) { _selfLightColor = color; };
+	void SelfLightIntensity(float intensity) { _selfLightIntensity = intensity; };
+
 	void FlipX(bool flag) { _flipX = flag; };
 	void FlipY(bool flag) { _flipY = flag; };
 
@@ -49,6 +52,9 @@ protected:
 	Texture* _texture;
     int _texWidth;
     int _texHeight;
+
+	Vector3 _selfLightColor;
+	float _selfLightIntensity;
 
 	int _drawLayer; //•`Ê‡˜A¸‡‚É•`Ê‚·‚é
 

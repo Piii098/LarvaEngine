@@ -1,27 +1,63 @@
-﻿  Game.cpp
+﻿  CameraComponent.cpp
+D:\Github\Cpp_SDL\Math.h(65,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Components/CameraComponent.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Math.h(110,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Components/CameraComponent.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Components\CameraComponent.h(14,39): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Components/CameraComponent.cpp' をコンパイルしています)
+  
+  DebugDrawComponent.cpp
 D:\Github\Cpp_SDL\math.h(65,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Game.cpp' をコンパイルしています)
+  (ソース ファイル 'Components/Debug/DebugDrawComponent.cpp' をコンパイルしています)
   
 D:\Github\Cpp_SDL\math.h(110,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Game.cpp' をコンパイルしています)
+  (ソース ファイル 'Components/Debug/DebugDrawComponent.cpp' をコンパイルしています)
+  
+  FollowCameraComponent.cpp
+D:\Github\Cpp_SDL\Math.h(65,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Components/FollowCameraComponent.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Math.h(110,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Components/FollowCameraComponent.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Components\CameraComponent.h(14,39): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Components/FollowCameraComponent.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Components\FollowCameraComponent.h(12,42): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Components/FollowCameraComponent.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Components\FollowCameraComponent.h(13,42): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Components/FollowCameraComponent.cpp' をコンパイルしています)
   
 D:\Github\Cpp_SDL\Utilities\Frame.h(12,35): warning C4244: 'return': 'const float' から 'Uint64' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Game.cpp' をコンパイルしています)
+  (ソース ファイル 'Components/FollowCameraComponent.cpp' をコンパイルしています)
   
-D:\Github\Cpp_SDL\PhysWorld2D.h(15,8): warning C4099: 'DynamicComponent': タイプ名は最初 'class' として使われていましたが 'struct' として使われています。
-  (ソース ファイル 'Game.cpp' をコンパイルしています)
-  D:\Github\Cpp_SDL\PhysWorld2D.h(15,8):
-  'DynamicComponent' の宣言を確認してください
-  
-  PhysWorld2D.cpp
+D:\Github\Cpp_SDL\Components\FollowCameraComponent.cpp(28,47): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Components\FollowCameraComponent.cpp(28,37): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  Camera.cpp
 D:\Github\Cpp_SDL\math.h(65,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'PhysWorld2D.cpp' をコンパイルしています)
+  (ソース ファイル 'GameObjects/Camera.cpp' をコンパイルしています)
   
 D:\Github\Cpp_SDL\math.h(110,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'PhysWorld2D.cpp' をコンパイルしています)
+  (ソース ファイル 'GameObjects/Camera.cpp' をコンパイルしています)
   
-D:\Github\Cpp_SDL\Utilities\Frame.h(12,35): warning C4244: 'return': 'const float' から 'Uint64' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'PhysWorld2D.cpp' をコンパイルしています)
+D:\Github\Cpp_SDL\Components\CameraComponent.h(14,39): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/Camera.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Components\FollowCameraComponent.h(12,42): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/Camera.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Components\FollowCameraComponent.h(13,42): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/Camera.cpp' をコンパイルしています)
+  
+  TestObject.cpp
+D:\Github\Cpp_SDL\math.h(65,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/TestObject.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\math.h(110,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/TestObject.cpp' をコンパイルしています)
   
   コードを生成中...
   Cpp_SDL.vcxproj -> D:\Github\Cpp_SDL\x64\Debug\Cpp_SDL.exe

@@ -1,6 +1,8 @@
 #pragma once
 #include "GameObject.h"
 
+
+class TestObject;
 class DynamicComponent;
 class SpriteComponent;
 class DebugDrawComponent;
@@ -24,6 +26,8 @@ private:
 	SpriteComponent* _spriteComp;
 	MoveInputComponent* _moveInputComp;
 	
+	std::vector<TestObject*> _bulletObjects;
+
 	DynamicComponent* _dynamicComp;
 	float _jumpForce;
 };

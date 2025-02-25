@@ -28,6 +28,8 @@ void BGComponent::Draw(Shader* shader) {
 		Matrix4 scaleMat = Matrix4::CreateScale(scaleX * static_cast<float>(_texWidth), scaleY * static_cast<float>(_texHeight), 1.0f);
 		Matrix4 world = scaleMat * _parent->WorldTransform();
 
+		shader->SetVector3Uniform("selfLightColor", _selfLightColor);
+		shader->SetFloatUniform("selfLightIntensity", _selfLightIntensity);
 		_texture->SetActive();
 
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);

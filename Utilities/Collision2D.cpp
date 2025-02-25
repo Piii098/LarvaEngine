@@ -81,6 +81,18 @@ float AABB2D::MinDistSq(const Vector2& point) const {
     return dx * dx + dy * dy;
 }
 
+void AABB2D::MoveCenterTo(const Vector2& targetPoint) {
+    Vector2 currentCenter = Center();
+    Vector2 offset = targetPoint - currentCenter;
+
+    _min += offset;
+    _max += offset;
+}
+
+Vector2 AABB2D::Center() const {
+    return (_min + _max) * 0.5f;
+}
+
 #pragma endregion
 
 #pragma region ƒJƒvƒZƒ‹

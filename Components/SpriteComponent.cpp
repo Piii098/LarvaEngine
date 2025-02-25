@@ -37,6 +37,9 @@ void SpriteComponent::Draw(Shader* shader) {
 		shader->SetVector2Uniform("uTexOffset", Vector2(0.0f, 0.0f));
 		shader->SetVector2Uniform("uTexScale", Vector2(1.0f, 1.0f));
 
+		shader->SetVector3Uniform("selfLightColor", _selfLightColor);
+		shader->SetFloatUniform("selfLightIntensity", _selfLightIntensity);
+
 		_texture->SetActive();
 
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);

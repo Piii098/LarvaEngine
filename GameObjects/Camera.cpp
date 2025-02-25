@@ -1,5 +1,6 @@
 #include "GameObjects/Camera.h"
 #include "Components/FollowCameraComponent.h"
+#include "Components/CameraComponent.h"
 #include "Game.h"
 #include "GameObjects/Player.h"
 #include "Utilities/Input.h"
@@ -11,14 +12,15 @@ Camera::Camera(Game* game)
 
 	_camera = new FollowCameraComponent(this);
 	_camera->Target(GetGame()->GetPlayer()->Position());
-	_zoom = 2.f;
+	_zoom = 1.f;
 	_camera->Zoom(_zoom);
 	_camera->YOffset(0.f);
 	_camera->AttenRate(7.f);
 }
 
 Camera::~Camera() {
-
+	delete _camera;
+	_camera = nullptr;
 }
 
 #pragma endregion
@@ -28,10 +30,10 @@ Camera::~Camera() {
 
 void Camera::InputObject(Input* input) {
 	if (input->IsInputDown(InputMap::INPUT_BUP)) {
-		_zoom += 0.5f;
+		_zoom += 1;
 	}
 	if (input->IsInputDown(InputMap::INPUT_BDOWN)) {
-		_zoom -= 0.5f;
+		_zoom -= 1;
 	}
 	_camera->Zoom(_zoom);
 }

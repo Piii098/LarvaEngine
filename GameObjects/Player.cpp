@@ -12,6 +12,7 @@
 #include <iostream>
 #include "Utilities/Frame.h"
 #include "PhysWorld2D.h"
+#include "GameObjects/TestObject.h"
 
 #pragma region コンストラクタ:デストラクタ
 
@@ -34,22 +35,30 @@ Player::Player(Game* game)
 
 	_moveInputComp = new MoveInputComponent(this, _dynamicComp->rigidbodyComp);
 	_moveInputComp->MoveSpeed(100.f);
-	_moveInputComp->JumpForce(450000.f);
+	_moveInputComp->JumpForce(500000.f);
 
 	//new DebugDrawComponent(this, _dynamicComp->boxComp, true);
 }
 
 Player::~Player() {
+	delete _spriteComp;
+	_spriteComp = nullptr;
+	delete _moveInputComp;
+	_moveInputComp = nullptr;
+	delete _dynamicComp;
+	_dynamicComp = nullptr;
 
 }
-
 #pragma endregion
 
 
 #pragma region パブリック関数
 
 void Player::InputObject(Input* input) {
-	
+	if (input->IsInputDown(InputMap::INPUT_BRIGHT)) {
+		TestObject* bullet = new TestObject(GetGame());
+		bullet->Position(Position());
+	}
 }
 
 void Player::UpdateObject(Frame* frame) {

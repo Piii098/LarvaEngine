@@ -11,7 +11,8 @@ Background::Background(Game* game)
 }
 
 Background::~Background() {
-
+	delete _bgComp;
+	_bgComp = nullptr;
 }
 
 #pragma endregion

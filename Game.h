@@ -3,6 +3,9 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
 #include "Math.h"
 
 class Input;
@@ -28,6 +31,8 @@ public:
 	Game();
 	~Game();
 
+	void StartThreads();
+
 	bool Initialize(); // 初期処理
 	void RunLoop(); // ループ駆動
 	void Shutdown(); // シャッドダウン
@@ -39,8 +44,8 @@ public:
 	Player* GetPlayer() { return _player; };
 	PhysWorld2D* GetPhysWorld() { return _physWorld; };
 	Renderer* GetRenderer() { return _renderer; };
+	void GameLogicLoop();
 	
-
 private:
 	/*ループ機能*/
 	void ProcessInput();
@@ -48,6 +53,7 @@ private:
 	void ProcessOutput();
 	
 	void LoadData();
+	void UnloadData();
 
 	/*システム変数*/
 	Camera* _camera;
@@ -62,8 +68,6 @@ private:
 
 	float _brightness;
 
-	std::unordered_map<std::string, Texture*> _textures;
-	std::vector<SpriteComponent*> _sprites;
 	std::vector<GameObject*> _pendingObjects; //保留中のオブジェクト配列
 	std::vector<GameObject*> _objects; //実行対象のオブジェクト配列
 

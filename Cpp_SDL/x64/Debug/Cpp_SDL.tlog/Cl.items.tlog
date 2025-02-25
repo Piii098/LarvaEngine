@@ -3,7 +3,6 @@ D:\Github\Cpp_SDL\Components\AI\AIState.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\
 D:\Github\Cpp_SDL\Components\BGComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\BGComponent.obj
 D:\Github\Cpp_SDL\Components\BoxComponent2D.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\BoxComponent2D.obj
 D:\Github\Cpp_SDL\Components\CameraComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\CameraComponent.obj
-D:\Github\Cpp_SDL\Components\CapsuleComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\CapsuleComponent.obj
 D:\Github\Cpp_SDL\Components\Component.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Component.obj
 D:\Github\Cpp_SDL\Components\Debug\DebugDrawComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\DebugDrawComponent.obj
 D:\Github\Cpp_SDL\Components\FollowCameraComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\FollowCameraComponent.obj
@@ -25,7 +24,6 @@ D:\Github\Cpp_SDL\Math.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Math.obj
 D:\Github\Cpp_SDL\PhysWorld2D.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\PhysWorld2D.obj
 D:\Github\Cpp_SDL\Polygon\VertexArray.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\VertexArray.obj
 D:\Github\Cpp_SDL\Renderer.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Renderer.obj
-D:\Github\Cpp_SDL\Singletons\ShaderManager.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\ShaderManager.obj
 D:\Github\Cpp_SDL\Utilities\Collision2D.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Collision2D.obj
 D:\Github\Cpp_SDL\Utilities\Frame.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Frame.obj
 D:\Github\Cpp_SDL\Utilities\Input.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Input.obj

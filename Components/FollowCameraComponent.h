@@ -5,7 +5,7 @@ class FollowCameraComponent : public CameraComponent {
 public:
 
 	FollowCameraComponent(GameObject* parent);
-	~FollowCameraComponent();
+	~FollowCameraComponent() override;
 
 	void Update(Frame* frame) override;
 
@@ -13,7 +13,7 @@ public:
 	void YOffset(float offset) { _yOffset = offset; };
 	void AttenRate(float rate) { _attenRate = rate; };
 private:
-	float _xOffset;
-	float _yOffset;
+	int _xOffset;
+	int _yOffset;
 	float _attenRate;
 };

@@ -24,7 +24,6 @@
     <ClCompile Include="Components\BGComponent.cpp" />
     <ClCompile Include="Components\BoxComponent2D.cpp" />
     <ClCompile Include="Components\CameraComponent.cpp" />
-    <ClCompile Include="Components\CapsuleComponent.cpp" />
     <ClCompile Include="Components\Component.cpp" />
     <ClCompile Include="Components\Debug\DebugDrawComponent.cpp" />
     <ClCompile Include="Components\FollowCameraComponent.cpp" />
@@ -46,7 +45,6 @@
     <ClCompile Include="PhysWorld2D.cpp" />
     <ClCompile Include="Polygon\VertexArray.cpp" />
     <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="Singletons\ShaderManager.cpp" />
     <ClCompile Include="Utilities\Collision2D.cpp" />
     <ClCompile Include="Utilities\Frame.cpp" />
     <ClCompile Include="Utilities\Input.cpp" />
@@ -59,7 +57,6 @@
     <ClInclude Include="Components\BGComponent.h" />
     <ClInclude Include="Components\BoxComponent2D.h" />
     <ClInclude Include="Components\CameraComponent.h" />
-    <ClInclude Include="Components\CapsuleComponent.h" />
     <ClInclude Include="Components\Component.h" />
     <ClInclude Include="Components\Debug\DebugDrawComponent.h" />
     <ClInclude Include="Components\FollowCameraComponent.h" />
@@ -79,7 +76,6 @@
     <ClInclude Include="Math.h" />
     <ClInclude Include="PhysWorld2D.h" />
     <ClInclude Include="Renderer.h" />
-    <ClInclude Include="Singletons\ShaderManager.h" />
     <ClInclude Include="Utilities\Collision2D.h" />
     <ClInclude Include="Utilities\Frame.h" />
     <ClInclude Include="Utilities\Input.h" />
@@ -95,16 +91,14 @@
     <None Include="Polygon\VertexArray.h" />
     <None Include="Shaders\Background.frag" />
     <None Include="Shaders\Background.vert" />
-    <None Include="Shaders\Basic.frag" />
-    <None Include="Shaders\Basic.vert" />
     <None Include="Shaders\BloomFinal.frag" />
     <None Include="Shaders\Blur.frag" />
-    <None Include="Shaders\BrightFilter.frag" />
     <None Include="Shaders\FrameBuffer.frag" />
     <None Include="Shaders\FrameBuffer.vert" />
     <None Include="Shaders\LightSprite.frag" />
     <None Include="Shaders\Sprite.frag" />
     <None Include="Shaders\Sprite.vert" />
+    <None Include="Shaders\Upscale.frag" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -178,7 +172,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -203,7 +197,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -228,7 +222,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -253,7 +247,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

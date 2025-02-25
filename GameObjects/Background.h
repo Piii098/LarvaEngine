@@ -6,7 +6,7 @@ class BGComponent;
 class Background : public GameObject {
 public:
 	Background(Game* game);
-	~Background();
+	~Background() override;
 
 public:
 	BGComponent* _bgComp;

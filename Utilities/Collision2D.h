@@ -29,6 +29,8 @@ struct AABB2D
     void UpdateMinMax(const Vector2& point);
     bool Contains(const Vector2& point) const;
     float MinDistSq(const Vector2& point) const;
+    void MoveCenterTo(const Vector2& targetPoint);
+    Vector2 Center() const;
 
     Vector2 _min;
     Vector2 _max;

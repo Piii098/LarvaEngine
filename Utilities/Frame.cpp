@@ -4,7 +4,7 @@
 
 Frame::Frame() 
     : _tickCount(0)
-    , _setFps(60)
+    , _setFps(120)
     , _currentFps(0.f)
     {
 

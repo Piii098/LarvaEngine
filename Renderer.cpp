@@ -12,7 +12,9 @@
 
 Renderer::Renderer(Game* game)
 	: _game(game)
-	, _isBloom(true){
+	, _isBloom(true)
+	, _lowResWidth(0.f)
+	, _lowResHeight(0.f){
 
 }
 
@@ -24,10 +26,13 @@ Renderer::~Renderer() {
 
 #pragma region パブリック関数
 
-bool Renderer::Initialize(float screenWidth, float screenHeight) {
+bool Renderer::Initialize(float screenWidth, float screenHeight, float lowResWidth, float lowResHeight) {
 
 	_screenWidth = screenWidth;
 	_screenHeight = screenHeight;
+
+	_lowResWidth = lowResWidth;
+	_lowResHeight = lowResHeight;
 
 	/*シェーダー初期化*/
 
@@ -78,14 +83,26 @@ bool Renderer::Initialize(float screenWidth, float screenHeight) {
 }
 
 void Renderer::Shutdown() {
+	delete _screenVerts;
+	_screenVerts = nullptr;
+	_frameBufferShader->Unload();
+	_spriteShader->Unload();
+	_backgroundShader->Unload();
+
+	SDL_GL_DestroyContext(_context);
+	SDL_DestroyWindow(_window);
+}
+
+void Renderer::UnloadData() {
 
 }
 
 void Renderer::Draw() {
+	
 	/*画面クリア*/
 
 	glBindFramebuffer(GL_FRAMEBUFFER, _hdrFBO);
-
+	glViewport(0, 0, _lowResWidth, _lowResHeight);
 	glClearColor(0.4f, 0.4f, 0.4f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
@@ -94,28 +111,15 @@ void Renderer::Draw() {
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	DrawBackground();
-
 	DrawSprite();
 
-	/*画面クリア*/
-
-	glBindFramebuffer(GL_FRAMEBUFFER, _hdrFBO);
-
-	glClearColor(0.4f, 0.4f, 0.4f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
-
-	/*シェーダー*/
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	DrawBackground();
-
-	DrawSprite();
 
 	bool horizontal = true;
 	bool firstIteration = true;
-	int amount = 3;
+	int amount = 10;
+
 	_blurShader->SetActive();
+
 	for (int i = 0; i < amount; i++) {
 		glBindFramebuffer(GL_FRAMEBUFFER, pingpongFBO[horizontal]);
 		_blurShader->SetIntUniform("horizontal", horizontal);
@@ -123,22 +127,22 @@ void Renderer::Draw() {
 		_screenVerts->SetActive();
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 		horizontal = !horizontal;
-		if (firstIteration) firstIteration = false;
+		if (firstIteration)
+			firstIteration = false;
 	}
 
-	// デフォルトのフレームバッファに戻す
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-	// フレームバッファの内容を画面に描画
-	glClear(GL_COLOR_BUFFER_BIT);
-
+	glBindFramebuffer(GL_FRAMEBUFFER, 0); // デフォルトのフレームバッファに戻す
+	glViewport(0, 0, _screenWidth, _screenHeight);
+	glClear(GL_COLOR_BUFFER_BIT); // フレームバッファの内容を画面に描画
+	
 	_bloomFinalShader->SetActive();
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, _colorBuffer[0]);
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, pingpongBuffer[!horizontal]);
-	_bloomFinalShader->SetIntUniform("uIsBloom", _isBloom);
-	_bloomFinalShader->SetFloatUniform("exposure", 1.0f);
+	_bloomFinalShader->SetIntUniform("uIsBloom", true);
+	_bloomFinalShader->SetFloatUniform("exposure", 1.5f);
+	
 
 	// スクリーン全体を覆う四角形を描画
 	_screenVerts->SetActive();
@@ -193,33 +197,12 @@ void Renderer::RemoveBackground(BGComponent* background) {
 	_backgrounds.erase(iter);
 }
 
-void Renderer::AddTexture(TextureComponent* texture) {
-
-	int layer = texture->DrawLayer();
-	auto iter = _textures.begin();
-
-	for (; iter != _textures.end(); ++iter) { // 配列の最後まで
-
-		if (layer < (*iter)->DrawLayer()) { // 階層数が既存のスプライトより小さいければ
-			break; //抜ける
-		}
-
-	}
-
-	_textures.insert(iter, texture); // 適切な位置に挿入する
-}
-
-void Renderer::RemoveTexture(TextureComponent* texture) {
-
-	auto iter = std::find(_textures.begin(), _textures.end(), texture);
-	_textures.erase(iter);
-}
-
 #pragma endregion
 
 #pragma region プライベート関数
 
 bool Renderer::InitializeFrameBuffer() {
+
 	// フレームバッファオブジェクトの作成
 	glGenFramebuffers(1, &_hdrFBO);
 	glBindFramebuffer(GL_FRAMEBUFFER, _hdrFBO);
@@ -230,9 +213,9 @@ bool Renderer::InitializeFrameBuffer() {
 	for (int i = 0; i < 2; i++) {
 
 		glBindTexture(GL_TEXTURE_2D, _colorBuffer[i]);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _screenWidth, _screenHeight, 0, GL_RGBA, GL_FLOAT, nullptr);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _lowResWidth, _lowResHeight, 0, GL_RGBA, GL_FLOAT, nullptr);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
@@ -258,7 +241,7 @@ bool Renderer::InitializeFrameBuffer() {
 
 		glBindFramebuffer(GL_FRAMEBUFFER, pingpongFBO[i]);
 		glBindTexture(GL_TEXTURE_2D, pingpongBuffer[i]);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _screenWidth, _screenHeight, 0, GL_RGBA, GL_FLOAT, nullptr);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _lowResWidth, _lowResHeight, 0, GL_RGBA, GL_FLOAT, nullptr);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -268,6 +251,7 @@ bool Renderer::InitializeFrameBuffer() {
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, pingpongBuffer[i], 0);
 
 	}
+	
 
 	// デフォルトのフレームバッファに戻す
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -275,8 +259,26 @@ bool Renderer::InitializeFrameBuffer() {
 	return true;
 }
 
-void Renderer::ApplyBloom() {
-	
+void Renderer::UpScale() {
+
+}
+
+void Renderer::ApplyBloom(bool& horizontal) {
+	bool firstIteration = true;
+	int amount = 5;
+
+	_blurShader->SetActive();
+
+	for (int i = 0; i < amount; i++) {
+		glBindFramebuffer(GL_FRAMEBUFFER, pingpongFBO[horizontal]);
+		glViewport(0, 0, _screenWidth, _screenHeight);
+		_blurShader->SetIntUniform("horizontal", horizontal);
+		glBindTexture(GL_TEXTURE_2D, firstIteration ? _colorBuffer[1] : pingpongBuffer[!horizontal]);
+		_screenVerts->SetActive();
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+		horizontal = !horizontal;
+		if (firstIteration) firstIteration = false;
+	}
 }
 
 void Renderer::DrawSprite() {
@@ -287,13 +289,12 @@ void Renderer::DrawSprite() {
 	_spriteShader->SetMatrixUniform("uViewScreen", view);
 
 	_spriteShader->SetVector3Uniform("ambientLightColor", Vector3(1.f, 1.f, 1.f));
-	_spriteShader->SetFloatUniform("ambientLightIntensity", 0.5f);
+	_spriteShader->SetFloatUniform("ambientLightIntensity", 0.1f);
 
-	_spriteShader->SetFloatUniform("brightness", 2.f);
 	_spriteShader->SetVector2Uniform("pointLightPos", _lightPos);
-	_spriteShader->SetVector3Uniform("pointLightColor", Vector3(1.0, 0.9, 0.7));
+	_spriteShader->SetVector3Uniform("pointLightColor", Vector3(1.0, 0.9, 0.8));
 	_spriteShader->SetFloatUniform("pointLightIntensity", 1.f);
-	_spriteShader->SetFloatUniform("pointLightRadius", 300.f);
+	_spriteShader->SetFloatUniform("pointLightRadius", 100.f);
 
 	/*スプライトコンポーネント*/
 	for (auto spri : _sprites) {
@@ -306,7 +307,7 @@ void Renderer::DrawBackground() {
 	_screenVerts->SetActive();
 
 	_backgroundShader->SetVector3Uniform("ambientLightColor", Vector3(1.0f, 1.0f, 1.0f)); // 白 (無調整)
-	_backgroundShader->SetFloatUniform("ambientLightIntensity", 1.0f);
+	_backgroundShader->SetFloatUniform("ambientLightIntensity", 0.1f);
 
 	for (auto bg : _backgrounds) {
 		bg->Draw(_backgroundShader);
@@ -331,10 +332,10 @@ void Renderer::CreateSpriteVerts() {
 
 	float quadVertices[] = {
 		// positions(x,y,z)    // texture coords(u,v)
-		-1.0f,  1.0f, 0.0f,   0.0f, 0.0f,  // 左上
-		 1.0f,  1.0f, 0.0f,   1.0f, 0.0f,  // 右上
-		 1.0f, -1.0f, 0.0f,   1.0f, 1.0f,  // 右下
-		-1.0f, -1.0f, 0.0f,   0.0f, 1.0f   // 左下
+		-1.0f,  1.0f, 0.0f,   0.0f, 1.0f,  // 左上
+		 1.0f,  1.0f, 0.0f,   1.0f, 1.0f,  // 右上
+		 1.0f, -1.0f, 0.0f,   1.0f, 0.0f,  // 右下
+		-1.0f, -1.0f, 0.0f,   0.0f, 0.0f   // 左下
 	};
 
 	unsigned int quadIndices[] = {
@@ -364,6 +365,12 @@ bool Renderer::LoadShaders() {
 		SDL_Log("Failed to laod BlurShader");
 		return false;
 	}
+
+	_upscaleShader = new Shader();
+	if (!_blurShader->Load("Shaders/FrameBuffer.vert", "Shaders/FrameBuffer.frag")) {
+		SDL_Log("Failed to laod BlurShader");
+		return false;
+	}
 	
 	_bloomFinalShader = new Shader();
 	if (!_bloomFinalShader->Load("Shaders/FrameBuffer.vert", "Shaders/BloomFinal.frag")) {
@@ -371,7 +378,7 @@ bool Renderer::LoadShaders() {
 		return false;
 	}
 
-	Matrix4 viewProj = Matrix4::CreateSimpleViewProj(_screenWidth, _screenHeight);
+	Matrix4 viewProj = Matrix4::CreateSimpleViewProj(_lowResWidth, _lowResHeight);
 
 	_spriteShader->SetActive();
 	_spriteShader->SetMatrixUniform("uViewProj", viewProj);

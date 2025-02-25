@@ -50,7 +50,7 @@ bool Game::Initialize() {
 	/*シェーダー初期化*/
 
 	_renderer = new Renderer(this);
-	if (!_renderer->Initialize(1280.f, 720.f)) {
+	if (!_renderer->Initialize(1024.f, 768.f, 512.f, 384.f )) {
 		SDL_Log("Failed to initialized renderer");
 		delete _renderer;
 		_renderer = nullptr;
@@ -71,7 +71,7 @@ bool Game::Initialize() {
 }
 
 void Game::RunLoop() {
-
+	
 	while (_isRunning) {
 		ProcessInput();
 		Update();
@@ -81,6 +81,13 @@ void Game::RunLoop() {
 }
 
 void Game::Shutdown() {
+	UnloadData();
+	delete _physWorld;
+	_physWorld = nullptr;
+	if (_renderer) {
+		_renderer->Shutdown();
+	}
+
 	SDL_Quit();
 
 }
@@ -147,8 +154,6 @@ void Game::ProcessInput() {
 		_brightness -= 0.1f;
 	}
 
-	_renderer->SetBrightness(_brightness);
-	
 	_isUpdating = true;
 	for (auto& obj : _objects) {
 		obj->ProcessInput(_input);
@@ -162,6 +167,7 @@ void Game::Update() {
 	/*システム更新*/
 	_frame->Update(); // フレーム
 
+	SDL_Log("FPS : %f", _frame->Fps());
 	/*ゲーム内容*/
 														
 
@@ -188,6 +194,7 @@ void Game::Update() {
 
 	for (auto obj : deadObjects) {
 		delete obj;
+		obj = nullptr;
 	}
 
 }
@@ -206,6 +213,7 @@ void Game::LoadData() {
 	TextureComponent::S_TextureManager().Load("Assets/AKAGE.png");
 	TextureComponent::S_TextureManager().Load("Assets/RedBox.png");
 	TextureComponent::S_TextureManager().Load("Assets/BG.png");
+	TextureComponent::S_TextureManager().Load("Assets/Tame.png");
 	TextureComponent::S_TextureManager().Load("Assets/Tile.png");
 	TileMapComponent::S_TileMapManager().Load("Assets/Test.csv");
 
@@ -219,6 +227,21 @@ void Game::LoadData() {
 	_renderer->SetLightPos(_player->Position());
 	_camera = new Camera(this);
 	new Background(this);
+}
+
+void Game::UnloadData()
+{
+	// Delete actors
+	// Because ~Actor calls RemoveActor, have to use a different style loop
+	while (!_objects.empty())
+	{
+		delete _objects.back();
+	}
+
+	if (_renderer)
+	{
+		_renderer->UnloadData();
+	}
 }
 
 #pragma endregion

@@ -9,7 +9,7 @@ class AIState;
 class AIComponent : public Component {
 public:
 	AIComponent(GameObject* parent);
-	~AIComponent();
+	~AIComponent() override;
 
 	void Update(Frame* frame) override;
 	void ChangeState(const std::string& name);

@@ -17,6 +17,7 @@ struct DynamicComponent {
 	~DynamicComponent();
 	RigidbodyComponent* rigidbodyComp;
 	BoxComponent2D* boxComp;
+	GameObject* _parent;
 };
 
 class PhysWorld2D {
@@ -36,21 +37,19 @@ public:
 	void Update(Frame* frame);
 
 	void CollisionUpdate(Frame* frame);
+	void RigidbodyUpdate(Frame* frame);
 
-	void TestSweepAndPrune(std::function<void(GameObject*, GameObject*)> f);
-
-	void AddBox(BoxComponent2D* box);
-	void RemoveBox(BoxComponent2D* box);
 	void AddDynamicComp(DynamicComponent* obj);
 	void AddStaticBoxComp(BoxComponent2D* obj);
+	void RemoveDynamicComp(DynamicComponent* obj);
+	void RemoveStaticBoxComp(BoxComponent2D* obj);
 
 private:
-	void FixCollision(DynamicComponent* dynamicComp,BoxComponent2D* staticBox);
 
+	void FixCollision(DynamicComponent* dynamicComp, Vector2& velocity, Vector2& nextPos, AABB2D nextBox, BoxComponent2D* staticBox);
+	void FixCollision(DynamicComponent* dynamicComp, BoxComponent2D* staticBoxComp);
 	
 	Game* _game;
-	std::vector<BoxComponent2D*> _boxComps;
-
 	std::vector<DynamicComponent*> _dynamicComps;
 	std::vector<BoxComponent2D*> _staticBoxes;
 };

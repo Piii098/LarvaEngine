@@ -25,9 +25,10 @@ public:
 	Renderer(Game* game);
 	~Renderer();
 
-	bool Initialize(float screenWidth, float screenHeight);
+	bool Initialize(float screenWidth, float screenHeight, float dotWidth, float dotHeight);
 	void Shutdown();
-	void Unload();
+
+	void UnloadData();
 
 	void Draw();
 
@@ -38,7 +39,6 @@ public:
 	void AddTexture(TextureComponent* texture);
 	void RemoveTexture(TextureComponent* texture);
 
-	void SetBrightness(float brightness) { _brightness = brightness; };
 	void SetLightPos(Vector2 lightPos) { _lightPos = lightPos; };
 private:
 
@@ -47,14 +47,14 @@ private:
 	void DrawBackground();
 	void DrawSprite();
 
-	void ApplyBloom();
+	void UpScale();
+	void ApplyBloom(bool& horizontal);
 	bool LoadShaders();
 	void CreateSpriteVerts();
 
 	unsigned int _colorBuffer[2];
 	unsigned int _hdrFBO;
 	VertexArray* _screenVerts;
-	Shader* _frameBufferShader;
 	bool _isBloom;
 
 	unsigned int pingpongFBO[2];
@@ -69,8 +69,6 @@ private:
 
 	std::vector<BGComponent*> _backgrounds;
 	std::vector<SpriteComponent*> _sprites;
-	std::vector<TextureComponent*> _textures;
-	std::vector<Line*> _lines;
 
 	Game* _game;
 
@@ -79,13 +77,17 @@ private:
 	VertexArray* _spriteVerts;
 	Shader* _spriteShader;
 	Shader* _backgroundShader;
+	Shader* _frameBufferShader;
+
+	unsigned int _lowResFrameBuffer;
+	unsigned int _lowResFrameFBO;
+	Shader* _upscaleShader;
 
 	float _screenWidth;
 	float _screenHeight;
+	float _lowResWidth;
+	float _lowResHeight;
 
-	float _brightness;
 	Vector2 _lightPos;
-
-	std::vector<SpriteComponent*> _debugBoxes;
 
 };
