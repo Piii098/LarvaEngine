@@ -1,7 +1,7 @@
 ﻿#include "GameObjects/Camera.h"
-#include "Components/FollowCameraComponent.h"
-#include "Components/CameraComponent.h"
-#include "Game.h"
+#include "Components/Camera/FollowCameraComponent.h"
+#include "Components/Camera/CameraComponent.h"
+#include "Core/Game.h"
 #include "GameObjects/Player.h"
 #include "Utilities/Input.h"
 

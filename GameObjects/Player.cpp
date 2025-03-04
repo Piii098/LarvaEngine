@@ -1,17 +1,17 @@
 ﻿#include "GameObjects/Player.h"
-#include "Components/SpriteComponent.h"
+#include "Components/Draw/SpriteComponent.h"
 #include "Components/MoveInputComponent.h"
-#include "Components/RigidbodyComponent.h"
-#include "Game.h"
+#include "Components/Phys/RigidbodyComponent.h"
+#include "Core/Game.h"
 #include "Utilities/Input.h"
 #include <SDL3/SDL.h>
 #include "Components/TileMapComponent.h"
 #include "Utilities/Collision2D.h"
-#include "Components/BoxComponent2D.h"
-#include "Components/Debug/DebugDrawComponent.h"
+#include "Components/Phys/BoxComponent2D.h"
+#include "Components/Draw/DebugDrawComponent.h"
 #include <iostream>
 #include "Utilities/Frame.h"
-#include "PhysWorld2D.h"
+#include "Phys/PhysWorld2D.h"
 #include "GameObjects/TestObject.h"
 
 #pragma region コンストラクタ:デストラクタ

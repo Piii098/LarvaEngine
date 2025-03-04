@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "Components/Component.h"
-#include "Math.h"
+#include "Utilities/Math.h"
 
 class Input;
 class RigidbodyComponent;

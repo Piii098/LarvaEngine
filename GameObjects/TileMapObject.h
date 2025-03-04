@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include "GameObjects/GameObject.h"
-#include "Math.h"
 #include <vector>
 #include <string>
 

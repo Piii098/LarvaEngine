@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "Math.h"
+#include "Utilities/Math.h"
 #include <vector>
 
 struct LineSegment2D

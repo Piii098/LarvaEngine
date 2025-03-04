@@ -1,5 +1,5 @@
 ﻿#include "Components/MoveInputComponent.h"
-#include "Components/RigidbodyComponent.h"
+#include "Components/Phys/RigidbodyComponent.h"
 #include "Math.h"
 #include "GameObjects/GameObject.h"
 #include "Utilities/Frame.h"
@@ -7,8 +7,8 @@
 #include "SDL3/SDL.h"
 #include "Components/Component.h"
 #include <iostream>
-#include "PhysWorld2D.h"
-#include "Game.h"
+#include "Phys/PhysWorld2D.h"
+#include "Core/Game.h"
 
 MoveInputComponent::MoveInputComponent(GameObject* parent, RigidbodyComponent* rigidbodyComp, int updateLayer)
 	: Component(parent, updateLayer)

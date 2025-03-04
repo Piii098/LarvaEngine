@@ -1,5 +1,6 @@
 ﻿#include "GameObjects/Background.h"
-#include "Components/BGComponent.h"
+#include "Components/Draw/BGComponent.h"
+#include "Utilities/Math.h"
 
 #pragma region コンストラクタ:デストラクタ
 

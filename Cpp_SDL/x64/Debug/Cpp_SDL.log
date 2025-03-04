@@ -1,133 +1,60 @@
-﻿  BGComponent.cpp
-D:\Github\Cpp_SDL\math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/BGComponent.cpp' をコンパイルしています)
+﻿  MoveInputComponent.cpp
+D:\Github\Cpp_SDL\Utilities\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Components/MoveInputComponent.cpp' をコンパイルしています)
   
-D:\Github\Cpp_SDL\math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/BGComponent.cpp' をコンパイルしています)
+D:\Github\Cpp_SDL\Utilities\Math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Components/MoveInputComponent.cpp' をコンパイルしています)
   
-D:\Github\Cpp_SDL\math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/BGComponent.cpp' をコンパイルしています)
+D:\Github\Cpp_SDL\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Components/MoveInputComponent.cpp' をコンパイルしています)
   
-D:\Github\Cpp_SDL\Components\BGComponent.cpp(29,26): warning C4244: '初期化中': 'const int' から 'float' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Utilities\Frame.h(12,38): warning C4244: 'return': 'const float' から 'Uint64' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Components/MoveInputComponent.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Components\MoveInputComponent.cpp(57,63): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Components\MoveInputComponent.cpp(57,57): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Components\MoveInputComponent.cpp(58,52): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
   BoxComponent2D.cpp
-D:\Github\Cpp_SDL\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/BoxComponent2D.cpp' をコンパイルしています)
+D:\Github\Cpp_SDL\Utilities\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Components/Phys/BoxComponent2D.cpp' をコンパイルしています)
   
-D:\Github\Cpp_SDL\Math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/BoxComponent2D.cpp' をコンパイルしています)
+D:\Github\Cpp_SDL\Utilities\Math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Components/Phys/BoxComponent2D.cpp' をコンパイルしています)
   
-D:\Github\Cpp_SDL\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/BoxComponent2D.cpp' をコンパイルしています)
+D:\Github\Cpp_SDL\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Components/Phys/BoxComponent2D.cpp' をコンパイルしています)
   
-D:\Github\Cpp_SDL\Components\BoxComponent2D.cpp(32,34): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\Components\BoxComponent2D.cpp(33,34): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-  FollowCameraComponent.cpp
-D:\Github\Cpp_SDL\Components\FollowCameraComponent.cpp(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
-D:\Github\Cpp_SDL\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/FollowCameraComponent.cpp' をコンパイルしています)
+D:\Github\Cpp_SDL\Components\Phys\BoxComponent2D.cpp(32,34): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Components\Phys\BoxComponent2D.cpp(33,34): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  Player.cpp
+D:\Github\Cpp_SDL\Utilities\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
   
-D:\Github\Cpp_SDL\Math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/FollowCameraComponent.cpp' をコンパイルしています)
+D:\Github\Cpp_SDL\Utilities\Math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
   
-D:\Github\Cpp_SDL\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/FollowCameraComponent.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\Utilities\Frame.h(12,38): warning C4244: 'return': 'const float' から 'Uint64' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/FollowCameraComponent.cpp' をコンパイルしています)
-  
-  SpriteComponent.cpp
-D:\Github\Cpp_SDL\math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/SpriteComponent.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/SpriteComponent.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/SpriteComponent.cpp' をコンパイルしています)
-  
-  TextureComponent.cpp
-D:\Github\Cpp_SDL\math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/TextureComponent.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/TextureComponent.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Components/TextureComponent.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\Components\TextureComponent.cpp(14,13): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\Components\TextureComponent.cpp(15,14): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
-  Game.cpp
-D:\Github\Cpp_SDL\math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Game.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Game.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Game.cpp' をコンパイルしています)
+D:\Github\Cpp_SDL\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
   
 D:\Github\Cpp_SDL\Utilities\Frame.h(12,38): warning C4244: 'return': 'const float' から 'Uint64' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Game.cpp' をコンパイルしています)
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
   
-  Camera.cpp
-D:\Github\Cpp_SDL\math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'GameObjects/Camera.cpp' をコンパイルしています)
+D:\Github\Cpp_SDL\GameObjects\Player.cpp(32,58): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\GameObjects\Player.cpp(32,52): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\GameObjects\Player.cpp(32,34): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\GameObjects\Player.cpp(32,27): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  Math.cpp
+D:\Github\Cpp_SDL\Utilities\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Utilities/Math.cpp' をコンパイルしています)
   
-D:\Github\Cpp_SDL\math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'GameObjects/Camera.cpp' をコンパイルしています)
+D:\Github\Cpp_SDL\Utilities\Math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Utilities/Math.cpp' をコンパイルしています)
   
-D:\Github\Cpp_SDL\math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'GameObjects/Camera.cpp' をコンパイルしています)
+D:\Github\Cpp_SDL\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Utilities/Math.cpp' をコンパイルしています)
   
-  PhysWorld2D.cpp
-D:\Github\Cpp_SDL\math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'PhysWorld2D.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'PhysWorld2D.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'PhysWorld2D.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\Utilities\Frame.h(12,38): warning C4244: 'return': 'const float' から 'Uint64' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'PhysWorld2D.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\PhysWorld2D.cpp(128,15): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\PhysWorld2D.cpp(129,15): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\PhysWorld2D.cpp(130,15): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\PhysWorld2D.cpp(131,15): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
-  Renderer.cpp
-D:\Github\Cpp_SDL\math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Renderer.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Renderer.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Renderer.cpp' をコンパイルしています)
-  
-D:\Github\Cpp_SDL\Renderer.cpp(53,51): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\Renderer.cpp(53,37): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\Renderer.cpp(171,56): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\Renderer.cpp(171,42): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\Renderer.cpp(191,57): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\Renderer.cpp(191,43): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\Renderer.cpp(222,57): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\Renderer.cpp(222,43): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\Renderer.cpp(249,57): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\Renderer.cpp(249,43): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\Renderer.cpp(279,34): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\Renderer.cpp(279,20): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\Renderer.cpp(300,72): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-D:\Github\Cpp_SDL\Renderer.cpp(300,67): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-D:\Github\Cpp_SDL\Renderer.cpp(361,33): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\Renderer.cpp(361,19): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\Renderer.cpp(377,33): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\Renderer.cpp(377,19): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\Renderer.cpp(395,29): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
-D:\Github\Cpp_SDL\Renderer.cpp(409,33): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-D:\Github\Cpp_SDL\Renderer.cpp(409,19): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Utilities\Math.cpp(83,16): warning C4244: '=': 'double' から 'int' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Utilities\Math.cpp(84,16): warning C4244: '=': 'double' から 'int' への変換です。データが失われる可能性があります。
   コードを生成中...
   Cpp_SDL.vcxproj -> D:\Github\Cpp_SDL\x64\Debug\Cpp_SDL.exe
   'pwsh.exe' は、内部コマンドまたは外部コマンド、

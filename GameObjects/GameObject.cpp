@@ -2,7 +2,7 @@
 #include "Components/Component.h"
 #include "Utilities/Input.h"
 #include "Utilities/Frame.h"
-#include "Game.h"
+#include "Core/Game.h"
 #include <algorithm>
 
 #pragma region con

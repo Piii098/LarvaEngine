@@ -1,13 +1,13 @@
 ﻿#include "GameObjects/TileMapObject.h"
-#include "Components/BoxComponent2D.h"
-#include "Components/Debug/DebugDrawComponent.h"
-#include "Utilities/Texture.h"
-#include "Utilities/Shader.h"
-#include "Game.h"
+#include "Components/Phys/BoxComponent2D.h"
+#include "Components/Draw/DebugDrawComponent.h"
+#include "AssetManagers/AssetData/Texture.h"
+#include "Renderer/Shader.h"
+#include "Core/Game.h"
 #include <fstream>
 #include <sstream>
 #include "AssetManagers/AssetManager.h"
-#include "AssetManagers/TileMap.h"
+#include "AssetManagers/AssetData/TileMap.h"
 #include "Components/TileMapComponent.h"
 
 TileMapObject::TileMapObject(Game* game)

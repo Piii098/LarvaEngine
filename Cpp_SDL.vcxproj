@@ -18,6 +18,94 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AssetManagers\AssetData\Texture.cpp" />
+    <ClCompile Include="AssetManagers\AssetData\TileMap.cpp" />
+    <ClCompile Include="AssetManagers\TextureManager.cpp" />
+    <ClCompile Include="AssetManagers\TileMapManager.cpp" />
+    <ClCompile Include="Components\AI\AICompoennt.cpp" />
+    <ClCompile Include="Components\AI\AIState.cpp" />
+    <ClCompile Include="Components\Camera\CameraComponent.cpp" />
+    <ClCompile Include="Components\Camera\FollowCameraComponent.cpp" />
+    <ClCompile Include="Components\Component.cpp" />
+    <ClCompile Include="Components\Draw\BGComponent.cpp" />
+    <ClCompile Include="Components\Draw\DebugDrawComponent.cpp" />
+    <ClCompile Include="Components\Draw\SpriteComponent.cpp" />
+    <ClCompile Include="Components\Draw\TextureComponent.cpp" />
+    <ClCompile Include="Components\MoveInputComponent.cpp" />
+    <ClCompile Include="Components\Phys\BoxComponent2D.cpp" />
+    <ClCompile Include="Components\Phys\CapsuleComponent.cpp" />
+    <ClCompile Include="Components\Phys\RigidbodyComponent.cpp" />
+    <ClCompile Include="Components\TileMapComponent.cpp" />
+    <ClCompile Include="Core\Game.cpp" />
+    <ClCompile Include="Core\Main.cpp" />
+    <ClCompile Include="GameObjects\Background.cpp" />
+    <ClCompile Include="GameObjects\Camera.cpp" />
+    <ClCompile Include="GameObjects\GameObject.cpp" />
+    <ClCompile Include="GameObjects\Player.cpp" />
+    <ClCompile Include="GameObjects\TestObject.cpp" />
+    <ClCompile Include="GameObjects\TileMapObject.cpp" />
+    <ClCompile Include="Phys\PhysWorld2D.cpp" />
+    <ClCompile Include="Renderer\Renderer.cpp" />
+    <ClCompile Include="Renderer\Shader.cpp" />
+    <ClCompile Include="Renderer\VertexArray.cpp" />
+    <ClCompile Include="Utilities\Collision2D.cpp" />
+    <ClCompile Include="Utilities\Font.cpp" />
+    <ClCompile Include="Utilities\Frame.cpp" />
+    <ClCompile Include="Utilities\Input.cpp" />
+    <ClCompile Include="Utilities\Math.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AssetManagers\AssetData\Texture.h" />
+    <ClInclude Include="AssetManagers\AssetData\TileMap.h" />
+    <ClInclude Include="AssetManagers\AssetManager.h" />
+    <ClInclude Include="AssetManagers\TextureManager.h" />
+    <ClInclude Include="AssetManagers\TileMapManager.h" />
+    <ClInclude Include="Components\AI\AICompoennt.h" />
+    <ClInclude Include="Components\AI\AIState.h" />
+    <ClInclude Include="Components\Camera\CameraComponent.h" />
+    <ClInclude Include="Components\Camera\FollowCameraComponent.h" />
+    <ClInclude Include="Components\Component.h" />
+    <ClInclude Include="Components\Draw\BGComponent.h" />
+    <ClInclude Include="Components\Draw\DebugDrawComponent.h" />
+    <ClInclude Include="Components\Draw\SpriteComponent.h" />
+    <ClInclude Include="Components\Draw\TextureComponent.h" />
+    <ClInclude Include="Components\MoveInputComponent.h" />
+    <ClInclude Include="Components\Phys\BoxComponent2D.h" />
+    <ClInclude Include="Components\Phys\CapsuleComponent.h" />
+    <ClInclude Include="Components\Phys\RigidbodyComponent.h" />
+    <ClInclude Include="Components\TileMapComponent.h" />
+    <ClInclude Include="Core\Game.h" />
+    <ClInclude Include="GameObjects\Background.h" />
+    <ClInclude Include="GameObjects\Camera.h" />
+    <ClInclude Include="GameObjects\GameObject.h" />
+    <ClInclude Include="GameObjects\Player.h" />
+    <ClInclude Include="GameObjects\TestObject.h" />
+    <ClInclude Include="GameObjects\TileMapObject.h" />
+    <ClInclude Include="Phys\PhysWorld2D.h" />
+    <ClInclude Include="Renderer\Renderer.h" />
+    <ClInclude Include="Renderer\Shader.h" />
+    <ClInclude Include="Renderer\VertexArray.h" />
+    <ClInclude Include="Utilities\Collision2D.h" />
+    <ClInclude Include="Utilities\Font.h" />
+    <ClInclude Include="Utilities\Frame.h" />
+    <ClInclude Include="Utilities\Input.h" />
+    <ClInclude Include="Utilities\Math.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Renderer\Shaders\Background.frag" />
+    <None Include="Renderer\Shaders\Background.vert" />
+    <None Include="Renderer\Shaders\Bloom.vert" />
+    <None Include="Renderer\Shaders\BloomFinal.frag" />
+    <None Include="Renderer\Shaders\Blur.frag" />
+    <None Include="Renderer\Shaders\FrameBuffer.frag" />
+    <None Include="Renderer\Shaders\FrameBuffer.vert" />
+    <None Include="Renderer\Shaders\LightSprite.frag" />
+    <None Include="Renderer\Shaders\RetroEffect.frag" />
+    <None Include="Renderer\Shaders\Sprite.frag" />
+    <None Include="Renderer\Shaders\Sprite.vert" />
+    <None Include="Renderer\Shaders\Upscale.frag" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
