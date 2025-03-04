@@ -437,6 +437,9 @@ bool Renderer::LoadShaders() {
 	_blurShader->SetActive();
 	_blurShader->SetIntUniform("image", 0);
 
+	_retroShader->SetActive();
+	_retroShader->SetVector2Uniform("resolutions", Vector2(_screenWidth, _screenHeight));
+
 	_upscaleShader->SetActive();
 	_upscaleShader->SetIntUniform("normalBuffer", 0);
 	_upscaleShader->SetIntUniform("brightBuffer", 1);
