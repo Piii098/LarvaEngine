@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <unordered_map>
 #include <string>
 #include <SDL3/SDL.h>
@@ -10,7 +10,7 @@ class Shader;
 class Texture;
 
 /*
-–‘O‚Éƒ[ƒh‚³‚ê‚½ƒXƒvƒ‰ƒCƒg‚ğƒZƒbƒg‚µA
+äº‹å‰ã«ãƒ­ãƒ¼ãƒ‰ã•ã‚ŒãŸã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’ã‚»ãƒƒãƒˆã—ã€
 */
 
 class SpriteComponent : public TextureComponent {
@@ -21,7 +21,7 @@ public:
 
 	virtual void Draw(Shader* shader) override;
 
-	/*ƒQƒbƒ^[ƒZƒbƒ^[*/
+	/*ã‚²ãƒƒã‚¿ãƒ¼ã‚»ãƒƒã‚¿ãƒ¼*/
 
 private:
 

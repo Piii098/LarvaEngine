@@ -1,10 +1,10 @@
-#include <fstream>
+ï»¿#include <fstream>
 #include <string>
 #include <sstream>
 #include <SDL3/SDL.h>
 #include "Utilities/Shader.h"
 
-#pragma region ƒRƒ“ƒXƒgƒ‰ƒNƒ^:ƒfƒXƒgƒ‰ƒNƒ^
+#pragma region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿:ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 Shader::Shader()
 	: _shaderProgram(0)
@@ -19,12 +19,12 @@ Shader::~Shader() {
 
 #pragma endregion
 
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
+#pragma region ãƒ‘ãƒ–ãƒªãƒƒã‚¯é–¢æ•°
 
 bool Shader::Load(const std::string& vertName
 	, const std::string& fragName) {
 
-	/*ƒVƒF[ƒ_[ƒRƒ“ƒpƒCƒ‹*/
+	/*ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«*/
 
 	if (!CompileShader(vertName, GL_VERTEX_SHADER, _vertexShader) ||
 		!CompileShader(fragName, GL_FRAGMENT_SHADER, _fragShader))
@@ -32,7 +32,7 @@ bool Shader::Load(const std::string& vertName
 		return false;
 	}
 
-	/*ƒVƒF[ƒ_[ƒvƒƒOƒ‰ƒ€ì¬*/
+	/*ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ—ãƒ­ã‚°ãƒ©ãƒ ä½œæˆ*/
 
 	_shaderProgram = glCreateProgram();
 	glAttachShader(_shaderProgram, _vertexShader);
@@ -59,7 +59,7 @@ void Shader::SetActive() {
 
 void Shader::SetMatrixUniform(const char* name, const Matrix4& matrix) {
 
-	GLuint loc = glGetUniformLocation(_shaderProgram, name); // –¼‘O‚ğ’T‚·
+	GLuint loc = glGetUniformLocation(_shaderProgram, name); // åå‰ã‚’æ¢ã™
 
 	glUniformMatrix4fv(loc, 1, GL_TRUE, matrix.GetAsFloatPtr()); //
 }
@@ -72,6 +72,11 @@ void Shader::SetVector3Uniform(const char* name, const Vector3& vec) {
 void Shader::SetVector2Uniform(const char* name, const Vector2& vec) {
 	GLuint loc = glGetUniformLocation(_shaderProgram, name);
 	glUniform2f(loc, vec.x, vec.y);
+}
+void Shader::SetVector2Uniform(const char* name, const Vector2Int& vec) {
+	Vector2 vecFlaot = Vector2::ToFloat(vec);
+	GLuint loc = glGetUniformLocation(_shaderProgram, name);
+	glUniform2f(loc, vecFlaot.x, vecFlaot.y);
 }
 
 void Shader::SetFloatUniform(const char* name, float value) {
@@ -91,26 +96,26 @@ void Shader::SetBoolUniform(const char* name, bool flag) {
 #pragma endregion
 
 
-#pragma region ƒvƒ‰ƒCƒx[ƒgŠÖ”
+#pragma region ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
 
 bool Shader::CompileShader(const std::string& fileName
 	, GLuint shaderType, GLuint& outShader) {
 
-	std::ifstream shaderFile(fileName); // ƒtƒ@ƒCƒ‹‚ğŠJ‚­
+	std::ifstream shaderFile(fileName); // ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 	
-	if (shaderFile.is_open()) { //ƒtƒ@ƒCƒ‹‚ğŠJ‚¯‚½‚ç
+	if (shaderFile.is_open()) { //ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã‘ãŸã‚‰
 
-		/*ƒtƒ@ƒCƒ‹ƒeƒLƒXƒg“Ç‚İ‚İ*/
+		/*ãƒ•ã‚¡ã‚¤ãƒ«ãƒ†ã‚­ã‚¹ãƒˆèª­ã¿è¾¼ã¿*/
 		
 		std::stringstream sstream;
 		sstream << shaderFile.rdbuf(); 
 		std::string contents = sstream.str();
 		const char* contentsChar = contents.c_str();
 
-		/*ƒVƒF[ƒ_[ì¬AƒRƒ“ƒpƒCƒ‹*/
+		/*ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ä½œæˆã€ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«*/
 
-		outShader = glCreateShader(shaderType); // ƒVƒF[ƒ_[ƒ^ƒCƒvw’èA§ì
-		glShaderSource(outShader, 1, &(contentsChar), nullptr); // ƒeƒLƒXƒg‚ğƒRƒ“ƒpƒCƒ‹
+		outShader = glCreateShader(shaderType); // ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚¿ã‚¤ãƒ—æŒ‡å®šã€åˆ¶ä½œ
+		glShaderSource(outShader, 1, &(contentsChar), nullptr); // ãƒ†ã‚­ã‚¹ãƒˆã‚’ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
 		glCompileShader(outShader);
 
 		if (!IsCompiled(outShader)) { // 
@@ -128,11 +133,11 @@ bool Shader::CompileShader(const std::string& fileName
 bool Shader::IsCompiled(GLuint shader) {
 
 	GLint status;
-	glGetShaderiv(shader, GL_COMPILE_STATUS, &status); // ƒVƒF[ƒ_[ó‘Ô–â‚¢‡‚í‚¹
+	glGetShaderiv(shader, GL_COMPILE_STATUS, &status); // ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼çŠ¶æ…‹å•ã„åˆã‚ã›
 
-	if (status != GL_TRUE) { // ƒVƒF[ƒ_[ó‘Ô‚ªTRUE‚Å‚È‚¢‚Æ‚«
+	if (status != GL_TRUE) { // ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼çŠ¶æ…‹ãŒTRUEã§ãªã„ã¨ã
 
-		/*ƒRƒ“ƒpƒCƒ‹ƒGƒ‰[ƒƒbƒZ[ƒWo—Í*/
+		/*ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡ºåŠ›*/
 
 		char buffer[512];
 		memset(buffer, 0, 512);
@@ -146,11 +151,11 @@ bool Shader::IsCompiled(GLuint shader) {
 bool Shader::IsValidProgram() {
 
 	GLint status;
-	glGetProgramiv(_shaderProgram, GL_LINK_STATUS, &status); // ƒVƒF[ƒ_[ƒvƒƒOƒ‰ƒ€ó‘Ô–â‚¢‡‚í‚¹
+	glGetProgramiv(_shaderProgram, GL_LINK_STATUS, &status); // ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ—ãƒ­ã‚°ãƒ©ãƒ çŠ¶æ…‹å•ã„åˆã‚ã›
 
-	if (status != GL_TRUE) { // ƒVƒF[ƒ_[ƒvƒƒOƒ‰ƒ€ó‘Ô‚ªTRUE‚Å‚È‚¢‚Æ‚«
+	if (status != GL_TRUE) { // ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ—ãƒ­ã‚°ãƒ©ãƒ çŠ¶æ…‹ãŒTRUEã§ãªã„ã¨ã
 
-		/*ƒVƒF[ƒ_[ƒvƒƒOƒ‰ƒ€ƒGƒ‰[ƒƒbƒZ[ƒWo—Í*/
+		/*ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡ºåŠ›*/
 
 		char buffer[512];
 		memset(buffer, 0, 512);

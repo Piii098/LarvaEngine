@@ -1,4 +1,4 @@
-#include <algorithm>
+ï»¿#include <algorithm>
 #include "PhysWorld2D.h"
 #include "Components/BoxComponent2D.h"
 #include "Game.h"
@@ -7,49 +7,28 @@
 #include "Utilities/Frame.h"
 #include "Components/RigidbodyComponent.h"
 
-#pragma region ƒRƒ“ƒXƒgƒ‰ƒNƒ^:ƒfƒXƒgƒ‰ƒNƒ^
+#pragma region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-DynamicComponent::DynamicComponent(GameObject* parent, bool isCollision) {
-    rigidbodyComp = new RigidbodyComponent(parent);
-    boxComp = new BoxComponent2D(parent, isCollision, true);
-
-    parent->GetGame()->GetPhysWorld()->AddDynamicComp(this);
-}
-
-DynamicComponent::~DynamicComponent() {
-    _parent->GetGame()->GetPhysWorld()->RemoveDynamicComp(this);
-    delete rigidbodyComp;
-    rigidbodyComp = nullptr;
-    delete boxComp;
-    boxComp = nullptr;
-}
-
-PhysWorld2D::PhysWorld2D(Game* game) {
-
+PhysWorld2D::PhysWorld2D(Game* game)
+    : game(game) {
 }
 
 #pragma endregion
 
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
+#pragma region è¡çªåˆ¤å®š
 
-bool PhysWorld2D::SegmentCast(const LineSegment2D& l, CollisionInfo& outColl, const GameObject* ignoreObj)
-{
+bool PhysWorld2D::SegmentCast(const LineSegment2D& l, CollisionInfo& outColl, const GameObject* ignoreObj) {
     bool collided = false;
-    float closestT = std::numeric_limits<float>::infinity();  // ˆÀ‘S‚ÈInfinity’è‹`
-    Vector2 norm;
+    float closestT = std::numeric_limits<float>::infinity();
+    Vector2Int norm;
 
-    // “®“IƒIƒuƒWƒFƒNƒg‚Æ‚ÌŒğ·”»’è
-    for (auto dynaComp : _dynamicComps)
-    {
-        auto box = dynaComp->boxComp;
+    // è¡çªåˆ¤å®šã®ãŸã‚ã®ãƒ«ãƒ¼ãƒ—
+    for (auto box : _boxComps) {
         float t;
-        // ©•ª©g‚ÌƒIƒuƒWƒFƒNƒg‚ğ–³‹
-        if (box->GetParent() == ignoreObj) continue;
+        if (box->GetParent() == ignoreObj) continue; // ç„¡è¦–ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ã‚¹ã‚­ãƒƒãƒ—
 
-        if (Intersect(l, box->GetWorldBox(), t, norm))
-        {
-            if (t < closestT)
-            {
+        if (Intersect(l, box->GetWorldBox(), t, norm)) { // è¡çªåˆ¤å®š
+            if (t < closestT) { // æœ€ã‚‚è¿‘ã„è¡çªç‚¹ã‚’æ›´æ–°
                 closestT = t;
                 outColl._point = l.PointOnSegment(t);
                 outColl._normal = norm;
@@ -59,245 +38,118 @@ bool PhysWorld2D::SegmentCast(const LineSegment2D& l, CollisionInfo& outColl, co
             }
         }
     }
-
-    // Ã“IƒIƒuƒWƒFƒNƒg‚Æ‚ÌŒğ·”»’è
-    for (auto box : _staticBoxes)
-    {
-        float t;
-        if (box->GetParent() == ignoreObj) continue;  // ©•ª©g‚ğ–³‹
-
-        if (Intersect(l, box->GetWorldBox(), t, norm))
-        {
-            if (t < closestT)
-            {
-                closestT = t;
-                outColl._point = l.PointOnSegment(t);
-                outColl._normal = norm;
-                outColl._box = box;
-                outColl._object = box->GetParent();
-                collided = true;
-            }
-        }
-    }
-    return collided;
+    return collided; // è¡çªã—ãŸã‹ã©ã†ã‹ã‚’è¿”ã™
 }
 
-
-
-void PhysWorld2D::Update(Frame* frame) {
-   
-    CollisionUpdate(frame);
-     // ‘¼‚Ì•¨—XVˆ—
+void PhysWorld2D::Update(float deltaTime) {
+    CalculateVelocity(deltaTime); // é€Ÿåº¦ã®è¨ˆç®—
+    CollisionUpdate(deltaTime); // è¡çªã®æ›´æ–°
+    UpdatePosition(deltaTime); // ä½ç½®ã®æ›´æ–°
 }
 
-/*
-void PhysWorld2D::TestSweepAndPrune(std::function<void(GameObject*, GameObject*)> f)
-{
-    // Sort by min.x
-    std::sort(_boxComps.begin(), _boxComps.end(),
-        [](BoxComponent2D* a, BoxComponent2D* b) {
-            return a->GetWorldBox()._min.x <
-                b->GetWorldBox()._min.x;
-        });
-
-    for (size_t i = 0; i < _boxComps.size(); i++)
-    {
-        // Get max.x for current box
-        BoxComponent2D* a = _boxComps[i];
-        float max = a->GetWorldBox()._max.x;
-        for (size_t j = i + 1; j < _boxComps.size(); j++)
-        {
-            BoxComponent2D* b = _boxComps[j];
-            // If AABB[j] min is past the max bounds of AABB[i],
-            // then there aren't any other possible intersections
-            // against AABB[i]
-            if (b->GetWorldBox()._min.x > max)
-            {
-                break;
-            }
-            else if (Intersect(a->GetWorldBox(), b->GetWorldBox()))
-            {
-                f(a->GetParent(), b->GetParent());
-            }
-        }
-    }
-}
-*/
-
-void PhysWorld2D::RemoveDynamicComp(DynamicComponent* box)
-{
-    auto iter = std::find(_dynamicComps.begin(), _dynamicComps.end(), box);
-    if (iter != _dynamicComps.end())
-    {
-        std::iter_swap(iter, _dynamicComps.end() - 1);
-        _dynamicComps.pop_back();
+void PhysWorld2D::RemoveRigidbodyComp(RigidbodyComponent* box) {
+    auto iter = std::find(_rigidbodyComps.begin(), _rigidbodyComps.end(), box);
+    if (iter != _rigidbodyComps.end()) {
+        std::iter_swap(iter, _rigidbodyComps.end() - 1); // æœ€å¾Œã®è¦ç´ ã¨ã‚¹ãƒ¯ãƒƒãƒ—
+        _rigidbodyComps.pop_back(); // æœ€å¾Œã®è¦ç´ ã‚’å‰Šé™¤
     }
 }
 
-void PhysWorld2D::RemoveStaticBoxComp(BoxComponent2D* box)
-{
-    auto iter = std::find(_staticBoxes.begin(), _staticBoxes.end(), box);
-    if (iter != _staticBoxes.end())
-    {
-        std::iter_swap(iter, _staticBoxes.end() - 1);
-        _staticBoxes.pop_back();
+void PhysWorld2D::RemoveBoxComp(BoxComponent2D* box) {
+    auto iter = std::find(_boxComps.begin(), _boxComps.end(), box);
+    if (iter != _boxComps.end()) {
+        std::iter_swap(iter, _boxComps.end() - 1); // æœ€å¾Œã®è¦ç´ ã¨ã‚¹ãƒ¯ãƒƒãƒ—
+        _boxComps.pop_back(); // æœ€å¾Œã®è¦ç´ ã‚’å‰Šé™¤
     }
 }
 
-
-void PhysWorld2D::AddDynamicComp(DynamicComponent* obj) {
-    _dynamicComps.push_back(obj);
+void PhysWorld2D::AddRigidbodyComp(RigidbodyComponent* obj) {
+    _rigidbodyComps.push_back(obj); // å‰›ä½“ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’è¿½åŠ 
 }
 
-void PhysWorld2D::AddStaticBoxComp(BoxComponent2D* obj) {
-    _staticBoxes.push_back(obj);
+void PhysWorld2D::AddBoxComp(BoxComponent2D* obj) {
+    _boxComps.push_back(obj); // ãƒœãƒƒã‚¯ã‚¹ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’è¿½åŠ 
 }
-
 
 #pragma endregion
 
-#pragma region ƒvƒ‰ƒCƒx[ƒgŠÖ”
+#pragma region ç‰©ç†è¨ˆç®—
 
-void PhysWorld2D::CollisionUpdate(Frame* frame) {
-    const float timeStep = 0.01f; // ¬‚³‚ÈŠÔƒXƒeƒbƒv
-    float remainingTime = frame->DeltaTime();
+void PhysWorld2D::CalculateVelocity(float deltaTime) {
+    for (auto rigid : _rigidbodyComps) {
+        rigid->CalculateVelocity(deltaTime); // å„å‰›ä½“ã®é€Ÿåº¦ã‚’è¨ˆç®—
+    }
+}
 
-    while (remainingTime > 0.0f) {
-        float deltaTime = std::min(timeStep, remainingTime);
-        remainingTime -= deltaTime;
+void PhysWorld2D::UpdatePosition(float deltaTime) {
+    for (auto rigid : _rigidbodyComps) {
+        rigid->UpdatePosition(deltaTime); // å„å‰›ä½“ã®ä½ç½®ã‚’æ›´æ–°
+    }
+}
 
-        for (auto compA : _dynamicComps) {
-            auto boxA = compA->boxComp;
+void PhysWorld2D::CollisionUpdate(float deltaTime) {
+    int subSteps = 5; // ã‚µãƒ–ã‚¹ãƒ†ãƒƒãƒ—ã®æ•°
+    float subDeltaTime = deltaTime / subSteps; // ã‚µãƒ–ã‚¹ãƒ†ãƒƒãƒ—ã”ã¨ã®æ™‚é–“
 
-            auto rigidA = compA->rigidbodyComp;
-            Vector2 currentPosA = rigidA->GetParent()->Position();
-            Vector2 velocityA = rigidA->Velocity();
-            Vector2 nextPosA = currentPosA + velocityA * deltaTime;
-
-            if (!boxA->IsCollision()) {
-                rigidA->GetParent()->Position(nextPosA);
-                rigidA->Velocity(velocityA);
-                continue;
+    for (int i = 0; i < subSteps; ++i) {
+        for (auto boxA : _boxComps) {
+            auto rigidA = boxA->GetParent()->GetComponent<RigidbodyComponent>();
+            if (!rigidA || !boxA->IsCollision() || !boxA->IsDynamic()) {
+                continue; // è¡çªåˆ¤å®šãŒç„¡åŠ¹ãªå ´åˆã¯ã‚¹ã‚­ãƒƒãƒ—
             }
+
+            Vector2 currentPosA = rigidA->InternalPosition(); // ç¾åœ¨ã®ä½ç½®
+            Vector2 velocityA = rigidA->Velocity(); // ç¾åœ¨ã®é€Ÿåº¦
+            Vector2 nextPosA = currentPosA + velocityA * subDeltaTime; // æ¬¡ã®ä½ç½®
 
             AABB2D nextBoxA = boxA->GetWorldBox();
-            nextBoxA.MoveCenterTo(nextPosA);
+            nextBoxA.MoveCenterTo(Vector2Int::ToInterger(nextPosA)); // æ¬¡ã®ãƒœãƒƒã‚¯ã‚¹ã®ä½ç½®ã‚’æ›´æ–°
 
-            auto handleCollision = [&](BoxComponent2D* boxB) {
-                if (!boxB->IsCollision() || boxA == boxB) return;
+            // ä»–ã®ãƒœãƒƒã‚¯ã‚¹ã¨ã®è¡çªåˆ¤å®š
+            for (auto boxB : _boxComps) {
+                if (boxA == boxB || !boxB->IsCollision()) continue; // è‡ªåˆ†è‡ªèº«ã¾ãŸã¯ç„¡åŠ¹ãªãƒœãƒƒã‚¯ã‚¹ã‚’ã‚¹ã‚­ãƒƒãƒ—
+
                 if (Intersect(nextBoxA, boxB->GetWorldBox())) {
-                    FixCollision(compA, velocityA, nextPosA, nextBoxA, boxB);
+                    FixCollision(boxA, velocityA, nextPosA, nextBoxA, boxB); // è¡çªè§£æ±º
                 }
-                };
-
-            for (auto boxB : _staticBoxes) {
-                handleCollision(boxB);
             }
-
-            for (auto compB : _dynamicComps) {
-                handleCollision(compB->boxComp);
-            }
-
-            rigidA->GetParent()->Position(nextPosA);
-            rigidA->Velocity(velocityA);
-            compA->boxComp->OnUpdateWorldTransform();
+            rigidA->Velocity(velocityA); // é€Ÿåº¦ã‚’æ›´æ–°
+            rigidA->InternalPosition(nextPosA); // ä½ç½®ã‚’æ›´æ–°
         }
     }
-    
-    /*
-    for (auto compA : _dynamicComps) {
-        auto boxA = compA->boxComp;
-
-
-        if (!boxA->IsCollision()) continue;
-
-        for (auto boxB : _staticBoxes) {
-            if (!boxB->IsCollision() || boxA == boxB) continue;
-
-            if (Intersect(boxA->GetWorldBox(), boxB->GetWorldBox())) {
-                FixCollision(compA, boxB);
-            }
-
-        }
-
-        for (auto compB : _dynamicComps) {
-            auto boxB = compB->boxComp;
-
-            if (!boxB->IsCollision() || boxA == boxB) continue;
-
-            if (Intersect(boxA->GetWorldBox(), boxB->GetWorldBox())) {
-                FixCollision(compA, boxB);
-            }
-
-        }
-
-    }
-    */
 }
 
-void PhysWorld2D::RigidbodyUpdate(Frame* frame) {
+void PhysWorld2D::FixCollision(BoxComponent2D* boxA, Vector2& velocityA, Vector2& nextPosA, AABB2D& nextBoxA, BoxComponent2D* boxB) {
+    AABB2D dynBox = nextBoxA; // å‹•çš„ãƒœãƒƒã‚¯ã‚¹
+    AABB2D staBox = boxB->GetWorldBox(); // é™çš„ãƒœãƒƒã‚¯ã‚¹
 
-}
-
-void PhysWorld2D::FixCollision(DynamicComponent* dynamicComp, Vector2& velocity, Vector2& nextPosA, AABB2D nextBox, BoxComponent2D* staticBoxComp) {
-    dynamicComp->boxComp->OnUpdateWorldTransform();
-    AABB2D dynBox = nextBox;
-    AABB2D staBox = staticBoxComp->GetWorldBox();
-
-    // Calculate penetration depth
+    // è¡çªè§£æ±ºã®ãŸã‚ã®ç§»å‹•é‡ã‚’è¨ˆç®—
     float dx1 = staBox._min.x - dynBox._max.x;
     float dx2 = staBox._max.x - dynBox._min.x;
     float dy1 = staBox._min.y - dynBox._max.y;
     float dy2 = staBox._max.y - dynBox._min.y;
 
-    // Choose the smallest penetration depth in X/Y direction
+    // Xæ–¹å‘ã‹Yæ–¹å‘ã®æœ€å°ç§»å‹•é‡ã‚’é¸æŠ
     float dx = (std::abs(dx1) < std::abs(dx2)) ? dx1 : dx2;
     float dy = (std::abs(dy1) < std::abs(dy2)) ? dy1 : dy2;
 
-    if (std::abs(dx) <= std::abs(dy)) {
-        nextPosA.x += dx;
-        velocity.x = 0.f;
+    // ä½ç½®ã¨é€Ÿåº¦ã®æ›´æ–°
+    if (std::abs(dx) < std::abs(dy)) {
+        nextPosA.x += dx; // Xæ–¹å‘ã®ä½ç½®ã‚’æ›´æ–°
+        if (velocityA.x > 0 && dx < 0 || velocityA.x < 0 && dx > 0) {
+            velocityA.x = 0.f; // é€Ÿåº¦ã‚’ã‚¼ãƒ­ã«
+        }
     }
     else {
-        nextPosA.y += dy;
-        velocity.y = 0.f;
+        nextPosA.y += dy; // Yæ–¹å‘ã®ä½ç½®ã‚’æ›´æ–°
+        if (velocityA.y > 0 && dy < 0 || velocityA.y < 0 && dy > 0) {
+            velocityA.y = 0.f; // é€Ÿåº¦ã‚’ã‚¼ãƒ­ã«
+        }
     }
 
-    dynamicComp->boxComp->OnUpdateWorldTransform();
+    // ãƒ¯ãƒ¼ãƒ«ãƒ‰å¤‰æ›ã®æ›´æ–°
+    boxA->OnUpdateWorldTransform();
+    boxB->OnUpdateWorldTransform();
 }
-
-void PhysWorld2D::FixCollision(DynamicComponent* dynamicComp, BoxComponent2D* staticBoxComp) {
-    dynamicComp->boxComp->OnUpdateWorldTransform();
-    AABB2D dynBox = dynamicComp->boxComp->GetWorldBox();
-    AABB2D staBox = staticBoxComp->GetWorldBox();
-
-    // Z“ü—Ê‚ğŒvZ
-    float dx1 = staBox._min.x - dynBox._max.x;  // ¶‘¤‚©‚ç‚ÌZ“ü—Ê
-    float dx2 = staBox._max.x - dynBox._min.x;  // ‰E‘¤‚©‚ç‚ÌZ“ü—Ê
-    float dy1 = staBox._min.y - dynBox._max.y;  // ‰º‘¤‚©‚ç‚ÌZ“ü—Ê
-    float dy2 = staBox._max.y - dynBox._min.y;  // ã‘¤‚©‚ç‚ÌZ“ü—Ê
-
-    // X•ûŒü‚ÌÅ¬Z“ü—Ê‚ğ‘I‘ğ
-    float dx = (Math::Abs(dx1) < Math::Abs(dx2)) ? dx1 : dx2;
-    // Y•ûŒü‚ÌÅ¬Z“ü—Ê‚ğ‘I‘ğ
-    float dy = (Math::Abs(dy1) < Math::Abs(dy2)) ? dy1 : dy2;
-
-    Vector2 pos = dynamicComp->boxComp->GetParent()->Position();
-    Vector2 velocity = dynamicComp->rigidbodyComp->Velocity();
-    // Z“ü—Ê‚ª¬‚³‚¢•û‚Ì²‚Å•â³
-    if (Math::Abs(dx) <= Math::Abs(dy)) {
-        pos.x += dx;  // X•ûŒü•â³
-        velocity.x = 0.f;
-    }
-    else {
-        pos.y += dy;  // Y•ûŒü•â³
-        velocity.y = 0.f;
-    }
-
-    dynamicComp->boxComp->GetParent()->Position(pos);
-    dynamicComp->rigidbodyComp->Velocity(velocity);
-    dynamicComp->boxComp->OnUpdateWorldTransform();
-}
-
 
 #pragma endregion

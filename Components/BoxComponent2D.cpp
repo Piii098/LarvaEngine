@@ -1,31 +1,29 @@
-#include "Components/BoxComponent2D.h"
+ï»¿#include "Components/BoxComponent2D.h"
 #include "GameObjects/GameObject.h"
 #include "Game.h"
 #include "PhysWorld2D.h"
 #include "Renderer.h"
 
-#pragma region ƒRƒ“ƒXƒgƒ‰ƒNƒ^:ƒfƒXƒgƒ‰ƒNƒ^
+#pragma region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿:ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 BoxComponent2D::BoxComponent2D(GameObject* parent, bool isCollision, bool isDynamic, int updateLayer)
 	: Component(parent)
-	, _objectBox(Vector2::Zero,Vector2::Zero)
-	, _worldBox(Vector2::Zero, Vector2::Zero) 
+	, _objectBox(Vector2Int::Zero, Vector2Int::Zero)
+	, _worldBox(Vector2Int::Zero, Vector2Int::Zero)
 	, _isCollision(isCollision)
 	, _isDynamic(isDynamic){
 
-	if (!isDynamic) {
-		_parent->GetGame()->GetPhysWorld()->AddStaticBoxComp(this);
-	}
+	_parent->GetGame()->GetPhysWorld()->AddBoxComp(this);
 
 }
 
 BoxComponent2D::~BoxComponent2D() {
-	_parent->GetGame()->GetPhysWorld()->RemoveStaticBoxComp(this);
+	_parent->GetGame()->GetPhysWorld()->RemoveBoxComp(this);
 }
 
 #pragma endregion
 
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
+#pragma region ãƒ‘ãƒ–ãƒªãƒƒã‚¯é–¢æ•°
 
 void BoxComponent2D::OnUpdateWorldTransform() {
 
@@ -36,6 +34,7 @@ void BoxComponent2D::OnUpdateWorldTransform() {
 	
 	_worldBox._min += _parent->Position();
 	_worldBox._max += _parent->Position();
+
 }
 
 

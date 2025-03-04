@@ -6,70 +6,109 @@
 #include "Game.h"
 
 RigidbodyComponent::RigidbodyComponent(GameObject* parent, int updateLayer)
-	: Component(parent, updateLayer)
-	, _angularSpeed(0.f)
-	, _forwardSpeed(0.f)
-	, _mass(0.f)
-	, _drag(0.f)
-	, _sumOfForces(Vector2::Zero)
-	, _velocity(Vector2::Zero)
-	, _isGravity(false){
-
+    : Component(parent, updateLayer)
+    , _angularSpeed(0.f)
+    , _forwardSpeed(0.f)
+    , _mass(1.f) // 質量をゼロにしない
+    , _drag(0.f)
+    , _sumOfForces(Vector2::Zero)
+    , _velocity(Vector2::Zero)
+    , _isGravity(false)
+    , _internalPosition(Vector2::Zero)
+    , _prevInternalPosition(Vector2::Zero)  // 前回位置の初期化
+    , _interpolationMode(InterpolationMode::None) {  // デフォルトは補間なし
+    //_internalPosition = _parent->PositionToFloat();
+    _phys = _parent->GetGame()->GetPhysWorld();
+    _parent->GetGame()->GetPhysWorld()->AddRigidbodyComp(this);
 }
 
 RigidbodyComponent::~RigidbodyComponent() {
-
+    _parent->GetGame()->GetPhysWorld()->RemoveRigidbodyComp(this);
 }
 
-#pragma region �p�u���b�N�֐�
+#pragma region �p�u���b�N�֐�
 
+// 位置設定時に前回の位置も更新するように変更
+void RigidbodyComponent::InternalPosition(Vector2 internalPosition) {
+    _prevInternalPosition = _internalPosition;  // 現在の位置を前回の位置として保存
+    _internalPosition = internalPosition;  // 新しい位置を設定
+}
+
+// 更新処理で補間を適用
 void RigidbodyComponent::Update(Frame* frame) {
-	const float GRAVITY_CONSTANT = 10000.f;
-	if (_isGravity) {
-		PhysWorld2D* phys = _parent->GetGame()->GetPhysWorld();
-		PhysWorld2D::CollisionInfo outColl;
+    if (_interpolationMode == InterpolationMode::None) {
+        // 補間なしの場合は物理計算の位置をそのまま使用
+        _parent->Position(_internalPosition);
+        return;
+    }
 
-		// �v���C���[�̑��������肩�牺�����Ƀ��C���L���X�g
-		Vector2 rayStart = _parent->Position() + Vector2(0.f, -1.0f);
-		LineSegment2D ray(rayStart, rayStart + Vector2(0.f, -15));
+    // 補間モードの場合、前回と現在の位置を補間
+    float alpha = frame->GetAlpha();  // Frame クラスから補間係数を取得
+    Vector2 interpolatedPosition = Vector2::Lerp(_prevInternalPosition, _internalPosition, alpha);
 
-		if (phys->SegmentCast(ray, outColl, _parent)) {
-			if (outColl._object->Tag() != GameObject::TAG::GROUND) {
-				// �n�ʈȊO�ɏՓ˂����ꍇ�A�d�͂�K�p
-				float gravityForce = _mass * GRAVITY_CONSTANT * frame->DeltaTime();
-				AddForce(Vector2(0, -gravityForce));
-			}
-		}
-		else {
-			// �Փ˂��Ȃ��ꍇ�A�d�͂�K�p
-			float gravityForce = _mass * GRAVITY_CONSTANT * frame->DeltaTime();
-			AddForce(Vector2(0, -gravityForce));
-		}
-	}
+    // 補間位置をゲームオブジェクトに適用
+    _parent->Position(interpolatedPosition);
+}
 
-	
-	/*�j���[�g���͊w*/
-	Vector2 accele; // �����x������o��
-	accele.x = _sumOfForces.x / _mass; // f = ma -> a = f / m
-	accele.y = _sumOfForces.y / _mass;
 
-	_velocity += accele * frame->DeltaTime();
+void RigidbodyComponent::PhysUpdate(float deltaTime) {
 
-	_velocity *= (1.0f - _drag * frame->DeltaTime());
+    if (_internalPosition == Vector2::Zero) {
+        _internalPosition = _parent->PositionToFloat();
+        return;
+    }
 
-	Vector2 pos = _parent->Position();
 
-	//pos += _velocity * frame->DeltaTime();
+    const float GRAVITY_CONSTANT = 50000; // 重力定数を現実的な値に修正
+   
+    float gravityForce = 0.f;
 
-	//_parent->Position(pos);
+    if (_isGravity) {
+        PhysWorld2D::CollisionInfo outColl;
 
-	_sumOfForces = Vector2::Zero;
 
+        // プレイヤーの少し下から地面方向へレイを飛ばす
+        Vector2Int rayStart = _parent->Position() + Vector2Int(0.f, -1.0f);  // プレイヤーの足元あたり
+        LineSegment2D ray(rayStart, rayStart + Vector2Int(0.f, -15));
+
+
+        if (!_phys->SegmentCast(ray, outColl, GetParent())) {
+            gravityForce = _mass * GRAVITY_CONSTANT * deltaTime;
+         
+        }
+        
+        AddForce(Vector2(0, -gravityForce));
+    }
+    
+    
+}
+void RigidbodyComponent::CalculateVelocity(float deltaTime) {
+    if (_mass <= 0.f) return;
+
+    Vector2 accele;
+    accele.x = _sumOfForces.x / _mass;
+    accele.y = _sumOfForces.y / _mass;
+
+    _velocity += accele * deltaTime;
+
+    _internalPosition += _velocity * deltaTime;
+
+    // デバッグログ
+   // SDL_Log("PlayerVelocity(%.6f, %.6f)", _velocity.x, _velocity.y);
+   // SDL_Log("PlayerInternalPos(%.6f, %.6f)", _internalPosition.x, _internalPosition.y);
+
+    // 力のリセット
+    _sumOfForces = Vector2::Zero;
+}
+
+void RigidbodyComponent::UpdatePosition(float deltaTime) {
+  
+    _parent->Position(_internalPosition);
+ 
 }
 
 void RigidbodyComponent::AddForce(Vector2 force) {
-	_sumOfForces += force;
+    _sumOfForces += force;
 }
-
 
 #pragma endregion

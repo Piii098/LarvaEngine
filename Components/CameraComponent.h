@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Math.h"
 #include "Components/Component.h"
 
@@ -13,13 +13,14 @@ public:
 
 	void Zoom(float zoom) { _zoom = zoom; };
 	float Zoom() { return  _zoom; };
-	void Target(const Vector2& target) { _target = target; };
+	void Target(const Vector2Int& target) { _target = target; };
 	
+	Vector2 SubPixelOffset() const { return _subPixelOffset; };	
 	Matrix4 GetViewMatrix() const;
 
 protected:
 
-	Vector2 _target;
+	Vector2Int _target;
 	float _zoom;
-
+	Vector2 _subPixelOffset; // サブピクセルオフセット保持用
 };

@@ -1,57 +1,91 @@
-#pragma once
+ï»¿#pragma once
 #include <vector>
 #include <unordered_map>
 #include <string>
 #include "Components/Component.h"
-/*
-
-*/
+#include "GameObjects/GameObject.h"
 
 class BoxComponent2D;
+template <typename T>
+class AssetManager;
+class TileMap;
+class Texture;
+class GameObject;
+class SpriteComponent;
+class DebugDrawComponent;
+
+// ã‚¿ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä¿æŒã™ã‚‹æ§‹é€ ä½“
+struct TileInfo {
+	
+    
+    int id;                     // ã‚¿ã‚¤ãƒ«ID
+	GameObject::TAG tag;        // ã‚¿ã‚°
+    
+    bool isCollider;            // è¡çªåˆ¤å®šã®æœ‰ç„¡
+    Vector3 lightColor;         // ç™ºå…‰è‰²
+    float lightIntensity;       // ç™ºå…‰å¼·åº¦
+
+    TileInfo(int tileId = -1)
+        : id(tileId)
+		, tag(GameObject::TAG::NONE)
+        , isCollider(false)
+        , lightColor(1.0f, 1.0f, 1.0f)
+        , lightIntensity(0.0f) {}
+};
+
+#pragma region ã‚¿ã‚¤ãƒ«
+
+class Tile : public GameObject {
+public:
+    Tile(Game* game, int tileId, const Vector2Int& position, const std::string& tileSetName);
+    ~Tile() override;
+
+
+    // ã‚¿ã‚¤ãƒ«ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®š
+    void SetCollider(bool hasCollider);
+    void SetLight(const Vector3& color, float intensity);
+    void SetTexOffset(const Vector2& offset);
+    void SetTexScale(const Vector2& scale);
+    // ã‚¢ã‚¯ã‚»ã‚µ
+    int TileId() const { return _tileId; }
+    void TileId(int tileId) { _tileId = tileId; }
+	void TileSize(int size) { _tileSize = size; }
+    BoxComponent2D* GetBoxComponent() const { return _boxComp; }
+
+private:
+    int _tileId;                // ã‚¿ã‚¤ãƒ«ID
+    int _tileSize;              // ã‚¿ã‚¤ãƒ«ã‚µã‚¤ã‚º
+    Vector2 _texOffset;
+    BoxComponent2D* _boxComp;   // è¡çªåˆ¤å®šã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ
+    SpriteComponent* _sprite;   // æç”»ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ
+
+};
+
+#pragma endregion
 
 class TileMapComponent : public Component {
 public:
 
-	#pragma region ƒ^ƒCƒ‹ƒ}ƒbƒvŠÇ—ƒNƒ‰ƒX
+    TileMapComponent(GameObject* parent, int drawLayer = 75);
+    ~TileMapComponent();
 
-	class TileMapManager {
-	public:
-		TileMapManager();
-		~TileMapManager() = default;
+    void SetTileMap(const std::string& tileMapName, const std::string& tileSetName, int tileSetSize, int tileSize = 32); //ãƒ•ã‚¡ã‚¤ãƒ«ã§ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
+    void RegisterTileInfo(int tileId, bool isCollider, const Vector3& lightColor, float lightIntensity, GameObject::TAG objectTag);
+    void CreateTiles();
+	void DestroyTile(int tileId);
 
-		void Load(const std::string& fileName);
-		void Unload();
-
-		const std::vector<std::vector<int>>& GetTileMap(const std::string& tileMapName);
-	private:
-
-		std::unordered_map<std::string, std::vector<std::vector<int>>> _tileMaps;
-
-	};
-
-	#pragma endregion
-
-	TileMapComponent(GameObject* parent, int drawLayer = 75);
-	~TileMapComponent();
-
-	void SetTileMap(const std::string& fileName, int tileSize = 32); //ƒtƒ@ƒCƒ‹‚Åƒf[ƒ^“Ç‚İ‚İ
-	void SetTileMapData(std::vector<std::vector<int>> tiles, int width, int height, int tileSize = 32); // ”z—ñ‚Åƒf[ƒ^“Ç‚İ‚İ
-
-	/*ƒQƒbƒ^[ƒZƒbƒ^[*/
-	
-	static TileMapManager& S_TileMapManager() { return s_TileMapManager; }; // Ã“Iƒ^ƒCƒ‹ƒ}ƒbƒvŠÇ—(Šî–{ƒ[ƒhˆ—‚Ì‚İ)
-
-	std::vector<std::vector<int>> Tiles() { return _tiles; };
-	int TileSize() { return _tileSize; };
-	int MapWidth() { return _mapWidth; };
-	int MapHeight() { return _mapHeight; };
+    /*ã‚²ãƒƒã‚¿ãƒ¼ã‚»ãƒƒã‚¿ãƒ¼*/
 
 private:
+    AssetManager<TileMap>* _tileMapManager;
+    AssetManager<Texture>* _textureManager;
+    Texture* _tileSet;
+    std::string _tileSetName;
+	int _tileSetSize;
+    TileMap* _tileMap;
+    int _mapWidth;
+    int _mapHeight;
+    int _tileSize;
 
-	static TileMapManager s_TileMapManager;
-
-	std::vector<std::vector<int>> _tiles;
-	int _tileSize;
-	int _mapWidth;
-	int _mapHeight;
+    std::vector<TileInfo> _tileInfos;
 };

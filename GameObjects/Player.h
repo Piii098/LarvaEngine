@@ -1,9 +1,9 @@
-#pragma once
+﻿#pragma once
 #include "GameObject.h"
 
 
 class TestObject;
-class DynamicComponent;
+class RigidbodyComponent;
 class SpriteComponent;
 class DebugDrawComponent;
 class MoveInputComponent;
@@ -20,14 +20,14 @@ public:
 
 
 	void FixCollision(Frame frame);
-	void PlacePlayerAtTile(int tileX, int tileY, TileMapComponent* tileMap);
-	void PlacePlayerAtSpawn(TileMapComponent* tileMap);
+	
 private:
 	SpriteComponent* _spriteComp;
 	MoveInputComponent* _moveInputComp;
 	
 	std::vector<TestObject*> _bulletObjects;
 
-	DynamicComponent* _dynamicComp;
+	RigidbodyComponent* _rigidbodyComp;
+	BoxComponent2D* _boxComp;
 	float _jumpForce;
 };

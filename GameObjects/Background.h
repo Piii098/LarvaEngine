@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "GameObjects/GameObject.h"
 
 class BGComponent;
@@ -9,6 +9,6 @@ public:
 	~Background() override;
 
 public:
-	BGComponent* _bgComp;
+	std::vector<BGComponent*> _bgComps;
 
 };

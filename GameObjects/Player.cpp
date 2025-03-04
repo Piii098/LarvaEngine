@@ -1,4 +1,4 @@
-#include "GameObjects/Player.h"
+ï»¿#include "GameObjects/Player.h"
 #include "Components/SpriteComponent.h"
 #include "Components/MoveInputComponent.h"
 #include "Components/RigidbodyComponent.h"
@@ -14,30 +14,34 @@
 #include "PhysWorld2D.h"
 #include "GameObjects/TestObject.h"
 
-#pragma region ƒRƒ“ƒXƒgƒ‰ƒNƒ^:ƒfƒXƒgƒ‰ƒNƒ^
+#pragma region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿:ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 Player::Player(Game* game) 
 	: GameObject(game) {
 	Tag(TAG::PLAYER);
 	Scale(1.f);
-	_spriteComp = new SpriteComponent(this);
-	_spriteComp->SetTexture("Assets/AKAGE.png");
+	Position(Vector2Int(50, 500));
+	_spriteComp = new SpriteComponent(this, 100);
+	_spriteComp->SetTexture("Player");
+	_spriteComp->SelfLightIntensity(0.1f);
 
 	_jumpForce = 700.f;
 
-	_dynamicComp = new DynamicComponent(this, true);
-	AABB2D myBox(Vector2(-6.0f, -16.f), Vector2(6.0f, 13.0f));
-	_dynamicComp->boxComp->SetObjectBox(myBox);
-	_dynamicComp->rigidbodyComp->Velocity(Vector2::Zero);
-	_dynamicComp->rigidbodyComp->Mass(50.f);
-	_dynamicComp->rigidbodyComp->IsGravity(true);
-	_dynamicComp->rigidbodyComp->Drag(0.f);
+	_rigidbodyComp = new RigidbodyComponent(this, true);
+	_boxComp = new BoxComponent2D(this, true, true);
+	AABB2D myBox(Vector2Int(-6.0f, -16.f), Vector2Int(6.0f, 13.0f));
+	_boxComp->SetObjectBox(myBox);
+	_rigidbodyComp->Velocity(Vector2::Zero);
+	_rigidbodyComp->Mass(50.f);
+	_rigidbodyComp->IsGravity(true);
+	_rigidbodyComp->Drag(0.f);
+	_rigidbodyComp->SetInterpolationMode(RigidbodyComponent::InterpolationMode::Interpolate);
 
-	_moveInputComp = new MoveInputComponent(this, _dynamicComp->rigidbodyComp);
-	_moveInputComp->MoveSpeed(100.f);
-	_moveInputComp->JumpForce(500000.f);
+	_moveInputComp = new MoveInputComponent(this, _rigidbodyComp);
+	_moveInputComp->MoveSpeedX(80.f);
+	_moveInputComp->JumpForce(1000000.f);
 
-	//new DebugDrawComponent(this, _dynamicComp->boxComp, true);
+	new DebugDrawComponent(this, _boxComp, true);
 }
 
 Player::~Player() {
@@ -45,75 +49,40 @@ Player::~Player() {
 	_spriteComp = nullptr;
 	delete _moveInputComp;
 	_moveInputComp = nullptr;
-	delete _dynamicComp;
-	_dynamicComp = nullptr;
+	delete _rigidbodyComp;
+	_rigidbodyComp = nullptr;
 
 }
 #pragma endregion
 
 
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
+#pragma region ãƒ‘ãƒ–ãƒªãƒƒã‚¯é–¢æ•°
 
 void Player::InputObject(Input* input) {
 	if (input->IsInputDown(InputMap::INPUT_BRIGHT)) {
-		TestObject* bullet = new TestObject(GetGame());
-		bullet->PixelPosition(Position());
+		//TestObject* bullet = new TestObject(GetGame());
+		//bullet->Position(Position());
 	}
 }
 
 void Player::UpdateObject(Frame* frame) {
-
-
-	if (_moveInputComp->Direction() < 0.f) { // ¶Œü‚«‚ÉˆÚ“®‚µ‚½‚ç
+	//SDL_Log("PlayerVelocity(%f, %f)", _rigidbodyComp->Velocity().x, _rigidbodyComp->Velocity().y);
+	// å³å‘ãã«ç§»å‹•ã—ãŸã‚‰
+	if (_moveInputComp->Direction().x < 0.f) {
 		_spriteComp->FlipX(false);
 	}
-	if (_moveInputComp->Direction() > 0.f) {
+	// å·¦å‘ãã«ç§»å‹•ã—ãŸã‚‰
+	else if (_moveInputComp->Direction().x > 0.f) {
 		_spriteComp->FlipX(true);
 	}
-	
+
+	// ãã®ä»–ã®æ›´æ–°å‡¦ç†
+	// SDL_Log("WorldBoxMin(%d, %d), WorldBoxMax(%d, %d)", _boxComp->WorldMin().x, _boxComp->WorldMin().y, _boxComp->WorldMax().x, _boxComp->WorldMax().y);
+	// SDL_Log("ObjectBoxMin(%d, %d), ObjectBoxMax(%d, %d)", _boxComp->ObjectMin().x, _boxComp->ObjectMin().y, _boxComp->ObjectMax().x, _boxComp->ObjectMax().y);
 }
 
 void Player::FixCollision(Frame frame) {
 	
-}
-
-
-void Player::PlacePlayerAtTile(int tileX, int tileY, TileMapComponent* tileMapComp) {
-	float tileSize = tileMapComp->TileSize();
-	int mapHeight = tileMapComp->MapHeight();
-	float worldX = tileX * tileSize;
-	float worldY = (mapHeight - 1 - tileY) * tileSize;
-
-	Position(Vector2(worldX, worldY));
-}
-
-void Player::PlacePlayerAtSpawn(TileMapComponent* tileMapComp)
-{
-	const auto& tiles = tileMapComp->Tiles();
-	int mapHeight = tileMapComp->MapHeight();
-	int mapWidth = tileMapComp->MapWidth();
-	float tileSize = tileMapComp->TileSize();
-
-	for (int y = 0; y < mapHeight; ++y)
-	{
-		for (int x = 0; x < mapWidth; ++x)
-		{
-			if (tiles[y][x] == -2)
-			{
-				float worldX = x * tileSize;
-				float worldY = (mapHeight - 1 - y) * tileSize;
-
-				Position(Vector2(worldX, worldY));
-
-				// •K—v‚È‚çAƒXƒ|[ƒ“ƒ^ƒCƒ‹‚ð’Êí‚Ìƒ^ƒCƒ‹‚É’u‚«Š·‚¦‚éˆ—‚à
-				// tileMap->Tiles()[y][x] = defaultTileValue;
-
-				return;
-			}
-		}
-	}
-
-	SDL_Log("Error: Spawn tile not found in tile map!");
 }
 
 #pragma endregion

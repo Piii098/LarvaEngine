@@ -1,6 +1,6 @@
-#include "PhysWorld.h"
+ï»¿#include "PhysWorld.h"
 
-#pragma region ƒRƒ“ƒXƒgƒ‰ƒNƒ^:ƒfƒXƒgƒ‰ƒNƒ^
+#pragma region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿:ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 PhysWorld::PhysWorld(Game* game) {
 
@@ -8,7 +8,7 @@ PhysWorld::PhysWorld(Game* game) {
 
 #pragma endregion
 
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
+#pragma region ãƒ‘ãƒ–ãƒªãƒƒã‚¯é–¢æ•°
 
 bool PhysWorld2D::SegmentCast(const LineSegment2D& l, CollisionInfo& outColl)
 {

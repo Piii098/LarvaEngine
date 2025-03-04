@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <vector>
 #include "Math.h"
 
@@ -6,79 +6,107 @@ class Input;
 class Frame;
 class Component;
 class Game;
+class ChildObject;
 
 class GameObject {
 public:
 
-	enum class STATE {
-		ACTIVE,
-		PAUSED,
-		DEAD
-	};
+    enum class STATE {
+        ACTIVE,
+        PAUSED,
+        DEAD
+    };
 
-	enum class TAG {
-		NONE,
-		PLAYER,
-		ENEMY,
-		ITEM,
-		GROUND,
-		OBSTACLE
-	};
+    enum class TAG {
+        NONE,
+        PLAYER,
+        ENEMY,
+        ITEM,
+        GROUND,
+        OBSTACLE
+    };
 
-	GameObject(Game* game);
-	virtual ~GameObject();
+    GameObject(Game* game);
+    virtual ~GameObject();
 
-	/*“ü—Í*/
+    /*å…¥åŠ›*/
 
-	void ProcessInput(Input* input);
-	virtual void InputObject(Input* input);
+    void ProcessInput(Input* input);
+    virtual void InputObject(Input* input);
 
-	/*XV*/
+    /*æ›´æ–°*/
 
-	void Update(Frame* frame); // GameƒNƒ‰ƒX‚ÅÀs‚³‚ê‚éXV
-	void UpdateComponents(Frame* frame); // ‘SComponent‚ÌXV
-	virtual void UpdateObject(Frame* frame); // Œp³æƒIƒuƒWƒFƒNƒg‚Ìƒ†ƒj[ƒN‚ÈXV
-	virtual void PhysUpdate(Frame* frame);
+    void Update(Frame* frame); // Gameã‚¯ãƒ©ã‚¹ã§å®Ÿè¡Œã•ã‚Œã‚‹æ›´æ–°
+    void UpdateComponents(Frame* frame); // å…¨Componentã®æ›´æ–°
+    virtual void UpdateObject(Frame* frame); // ç¶™æ‰¿å…ˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒ¦ãƒ‹ãƒ¼ã‚¯ãªæ›´æ–°
+    void PhysUpdate(float deltaTime);
+	virtual void PhysUpdateComponents(float deltaTime);
+	virtual void PhysUpdateObject(float deltaTime);
 
-	void ComputeWorldTransform();
+    void ComputeWorldTransform();
 
-	/*ƒRƒ“ƒ|[ƒlƒ“ƒgˆ—*/
+    /*ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå‡¦ç†*/
 
-	void AddComponent(Component* component); //ƒRƒ“ƒ|[ƒlƒ“ƒg‚ğ‚Â‚¯‚é(‡˜‚É‡‚í‚¹)
-	void RemoveComponent(Component* component);  //ƒRƒ“ƒ|[ƒlƒ“ƒg‚ğæ‚èŠO‚·
+    void AddComponent(Component* component); //ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’ã¤ã‘ã‚‹(é †åºã«åˆã‚ã›)
+    void RemoveComponent(Component* component);  //ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å–ã‚Šå¤–ã™
 
-	/*ƒQƒbƒ^[ƒZƒbƒ^[*/
+    void AddChildren(GameObject* childObject); //ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’ã¤ã‘ã‚‹(é †åºã«åˆã‚ã›)
+    void RemoveChildren(GameObject* childObject);  //ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å–ã‚Šå¤–ã™
 
-	Game* GetGame() { return _game; };
-	Vector2 GetForward() const { return Vector2(Math::Cos(_rotation), Math::Sin(_rotation)); };
 
-	const Matrix4& WorldTransform() const { return _worldTransform; };
-	const Vector2& Position() const { return _position; };
-	TAG Tag() const { return _tag; };
-	STATE State() const { return _state; };
-	float Scale() const { return _scale; };
-	float Rotation() const { return _rotation; };
-	void Position(const Vector2 position) { _position = position; _recomputeWorldTransform = true; };
-	void PixelPosition(Vector2 position) { _position = Vector2(static_cast<int>(position.x), static_cast<int>(position.y));}
-	void Scale(float scale) { _scale = scale; _recomputeWorldTransform = true;};
-	void Rotation(float rotation) { _rotation = rotation; _recomputeWorldTransform = true;};
-	void Tag(TAG tag) { _tag = tag; };
-	void State(STATE state) { _state = state; };
+    template <typename T> T* GetComponent() const {
+
+        for (auto comp : _components) {
+            T* t = dynamic_cast<T*>(comp);
+            if (t != nullptr) {
+                return t;
+            }
+        }
+
+        return nullptr;
+    }
+
+    /*ã‚²ãƒƒã‚¿ãƒ¼ã‚»ãƒƒã‚¿ãƒ¼*/
+
+    Game* GetGame() { return _game; };
+	GameObject* GetParent() { return _parent; };
+	std::vector<GameObject*> GetChildren() { return _childrenObjects; };
+	void SetParent(GameObject* parent) { _parent = parent; };
+    
+    Vector2 GetForward() const { return Vector2(Math::Cos(_rotation), Math::Sin(_rotation)); };
+
+    const Matrix4& WorldTransform() const { return _worldTransform; };
+    TAG Tag() const { return _tag; };
+    STATE State() const { return _state; };
+    float Scale() const { return _scale; };
+    float Rotation() const { return _rotation; };
+    void Position(const Vector2& internalPosition) { _position = Vector2Int::ToInterger(internalPosition); _recomputeWorldTransform = true; }
+    void Position(const Vector2Int& position) { _position = position; _recomputeWorldTransform = true; }
+    const Vector2Int& Position() const { return _position; };
+    Vector2 PositionToFloat() const { return Vector2::ToFloat(_position); };
+    void Scale(float scale) { _scale = scale; _recomputeWorldTransform = true; };
+    void Rotation(float rotation) { _rotation = rotation; _recomputeWorldTransform = true; };
+    void Tag(TAG tag) { _tag = tag; };
+    void State(STATE state) { _state = state; };
+
 private:
 
-	STATE _state;
-	TAG _tag;
-	Game* _game;
 
-	/*ƒgƒ‰ƒ“ƒXƒtƒH[ƒ€•Ï”*/
 
-	Matrix4 _worldTransform;
-	bool _recomputeWorldTransform;
+    STATE _state;
+    TAG _tag;
+    Game* _game;
+    GameObject* _parent;
 
-	Vector2 _position; // ˆÊ’u
-	float _scale; // ƒXƒP[ƒ‹
-	float _rotation; // ‰ñ“]
+    /*ãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ å¤‰æ•°*/
 
-	std::vector<Component*> _components; //Š‚µ‚Ä‚¢‚éƒRƒ“ƒ|[ƒlƒ“ƒg‚ÌW‚Ü‚è
+    Matrix4 _worldTransform;
+    bool _recomputeWorldTransform;
 
+    Vector2Int _position; // ä½ç½®
+    float _scale; // ã‚¹ã‚±ãƒ¼ãƒ«
+    float _rotation; // å›è»¢
+
+    std::vector<Component*> _components; //æ‰€æŒã—ã¦ã„ã‚‹ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®é›†ã¾ã‚Š
+	std::vector<GameObject*> _childrenObjects; //å­ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®é›†ã¾ã‚Š
 };

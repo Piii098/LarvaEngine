@@ -1,12 +1,12 @@
-#pragma once
+ï»¿#pragma once
 
 class VertexArray {
 public:
-	VertexArray(const float* verts, unsigned int numVerts // ’¸“_‚Ì”z—ñ‚Æ”
-		, unsigned int* indices, unsigned int numIndices); // ƒCƒ“ƒfƒbƒNƒX‚Ì”z—ñ‚Æ”
+	VertexArray(const float* verts, unsigned int numVerts // é ‚ç‚¹ã®é…åˆ—ã¨æ•°
+		, unsigned int* indices, unsigned int numIndices); // ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®é…åˆ—ã¨æ•°
 	~VertexArray();
 
-	void SetActive(); // ’¸“_”z—ñ‚ğƒAƒNƒeƒBƒu‚É‚·‚é(•`‰æ‚·‚é)
+	void SetActive(); // é ‚ç‚¹é…åˆ—ã‚’ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã™ã‚‹(æç”»ã™ã‚‹)
 
 	unsigned int NumIndices() const { return _numIndices; };
 	unsigned int NumVerts() const { return _numVerts; };
@@ -16,4 +16,5 @@ private:
 	unsigned int _vertexBuffer;
 	unsigned int _indexBuffer;
 	unsigned int _vertexArray;
+
 };

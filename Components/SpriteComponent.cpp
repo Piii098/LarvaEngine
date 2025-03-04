@@ -1,14 +1,13 @@
-#include "Components/SpriteComponent.h"
+ï»¿#include "Components/SpriteComponent.h"
 #include "GameObjects/GameObject.h"
 #include "Game.h"
 #include "Math.h"
 #include "Utilities/Shader.h"
 #include "Utilities/Texture.h"
 #include "GameObjects/Camera.h"
-#include "Singletons/ShaderManager.h"
 #include "Renderer.h"
 
-#pragma region ƒRƒ“ƒXƒgƒ‰ƒNƒ^FƒfƒXƒgƒ‰ƒNƒ^
+#pragma region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼šãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 SpriteComponent::SpriteComponent(GameObject* parent, int drawLayer)
 	: TextureComponent(parent, drawLayer){
@@ -21,22 +20,22 @@ SpriteComponent::~SpriteComponent() {
 
 #pragma endregion
 
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
+#pragma region ãƒ‘ãƒ–ãƒªãƒƒã‚¯é–¢æ•°
 
 void SpriteComponent::Draw(Shader* shader) {
 
 	if (_texture) {
 
+
 		float scaleX = _flipX ? -1.f : 1.f;
 		float scaleY = _flipY ? -1.f : 1.f;
 
-		Matrix4 scaleMat = Matrix4::CreateScale(scaleX * static_cast<float>(_texWidth),  scaleY * static_cast<float>(_texHeight), 1.0f);
+		Matrix4 scaleMat = Matrix4::CreateScale( scaleX * static_cast<float>(_texWidth) * _texScale.x, scaleY * static_cast<float>(_texWidth) * _texScale.x, 1.0f);
 		Matrix4 world = scaleMat * _parent->WorldTransform();
 
 		shader->SetMatrixUniform("uWorldTransform", world);
-		shader->SetVector2Uniform("uTexOffset", Vector2(0.0f, 0.0f));
-		shader->SetVector2Uniform("uTexScale", Vector2(1.0f, 1.0f));
-
+		shader->SetVector2Uniform("uTexOffset", _texOffset);
+        shader->SetVector2Uniform("uTexScale", _texScale);
 		shader->SetVector3Uniform("selfLightColor", _selfLightColor);
 		shader->SetFloatUniform("selfLightIntensity", _selfLightIntensity);
 
@@ -49,7 +48,7 @@ void SpriteComponent::Draw(Shader* shader) {
 
 #pragma endregion
 
-#pragma region ƒvƒ‰ƒCƒx[ƒgŠÖ”
+#pragma region ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
 
 
 #pragma endregion

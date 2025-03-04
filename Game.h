@@ -1,12 +1,10 @@
-#pragma once
+ï»¿#pragma once
 #include <SDL3/SDL.h>
 #include <vector>
 #include <string>
 #include <unordered_map>
-#include <thread>
-#include <mutex>
-#include <condition_variable>
 #include "Math.h"
+#include "GameObjects/GameObject.h"
 
 class Input;
 class Frame;
@@ -15,61 +13,82 @@ class BoxComponent2D;
 class GameObject;
 class VertexArray;
 class Shader;
+class TileMap;
 class Texture;
 class Camera;
 class Player;
 class PhysWorld2D;
 class Renderer;
+template <typename T>
+class AssetManager;
+class TileMapObject;
 
 struct Ball {
-	Vector2 pos;
-	Vector2 vel;
+    Vector2 pos;
+    Vector2 vel;
 };
 
 class Game {
 public:
-	Game();
-	~Game();
+    Game();
+    ~Game();
 
-	void StartThreads();
+    void StartThreads();
 
-	bool Initialize(); // ‰Šúˆ—
-	void RunLoop(); // ƒ‹[ƒv‹ì“®
-	void Shutdown(); // ƒVƒƒƒbƒhƒ_ƒEƒ“
+    bool Initialize(); // åˆæœŸåŒ–
+    void RunLoop(); // ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—
+    void Shutdown(); // ã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³
 
-	void AddObject(GameObject* object); // GameObject”z—ñ‚É’Ç‰Á
-	void RemoveObject(GameObject* gameObject); // GameObject”z—ñ‚©‚çíœ
+    void AddObject(GameObject* object); // GameObjecté…åˆ—ã«è¿½åŠ 
+    void RemoveObject(GameObject* gameObject); // GameObjecté…åˆ—ã‹ã‚‰å‰Šé™¤
 
-	Camera* GetCamera() { return _camera; };
-	Player* GetPlayer() { return _player; };
-	PhysWorld2D* GetPhysWorld() { return _physWorld; };
-	Renderer* GetRenderer() { return _renderer; };
-	void GameLogicLoop();
-	
+	Frame* GetFrame() const { return _frame; }
+    Camera* GetCamera() const { return _camera; }
+    Player* GetPlayer() const { return _player; }
+    PhysWorld2D* GetPhysWorld() const { return _physWorld; }
+    Renderer* GetRenderer() const { return _renderer; }
+	AssetManager<Texture>* GetTextureManager() { return _textureManager; }
+	AssetManager<TileMap>* GetTileMapManager()  { return _tileMapManager; }
+    
+    template <typename T, typename... Args>
+    T* CreateGameObject(Args&&... args) {
+        T* gameObject = new T(this, std::forward<Args>(args)...);
+        return gameObject;
+    }
+
+    template <typename T, typename... Args>
+    T* CreateChildObject(GameObject* parent, Args&&... args) {
+        T* childObject = new T(this, std::forward<Args>(args)...);
+        parent->AddChildren(childObject);
+        return childObject;
+    }
+    void GameLogicLoop();
+    
 private:
-	/*ƒ‹[ƒv‹@”\*/
-	void ProcessInput();
-	void Update();
-	void ProcessOutput();
-	
-	void LoadData();
-	void UnloadData();
+    void ProcessInput(); // å…¥åŠ›å‡¦ç†
+    void Update(); // æ›´æ–°å‡¦ç†
+    void ProcessOutput(); // å‡ºåŠ›å‡¦ç†
+    
+    void LoadData(); // ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
+    void UnloadData(); // ãƒ‡ãƒ¼ã‚¿ã®è§£æ”¾
 
-	/*ƒVƒXƒeƒ€•Ï”*/
-	Camera* _camera;
-	Player* _player;
-	Frame* _frame;
-	Input* _input;
+    Camera* _camera;
+    Player* _player;
+	TileMapObject* _tileMapObject;
+    Frame* _frame;
+    Input* _input;
 
-	PhysWorld2D* _physWorld;
-	Renderer* _renderer;
-	bool _isRunning; //ƒ‹[ƒvŒp‘±
-	bool _isUpdating;
+    PhysWorld2D* _physWorld;
+    Renderer* _renderer;
+    bool _isRunning;
+    bool _isUpdating;
 
-	float _brightness;
+    
+	AssetManager<Texture>* _textureManager;
+	AssetManager<TileMap>* _tileMapManager;
 
-	std::vector<GameObject*> _pendingObjects; //•Û—¯’†‚ÌƒIƒuƒWƒFƒNƒg”z—ñ
-	std::vector<GameObject*> _objects; //Às‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒg”z—ñ
+    float _brightness;
 
-
+    std::vector<GameObject*> _pendingObjects;
+    std::vector<GameObject*> _objects;
 };

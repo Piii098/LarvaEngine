@@ -11,11 +11,11 @@ uniform float brightnessThreshold;
 void main()
 {
     vec4 color = texture(sceneTexture, TexCoords);
-    float brightness = dot(color.rgb, vec3(0.2126, 0.7152, 0.0722)); // ‹P“x‚ðŒvŽZ
+    float brightness = dot(color.rgb, vec3(0.2126, 0.7152, 0.0722)); // ï¿½Pï¿½xï¿½ï¿½ï¿½vï¿½Z
 
     if (brightness > brightnessThreshold) {
-        FragColor = color; // è‡’l‚ð’´‚¦‚éê‡‚Í‚»‚Ì‚Ü‚Üo—Í
+        FragColor = color; // è‡’lï¿½ð’´‚ï¿½ï¿½ï¿½ê‡ï¿½Í‚ï¿½ï¿½Ì‚Ü‚Üoï¿½ï¿½
     } else {
-        FragColor = vec4(0.0, 0.0, 0.0, 0.0); // è‡’lˆÈ‰º‚Ìê‡‚Í“§–¾‚É‚·‚é
+        FragColor = vec4(0.0, 0.0, 0.0, 0.0); // è‡’lï¿½È‰ï¿½ï¿½Ìê‡ï¿½Í“ï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½
     }
 }

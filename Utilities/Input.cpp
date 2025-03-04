@@ -1,8 +1,8 @@
-#include "Utilities/Input.h"
+ï»¿#include "Utilities/Input.h"
 
-#pragma region ƒCƒ“ƒvƒbƒgŠÇ—ƒNƒ‰ƒX
+#pragma region ã‚¤ãƒ³ãƒ—ãƒƒãƒˆç®¡ç†ã‚¯ãƒ©ã‚¹
 
-#pragma region ƒRƒ“ƒXƒgƒ‰ƒNƒ^:ƒfƒXƒgƒ‰ƒNƒ^
+#pragma region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿:ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 Input::InputManager::InputManager()
 	: _currentKeyState{}
@@ -26,7 +26,7 @@ Input::InputManager::~InputManager() {
 }
 #pragma endregion
 
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
+#pragma region ãƒ‘ãƒ–ãƒªãƒƒã‚¯é–¢æ•°
 
 void Input::InputManager::Update() {
 	UpdateKeyboard();
@@ -61,7 +61,7 @@ void Input::InputManager::UpdateKeyboard() {
 
 #pragma endregion
 
-#pragma region ƒvƒ‰ƒCƒx[ƒgŠÖ”
+#pragma region ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
 
 int Input::InputManager::GetKeyCode(InputMap input) {
 	return _keyboradMap[input];
@@ -71,7 +71,7 @@ int Input::InputManager::GetKeyCode(InputMap input) {
 
 #pragma endregion
 
-#pragma region ƒRƒ“ƒXƒgƒ‰ƒNƒ^:ƒfƒXƒgƒ‰ƒNƒ^
+#pragma region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿:ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 Input::InputManager Input::s_InputManager;
 
@@ -85,7 +85,7 @@ Input::~Input() {
 
 #pragma endregion
 
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
+#pragma region ãƒ‘ãƒ–ãƒªãƒƒã‚¯é–¢æ•°
 
 void Input::Update() {
 	s_InputManager.Update();
@@ -105,7 +105,7 @@ bool Input::CheckInputAll() {
 
 #pragma endregion
 
-#pragma region ƒvƒŒƒC‚×[‚ÆŠÖ”
+#pragma region ãƒ—ãƒ¬ã‚¤ã¹ãƒ¼ã¨é–¢æ•°
 
 bool Input::CheckHitKeyboradAll() {
 	const bool* keys = SDL_GetKeyboardState(NULL);

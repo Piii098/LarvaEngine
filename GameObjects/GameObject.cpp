@@ -1,8 +1,9 @@
-#include "GameObjects/GameObject.h"
+ï»¿#include "GameObjects/GameObject.h"
 #include "Components/Component.h"
 #include "Utilities/Input.h"
 #include "Utilities/Frame.h"
 #include "Game.h"
+#include <algorithm>
 
 #pragma region con
 
@@ -11,7 +12,7 @@ GameObject::GameObject(Game* game)
 	: _state(STATE::ACTIVE)
 	, _tag(TAG::NONE)
 	, _game(game)
-	, _position(Vector2::Zero)
+	, _position(Vector2Int::Zero)
 	, _scale(1.0f)
 	, _rotation(0.0f)
 	, _recomputeWorldTransform(true)
@@ -26,7 +27,7 @@ GameObject::~GameObject() {
 
 #pragma endregion
 
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
+#pragma region ãƒ‘ãƒ–ãƒªãƒƒã‚¯é–¢æ•°
 
 void GameObject::ProcessInput(Input* input) {
 	
@@ -42,13 +43,9 @@ void GameObject::InputObject(Input* input) {
 
 }
 
-void GameObject::PhysUpdate(Frame* frame) {
-
-}
-
 void GameObject::Update(Frame* frame) {
 
-	/*ƒQ[ƒ€‘¤‚©‚çŒÄ‚Ño‚³‚ê‚éXVŠÖ”*/
+	/*ã‚²ãƒ¼ãƒ å´ã‹ã‚‰å‘¼ã³å‡ºã•ã‚Œã‚‹æ›´æ–°é–¢æ•°*/
 
 	if (_state == STATE::ACTIVE)
 	{
@@ -63,7 +60,7 @@ void GameObject::Update(Frame* frame) {
 
 void GameObject::UpdateComponents(Frame* frame) {
 
-	/*‚Â‚¯‚ç‚ê‚½ƒRƒ“ƒ|[ƒlƒ“ƒg‚ğ‡‚ÉÀs‚·‚é*/
+	/*ã¤ã‘ã‚‰ã‚ŒãŸã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’é †ã«å®Ÿè¡Œã™ã‚‹*/
 
 	for (auto comp : _components) {
 		comp->Update(frame);
@@ -71,20 +68,50 @@ void GameObject::UpdateComponents(Frame* frame) {
 }
 
 void GameObject::UpdateObject(Frame* frame) {
+	
+}
+
+
+void GameObject::PhysUpdate(float deltaTime) {
+
+	/*ç‰©ç†æ›´æ–°é–¢æ•°ã€‚ã‚²ãƒ¼ãƒ å´ã‹ã‚‰å‘¼ã³å‡ºã•ã‚Œã‚‹ã€‚*/
+
+	if (_state == STATE::ACTIVE)
+	{
+		ComputeWorldTransform();
+
+		PhysUpdateComponents(deltaTime);
+		PhysUpdateObject(deltaTime);
+
+		ComputeWorldTransform();
+	}
+}
+
+void GameObject::PhysUpdateComponents(float deltaTime) {
+
+	/*ã¤ã‘ã‚‰ã‚ŒãŸã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’é †ã«å®Ÿè¡Œã™ã‚‹*/
+
+	for (auto comp : _components) {
+		comp->PhysUpdate(deltaTime);
+	}
+}
+
+void GameObject::PhysUpdateObject(float deltaTime) {
 
 }
 
+
 void GameObject::AddComponent(Component* component) {
 	
-	/*ƒRƒ“ƒ|[ƒlƒ“ƒg‚ÌupdateLayer‚Ì’l‚É‰‚¶‚Ä¸‡‚É•À‚×‚é*/
+	/*ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®updateLayerã®å€¤ã«å¿œã˜ã¦æ˜‡é †ã«ä¸¦ã¹ã‚‹*/
 
 	int layer = component->UpdateLayer();
 	auto iter = _components.begin();
 
 	for (; iter != _components.end(); ++iter) {
 	
-		if (layer < (*iter)->UpdateLayer()) { // ŠK‘w”‚ªŠù‘¶‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚æ‚è¬‚³‚¯‚ê‚Î
-			break; // ”²‚¯‚é
+		if (layer < (*iter)->UpdateLayer()) { // éšå±¤æ•°ãŒæ—¢å­˜ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚ˆã‚Šå°ã•ã‘ã‚Œã°
+			break; // æŠœã‘ã‚‹
 		}
 
 	}
@@ -101,26 +128,38 @@ void GameObject::RemoveComponent(Component* component) {
 	}
 
 }
+void GameObject::AddChildren(GameObject* object) {
+
+	_childrenObjects.emplace_back(object);
+    
+}
+
+void GameObject::RemoveChildren(GameObject* object) {
+    auto iter = std::find(_childrenObjects.begin(), _childrenObjects.end(), object);
+    if (iter != _childrenObjects.end()) {
+        std::iter_swap(iter, _childrenObjects.end() - 1);
+		_childrenObjects.pop_back();
+    }
+
+}
 
 void GameObject::ComputeWorldTransform() {
-
 	if (_recomputeWorldTransform) {
-
 		_recomputeWorldTransform = false;
 
 		_worldTransform = Matrix4::CreateScale(_scale);
 		_worldTransform *= Matrix4::CreateRotationZ(_rotation);
-		_worldTransform *= Matrix4::CreateTranslation(Vector3(_position.x, _position.y, 0.0f));
+		_worldTransform *= Matrix4::CreateTranslation(Vector3(static_cast<float>(_position.x), static_cast<float>(_position.y), 0.0f));
 
-		for(auto comp : _components) {
+		for (auto comp : _components) {
 			comp->OnUpdateWorldTransform();
 		}
-
 	}
 }
 
+
 #pragma endregion
 
-#pragma region ƒvƒ‰ƒCƒx[ƒgŠÖ”
+#pragma region ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
 
 #pragma endregion

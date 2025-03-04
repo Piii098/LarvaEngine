@@ -1,4 +1,4 @@
-#include "Renderer.h"
+ï»¿#include "Renderer.h"
 #include <gl/glew.h>
 #include "Utilities/Shader.h"
 #include "Polygon/VertexArray.h"
@@ -8,7 +8,7 @@
 #include "Game.h"
 #include "GameObjects/Camera.h"
 
-#pragma region ƒRƒ“ƒXƒgƒ‰ƒNƒ^:ƒfƒXƒgƒ‰ƒNƒ^
+#pragma region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿:ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 Renderer::Renderer(Game* game)
 	: _game(game)
@@ -24,7 +24,7 @@ Renderer::~Renderer() {
 
 #pragma endregion
 
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
+#pragma region ãƒ‘ãƒ–ãƒªãƒƒã‚¯é–¢æ•°
 
 bool Renderer::Initialize(float screenWidth, float screenHeight, float lowResWidth, float lowResHeight) {
 
@@ -34,23 +34,23 @@ bool Renderer::Initialize(float screenWidth, float screenHeight, float lowResWid
 	_lowResWidth = lowResWidth;
 	_lowResHeight = lowResHeight;
 
-	/*ƒVƒF[ƒ_[‰Šú‰»*/
+	/*ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼åˆæœŸåŒ–*/
 
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE); // ƒRƒAOpenGLƒvƒƒtƒ@ƒCƒ‹‚ğİ’è
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE); // ã‚³ã‚¢OpenGLãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¨­å®š
 
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3); // ƒo[ƒWƒ‡ƒ“‚ğİ’è
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3); // ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’è¨­å®š
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
 
-	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8); // RGBAA8ƒrƒbƒg‚ÌƒJƒ‰[ƒoƒbƒtƒ@‚ğİ’è
+	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8); // RGBAã€8ãƒ“ãƒƒãƒˆã®ã‚«ãƒ©ãƒ¼ãƒãƒƒãƒ•ã‚¡ã‚’è¨­å®š
 	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
 
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1); // ƒ_ƒuƒ‹ƒoƒbƒtƒ@‚ğ—LŒø
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1); // ãƒ€ãƒ–ãƒ«ãƒãƒƒãƒ•ã‚¡ã‚’æœ‰åŠ¹
 
-	SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1); // ƒn[ƒhƒEƒFƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚ğİ’è
+	SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1); // ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã‚’è¨­å®š
 
-	_window = SDL_CreateWindow("Game", _screenWidth, _screenHeight, SDL_WINDOW_OPENGL); //ƒEƒBƒ“ƒhƒEì¬AOpenGL
+	_window = SDL_CreateWindow("Game", _screenWidth, _screenHeight, SDL_WINDOW_OPENGL); //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆã€OpenGL
 	if (!_window) {
 		SDL_Log("Failed to create a window : %s", SDL_GetError());
 		return false;
@@ -58,7 +58,7 @@ bool Renderer::Initialize(float screenWidth, float screenHeight, float lowResWid
 
 	_context = SDL_GL_CreateContext(_window);
 
-	glewExperimental = GL_TRUE; // GLEW‰Šú‰»
+	glewExperimental = GL_TRUE; // GLEWåˆæœŸåŒ–
 	if (glewInit() != GLEW_OK) {
 		SDL_Log("Failed to initialize GLEW : %s", SDL_GetError());
 		return false;
@@ -101,93 +101,29 @@ void Renderer::UnloadData() {
 }
 
 void Renderer::Draw() {
-	
-	/*‰æ–ÊƒNƒŠƒA*/
-
-	glBindFramebuffer(GL_FRAMEBUFFER, _hdrFBO);
-	glViewport(0, 0, _lowResWidth, _lowResHeight);
-	glClearColor(0.4f, 0.4f, 0.4f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
-
-	/*ƒVƒF[ƒ_[*/
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	DrawBackground();
-	DrawSprite();
-	
-	_upscaleShader->SetActive();
-
-	glBindFramebuffer(GL_FRAMEBUFFER, _upscaleFBO);
-	glViewport(0, 0, _screenWidth, _screenHeight);
-
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, _colorBuffer[0]);
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, _colorBuffer[1]);
-
-	_screenVerts->SetActive();
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
-
-	
-	bool horizontal = true;
-	bool firstIteration = true;
-	int amount = 20;
-
-	_blurShader->SetActive();
-
-
-	for (unsigned int i = 0; i < amount; i++)
-	{
-		glBindFramebuffer(GL_FRAMEBUFFER, _pingpongFBO[horizontal]);
-		_blurShader->SetIntUniform("horizontal", horizontal);
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture( GL_TEXTURE_2D, firstIteration ? _upscaleBuffer[1] : _pingpongBuffer[!horizontal]);
-		// ƒXƒNƒŠ[ƒ“‘S‘Ì‚ğ•¢‚¤lŠpŒ`‚ğ•`‰æ
-		_screenVerts->SetActive();
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
-		horizontal = !horizontal;
-		if (firstIteration) firstIteration = false;
-	}
-	
-	glBindFramebuffer(GL_FRAMEBUFFER, 0); // ƒfƒtƒHƒ‹ƒg‚ÌƒtƒŒ[ƒ€ƒoƒbƒtƒ@‚É–ß‚·
-	glViewport(0, 0, _screenWidth, _screenHeight);
-	glClear(GL_COLOR_BUFFER_BIT); // ƒtƒŒ[ƒ€ƒoƒbƒtƒ@‚Ì“à—e‚ğ‰æ–Ê‚É•`‰æ
-	
-	_bloomFinalShader->SetActive();
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, _upscaleBuffer[0] );
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, _pingpongBuffer[!horizontal]);
-	_bloomFinalShader->SetIntUniform("uIsBloom", true);
-	_bloomFinalShader->SetFloatUniform("exposure", 1.0f);
-	float zoom = _game->GetCamera()->Zoom();
-	_bloomFinalShader->SetFloatUniform("zoom", zoom);
-
-	// ƒXƒNƒŠ[ƒ“‘S‘Ì‚ğ•¢‚¤lŠpŒ`‚ğ•`‰æ
-	_screenVerts->SetActive();
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
-
-	
-	/*‘O–Ê‚É•\¦*/
-
-	SDL_GL_SwapWindow(_window);
+	ClearScreen();
+	SetupShaders();
+	DrawScene();
+	ApplyBloomEffect();
+	FinalizeFrame();
+	SwapWindow();
 }
+
 
 void Renderer::AddSprite(SpriteComponent* sprite) {
 
 	int layer = sprite->DrawLayer();
 	auto iter = _sprites.begin();
 
-	for (; iter != _sprites.end(); ++iter) { // ”z—ñ‚ÌÅŒã‚Ü‚Å
+	for (; iter != _sprites.end(); ++iter) { // é…åˆ—ã®æœ€å¾Œã¾ã§
 
-		if (layer < (*iter)->DrawLayer()) { // ŠK‘w”‚ªŠù‘¶‚ÌƒXƒvƒ‰ƒCƒg‚æ‚è¬‚³‚¢‚¯‚ê‚Î
-			break; //”²‚¯‚é
+		if (layer < (*iter)->DrawLayer()) { // éšå±¤æ•°ãŒæ—¢å­˜ã®ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ˆã‚Šå°ã•ã„ã‘ã‚Œã°
+			break; //æŠœã‘ã‚‹
 		}
 
 	}
 
-	_sprites.insert(iter, sprite); // “KØ‚ÈˆÊ’u‚É‘}“ü‚·‚é
+	_sprites.insert(iter, sprite); // é©åˆ‡ãªä½ç½®ã«æŒ¿å…¥ã™ã‚‹
 }
 
 void Renderer::RemoveSprite(SpriteComponent* sprite) {
@@ -201,15 +137,15 @@ void Renderer::AddBackground(BGComponent* background) {
 	int layer = background->DrawLayer();
 	auto iter = _backgrounds.begin();
 
-	for (; iter != _backgrounds.end(); ++iter) { // ”z—ñ‚ÌÅŒã‚Ü‚Å
+	for (; iter != _backgrounds.end(); ++iter) { // é…åˆ—ã®æœ€å¾Œã¾ã§
 
-		if (layer < (*iter)->DrawLayer()) { // ŠK‘w”‚ªŠù‘¶‚ÌƒXƒvƒ‰ƒCƒg‚æ‚è¬‚³‚¢‚¯‚ê‚Î
-			break; //”²‚¯‚é
+		if (layer < (*iter)->DrawLayer()) { // éšå±¤æ•°ãŒæ—¢å­˜ã®ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ˆã‚Šå°ã•ã„ã‘ã‚Œã°
+			break; //æŠœã‘ã‚‹
 		}
 
 	}
 
-	_backgrounds.insert(iter, background); // “KØ‚ÈˆÊ’u‚É‘}“ü‚·‚é
+	_backgrounds.insert(iter, background); // é©åˆ‡ãªä½ç½®ã«æŒ¿å…¥ã™ã‚‹
 }
 
 void Renderer::RemoveBackground(BGComponent* background) {
@@ -220,15 +156,33 @@ void Renderer::RemoveBackground(BGComponent* background) {
 
 #pragma endregion
 
-#pragma region ƒvƒ‰ƒCƒx[ƒgŠÖ”
+#pragma region ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
 
 bool Renderer::InitializeFrameBuffer() {
 
-	// ƒtƒŒ[ƒ€ƒoƒbƒtƒ@ƒIƒuƒWƒFƒNƒg‚Ìì¬
+	// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
+	glGenFramebuffers(1, &_finalFBO);
+	glBindFramebuffer(GL_FRAMEBUFFER, _finalFBO);
+
+	// ã‚«ãƒ©ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆ
+	glGenTextures(1, &_finalBuffer);
+
+	glBindTexture(GL_TEXTURE_2D, _finalBuffer);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _screenWidth, _screenHeight, 0, GL_RGBA, GL_FLOAT, nullptr);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚¢ã‚¿ãƒƒãƒ
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _finalBuffer, 0);
+
+
+	// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
 	glGenFramebuffers(1, &_upscaleFBO);
 	glBindFramebuffer(GL_FRAMEBUFFER, _upscaleFBO);
 
-	// ƒJƒ‰[ƒeƒNƒXƒ`ƒƒ‚Ìì¬
+	// ã‚«ãƒ©ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆ
 	glGenTextures(2, _upscaleBuffer);
 
 	for (int i = 0; i < 2; i++) {
@@ -240,7 +194,7 @@ bool Renderer::InitializeFrameBuffer() {
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-		// ƒtƒŒ[ƒ€ƒoƒbƒtƒ@‚ÉƒeƒNƒXƒ`ƒƒ‚ğƒAƒ^ƒbƒ`
+		// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚¢ã‚¿ãƒƒãƒ
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, GL_TEXTURE_2D, _upscaleBuffer[i], 0);
 
 	}
@@ -248,18 +202,18 @@ bool Renderer::InitializeFrameBuffer() {
 	unsigned int attachments[2] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1 };
 	glDrawBuffers(2, attachments);
 
-	// ƒtƒŒ[ƒ€ƒoƒbƒtƒ@‚Ìó‘Ôƒ`ƒFƒbƒN
+	// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã®çŠ¶æ…‹ãƒã‚§ãƒƒã‚¯
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
 		SDL_Log("Framebuffer is not complete!");
 		return false;
 	}
 
 
-	// ƒtƒŒ[ƒ€ƒoƒbƒtƒ@ƒIƒuƒWƒFƒNƒg‚Ìì¬
+	// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
 	glGenFramebuffers(1, &_hdrFBO);
 	glBindFramebuffer(GL_FRAMEBUFFER, _hdrFBO);
 
-	// ƒJƒ‰[ƒeƒNƒXƒ`ƒƒ‚Ìì¬
+	// ã‚«ãƒ©ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆ
 	glGenTextures(2, _colorBuffer);
 
 	for (int i = 0; i < 2; i++) {
@@ -271,21 +225,21 @@ bool Renderer::InitializeFrameBuffer() {
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-		// ƒtƒŒ[ƒ€ƒoƒbƒtƒ@‚ÉƒeƒNƒXƒ`ƒƒ‚ğƒAƒ^ƒbƒ`
+		// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚¢ã‚¿ãƒƒãƒ
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, GL_TEXTURE_2D, _colorBuffer[i], 0);
 
 	}
 
 	glDrawBuffers(2, attachments);
 
-	// ƒtƒŒ[ƒ€ƒoƒbƒtƒ@‚Ìó‘Ôƒ`ƒFƒbƒN
+	// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã®çŠ¶æ…‹ãƒã‚§ãƒƒã‚¯
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
 		SDL_Log("Framebuffer is not complete!");
 		return false;
 	}
 
 	glGenFramebuffers(2, _pingpongFBO);
-	// ƒJƒ‰[ƒeƒNƒXƒ`ƒƒ‚Ìì¬
+	// ã‚«ãƒ©ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆ
 	glGenTextures(2, _pingpongBuffer);
 
 	for (int i = 0; i < 2; i++) {
@@ -298,13 +252,13 @@ bool Renderer::InitializeFrameBuffer() {
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-		// ƒtƒŒ[ƒ€ƒoƒbƒtƒ@‚ÉƒeƒNƒXƒ`ƒƒ‚ğƒAƒ^ƒbƒ`
+		// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚¢ã‚¿ãƒƒãƒ
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _pingpongBuffer[i], 0);
 
 	}
 	
 
-	// ƒfƒtƒHƒ‹ƒg‚ÌƒtƒŒ[ƒ€ƒoƒbƒtƒ@‚É–ß‚·
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã«æˆ»ã™
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	return true;
@@ -340,14 +294,14 @@ void Renderer::DrawSprite() {
 	_spriteShader->SetMatrixUniform("uViewScreen", view);
 
 	_spriteShader->SetVector3Uniform("ambientLightColor", Vector3(1.f, 1.f, 1.f));
-	_spriteShader->SetFloatUniform("ambientLightIntensity", 0.1f);
+	_spriteShader->SetFloatUniform("ambientLightIntensity", 1.0f);
 
 	_spriteShader->SetVector2Uniform("pointLightPos", _lightPos);
 	_spriteShader->SetVector3Uniform("pointLightColor", Vector3(1.0, 0.9, 0.8));
 	_spriteShader->SetFloatUniform("pointLightIntensity", 1.f);
 	_spriteShader->SetFloatUniform("pointLightRadius", 100.f);
 
-	/*ƒXƒvƒ‰ƒCƒgƒRƒ“ƒ|[ƒlƒ“ƒg*/
+	/*ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ*/
 	for (auto spri : _sprites) {
 		spri->Draw(_spriteShader);
 	}
@@ -357,8 +311,12 @@ void Renderer::DrawBackground() {
 	_backgroundShader->SetActive();
 	_screenVerts->SetActive();
 
-	_backgroundShader->SetVector3Uniform("ambientLightColor", Vector3(1.0f, 1.0f, 1.0f)); // ”’ (–³’²®)
-	_backgroundShader->SetFloatUniform("ambientLightIntensity", 0.1f);
+
+	Matrix4 view = _game->GetCamera()->GetViewMatrix();
+	_spriteShader->SetMatrixUniform("uViewScreen", view);
+
+	_backgroundShader->SetVector3Uniform("ambientLightColor", Vector3(1.0f, 1.0f, 1.0f)); // ç™½ (ç„¡èª¿æ•´)
+	_backgroundShader->SetFloatUniform("ambientLightIntensity", 1.0f);
 
 	for (auto bg : _backgrounds) {
 		bg->Draw(_backgroundShader);
@@ -383,18 +341,90 @@ void Renderer::CreateSpriteVerts() {
 
 	float quadVertices[] = {
 		// positions(x,y,z)    // texture coords(u,v)
-		-1.0f,  1.0f, 0.0f,   0.0f, 1.0f,  // ¶ã
-		 1.0f,  1.0f, 0.0f,   1.0f, 1.0f,  // ‰Eã
-		 1.0f, -1.0f, 0.0f,   1.0f, 0.0f,  // ‰E‰º
-		-1.0f, -1.0f, 0.0f,   0.0f, 0.0f   // ¶‰º
+		-1.0f,  1.0f, 0.0f,   0.0f, 0.0f,  // å·¦ä¸Š
+		 1.0f,  1.0f, 0.0f,   1.0f, 0.0f,  // å³ä¸Š
+		 1.0f, -1.0f, 0.0f,   1.0f, 1.0f,  // å³ä¸‹
+		-1.0f, -1.0f, 0.0f,   0.0f, 1.0f   // å·¦ä¸‹
 	};
 
 	unsigned int quadIndices[] = {
-		0, 1, 2,  // Å‰‚ÌOŠpŒ`
-		0, 2, 3   // “ñ”Ô–Ú‚ÌOŠpŒ`
+		0, 1, 2,  // æœ€åˆã®ä¸‰è§’å½¢
+		0, 2, 3   // äºŒç•ªç›®ã®ä¸‰è§’å½¢
 	};
 
 	_screenVerts = new VertexArray(quadVertices, 4, quadIndices, 6);
+}
+
+
+void Renderer::ClearScreen() {
+	glBindFramebuffer(GL_FRAMEBUFFER, _hdrFBO);
+	glViewport(0, 0, _lowResWidth, _lowResHeight);
+	glClearColor(0.4f, 0.4f, 0.4f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+}
+
+void Renderer::SetupShaders() {
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+}
+
+void Renderer::DrawScene() {
+	DrawBackground();
+	DrawSprite();
+
+	_upscaleShader->SetActive();
+	glBindFramebuffer(GL_FRAMEBUFFER, _upscaleFBO);
+	glViewport(0, 0, _screenWidth, _screenHeight);
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, _colorBuffer[0]);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, _colorBuffer[1]);
+
+	_screenVerts->SetActive();
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+}
+
+void Renderer::ApplyBloomEffect() {
+	_horizontal = true;
+	bool firstIteration = true;
+	int amount = 20;
+
+	_blurShader->SetActive();
+
+	for (unsigned int i = 0; i < amount; i++) {
+		glBindFramebuffer(GL_FRAMEBUFFER, _pingpongFBO[_horizontal]);
+		_blurShader->SetIntUniform("horizontal", _horizontal);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, firstIteration ? _upscaleBuffer[1] : _pingpongBuffer[!_horizontal]);
+		_screenVerts->SetActive();
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+		_horizontal = !_horizontal;
+		if (firstIteration) firstIteration = false;
+	}
+}
+
+void Renderer::FinalizeFrame() {
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glViewport(0, 0, _screenWidth, _screenHeight);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	_bloomFinalShader->SetActive();
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, _upscaleBuffer[0]);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, _pingpongBuffer[!_horizontal]);
+	_bloomFinalShader->SetIntUniform("uIsBloom", true);
+	_bloomFinalShader->SetFloatUniform("exposure", 1.0f);
+	float zoom = _game->GetCamera()->Zoom();
+	_bloomFinalShader->SetFloatUniform("zoom", zoom);
+
+	_screenVerts->SetActive();
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+}
+
+void Renderer::SwapWindow() {
+	SDL_GL_SwapWindow(_window);
 }
 
 
@@ -417,6 +447,12 @@ bool Renderer::LoadShaders() {
 		return false;
 	}
 
+	_retroShader = new Shader();
+	if (!_retroShader->Load("Shaders/FrameBuffer.vert", "Shaders/RetroEffect.frag")) {
+		SDL_Log("Failed to laod BlurShader");
+		return false;
+	}
+
 	_upscaleShader = new Shader();
 	if (!_upscaleShader->Load("Shaders/FrameBuffer.vert", "Shaders/Upscale.frag")) {
 		SDL_Log("Failed to laod BlurShader");
@@ -433,6 +469,9 @@ bool Renderer::LoadShaders() {
 
 	_spriteShader->SetActive();
 	_spriteShader->SetMatrixUniform("uViewProj", viewProj);
+
+	_backgroundShader->SetActive();
+	_backgroundShader->SetMatrixUniform("uViewProj", viewProj);
 
 	_blurShader->SetActive();
 	_blurShader->SetIntUniform("image", 0);

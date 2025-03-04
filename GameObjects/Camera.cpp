@@ -1,21 +1,21 @@
-#include "GameObjects/Camera.h"
+ï»¿#include "GameObjects/Camera.h"
 #include "Components/FollowCameraComponent.h"
 #include "Components/CameraComponent.h"
 #include "Game.h"
 #include "GameObjects/Player.h"
 #include "Utilities/Input.h"
 
-#pragma region ƒRƒ“ƒXƒgƒ‰ƒNƒ^:ƒfƒXƒgƒ‰ƒNƒ^
+#pragma region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿:ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 Camera::Camera(Game* game) 
 	: GameObject(game){
 
 	_camera = new FollowCameraComponent(this);
 	_camera->Target(GetGame()->GetPlayer()->Position());
-	_zoom = 1;
+	_zoom = 2.f;
 	_camera->Zoom(_zoom);
-	_camera->YOffset(0.f);
-	_camera->AttenRate(7.f);
+	_camera->YOffset(35.f);
+	_camera->AttenRate(4);
 }
 
 Camera::~Camera() {
@@ -26,7 +26,7 @@ Camera::~Camera() {
 #pragma endregion
 
 
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
+#pragma region ãƒ‘ãƒ–ãƒªãƒƒã‚¯é–¢æ•°
 
 void Camera::InputObject(Input* input) {
 	if (input->IsInputDown(InputMap::INPUT_BUP)) {
@@ -48,6 +48,10 @@ Matrix4 Camera::GetViewMatrix() const {
 
 float Camera::Zoom() const {
 	return _camera->Zoom();
+}
+
+Vector2 Camera::SubPixelOffset() const {
+	return _camera->SubPixelOffset();
 }
 
 

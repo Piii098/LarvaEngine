@@ -1,25 +1,25 @@
-#include "Utilities/Collision2D.h"
+ï»¿#include "Utilities/Collision2D.h"
+#include <vector>
 #include <algorithm>
 
-#pragma region ü•ª
-
-LineSegment2D::LineSegment2D(const Vector2& start, const Vector2& end)
+#pragma region ç·šåˆ†
+LineSegment2D::LineSegment2D(const Vector2Int& start, const Vector2Int& end)
     : _start(start), _end(end) {}
 
 Vector2 LineSegment2D::PointOnSegment(float t) const {
-    return _start + t * (_end - _start);
+    return Vector2::ToFloat(_start) + t * Vector2::ToFloat(_end - _start);
 }
 
-float LineSegment2D::MinDistSq(const Vector2& point) const {
-    Vector2 ab = _end - _start;
-    Vector2 ap = point - _start;
-    float proj = ap.Dot(ap, ab) / ab.LengthSq();
+float LineSegment2D::MinDistSq(const Vector2Int& point) const {
+    Vector2Int ab = _end - _start;
+    Vector2Int ap = point - _start;
+    float proj = static_cast<float>(ap.Dot(ap, ab)) / ab.LengthSq();
     proj = Math::Clamp(proj, 0.0f, 1.0f);
-    return (point - PointOnSegment(proj)).LengthSq();
+    return (Vector2::ToFloat(point) - PointOnSegment(proj)).LengthSq();
 }
 
 float LineSegment2D::MinDistSq(const LineSegment2D& s) const {
-    float minDistSq = FLT_MAX;
+    float minDistSq = std::numeric_limits<float>::max();
 
     for (float t1 = 0.0f; t1 <= 1.0f; t1 += 0.1f) {
         for (float t2 = 0.0f; t2 <= 1.0f; t2 += 0.1f) {
@@ -32,7 +32,7 @@ float LineSegment2D::MinDistSq(const LineSegment2D& s) const {
 }
 
 float LineSegment2D::MinDistSq(const LineSegment2D& s1, const LineSegment2D& s2) {
-    float minDistSq = FLT_MAX;
+    float minDistSq = std::numeric_limits<float>::max();
     for (float t1 = 0.0f; t1 <= 1.0f; t1 += 0.1f) {
         for (float t2 = 0.0f; t2 <= 1.0f; t2 += 0.1f) {
             float distSq = (s1.PointOnSegment(t1) - s2.PointOnSegment(t2)).LengthSq();
@@ -44,73 +44,72 @@ float LineSegment2D::MinDistSq(const LineSegment2D& s1, const LineSegment2D& s2)
 
 #pragma endregion
 
-#pragma region ‰~
+#pragma region å††
 
-Circle::Circle(const Vector2& center, float radius)
+Circle::Circle(const Vector2Int& center, float radius)
     : _center(center), _radius(radius) {}
 
-bool Circle::Contains(const Vector2& point) const {
+bool Circle::Contains(const Vector2Int& point) const {
     return (point - _center).LengthSq() <= (_radius * _radius);
 }
 
-
 #pragma endregion
 
-#pragma region AABB2D(²•ÀsƒoƒEƒ“ƒfƒBƒ“ƒOƒ{ƒbƒNƒX)
+#pragma region AABB2D(è»¸ä¸¦è¡Œãƒã‚¦ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒœãƒƒã‚¯ã‚¹)
 
-AABB2D::AABB2D(const Vector2& min, const Vector2& max)
+AABB2D::AABB2D(const Vector2Int& min, const Vector2Int& max)
     : _min(min), _max(max) {}
 
-void AABB2D::UpdateMinMax(const Vector2& point) {
+void AABB2D::UpdateMinMax(const Vector2Int& point) {
     _min.x = Math::Min(_min.x, point.x);
     _min.y = Math::Min(_min.y, point.y);
     _max.x = Math::Max(_max.x, point.x);
     _max.y = Math::Max(_max.y, point.y);
 }
 
-bool AABB2D::Contains(const Vector2& point) const {
+bool AABB2D::Contains(const Vector2Int& point) const {
     return (point.x >= _min.x && point.x <= _max.x &&
         point.y >= _min.y && point.y <= _max.y);
 }
 
-float AABB2D::MinDistSq(const Vector2& point) const {
-    float dx = Math::Max(_min.x - point.x, 0.0f);
+float AABB2D::MinDistSq(const Vector2Int& point) const {
+    int dx = Math::Max(_min.x - point.x, 0);
     dx = Math::Max(dx, point.x - _max.x);
-    float dy = Math::Max(_min.y - point.y, 0.0f);
+    int dy = Math::Max(_min.y - point.y, 0);
     dy = Math::Max(dy, point.y - _max.y);
-    return dx * dx + dy * dy;
+    return static_cast<float>(dx * dx + dy * dy);
 }
 
-void AABB2D::MoveCenterTo(const Vector2& targetPoint) {
-    Vector2 currentCenter = Center();
-    Vector2 offset = targetPoint - currentCenter;
+void AABB2D::MoveCenterTo(const Vector2Int& targetPoint) {
+    Vector2Int currentCenter = Center();
+    Vector2Int offset = targetPoint - currentCenter;
 
     _min += offset;
     _max += offset;
 }
 
-Vector2 AABB2D::Center() const {
-    return (_min + _max) * 0.5f;
+Vector2Int AABB2D::Center() const {
+    return Vector2Int((_min.x + _max.x) / 2, (_min.y + _max.y) / 2);
 }
 
 #pragma endregion
 
-#pragma region ƒJƒvƒZƒ‹
+#pragma region ã‚«ãƒ—ã‚»ãƒ«
 
-Capsule2D::Capsule2D(const Vector2& start, const Vector2& end, float radius)
+Capsule2D::Capsule2D(const Vector2Int& start, const Vector2Int& end, float radius)
     : _segment(start, end), _radius(radius) {}
 
-Vector2 Capsule2D::PointOnSegment(float t) const {
-    return _segment.PointOnSegment(t);
+Vector2Int Capsule2D::PointOnSegment(float t) const {
+    return Vector2Int::ToInterger(_segment.PointOnSegment(t));
 }
 
-bool Capsule2D::Contains(const Vector2& point) const {
+bool Capsule2D::Contains(const Vector2Int& point) const {
     return _segment.MinDistSq(point) <= (_radius * _radius);
 }
 
 #pragma endregion
 
-#pragma region Œğ·”»’è
+#pragma region äº¤å·®åˆ¤å®š
 
 bool Intersect(const Circle& a, const Circle& b) {
     float distSq = (a._center - b._center).LengthSq();
@@ -131,9 +130,9 @@ bool Intersect(const Circle& c, const AABB2D& box) {
     return box.MinDistSq(c._center) <= (c._radius * c._radius);
 }
 
-// 2DŒğ·”»’è‚Ì•â•ŠÖ”
-bool TestSidePlane(float start, float end, float negd, const Vector2& norm,
-    std::vector<std::pair<float, Vector2>>& out) {
+// 2Däº¤å·®åˆ¤å®šã®è£œåŠ©é–¢æ•°
+bool TestSidePlane(float start, float end, float negd, const Vector2Int& norm,
+    std::vector<std::pair<float, Vector2Int>>& out) {
     float denom = end - start;
     if (Math::NearZero(denom)) {
         return false;
@@ -151,32 +150,32 @@ bool TestSidePlane(float start, float end, float negd, const Vector2& norm,
     }
 }
 
-//  **2D LineSegment‚ÆAABB‚ÌŒğ·”»’èŠÖ”**
-bool Intersect(const LineSegment2D& l, const AABB2D& b, float& outT, Vector2& outNorm) {
-    std::vector<std::pair<float, Vector2>> tValues;
+//  **2D LineSegmentã¨AABBã®äº¤å·®åˆ¤å®šé–¢æ•°**
+bool Intersect(const LineSegment2D& l, const AABB2D& b, float& outT, Vector2Int& outNorm) {
+    std::vector<std::pair<float, Vector2Int>> tValues;
 
-    // X²–Ê‚Æ‚ÌŒğ·ƒeƒXƒg
-    TestSidePlane(l._start.x, l._end.x, b._min.x, Vector2::NegUnitX, tValues);
-    TestSidePlane(l._start.x, l._end.x, b._max.x, Vector2::UnitX, tValues);
+    // Xè»¸é¢ã¨ã®äº¤å·®ãƒ†ã‚¹ãƒˆ
+    TestSidePlane(l._start.x, l._end.x, b._min.x, Vector2Int::NegUnitX, tValues);
+    TestSidePlane(l._start.x, l._end.x, b._max.x, Vector2Int::UnitX, tValues);
 
-    // Y²–Ê‚Æ‚ÌŒğ·ƒeƒXƒg
-    TestSidePlane(l._start.y, l._end.y, b._min.y, Vector2::NegUnitY, tValues);
-    TestSidePlane(l._start.y, l._end.y, b._max.y, Vector2::UnitY, tValues);
+    // Yè»¸é¢ã¨ã®äº¤å·®ãƒ†ã‚¹ãƒˆ
+    TestSidePlane(l._start.y, l._end.y, b._min.y, Vector2Int::NegUnitY, tValues);
+    TestSidePlane(l._start.y, l._end.y, b._max.y, Vector2Int::UnitY, tValues);
 
-    // t’l‚Å¸‡‚Éƒ\[ƒg
+    // tå€¤ã§æ˜‡é †ã«ã‚½ãƒ¼ãƒˆ
     std::sort(tValues.begin(), tValues.end(), [](const auto& a, const auto& b) {
         return a.first < b.first;
         });
 
-    // ŠeŒğ·“_‚ªAABB“à‚É‚ ‚é‚©‚ğƒeƒXƒg
+    // å„äº¤å·®ç‚¹ãŒAABBå†…ã«ã‚ã‚‹ã‹ã‚’ãƒ†ã‚¹ãƒˆ
     for (auto& t : tValues) {
         Vector2 point = l.PointOnSegment(t.first);
-        if (b.Contains(point)) {
+        if (b.Contains(Vector2Int::ToInterger(point))) {
             outT = t.first;
             outNorm = t.second;
             return true;
         }
     }
-    return false; // Œğ·‚È‚µ
+    return false; // äº¤å·®ãªã—
 }
 #pragma endregion

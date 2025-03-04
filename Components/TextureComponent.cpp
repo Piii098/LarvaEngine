@@ -1,66 +1,26 @@
-#include "Components/TextureComponent.h"
+ï»¿#include "Components/TextureComponent.h"
 #include "GameObjects/GameObject.h"
 #include "Game.h"
 #include "Math.h"
 #include "Utilities/Shader.h"
 #include "Renderer.h"
+#include "AssetManagers/AssetManager.h"
 
-#pragma region ƒXƒvƒ‰ƒCƒgŠÇ—ƒNƒ‰ƒX()
-
-TextureComponent::TextureManager::TextureManager() {
-
-}
-
-
-void TextureComponent::TextureManager::Load(const std::string& fileName) {
-	Texture* tex = nullptr;
-	auto iter = _textures.find(fileName);// Žw’è–¼‚Ì—v‘f‚ð’TõA‚à‚µ‚È‚¯‚ê‚Î_textures.end()‚ð•Ô‚·
-	if (iter == _textures.end())  //ƒL[‚ª‘¶Ý‚µ‚È‚¢‚È‚ç
-	{
-		/*˜A‘z”z—ñ_texture‚Éƒtƒ@ƒCƒ‹–¼‚Æƒf[ƒ^‚ð’Ç‰Á*/
-
-		tex = new Texture();
-
-		if (tex->Load(fileName))
-		{
-			_textures.emplace(fileName, tex);
-		}
-		else
-		{
-			delete tex;
-			tex = nullptr;
-		}
-
-	}
-
-}
-
-void TextureComponent::TextureManager::Unload() {
-	for (auto& pair : _textures) {
-		pair.second->Unload();
-		delete pair.second;
-	}
-	_textures.clear();
-}
-
-Texture* TextureComponent::TextureManager::GetTexture(const std::string& textureName) {
-	return _textures[textureName];
-}
-
-#pragma endregion
-
-#pragma region ƒRƒ“ƒXƒgƒ‰ƒNƒ^:ƒfƒXƒgƒ‰ƒNƒ^
-
-TextureComponent::TextureManager TextureComponent::s_TextureManager;
+#pragma region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿:ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 TextureComponent::TextureComponent(GameObject* parent, int drawLayer)
-	: Component(parent, drawLayer)
+	: Component(parent)
 	, _texture(nullptr)
 	, _texWidth(0.f)
 	, _texHeight(0.f)
+	, _texOffset(Vector2::Zero)
+	, _texScale(Vector2(1.f, 1.f))
 	, _selfLightColor(Vector3(1.f,1.f,1.f))
-	, _selfLightIntensity(0.f){
-
+	, _selfLightIntensity(0.f)
+	, _flipX(false)
+	, _flipY(false)
+	, _drawLayer(drawLayer){
+	_textureManager = _parent->GetGame()->GetTextureManager();
 }
 
 TextureComponent::~TextureComponent() {
@@ -76,12 +36,12 @@ void TextureComponent::Draw(Shader* shader) {
 		float scaleX = _flipX ? -1.f : 1.f;
 		float scaleY = _flipY ? -1.f : 1.f;
 
-		Matrix4 scaleMat = Matrix4::CreateScale(scaleX * static_cast<float>(_texWidth), scaleY * static_cast<float>(_texHeight), 1.0f);
-		Matrix4 world = scaleMat * _parent->WorldTransform();
+		Matrix4 scaleMat = Matrix4::CreateScale(25, 25, 1.0f);
+		Matrix4 world = scaleMat ;
 
         shader->SetMatrixUniform("uWorldTransform", world);
-        shader->SetVector2Uniform("uTexOffset", Vector2(0.0f, 0.0f));
-        shader->SetVector2Uniform("uTexScale", Vector2(1.0f, 1.0f));
+        shader->SetVector2Uniform("uTexOffset", _texOffset);
+        shader->SetVector2Uniform("uTexScale", _texScale);
 
         _texture->SetActive();
 
@@ -90,9 +50,12 @@ void TextureComponent::Draw(Shader* shader) {
 }
 
 void TextureComponent::SetTexture(const std::string& textureName) {
-    _texture = new Texture();
-    if (_texture->Load(textureName)) {
-        _texWidth = _texture->Width();
-        _texHeight = _texture->Height();
-    }
+	_texture = _textureManager->Get(textureName);
+	if (_texture) {
+		_texWidth = _texture->Width();
+		_texHeight = _texture->Height();
+	}
+	else {
+		SDL_Log("Failed to load texture: %s", textureName.c_str());
+	}
 }

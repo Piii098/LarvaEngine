@@ -1,30 +1,30 @@
-#include "Polygon/VertexArray.h"
+ï»¿#include "Polygon/VertexArray.h"
 #include <GL/glew.h>
 
-#pragma region ƒRƒ“ƒXƒgƒ‰ƒNƒ^:ƒfƒXƒgƒ‰ƒNƒ^
+#pragma region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿:ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 VertexArray::VertexArray(const float* verts, unsigned int numVerts
 	, unsigned int* indices, unsigned int numIndices)
 	: _numVerts(numVerts)
 	, _numIndices(numIndices) {
 
-	/*’¸“_”z—ñì¬*/
-	glGenVertexArrays(1, &_vertexArray); // ’¸“_”z—ñƒIƒuƒWƒFƒNƒg‚ğì¬
-	glBindVertexArray(_vertexArray); // ID‚ğ•Û‘¶
+	/*é ‚ç‚¹é…åˆ—ä½œæˆ*/
+	glGenVertexArrays(1, &_vertexArray); // é ‚ç‚¹é…åˆ—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ
+	glBindVertexArray(_vertexArray); // IDã‚’ä¿å­˜
 
-	/*’¸“_ƒoƒbƒtƒ@ì¬*/
-	glGenBuffers(1, &_vertexBuffer); // ’¸“_ƒoƒbƒtƒ@‚ğì¬
-	glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer); // ID‚ğ•Û‘¶
+	/*é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ä½œæˆ*/
+	glGenBuffers(1, &_vertexBuffer); // é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆ
+	glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer); // IDã‚’ä¿å­˜
 	glBufferData(GL_ARRAY_BUFFER, numVerts * 5 * sizeof(float), verts, GL_STATIC_DRAW);
 
-	/*ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ì¬*/
+	/*ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ä½œæˆ*/
 	glGenBuffers(1, &_indexBuffer);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indexBuffer);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, numIndices * sizeof(unsigned int), indices, GL_STATIC_DRAW);
 
-	/*’¸“_ƒŒƒCƒAƒEƒg‚ğw’è*/
+	/*é ‚ç‚¹ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã‚’æŒ‡å®š*/
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 5, 0); // ƒTƒCƒYAí—ŞAƒtƒH[ƒ}ƒbƒg‚ğw’è
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 5, 0); // ã‚µã‚¤ã‚ºã€ç¨®é¡ã€ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æŒ‡å®š
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 5, reinterpret_cast<void*>(sizeof(float) * 3));
 }
@@ -37,7 +37,7 @@ VertexArray::~VertexArray() {
 
 #pragma endregion
 
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
+#pragma region ãƒ‘ãƒ–ãƒªãƒƒã‚¯é–¢æ•°
 
 void VertexArray::SetActive() {
 	glBindVertexArray(_vertexArray);

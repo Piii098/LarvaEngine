@@ -1,16 +1,16 @@
-#pragma once
+ï»¿#pragma once
 #include "Components/SpriteComponent.h"
 
 class BoxComponent2D;
 
 /*
-	ƒ{ƒbƒNƒXó‚ÌƒXƒvƒ‰ƒCƒg‚ğ•\¦‚·‚é
+	ãƒœãƒƒã‚¯ã‚¹çŠ¶ã®ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’è¡¨ç¤ºã™ã‚‹
 */
 
 class DebugDrawComponent : public SpriteComponent {
 public:
 
-	DebugDrawComponent(GameObject* parent,BoxComponent2D* boxComp, int drawLayer = 100);
+	DebugDrawComponent(GameObject* parent,BoxComponent2D* boxComp, int drawLayer = 10000);
 	~DebugDrawComponent() override;
 
 	void SetBox(const Vector2& position, const Vector2& size, const Vector3& color);

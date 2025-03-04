@@ -1,4 +1,4 @@
-#include "Components/MoveInputComponent.h"
+ï»¿#include "Components/MoveInputComponent.h"
 #include "Components/RigidbodyComponent.h"
 #include "Math.h"
 #include "GameObjects/GameObject.h"
@@ -14,7 +14,10 @@ MoveInputComponent::MoveInputComponent(GameObject* parent, RigidbodyComponent* r
 	: Component(parent, updateLayer)
 	, _rigidbodyComp(rigidbodyComp)
 	, _moveSpeed(0.f)
+	, _moveSpeedX(0.f)
+	, _moveSpeedY(0.f)
 	, _jumpForce(0.f)
+	, _isJumping(false)
 	, _maxVerticalForce(0.f)
 	, _maxHorizontalForce(0.f)
 	, _maxVerticalVelocity(0.f)
@@ -27,84 +30,53 @@ MoveInputComponent::~MoveInputComponent() {
 }
 
 
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
+#pragma region ãƒ‘ãƒ–ãƒªãƒƒã‚¯é–¢æ•°
 
 void MoveInputComponent::ProcessInput(Input* input) {
-
-	_direction = 0;
+	_direction = Vector2::Zero;
 
 	if (input->IsInput(InputMap::INPUT_DRIGHT)) {
-		_direction += 1;
+		_direction.x += 1;
 	}
 	if (input->IsInput(InputMap::INPUT_DLEFT)) {
-		_direction -= 1;
+		_direction.x -= 1;
 	}
-	
+	if (input->IsInput(InputMap::INPUT_DUP)) {
+		_direction.y += 1;
+	}
+	if (input->IsInput(InputMap::INPUT_DDOWN)) {
+		_direction.y -= 1;
+	}
 
 	PhysWorld2D* phys = _parent->GetGame()->GetPhysWorld();
 	PhysWorld2D::CollisionInfo outColl;
 
 	_parent->ComputeWorldTransform();
 
-	// ƒvƒŒƒCƒ„[‚Ì­‚µ‰º‚©‚ç’n–Ê•ûŒü‚ÖƒŒƒC‚ð”ò‚Î‚·
-	Vector2 rayStart = _parent->Position() + Vector2(0.f, -1.0f);  // ƒvƒŒƒCƒ„[‚Ì‘«Œ³‚ ‚½‚è
-	LineSegment2D ray(rayStart, rayStart + Vector2(0.f, -15));
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å°‘ã—ä¸‹ã‹ã‚‰åœ°é¢æ–¹å‘ã¸ãƒ¬ã‚¤ã‚’é£›ã°ã™
+	Vector2Int rayStart = _parent->Position() + Vector2Int(0.f, -1.0f);  // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®è¶³å…ƒã‚ãŸã‚Š
+	LineSegment2D ray(rayStart, rayStart + Vector2Int(0.f, -15));
 	if (phys->SegmentCast(ray, outColl, _parent)) {
 		if (input->IsInputDown(InputMap::INPUT_DUP) && outColl._object->Tag() == GameObject::TAG::GROUND) {
-			_rigidbodyComp->AddForce(Vector2(0.f, _jumpForce));
+			_isJumping = true;
 		}
 	}
-
-
-	/*
-	float horizontalForce = 0.f;
-	float verticalForce = 0.f;
-
-	if (input->IsInput(InputMap::INPUT_DRIGHT)) {
-		horizontalForce += _maxHorizontalForce;
-	}
-	if (input->IsInput(InputMap::INPUT_DLEFT)) {
-		horizontalForce -= _maxHorizontalForce;
-	}
-	if (input->IsInput(InputMap::INPUT_DUP)) {
-		verticalForce += _maxVerticalForce;
-	}
-	if (input->IsInput(InputMap::INPUT_DDOWN)) {
-		verticalForce -= _maxVerticalForce;
-	}
-	
-	_rigidbodyComp->AddForce(Vector2(horizontalForce, verticalForce));
-	*/
-	
-	/*
-	float horizontalVeclocity = 0.f;
-	float verticalVeclocity = 0.f;
-
-	if (input->IsInput(InputMap::INPUT_DRIGHT)) {
-		horizontalVeclocity += _maxHorizontalVelocity;
-	}
-	if (input->IsInput(InputMap::INPUT_DLEFT)) {
-		horizontalVeclocity -= _maxHorizontalVelocity;
-	}
-	if (input->IsInput(InputMap::INPUT_DUP)) {
-		verticalVeclocity += _maxVerticalVelocity;
-	}
-	if (input->IsInput(InputMap::INPUT_DDOWN)) {
-		verticalVeclocity -= _maxVerticalVelocity;
-	}
-	_rigidbodyComp->Velocity(Vector2(horizontalVeclocity, verticalVeclocity));
-	*/
-
 }
 
-void MoveInputComponent::Update(Frame* frame){
+void MoveInputComponent::PhysUpdate(float deltaTime){
 	Vector2 currentVelocity = _rigidbodyComp->Velocity();
-	Vector2 desiredVelocity(static_cast<float>(_direction) * _moveSpeed, currentVelocity.y);
+
+	Vector2 desiredVelocity(static_cast<float>(_direction.x) * (_moveSpeed + _moveSpeedX), currentVelocity.y);
 	Vector2 velocityChange = desiredVelocity - currentVelocity;
 
-	// Ž¿—Ê‚ðl—¶‚µ‚Ä—Í‚ðŒvŽZ
-	float mass = _rigidbodyComp->Mass(); // V‚½‚ÉŽ¿—Ê‚ðŽæ“¾‚·‚é•K—v‚ª‚ ‚è‚Ü‚·
-	Vector2 force = velocityChange * mass / frame->DeltaTime();
+	// è³ªé‡ã‚’è€ƒæ…®ã—ã¦åŠ›ã‚’è¨ˆç®—
+	float mass = _rigidbodyComp->Mass(); // æ–°ãŸã«è³ªé‡ã‚’å–å¾—ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
+	Vector2 force = velocityChange * mass / deltaTime;
+
+	if (_isJumping) {
+		force.y += _jumpForce;
+		_isJumping = false;
+	}
 
 	_rigidbodyComp->AddForce(force);
 }

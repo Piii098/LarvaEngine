@@ -1,62 +1,50 @@
-#include "Utilities/Frame.h"
+ï»¿#include "Utilities/Frame.h"
 
-#pragma region ƒRƒ“ƒXƒgƒ‰ƒNƒ^:ƒfƒXƒgƒ‰ƒNƒ^
+#pragma region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿:ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-Frame::Frame() 
+Frame::Frame()
     : _tickCount(0)
     , _setFps(120)
     , _currentFps(0.f)
-    {
-
+    , _fixedDeltaTime(0.0f) // åˆæœŸå€¤ã¯0
+    , _accumulator(0.0f)
+{
 }
 
 Frame::~Frame() {
-
 }
 
 #pragma endregion
 
-#pragma region ƒƒCƒ“
-/*
-void Frame::Update() {
-
-    while (!TickPassed(SDL_GetTicks(), _tickCount + 16));
-
-    float deltaTime = (SDL_GetTicks() - _tickCount) / 1000.f;
-
-    if (deltaTime > 0.05f) {
-        deltaTime = 0.05f;
-    }
-
-    _tickCount = SDL_GetTicks();
-
-}
-*/
+#pragma region ãƒ¡ã‚¤ãƒ³
 
 void Frame::Update() {
-    // –Ú•WƒtƒŒ[ƒ€ŠÔ‚ğŒvZ (ƒ~ƒŠ•b’PˆÊ)
-    float frameTime = 1000.0f / _setFps; // 1•b = 1000ƒ~ƒŠ•b
+    // ç›®æ¨™ãƒ•ãƒ¬ãƒ¼ãƒ æ™‚é–“ã‚’è¨ˆç®— (ãƒŸãƒªç§’å˜ä½)
+    float frameTime = 1000.0f / _setFps; // 1ç§’ = 1000ãƒŸãƒªç§’
 
-    // Œ»İ‚ÌŠÔ‚ğæ“¾
+    // ç¾åœ¨ã®æ™‚é–“ã‚’å–å¾—
     Uint64 currentTime = SDL_GetTicks();
-    Uint64 currentFramedTime = currentTime - _tickCount; // Œo‰ßŠÔ (ms)
+    Uint64 currentFramedTime = currentTime - _tickCount; // çµŒéæ™‚é–“ (ms)
 
-    // ƒtƒŒ[ƒ€ŠÔ‚ª–Ú•W‚æ‚è’Z‚¢ê‡‚Í‘Ò‹@
+    // ãƒ•ãƒ¬ãƒ¼ãƒ æ™‚é–“ãŒç›®æ¨™ã‚ˆã‚ŠçŸ­ã„å ´åˆã¯å¾…æ©Ÿ
     if (currentFramedTime < frameTime) {
         SDL_Delay(frameTime - currentFramedTime);
-        currentTime = SDL_GetTicks(); // ’x‰„Œã‚ÉŒ»İŠÔ‚ğXV
+        currentTime = SDL_GetTicks(); // é…å»¶å¾Œã«ç¾åœ¨æ™‚é–“ã‚’æ›´æ–°
         currentFramedTime = currentTime - _tickCount;
     }
 
-    // `_deltaTime` ‚ğ•b’PˆÊ‚ÅŒvZ (æ‚É float ‚ÉƒLƒƒƒXƒg)
+    // `_deltaTime` ã‚’ç§’å˜ä½ã§è¨ˆç®— (å…ˆã« float ã«ã‚­ãƒ£ã‚¹ãƒˆ)
     _deltaTime = static_cast<float>(currentFramedTime) / 1000.0f;
 
-    // ƒtƒŒ[ƒ€ŠJnŠÔ‚ğXV
+    // ãƒ•ãƒ¬ãƒ¼ãƒ é–‹å§‹æ™‚é–“ã‚’æ›´æ–°
     _tickCount = currentTime;
     _gameTime = _tickCount / 1000.f;
 
-    // FPS ‚ğŒvZ
+    // FPS ã‚’è¨ˆç®—
     _currentFps = (_deltaTime > 0) ? (1.0f / _deltaTime) : 0.0f;
+
+    // è“„ç©æ™‚é–“ã‚’æ›´æ–°
+    _accumulator += _deltaTime;
 }
 
 #pragma endregion

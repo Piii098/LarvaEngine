@@ -1,5 +1,4 @@
-#include <SDL3/SDL_timer.h>
-#include <SDL3_image/SDL_image.h>
+ï»¿#include <SDL3/SDL_timer.h>
 #include <iostream>
 #include <algorithm>
 #include <GL/glew.h>
@@ -10,48 +9,48 @@
 #include "Utilities/Frame.h"
 #include "Utilities/Input.h"
 #include "GameObjects/Camera.h"
-#include "GameObjects/TileMap.h"
+#include "GameObjects/TileMapObject.h"
 #include "Components/TileMapComponent.h"
-#include "GameObjects/Player.h"
 #include "Renderer.h"
 #include "PhysWorld2D.h"
 #include "GameObjects/Background.h"
+#include "AssetManagers/AssetManager.h"
+#include "AssetManagers/TileMap.h"
+#include "GameObjects/TileMapObject.h"
 
-
-#pragma region Constructor:Destructer
+#pragma region Constructor:Destructor
 
 Game::Game()
 	: _renderer(nullptr)
 	, _isRunning(true)
 	, _isUpdating(false)
-	, _brightness(1.f){
-
+	, _brightness(1.f)
+	, _camera(nullptr)
+	, _player(nullptr)
+	, _frame(nullptr)
+	, _input(nullptr)
+	, _physWorld(nullptr)
+	, _textureManager(nullptr) 
+	, _tileMapManager(nullptr) {
 }
 
 Game::~Game() {
-
+	Shutdown();
 }
 
 #pragma endregion
 
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
+#pragma region Public Functions
 
 bool Game::Initialize() {
-
-	/*ƒVƒXƒeƒ€‰Šú‰»*/
-	
-	int sdlResult = SDL_Init(SDL_INIT_VIDEO);
-
-	if (!sdlResult) {
-		SDL_Log("Failed to initialize a system : %s", SDL_GetError());
+	if (SDL_Init(SDL_INIT_VIDEO) == 0) {
+		SDL_Log("Failed to intialized SDL : %s", SDL_GetError());
 		return false;
 	}
 
-	/*ƒVƒF[ƒ_[‰Šú‰»*/
-
 	_renderer = new Renderer(this);
-	if (!_renderer->Initialize(1024.f, 768.f, 512.f, 384.f )) {
-		SDL_Log("Failed to initialized renderer");
+	if (!_renderer->Initialize(1024.f, 768.f, 1024.f, 768.f)) {
+		SDL_Log("Failed to intialized renderer");
 		delete _renderer;
 		_renderer = nullptr;
 		return false;
@@ -60,24 +59,21 @@ bool Game::Initialize() {
 	_frame = new Frame();
 	_input = new Input();
 	_physWorld = new PhysWorld2D(this);
-	
-	/*ƒQ[ƒ€‰Šú‰»*/
-	
-		
+	_textureManager = new AssetManager<Texture>();
+	_tileMapManager = new AssetManager<TileMap>();
+
+	_frame->SetFixedDeltaTime(1.f / 60.f);
+
 	LoadData();
-
 	return true;
-
 }
 
 void Game::RunLoop() {
-	
 	while (_isRunning) {
 		ProcessInput();
 		Update();
 		ProcessOutput();
 	}
-
 }
 
 void Game::Shutdown() {
@@ -86,23 +82,33 @@ void Game::Shutdown() {
 	_physWorld = nullptr;
 	if (_renderer) {
 		_renderer->Shutdown();
+		delete _renderer;
+		_renderer = nullptr;
 	}
-
 	SDL_Quit();
-
 }
 
 void Game::AddObject(GameObject* object) {
 	if (_isUpdating) {
 		_pendingObjects.emplace_back(object);
-	}
-	else {
+	} else {
 		_objects.emplace_back(object);
 	}
 }
 
 void Game::RemoveObject(GameObject* object) {
-	
+
+	// è¦ªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰å‰Šé™¤
+	if (object->GetParent()) {
+		object->GetParent()->RemoveChildren(object);
+	}
+
+	// å­ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤
+	for (auto child : object->GetChildren()) {
+		delete child;
+		child = nullptr;
+	}
+
 	auto iter = std::find(_pendingObjects.begin(), _pendingObjects.end(), object);
 	if (iter != _pendingObjects.end()) {
 		std::iter_swap(iter, _pendingObjects.end() - 1);
@@ -118,35 +124,22 @@ void Game::RemoveObject(GameObject* object) {
 
 #pragma endregion
 
-#pragma region ƒvƒ‰ƒCƒx[ƒgŠÖ”
+#pragma region Private Functions
 
 void Game::ProcessInput() {
-
-	/*ƒCƒxƒ“ƒg‹ì“®*/
 	SDL_Event event;
-
 	while (SDL_PollEvent(&event)) {
-
-		switch (event.type) {
-		case SDL_EVENT_QUIT:
+		if (event.type == SDL_EVENT_QUIT) {
 			_isRunning = false;
-			break;
 		}
-
 	}
 
-	/*ƒL[ƒ{[ƒhƒCƒxƒ“ƒg‹ì“®*/
-	const bool* state = SDL_GetKeyboardState(NULL); //‘SƒL[ƒ`ƒFƒbƒN
-
-
+	const bool* state = SDL_GetKeyboardState(NULL);
 	if (state[SDL_SCANCODE_ESCAPE]) {
 		_isRunning = false;
 	}
 
-	/*ƒQ[ƒ€“à—e*/
-
-	_input->Update(); // ƒCƒ“ƒvƒbƒg
-	
+	_input->Update();
 	if (_input->IsInputDown(InputMap::INPUT_BRIGHT)) {
 		_brightness += 0.1f;
 	}
@@ -159,33 +152,33 @@ void Game::ProcessInput() {
 		obj->ProcessInput(_input);
 	}
 	_isUpdating = false;
-
 }
 
 void Game::Update() {
+	_frame->Update();
+	while (_frame->ShouldDoFixedUpdate()) {
+		float deltaTime = _frame->GetFixedDeltaTime();
+		for (auto& obj : _objects) {
+			obj->PhysUpdate(deltaTime);
+		}
+		_physWorld->Update(deltaTime);
+		_frame->ConsumeFixedDeltaTime();
+	}
 
-	/*ƒVƒXƒeƒ€XV*/
-	_frame->Update(); // ƒtƒŒ[ƒ€
-
-	//SDL_Log("FPS : %f", _frame->Fps());
-	/*ƒQ[ƒ€“à—e*/
-														
-
+	// ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°æ›´æ–°ï¼ˆè£œé–“å‡¦ç†ã‚’å«ã‚€ï¼‰
 	_isUpdating = true;
-	for (auto& obj : _objects) { // XVˆ—
+	for (auto& obj : _objects) {
 		obj->Update(_frame);
 	}
 	_isUpdating = false;
 
-	_physWorld->Update(_frame);
-
-	for (auto pend : _pendingObjects) { // ‘Ò‹@ƒIƒuƒWƒFƒNƒg‚ğXVƒIƒuƒWƒFƒNƒg‚É’Ç‰Á
+	for (auto pend : _pendingObjects) {
 		pend->ComputeWorldTransform();
 		_objects.emplace_back(pend);
 	}
 	_pendingObjects.clear();
 
-	std::vector<GameObject*> deadObjects; // DEADó‘Ô‚ÌƒIƒuƒWƒFƒNƒg‚ğíœ
+	std::vector<GameObject*> deadObjects;
 	for (auto obj : _objects) {
 		if (obj->State() == GameObject::STATE::DEAD) {
 			deadObjects.emplace_back(obj);
@@ -194,52 +187,40 @@ void Game::Update() {
 
 	for (auto obj : deadObjects) {
 		delete obj;
-		obj = nullptr;
 	}
-
+	_objects.erase(std::remove_if(_objects.begin(), _objects.end(),
+		[](GameObject* obj) { return obj->State() == GameObject::STATE::DEAD; }), _objects.end());
 }
 
 void Game::ProcessOutput() {
+
 	_renderer->SetLightPos(_player->Position());
 	_renderer->Draw();
-
 }
 
-
 void Game::LoadData() {
-
-	/*ƒf[ƒ^ƒ[ƒh*/
-
-	TextureComponent::S_TextureManager().Load("Assets/AKAGE.png");
-	TextureComponent::S_TextureManager().Load("Assets/RedBox.png");
-	TextureComponent::S_TextureManager().Load("Assets/BG.png");
-	TextureComponent::S_TextureManager().Load("Assets/Tama.png");
-	TextureComponent::S_TextureManager().Load("Assets/Tile.png");
-	TileMapComponent::S_TileMapManager().Load("Assets/Test.csv");
-
-	/*ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg*/
-
-	//Player* play = new Player(this);
-	TileMap* tileMap = new TileMap(this);
+	_textureManager->Load("Player", "Assets/AKAGE.png");
+	_textureManager->Load("Sky", "Assets/Sky.png");
+	_textureManager->Load("Plain", "Assets/Plain.png");
+	_textureManager->Load("Mountain", "Assets/Mountain.png");
+	_textureManager->Load("Tile", "Assets/Tile.png");
+	_textureManager->Load("RedBox", "Assets/RedBox.png");
+	_tileMapManager->Load("TileMap", "Assets/test.csv");
 	_player = new Player(this);
-	//TestObject* tesObj = new TestObject(this);
-	_player->PlacePlayerAtSpawn(tileMap->GetTileMapComponent());
+	_tileMapObject = new TileMapObject(this);
+	_tileMapObject->SetOnTile(_player, -2);
 	_renderer->SetLightPos(_player->Position());
 	_camera = new Camera(this);
+	_camera->Position(_player->Position());
 	new Background(this);
 }
 
-void Game::UnloadData()
-{
-	// Delete actors
-	// Because ~Actor calls RemoveActor, have to use a different style loop
-	while (!_objects.empty())
-	{
+void Game::UnloadData() {
+	while (!_objects.empty()) {
 		delete _objects.back();
 	}
 
-	if (_renderer)
-	{
+	if (_renderer) {
 		_renderer->UnloadData();
 	}
 }

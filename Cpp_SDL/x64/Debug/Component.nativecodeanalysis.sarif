@@ -1,0 +1,59 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.39.33521.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///d:/github/cpp_sdl/components/component.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "84ecc14fa3688952828bfb47cc44a48ae51e96579ba4a86150d4c0bb9b988f9e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/github/cpp_sdl/components/component.h"
+          },
+          "hashes": {
+            "sha-256": "ead59a01735e3e2c091f0b289e2bd9a44b91790110d06c752687a20d42af4414"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/github/cpp_sdl/gameobjects/gameobject.h"
+          },
+          "hashes": {
+            "sha-256": "610f3baaeb871727d6736fc5da4d93884e363c80002de0d4424fd78e83eee8b2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/github/cpp_sdl/math.h"
+          },
+          "hashes": {
+            "sha-256": "dc4cc43e8295b0d2c6bc9ad6d898c3c3925aa5ac21e26cb3c0bc44a22ae8f7ee"
+          }
+        }
+      ]
+    }
+  ]
+}

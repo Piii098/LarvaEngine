@@ -1,0 +1,67 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.39.33521.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///d:/github/cpp_sdl/polygon/vertexarray.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "abfcaae6af95f8715e86a9c5244a6616414dc19e45ed0190c62886de95d59432"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/github/cpp_sdl/polygon/vertexarray.h"
+          },
+          "hashes": {
+            "sha-256": "75de4d8a4060a07666409850104b1c76977f4d4d9515b08f470e7479fabb0ee9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/vcpkg/vcpkg/installed/x64-windows/include/gl/glew.h"
+          },
+          "hashes": {
+            "sha-256": "d3a05edf0b6c45bdbdb5704cacfa68a4666ae682e09b7970bb7310d38cfc3d0e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/vcpkg/vcpkg/installed/x64-windows/include/gl/glu.h"
+          },
+          "hashes": {
+            "sha-256": "db307251615fe0fc6c827e49b1d66de95a01c7b66f5bcc5924fae9b66bb10af6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/vcpkg/vcpkg/installed/x64-windows/include/gl/gl.h"
+          },
+          "hashes": {
+            "sha-256": "5a24c6fd7b416dd53b68a1c766c338ba2ee6f2b57a43ad7868bb5308d0e5fbb9"
+          }
+        }
+      ]
+    }
+  ]
+}

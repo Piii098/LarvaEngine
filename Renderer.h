@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <unordered_map>
 #include <vector>
 #include <string>
@@ -39,13 +39,21 @@ public:
 	void AddTexture(TextureComponent* texture);
 	void RemoveTexture(TextureComponent* texture);
 
-	void SetLightPos(Vector2 lightPos) { _lightPos = lightPos; };
+	void SetLightPos(Vector2Int lightPos) { _lightPos = lightPos; };
 private:
 
 	bool InitializeFrameBuffer();
 
 	void DrawBackground();
 	void DrawSprite();
+
+	void ClearScreen();
+	void SetupShaders();
+	void DrawScene();
+	void ApplyBloomEffect();
+	void FinalizeFrame();
+	void SwapWindow();
+
 
 	void UpScale();
 	void ApplyBloom(bool& horizontal);
@@ -60,19 +68,19 @@ private:
 	unsigned int _pingpongFBO[2];
 	unsigned int _pingpongBuffer[2];
 
-	Shader* _blurShader;               // ƒKƒEƒVƒAƒ“ƒuƒ‰[—pƒVƒF[ƒ_[
-	Shader* _bloomFinalShader;         // ÅI‡¬—pƒVƒF[ƒ_[
+	Shader* _blurShader;               // ã‚¬ã‚¦ã‚·ã‚¢ãƒ³ãƒ–ãƒ©ãƒ¼ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	Shader* _bloomFinalShader;         // æœ€çµ‚åˆæˆç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 
-	// ƒuƒ‹[ƒ€İ’è
-	float _bloomThreshold = 1.0f;      // –¾‚é‚¢•”•ª‚Æ‚İ‚È‚·è‡’l
-	float _bloomIntensity = 0.8f;      // ƒuƒ‹[ƒ€‚Ì‹­“x
+	// ãƒ–ãƒ«ãƒ¼ãƒ è¨­å®š
+	float _bloomThreshold = 1.0f;      // æ˜ã‚‹ã„éƒ¨åˆ†ã¨ã¿ãªã™é–¾å€¤
+	float _bloomIntensity = 0.8f;      // ãƒ–ãƒ«ãƒ¼ãƒ ã®å¼·åº¦
 
 	std::vector<BGComponent*> _backgrounds;
 	std::vector<SpriteComponent*> _sprites;
 
 	Game* _game;
 
-	SDL_Window* _window; //ƒEƒBƒ“ƒhƒE
+	SDL_Window* _window; //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	SDL_GLContext _context;
 	VertexArray* _spriteVerts;
 	Shader* _spriteShader;
@@ -83,11 +91,17 @@ private:
 	unsigned int _upscaleFBO;
 	Shader* _upscaleShader;
 
+	unsigned int _finalBuffer;
+	unsigned int _finalFBO;
+
+	Shader* _retroShader;
+
 	float _screenWidth;
 	float _screenHeight;
 	float _lowResWidth;
 	float _lowResHeight;
+	bool _horizontal;
 
-	Vector2 _lightPos;
+	Vector2Int _lightPos;
 
 };

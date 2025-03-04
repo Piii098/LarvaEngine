@@ -1,16 +1,16 @@
-#pragma once
+ï»¿#pragma once
 #include <unordered_map>
 #include <SDL3/SDL.h>
 
 enum class InputMap {
-	INPUT_DUP, //\šƒL[
+	INPUT_DUP, //åå­—ã‚­ãƒ¼
 	INPUT_DDOWN,
 	INPUT_DLEFT,
 	INPUT_DRIGHT,
-	INPUT_BUP, //ŠÛƒL[ã
-	INPUT_BDOWN, //ŠÛƒL[‰º
-	INPUT_BLEFT, //ŠÛƒL[¶
-	INPUT_BRIGHT, //ŠÛƒL[‰E
+	INPUT_BUP, //ä¸¸ã‚­ãƒ¼ä¸Š
+	INPUT_BDOWN, //ä¸¸ã‚­ãƒ¼ä¸‹
+	INPUT_BLEFT, //ä¸¸ã‚­ãƒ¼å·¦
+	INPUT_BRIGHT, //ä¸¸ã‚­ãƒ¼å³
 	INPUT_START,
 	INPUT_BACK
 };
@@ -18,16 +18,16 @@ enum class InputMap {
 class Input {
 public: 
 	
-	#pragma region ƒCƒ“ƒvƒbƒgŠÇ—ƒNƒ‰ƒX
+	#pragma region ã‚¤ãƒ³ãƒ—ãƒƒãƒˆç®¡ç†ã‚¯ãƒ©ã‚¹
 
 	class InputManager {
 	public:
 		InputManager();
 		~InputManager();
 
-		void Update(); //‘SƒL[ƒ`ƒFƒbƒNƒAƒ“ƒh‹L˜^
-		void UpdateKeyboard(); // ƒL[ƒ{[ƒh‚Ìó‘Ô‚ğXV
-		bool IsKeyDown(InputMap input); //‰Ÿ‚µ‚½uŠÔ‚Ì‚İ
+		void Update(); //å…¨ã‚­ãƒ¼ãƒã‚§ãƒƒã‚¯ã‚¢ãƒ³ãƒ‰è¨˜éŒ²
+		void UpdateKeyboard(); // ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®çŠ¶æ…‹ã‚’æ›´æ–°
+		bool IsKeyDown(InputMap input); //æŠ¼ã—ãŸç¬é–“ã®ã¿
 		bool IsKey(InputMap input);
 
 	private:
@@ -47,8 +47,8 @@ public:
 	~Input();
 
 	void Update();
-	bool IsInputDown(InputMap input); //‰Ÿ‚µ‚½uŠÔtrue‚ğ•Ô‚·
-	bool IsInput(InputMap input); //‰Ÿ‚µ‚Ä‚¢‚éŠÔtrue‚ğ•Ô‚·
+	bool IsInputDown(InputMap input); //æŠ¼ã—ãŸç¬é–“trueã‚’è¿”ã™
+	bool IsInput(InputMap input); //æŠ¼ã—ã¦ã„ã‚‹é–“trueã‚’è¿”ã™
 
 	static InputManager& S_InputManager() { return s_InputManager; };
 	bool CheckInputAll();

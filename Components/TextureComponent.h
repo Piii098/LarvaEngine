@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "Component.h"
 #include "Utilities/Texture.h"
@@ -6,27 +6,12 @@
 #include <unordered_map>
 
 class Shader;
+template<typename T>
+class AssetManager;
+class Texture;
 
 class TextureComponent : public Component {
 public:
-
-	#pragma region ƒXƒvƒ‰ƒCƒgŠÇ—ƒNƒ‰ƒX
-
-	class TextureManager {
-	public:
-		TextureManager();
-		~TextureManager() = default;
-
-		void Load(const std::string& fileName);
-		void Unload();
-
-		Texture* GetTexture(const std::string& textureName);
-	private:
-		std::unordered_map<std::string, Texture*> _textures;
-
-	};
-
-	#pragma endregion
 
 	TextureComponent(GameObject* parent, int drawLayer = 150);
     virtual ~TextureComponent();
@@ -34,29 +19,39 @@ public:
     virtual void Draw(Shader* shader);
     void SetTexture(const std::string& textureName);
 
+
+	/*ã‚¢ã‚¯ã‚»ã‚µ*/
+
 	int TexWidth() const { return _texWidth; };
 	int TexHeight() const { return _texHeight; };
 	int DrawLayer() const { return _drawLayer; };
-	static TextureManager& S_TextureManager() { return s_TextureManager; };
 
 	void SelfLightColor(Vector3 color) { _selfLightColor = color; };
 	void SelfLightIntensity(float intensity) { _selfLightIntensity = intensity; };
+
+	const Vector2& TexOffset() const { return _texOffset; }
+	const Vector2& TexScale() const { return _texScale; }
+	void TexOffset(const Vector2& offset) { _texOffset = offset; }
+	void TexScale(const Vector2& scale) { _texScale = scale; }
 
 	void FlipX(bool flag) { _flipX = flag; };
 	void FlipY(bool flag) { _flipY = flag; };
 
 protected:
 
-	static TextureManager s_TextureManager;
+	AssetManager<Texture>* _textureManager;
 
 	Texture* _texture;
     int _texWidth;
     int _texHeight;
 
+	Vector2 _texOffset;  // ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åˆ‡ã‚Šå–ã‚Šé–‹å§‹ä½ç½®
+	Vector2 _texScale;   // ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åˆ‡ã‚Šå–ã‚Šã‚¹ã‚±ãƒ¼ãƒ«
+
 	Vector3 _selfLightColor;
 	float _selfLightIntensity;
 
-	int _drawLayer; //•`Ê‡˜A¸‡‚É•`Ê‚·‚é
+	int _drawLayer; //æå†™é †åºã€æ˜‡é †ã«æå†™ã™ã‚‹
 
 	bool _flipX;
 	bool _flipY;

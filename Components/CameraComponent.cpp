@@ -1,17 +1,17 @@
-#include "Components/CameraComponent.h"
+ï»¿#include "Components/CameraComponent.h"
 #include "GameObjects/GameObject.h"
 #include "Utilities/Input.h"
 
-#pragma region ƒVƒ“ƒOƒ‹ƒgƒ“()
+#pragma region ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³()
 
 #pragma endregion
 
 
-#pragma region ƒRƒ“ƒXƒgƒ‰ƒNƒ^:ƒfƒXƒgƒ‰ƒNƒ^
+#pragma region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿:ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 CameraComponent::CameraComponent(GameObject* parent, int updateLayer)
     :Component(parent, updateLayer)
-    , _target(Vector2::Zero)
+    , _target(Vector2Int::Zero)
     , _zoom(1.f){
 
 }
@@ -21,7 +21,7 @@ CameraComponent::~CameraComponent() {
 }
 #pragma endregion
 
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
+#pragma region ãƒ‘ãƒ–ãƒªãƒƒã‚¯é–¢æ•°
 
 void CameraComponent::ProcessInput(Input* input) {
 
@@ -41,7 +41,7 @@ Matrix4 CameraComponent::GetViewMatrix() const{
 
 #pragma endregion
 
-#pragma region ƒvƒ‰ƒCƒx[ƒgŠÖ”
+#pragma region ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
 
 
 #pragma endregion

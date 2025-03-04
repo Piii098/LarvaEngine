@@ -1,39 +1,48 @@
-#include "Components/BGComponent.h"
+ï»¿#include "Components/BGComponent.h"
 #include "Utilities/Shader.h"
 #include "GameObjects/GameObject.h"
 #include "Game.h"
 #include "Renderer.h"
+#include "GameObjects/Camera.h"
 
-#pragma region ƒRƒ“ƒXƒgƒ‰ƒNƒ^:ƒfƒXƒgƒ‰ƒNƒ^
+#pragma region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿:ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-BGComponent::BGComponent(GameObject* parent)
-	: TextureComponent(parent){
-	_parent->GetGame()->GetRenderer()->AddBackground(this);
+BGComponent::BGComponent(GameObject* parent, float offsetRatio, int updateLayer)
+    : TextureComponent(parent, updateLayer)
+    , _offsetRatio(offsetRatio) {
+    _parent->GetGame()->GetRenderer()->AddBackground(this);
 }
 
 BGComponent::~BGComponent() {
-	_parent->GetGame()->GetRenderer()->RemoveBackground(this);
+    _parent->GetGame()->GetRenderer()->RemoveBackground(this);
 }
 
 #pragma endregion
 
-
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
-
+#pragma region ãƒ‘ãƒ–ãƒªãƒƒã‚¯é–¢æ•°
 void BGComponent::Draw(Shader* shader) {
-	if (_texture) {
-		float scaleX = _flipX ? -1.f : 1.f;
-		float scaleY = _flipY ? -1.f : 1.f;
+    if (_texture) {
+        float scaleX = _flipX ? -1.f : 1.f;
+        float scaleY = _flipY ? -1.f : 1.f;
 
-		Matrix4 scaleMat = Matrix4::CreateScale(scaleX * static_cast<float>(_texWidth), scaleY * static_cast<float>(_texHeight), 1.0f);
-		Matrix4 world = scaleMat * _parent->WorldTransform();
+        Matrix4 scaleMat = Matrix4::CreateScale(static_cast<float>(_texWidth) * scaleX, static_cast<float>(_texHeight) * scaleY, 1.0f);
+        float cameraPosX = _parent->GetGame()->GetCamera()->Position().x;
+        float offset = cameraPosX * (1 - _offsetRatio);
 
-		shader->SetVector3Uniform("selfLightColor", _selfLightColor);
-		shader->SetFloatUniform("selfLightIntensity", _selfLightIntensity);
-		_texture->SetActive();
+        // Calculate the translation matrix for the parallax offset
+        Matrix4 translationMat = Matrix4::CreateTranslation(Vector3(-offset, 0.0f, 0.0f));
 
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
-	}
+        // Calculate the world matrix based on the parent's *original* transform
+        Matrix4 world = scaleMat * translationMat * _parent->WorldTransform();
+
+        shader->SetMatrixUniform("uWorldTransform", world);
+
+        shader->SetVector3Uniform("selfLightColor", _selfLightColor);
+        shader->SetFloatUniform("selfLightIntensity", _selfLightIntensity);
+        _texture->SetActive();
+
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+    }
 }
 
 #pragma endregion

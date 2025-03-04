@@ -9,9 +9,16 @@ uniform sampler2D uTexture;           // 背景テクスチャ
 uniform vec3 ambientLightColor;       // 環境光の色
 uniform float ambientLightIntensity;   // 背景の明るさ調整
 
+uniform vec3 selfLightColor;          // 物体自体の発光色
+uniform float selfLightIntensity;  
+
 void main() {
     vec4 texColor = texture(uTexture, fragTexCoord);
-    vec3 finalColor = texColor.rgb * ambientLightColor * ambientLightIntensity;
+
+    // 自己発光の計算
+    vec3 selfLight = selfLightColor * selfLightIntensity;
+    
+    vec3 finalColor = texColor.rgb * ambientLightColor * ambientLightIntensity * selfLight;
     FragColor = vec4(finalColor, texColor.a);
 
     float brightnessValue = dot(FragColor.rgb, vec3(0.2126, 0.7152, 0.0722));

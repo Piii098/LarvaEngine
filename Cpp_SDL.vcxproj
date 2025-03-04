@@ -18,88 +18,6 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Components\AI\AICompoennt.cpp" />
-    <ClCompile Include="Components\AI\AIState.cpp" />
-    <ClCompile Include="Components\BGComponent.cpp" />
-    <ClCompile Include="Components\BoxComponent2D.cpp" />
-    <ClCompile Include="Components\CameraComponent.cpp" />
-    <ClCompile Include="Components\Component.cpp" />
-    <ClCompile Include="Components\Debug\DebugDrawComponent.cpp" />
-    <ClCompile Include="Components\FollowCameraComponent.cpp" />
-    <ClCompile Include="Components\MoveInputComponent.cpp" />
-    <ClCompile Include="Components\RigidbodyComponent.cpp" />
-    <ClCompile Include="Components\SpriteComponent.cpp" />
-    <ClCompile Include="Components\TextureComponent.cpp" />
-    <ClCompile Include="Components\TileMapComponent.cpp" />
-    <ClCompile Include="Components\TileMapSpriteComponent.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameObjects\Background.cpp" />
-    <ClCompile Include="GameObjects\Camera.cpp" />
-    <ClCompile Include="GameObjects\GameObject.cpp" />
-    <ClCompile Include="GameObjects\Player.cpp" />
-    <ClCompile Include="GameObjects\TestObject.cpp" />
-    <ClCompile Include="GameObjects\TileMap.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Math.cpp" />
-    <ClCompile Include="PhysWorld2D.cpp" />
-    <ClCompile Include="Polygon\VertexArray.cpp" />
-    <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="Utilities\Collision2D.cpp" />
-    <ClCompile Include="Utilities\Frame.cpp" />
-    <ClCompile Include="Utilities\Input.cpp" />
-    <ClCompile Include="Utilities\Shader.cpp" />
-    <ClCompile Include="Utilities\Texture.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Components\AI\AICompoennt.h" />
-    <ClInclude Include="Components\AI\AIState.h" />
-    <ClInclude Include="Components\BGComponent.h" />
-    <ClInclude Include="Components\BoxComponent2D.h" />
-    <ClInclude Include="Components\CameraComponent.h" />
-    <ClInclude Include="Components\Component.h" />
-    <ClInclude Include="Components\Debug\DebugDrawComponent.h" />
-    <ClInclude Include="Components\FollowCameraComponent.h" />
-    <ClInclude Include="Components\MoveInputComponent.h" />
-    <ClInclude Include="Components\RigidbodyComponent.h" />
-    <ClInclude Include="Components\SpriteComponent.h" />
-    <ClInclude Include="Components\TextureComponent.h" />
-    <ClInclude Include="Components\TileMapComponent.h" />
-    <ClInclude Include="Components\TileMapSpriteComponent.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameObjects\Background.h" />
-    <ClInclude Include="GameObjects\Camera.h" />
-    <ClInclude Include="GameObjects\GameObject.h" />
-    <ClInclude Include="GameObjects\Player.h" />
-    <ClInclude Include="GameObjects\TestObject.h" />
-    <ClInclude Include="GameObjects\TileMap.h" />
-    <ClInclude Include="Math.h" />
-    <ClInclude Include="PhysWorld2D.h" />
-    <ClInclude Include="Renderer.h" />
-    <ClInclude Include="Utilities\Collision2D.h" />
-    <ClInclude Include="Utilities\Frame.h" />
-    <ClInclude Include="Utilities\Input.h" />
-    <ClInclude Include="Utilities\Shader.h" />
-    <ClInclude Include="Utilities\Texture.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\SDL3-3.2.0\VisualC\SDL\SDL.vcxproj">
-      <Project>{81ce8daf-ebb2-4761-8e45-b71abcca8c68}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Polygon\VertexArray.h" />
-    <None Include="Shaders\Background.frag" />
-    <None Include="Shaders\Background.vert" />
-    <None Include="Shaders\BloomFinal.frag" />
-    <None Include="Shaders\Blur.frag" />
-    <None Include="Shaders\FrameBuffer.frag" />
-    <None Include="Shaders\FrameBuffer.vert" />
-    <None Include="Shaders\LightSprite.frag" />
-    <None Include="Shaders\Sprite.frag" />
-    <None Include="Shaders\Sprite.vert" />
-    <None Include="Shaders\Upscale.frag" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -112,27 +30,27 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -153,16 +71,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);D:\SDL3-3.2.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);D:\SDL3-3.2.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);D:\SDL3-3.2.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);D:\SDL3-3.2.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -170,17 +88,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);D:\SDL3-3.2.4\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>
-      </AdditionalLibraryDirectories>
-      <AdditionalDependencies>
-      </AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\SDL3-3.2.4\lib\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL3_test.lib;SDL3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -195,7 +111,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);D:\SDL3-3.2.4\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -204,10 +120,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>
-      </AdditionalLibraryDirectories>
-      <AdditionalDependencies>
-      </AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\SDL3-3.2.4\lib\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL3_test.lib;SDL3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -220,17 +134,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);D:\SDL3-3.2.4\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>
-      </AdditionalLibraryDirectories>
-      <AdditionalDependencies>
-      </AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\SDL3-3.2.4\lib\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL3_test.lib;SDL3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -245,7 +157,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);D:\SDL3-3.2.4\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -254,10 +166,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>
-      </AdditionalLibraryDirectories>
-      <AdditionalDependencies>
-      </AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\SDL3-3.2.4\lib\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL3_test.lib;SDL3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>

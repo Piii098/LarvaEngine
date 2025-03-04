@@ -1,4 +1,4 @@
-// ----------------------------------------------------------------
+﻿// ----------------------------------------------------------------
 // From Game Programming in C++ by Sanjay Madhav
 // Copyright (C) 2017 Sanjay Madhav. All rights reserved.
 // 
@@ -11,6 +11,10 @@
 #include <memory.h>
 #include <limits>
 #include <corecrt_math.h>
+
+class Vector2Int;
+class Vector3;
+class Vector2;
 
 namespace Math
 {
@@ -109,6 +113,46 @@ namespace Math
 	{
 		return fmod (numer, denom);
 	}
+
+	// 既存のMathクラス/名前空間に追加
+
+// float型のSmoothDamp関数
+	inline float SmoothDamp(float current, float target, float& currentVelocity, float smoothTime,
+		float maxSpeed = std::numeric_limits<float>::max(), float deltaTime = 1.0f / 60.0f)
+	{
+		// Based on Game Programming Gems 4 Chapter 1.10
+		smoothTime = Max(0.0001f, smoothTime);
+		float omega = 2.0f / smoothTime;
+
+		float x = omega * deltaTime;
+		float exp = 1.0f / (1.0f + x + 0.48f * x * x + 0.235f * x * x * x);
+		float change = current - target;
+		float originalTo = target;
+
+		// 最大速度でクランプ
+		float maxChange = maxSpeed * smoothTime;
+		// std::clampがない場合は自前で実装
+		change = (change < -maxChange) ? -maxChange : ((change > maxChange) ? maxChange : change);
+		target = current - change;
+
+		float temp = (currentVelocity + omega * change) * deltaTime;
+		currentVelocity = (currentVelocity - omega * temp) * exp;
+		float output = target + (change + temp) * exp;
+
+		// オーバーシュート防止
+		if ((originalTo - current > 0.0f) == (output > originalTo))
+		{
+			output = originalTo;
+			currentVelocity = (output - originalTo) / deltaTime;
+		}
+
+		return output;
+	}
+
+	// Vector2型のSmoothDamp関数
+
+	// Vector3型のSmoothDamp関数（必要に応じて）
+
 }
 
 // 2D Vector
@@ -166,12 +210,17 @@ public:
 		return Vector2(vec.x * scalar, vec.y * scalar);
 	}
 
-	// �X�J���[����Z
+	// スカラー割り算
 	friend Vector2 operator/(const Vector2& vec, float scalar)
 	{
 		return Vector2(vec.x / scalar, vec.y / scalar);
 	}
 
+	// スカラー割り算
+	friend bool operator==(const Vector2& a, const Vector2& b)
+	{
+		return a.x == b.x && a.x == b.y;
+	}
 
 	// Scalar *=
 	Vector2& operator*=(float scalar)
@@ -212,10 +261,12 @@ public:
 	// Normalize this vector
 	void Normalize()
 	{
-		float length = Length();
+		float length = Length();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
 		x /= length;
 		y /= length;
 	}
+
+	static Vector2 ToFloat(const Vector2Int& vec);
 
 	// Normalize the provided vector
 	static Vector2 Normalize(const Vector2& vec)
@@ -224,12 +275,19 @@ public:
 		temp.Normalize();
 		return temp;
 	}
-
-	// Dot product between two vectors (a dot b)
+	                          
+	// Dot product bet ween two vectors (a dot b)
 	static float Dot(const Vector2& a, const Vector2& b)
 	{
 		return (a.x * b.x + a.y * b.y);
 	}
+
+
+    // Distance between two vectors
+    static float Distance(const Vector2& a, const Vector2& b)
+    {
+        return (a - b).Length();
+    }
 
 	// Lerp from A to B by f
 	static Vector2 Lerp(const Vector2& a, const Vector2& b, float f)
@@ -243,6 +301,10 @@ public:
 		return v - 2.0f * Vector2::Dot(v, n) * n;
 	}
 
+	static Vector2 SmoothDamp(const Vector2& current, const Vector2& target, Vector2& currentVelocity,
+		float smoothTime, float maxSpeed = std::numeric_limits<float>::max(),
+		float deltaTime = 1.0f / 60.0f);
+
 	// Transform vector by matrix
 	static Vector2 Transform(const Vector2& vec, const class Matrix3& mat, float w = 1.0f);
 
@@ -251,6 +313,141 @@ public:
 	static const Vector2 UnitY;
 	static const Vector2 NegUnitX;
 	static const Vector2 NegUnitY;
+};
+
+// 2D Integer Vector
+class Vector2Int
+{
+public:
+	int x;
+	int y;
+
+	Vector2Int()
+		:x(0)
+		, y(0)
+	{}
+
+	explicit Vector2Int(int inX, int inY)
+		:x(inX)
+		, y(inY)
+	{}
+
+	// Set both components in one line
+	void Set(int inX, int inY)
+	{
+		x = inX;
+		y = inY;
+	}
+
+	// Vector addition (a + b)
+	friend Vector2Int operator+(const Vector2Int& a, const Vector2Int& b)
+	{
+		return Vector2Int(a.x + b.x, a.y + b.y);
+	}
+
+	// Vector subtraction (a - b)
+	friend Vector2Int operator-(const Vector2Int& a, const Vector2Int& b)
+	{
+		return Vector2Int(a.x - b.x, a.y - b.y);
+	}
+
+	// Component-wise multiplication
+	friend Vector2Int operator*(const Vector2Int& a, const Vector2Int& b)
+	{
+		return Vector2Int(a.x * b.x, a.y * b.y);
+	}
+
+	// Scalar multiplication
+	friend Vector2Int operator*(const Vector2Int& vec, int scalar)
+	{
+		return Vector2Int(vec.x * scalar, vec.y * scalar);
+	}
+
+	// Scalar multiplication
+	friend Vector2Int operator*(int scalar, const Vector2Int& vec)
+	{
+		return Vector2Int(vec.x * scalar, vec.y * scalar);
+	}
+
+	// Scalar division
+	friend Vector2Int operator/(const Vector2Int& vec, int scalar)
+	{
+		return Vector2Int(vec.x / scalar, vec.y / scalar);
+	}
+
+	// Scalar *=
+	Vector2Int& operator*=(int scalar)
+	{
+		x *= scalar;
+		y *= scalar;
+		return *this;
+	}
+
+	// Vector +=
+	Vector2Int& operator+=(const Vector2Int& right)
+	{
+		x += right.x;
+		y += right.y;
+		return *this;
+	}
+
+	// Vector -=
+	Vector2Int& operator-=(const Vector2Int& right)
+	{
+		x -= right.x;
+		y -= right.y;
+		return *this;
+	}
+
+	// Length squared of vector
+	int LengthSq() const
+	{
+		return (x * x + y * y);
+	}
+
+	// Length of vector
+	float Length() const
+	{
+		return Math::Sqrt(LengthSq());
+	}
+
+	// Normalize this vector
+	void Normalize()
+	{
+		float length = Length();
+		x = static_cast<int>(x / length);
+		y = static_cast<int>(y / length);
+	}
+
+	static Vector2Int ToInterger(const Vector2& vec);
+
+	// Normalize the provided vector
+	static Vector2Int Normalize(const Vector2Int& vec)
+	{
+		Vector2Int temp = vec;
+		temp.Normalize();
+		return temp;
+	}
+
+	// Dot product between two vectors (a dot b)
+	static int Dot(const Vector2Int& a, const Vector2Int& b)
+	{
+		return (a.x * b.x + a.y * b.y);
+	}
+
+	// Lerp from A to B by f
+	static Vector2Int Lerp(const Vector2Int& a, const Vector2Int& b, float f)
+	{
+		Vector2 tempA = Vector2::ToFloat(a);
+		Vector2 tempB = Vector2::ToFloat(b);
+		return Vector2Int::ToInterger(Vector2::Lerp(tempA, tempB, f));
+	}
+
+	static const Vector2Int Zero;
+	static const Vector2Int UnitX;
+	static const Vector2Int UnitY;
+	static const Vector2Int NegUnitX;
+	static const Vector2Int NegUnitY;
 };
 
 // 3D Vector

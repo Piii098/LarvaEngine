@@ -1,4 +1,4 @@
-#include "Components/Component.h"
+ï»¿#include "Components/Component.h"
 #include "GameObjects/GameObject.h"
 
 Component::Component(GameObject* parent,int updateLayer) 
@@ -11,7 +11,7 @@ Component::~Component() {
 	_parent->RemoveComponent(this);
 }
 
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
+#pragma region ãƒ‘ãƒ–ãƒªãƒƒã‚¯é–¢æ•°
 
 void Component::ProcessInput(Input* input) {
 
@@ -21,5 +21,8 @@ void Component::Update(Frame* frame) {
 
 }
 
+void Component::PhysUpdate(float deltaTime){
+
+}
 
 #pragma endregion

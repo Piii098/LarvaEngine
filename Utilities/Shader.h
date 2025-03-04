@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <string>
 #include <GL/glew.h>
 
@@ -15,14 +15,15 @@ public:
 	void SetMatrixUniform(const char* name, const Matrix4& matrix);
 	void SetVector3Uniform(const char* name, const Vector3& vector);
 	void SetVector2Uniform(const char* name, const Vector2& vector);
+	void SetVector2Uniform(const char* name, const Vector2Int& vector);
 	void SetFloatUniform(const char* name, float value);
 	void SetIntUniform(const char* name, int value);
 	void SetBoolUniform(const char* name, bool flag);
 
 private:
 	bool CompileShader(const std::string& fileName
-		, GLuint shaderType, GLuint& outShader); // ƒVƒF[ƒ_[ƒtƒ@ƒCƒ‹‚ğì¬AƒRƒ“ƒpƒCƒ‹
-	bool IsCompiled(GLuint shader); // ƒRƒ“ƒpƒCƒ‹¬Œ÷‚©‚ğ•Ô‚·
+		, GLuint shaderType, GLuint& outShader); // ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã€ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
+	bool IsCompiled(GLuint shader); // ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«æˆåŠŸã‹ã‚’è¿”ã™
 	bool IsValidProgram(); //
 	GLuint _vertexShader;
 	GLuint _fragShader;

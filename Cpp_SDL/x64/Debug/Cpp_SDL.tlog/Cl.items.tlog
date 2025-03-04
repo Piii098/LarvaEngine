@@ -1,3 +1,6 @@
+D:\Github\Cpp_SDL\AssetManagers\AssetManager.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\AssetManager.obj
+D:\Github\Cpp_SDL\AssetManagers\TileMap.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\TileMap.obj
+D:\Github\Cpp_SDL\AssetManagers\TileMapManager.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\TileMapManager.obj
 D:\Github\Cpp_SDL\Components\AI\AICompoennt.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\AICompoennt.obj
 D:\Github\Cpp_SDL\Components\AI\AIState.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\AIState.obj
 D:\Github\Cpp_SDL\Components\BGComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\BGComponent.obj
@@ -18,13 +21,14 @@ D:\Github\Cpp_SDL\GameObjects\Camera.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Cam
 D:\Github\Cpp_SDL\GameObjects\GameObject.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\GameObject.obj
 D:\Github\Cpp_SDL\GameObjects\Player.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Player.obj
 D:\Github\Cpp_SDL\GameObjects\TestObject.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\TestObject.obj
-D:\Github\Cpp_SDL\GameObjects\TileMap.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\TileMap.obj
+D:\Github\Cpp_SDL\GameObjects\TileMapObject.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\TileMapObject.obj
 D:\Github\Cpp_SDL\Main.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Main.obj
 D:\Github\Cpp_SDL\Math.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Math.obj
 D:\Github\Cpp_SDL\PhysWorld2D.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\PhysWorld2D.obj
 D:\Github\Cpp_SDL\Polygon\VertexArray.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\VertexArray.obj
 D:\Github\Cpp_SDL\Renderer.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Renderer.obj
 D:\Github\Cpp_SDL\Utilities\Collision2D.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Collision2D.obj
+D:\Github\Cpp_SDL\Utilities\Font.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Font.obj
 D:\Github\Cpp_SDL\Utilities\Frame.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Frame.obj
 D:\Github\Cpp_SDL\Utilities\Input.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Input.obj
 D:\Github\Cpp_SDL\Utilities\Shader.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Shader.obj

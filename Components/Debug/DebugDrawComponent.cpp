@@ -1,4 +1,4 @@
-#include "Components/Debug/DebugDrawComponent.h"
+ï»¿#include "Components/Debug/DebugDrawComponent.h"
 #include "GameObjects/GameObject.h"
 #include "GameObjects/Camera.h"
 #include "Components/CameraComponent.h"
@@ -7,12 +7,12 @@
 #include "Utilities/Texture.h"
 #include "Components/BoxComponent2D.h"
 
-#pragma region ƒRƒ“ƒXƒgƒ‰ƒNƒ^:ƒfƒXƒgƒ‰ƒNƒ^
+#pragma region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿:ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 DebugDrawComponent::DebugDrawComponent(GameObject* parent, BoxComponent2D* boxComp, int drawLayer)
 	: SpriteComponent(parent, drawLayer)
 	, _boxComp(boxComp){
-    SetTexture("Assets/RedBox.png");
+    SetTexture("RedBox");
 }
 
 DebugDrawComponent::~DebugDrawComponent() {
@@ -21,7 +21,7 @@ DebugDrawComponent::~DebugDrawComponent() {
 
 #pragma endregion
 
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
+#pragma region ãƒ‘ãƒ–ãƒªãƒƒã‚¯é–¢æ•°
 
 void DebugDrawComponent::SetBox(const Vector2& position, const Vector2& size, const Vector3& color) {
 
@@ -33,11 +33,11 @@ void DebugDrawComponent::Draw(Shader* shader) {
 
         // Fetch the world box from the BoxComponent2D
         const AABB2D& worldBox = _boxComp->GetWorldBox();
-
+      
         // Calculate the scale and translation matrices
-        Vector2 boxSize = worldBox._max - worldBox._min;
-        Vector2 boxCenter = (worldBox._max + worldBox._min) * 0.5f;
-
+        Vector2Int boxSize = worldBox._max - worldBox._min;
+        Vector2Int boxCenter = (worldBox._max + worldBox._min) / 2;
+  
         Matrix4 scaleMat = Matrix4::CreateScale(boxSize.x, boxSize.y, 1.0f);
         Matrix4 transMat = Matrix4::CreateTranslation(Vector3(boxCenter.x, boxCenter.y, 0.0f));
 

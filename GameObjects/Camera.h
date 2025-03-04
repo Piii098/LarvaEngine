@@ -1,3 +1,4 @@
+﻿#pragma once
 #include "GameObjects/GameObject.h"
 
 class FollowCameraComponent;
@@ -12,6 +13,8 @@ public:
 
 	Matrix4 GetViewMatrix() const;
 	float Zoom() const;
+	Vector2 SubPixelOffset() const;
+
 private:
 	FollowCameraComponent* _camera;
 	float _zoom;

@@ -1,4 +1,4 @@
-#include "GameObjects/TestObject.h"
+ï»¿#include "GameObjects/TestObject.h"
 #include "Components/BoxComponent2D.h"
 #include "Components/Debug/DebugDrawComponent.h"
 #include "Components/SpriteComponent.h"
@@ -6,7 +6,7 @@
 #include "Game.h"
 #include "Components/RigidbodyComponent.h"
 
-#pragma region ƒRƒ“ƒXƒgƒ‰ƒNƒ^:ƒfƒXƒgƒ‰ƒNƒ^
+#pragma region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿:ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 TestObject::TestObject(Game* game)
 	: GameObject(game){
@@ -14,10 +14,10 @@ TestObject::TestObject(Game* game)
 	SpriteComponent* spri = new SpriteComponent(this);
 	spri->SetTexture("Assets/Tama.png");
 	spri->SelfLightColor(Vector3::fromIntRGB(255,232,87));
-	spri->SelfLightIntensity(2);
-	DynamicComponent* dyna = new DynamicComponent(this, false);
-	dyna->rigidbodyComp->Mass(10.f);
-	dyna->rigidbodyComp->Velocity(Vector2(10, 0));
+	spri->SelfLightIntensity(1);
+	RigidbodyComponent* rigidbodyComp = new RigidbodyComponent(this);
+	rigidbodyComp->Mass(10.f);
+	rigidbodyComp->Velocity(Vector2(200, 0));
 }
 
 TestObject::~TestObject() {
@@ -26,7 +26,7 @@ TestObject::~TestObject() {
 
 #pragma endregion
 
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
+#pragma region ãƒ‘ãƒ–ãƒªãƒƒã‚¯é–¢æ•°
 
 
 

@@ -1,5 +1,6 @@
-#pragma once
+Ôªø#pragma once
 #include "Components/Component.h"
+#include "Math.h"
 
 class Input;
 class RigidbodyComponent;
@@ -11,15 +12,17 @@ public:
 	~MoveInputComponent() override;
 
 	void ProcessInput(Input* input) override;
-	void Update(Frame* frame) override;
+	void PhysUpdate(float deltaTime) override;
 
 
-	/*ÉQÉbÉ^Å[ÉZÉbÉ^Å[*/
+	/*„Ç≤„ÉÉ„Çø„Éº„Çª„ÉÉ„Çø„Éº*/
 
 	void MoveSpeed(float moveSpeed) { _moveSpeed = moveSpeed; };
+	void MoveSpeedX(float moveSpeed) { _moveSpeedX = moveSpeed; };
+	void MoveSpeedY(float moveSpeed) { _moveSpeedY = moveSpeed; };
 	void JumpForce(float jumpForce) { _jumpForce = jumpForce; };
 
-	int Direction() { return _direction; };
+	Vector2& Direction() { return _direction; };
 
 	void MaxHorizontalForce(float maxHorizontalForce) { _maxHorizontalForce = maxHorizontalForce; };
 	void MaxVerticalForce(float maxVerticalForce) { _maxVerticalForce = maxVerticalForce; };
@@ -35,7 +38,10 @@ private:
 	float _maxHorizontalVelocity;
 
 	float _moveSpeed;
+	float _moveSpeedX;
+	float _moveSpeedY;
 	float _jumpForce;
+	bool _isJumping;
 
-	int _direction;
+	Vector2 _direction;
 };

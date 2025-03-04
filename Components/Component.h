@@ -1,4 +1,4 @@
-#pragma once
+Ôªø#pragma once
 
 class GameObject;
 class Input;
@@ -11,10 +11,10 @@ public:
 
 	virtual void ProcessInput(Input* input); 
 	virtual void Update(Frame* frame);
-
+	virtual void PhysUpdate(float deltaTime);
 	virtual void OnUpdateWorldTransform() {};
 	
-	/*ÉQÉbÉ^Å[ÉZÉbÉ^Å[*/
+	/*„Ç≤„ÉÉ„Çø„Éº„Çª„ÉÉ„Çø„Éº*/
 
 	GameObject* GetParent() const { return _parent; };
 	int UpdateLayer() const { return _updateLayer; };

@@ -1,9 +1,9 @@
-#include <GL/glew.h>
+ï»¿#include <GL/glew.h>
 #include <SOIL/SOIL.h>
 #include <SDL3/SDL.h>
 #include "Utilities/Texture.h"
 
-#pragma region ƒRƒ“ƒXƒgƒ‰ƒ^:ƒfƒXƒgƒ‰ƒNƒ^
+#pragma region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¿:ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 Texture::Texture()
 	: _textureID(0)
@@ -20,7 +20,7 @@ Texture::~Texture() {
 #pragma endregion
 
 
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
+#pragma region ãƒ‘ãƒ–ãƒªãƒƒã‚¯é–¢æ•°
 
 bool Texture::Load(const std::string& fileName) {
 	
