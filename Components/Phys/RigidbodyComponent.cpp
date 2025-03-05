@@ -4,6 +4,8 @@
 #include "Utilities/Frame.h"
 #include "Phys/PhysWorld2D.h"
 #include "Core/Game.h"
+#include "Scene/Scene.h"
+#include "Scene/SceneManager.h"
 
 RigidbodyComponent::RigidbodyComponent(GameObject* parent, int updateLayer)
     : Component(parent, updateLayer)
@@ -18,12 +20,12 @@ RigidbodyComponent::RigidbodyComponent(GameObject* parent, int updateLayer)
     , _prevInternalPosition(Vector2::Zero)  // 前回位置の初期化
     , _interpolationMode(InterpolationMode::None) {  // デフォルトは補間なし
     //_internalPosition = _parent->PositionToFloat();
-    _phys = _parent->GetGame()->GetPhysWorld();
-    _parent->GetGame()->GetPhysWorld()->AddRigidbodyComp(this);
+    _phys = _parent->GetScene()->GetManager()->GetGame()->GetPhysWorld();
+    _parent->GetScene()->GetManager()->GetGame()->GetPhysWorld()->AddRigidbodyComp(this);
 }
 
 RigidbodyComponent::~RigidbodyComponent() {
-    _parent->GetGame()->GetPhysWorld()->RemoveRigidbodyComp(this);
+    _parent->GetScene()->GetManager()->GetGame()->GetPhysWorld()->RemoveRigidbodyComp(this);
 }
 
 #pragma region �p�u���b�N�֐�
@@ -35,7 +37,7 @@ void RigidbodyComponent::InternalPosition(Vector2 internalPosition) {
 }
 
 // 更新処理で補間を適用
-void RigidbodyComponent::Update(Frame* frame) {
+void RigidbodyComponent::Update(float deltaTime) {
     if (_interpolationMode == InterpolationMode::None) {
         // 補間なしの場合は物理計算の位置をそのまま使用
         _parent->Position(_internalPosition);
@@ -43,7 +45,7 @@ void RigidbodyComponent::Update(Frame* frame) {
     }
 
     // 補間モードの場合、前回と現在の位置を補間
-    float alpha = frame->GetAlpha();  // Frame クラスから補間係数を取得
+    float alpha = GetParent()->GetScene()->GetManager()->GetGame()->GetFrame()->GetAlpha();  // Frame クラスから補間係数を取得
     Vector2 interpolatedPosition = Vector2::Lerp(_prevInternalPosition, _internalPosition, alpha);
 
     // 補間位置をゲームオブジェクトに適用
@@ -81,6 +83,8 @@ void RigidbodyComponent::PhysUpdate(float deltaTime) {
     }
     
     
+    CalculateVelocity(deltaTime);
+    UpdatePosition(deltaTime);
 }
 void RigidbodyComponent::CalculateVelocity(float deltaTime) {
     if (_mass <= 0.f) return;

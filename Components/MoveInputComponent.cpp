@@ -9,6 +9,8 @@
 #include <iostream>
 #include "Phys/PhysWorld2D.h"
 #include "Core/Game.h"
+#include "Scene/Scene.h"
+#include "Scene/SceneManager.h"
 
 MoveInputComponent::MoveInputComponent(GameObject* parent, RigidbodyComponent* rigidbodyComp, int updateLayer)
 	: Component(parent, updateLayer)
@@ -48,7 +50,7 @@ void MoveInputComponent::ProcessInput(Input* input) {
 		_direction.y -= 1;
 	}
 
-	PhysWorld2D* phys = _parent->GetGame()->GetPhysWorld();
+	PhysWorld2D* phys = _parent->GetScene()->GetManager()->GetGame()->GetPhysWorld();
 	PhysWorld2D::CollisionInfo outColl;
 
 	_parent->ComputeWorldTransform();

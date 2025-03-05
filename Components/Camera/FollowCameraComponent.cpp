@@ -27,7 +27,7 @@ FollowCameraComponent::~FollowCameraComponent() {
 
 #pragma region パブリック関数
 
-void FollowCameraComponent::Update(Frame* frame) {
+void FollowCameraComponent::Update(float deltaTime) {
  
 }
 
@@ -44,8 +44,8 @@ void FollowCameraComponent::PhysUpdate(float deltaTime) {
 
     // SmoothDampを使って滑らかに目標位置に近づける
     _internalPosition = Vector2::SmoothDamp(_internalPosition, targetPos, _currentVelocity,
-        0.15f, // smoothTime - 値が小さいほど速く目標に近づく
-        500.0f, // maxSpeed - 最大移動速度
+        0.5f, // smoothTime - 値が小さいほど速く目標に近づく
+        1000.0f, // maxSpeed - 最大移動速度
         deltaTime);
 
     // GameObject の位置を更新

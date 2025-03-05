@@ -10,8 +10,8 @@
 #include "AssetManagers/AssetData/TileMap.h"
 #include "Components/TileMapComponent.h"
 
-TileMapObject::TileMapObject(Game* game)
-    : GameObject(game){
+TileMapObject::TileMapObject(Scene* scene)
+    : GameObject(scene){
 	_tileMapComp = new TileMapComponent(this);
 	_tileMapComp->SetTileMap("TileMap", "Tile", 24, 32);
 

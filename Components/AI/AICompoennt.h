@@ -11,7 +11,7 @@ public:
 	AIComponent(GameObject* parent);
 	~AIComponent() override;
 
-	void Update(Frame* frame) override;
+	void Update(float deltaTime) override;
 	void ChangeState(const std::string& name);
 
 	void RegisterState(AIState* state);

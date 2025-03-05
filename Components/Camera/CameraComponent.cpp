@@ -27,7 +27,7 @@ void CameraComponent::ProcessInput(Input* input) {
 
 }
 
-void CameraComponent::Update(Frame* frame) {
+void CameraComponent::Update(float deltaTime) {
 
 }
 

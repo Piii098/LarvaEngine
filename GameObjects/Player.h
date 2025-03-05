@@ -12,15 +12,12 @@ class BoxComponent2D;
 
 class Player : public GameObject {
 public:
-	Player(Game* game);
+	Player(Scene* scene);
 	~Player() override;
 
 	void InputObject(Input* input) override;
-	void UpdateObject(Frame* frame) override;
+	void UpdateObject(float deltaTime) override;
 
-
-	void FixCollision(Frame frame);
-	
 private:
 	SpriteComponent* _spriteComp;
 	MoveInputComponent* _moveInputComp;

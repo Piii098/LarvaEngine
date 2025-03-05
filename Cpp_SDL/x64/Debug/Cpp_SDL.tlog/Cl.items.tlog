@@ -28,6 +28,9 @@ D:\Github\Cpp_SDL\Phys\PhysWorld2D.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\PhysW
 D:\Github\Cpp_SDL\Renderer\Renderer.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Renderer.obj
 D:\Github\Cpp_SDL\Renderer\Shader.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Shader.obj
 D:\Github\Cpp_SDL\Renderer\VertexArray.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\VertexArray.obj
+D:\Github\Cpp_SDL\Scene\Scene.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Scene.obj
+D:\Github\Cpp_SDL\Scene\SceneManager.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\SceneManager.obj
+D:\Github\Cpp_SDL\Scene\Scenes\TestScene.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\TestScene.obj
 D:\Github\Cpp_SDL\Utilities\Collision2D.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Collision2D.obj
 D:\Github\Cpp_SDL\Utilities\Font.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Font.obj
 D:\Github\Cpp_SDL\Utilities\Frame.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Frame.obj

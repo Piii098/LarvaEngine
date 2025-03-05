@@ -1,6 +1,8 @@
 ﻿
 #include <iostream>
 #include <algorithm>
+#include "Scene/Scene.h"
+#include "Scene/Scenes/TestScene.h"
 #include "Components/Draw/TextureComponent.h"
 #include "GameObjects/GameObject.h"
 #include "GameObjects/Player.h"
@@ -16,14 +18,13 @@
 #include "AssetManagers/AssetManager.h"
 #include "AssetManagers/AssetData/TileMap.h"
 #include "GameObjects/TileMapObject.h"
+#include "Scene/SceneManager.h"
 
 #pragma region Constructor:Destructor
 
 Game::Game()
 	: _renderer(nullptr)
 	, _isRunning(true)
-	, _isUpdating(false)
-	, _brightness(1.f)
 	, _camera(nullptr)
 	, _player(nullptr)
 	, _frame(nullptr)
@@ -63,7 +64,8 @@ bool Game::Initialize() {
 
 	_frame->SetFixedDeltaTime(1.f / 60.f);
 
-	LoadData();
+	LoadScene();
+
 	return true;
 }
 
@@ -76,7 +78,13 @@ void Game::RunLoop() {
 }
 
 void Game::Shutdown() {
+
 	UnloadData();
+	
+	_sceneManager->Shutdown();
+	delete _sceneManager;
+	_sceneManager = nullptr;
+
 	delete _physWorld;
 	_physWorld = nullptr;
 	if (_renderer) {
@@ -87,45 +95,12 @@ void Game::Shutdown() {
 	SDL_Quit();
 }
 
-void Game::AddObject(GameObject* object) {
-	if (_isUpdating) {
-		_pendingObjects.emplace_back(object);
-	} else {
-		_objects.emplace_back(object);
-	}
-}
-
-void Game::RemoveObject(GameObject* object) {
-
-	// 親オブジェクトから削除
-	if (object->GetParent()) {
-		object->GetParent()->RemoveChildren(object);
-	}
-
-	// 子オブジェクトを削除
-	for (auto child : object->GetChildren()) {
-		delete child;
-		child = nullptr;
-	}
-
-	auto iter = std::find(_pendingObjects.begin(), _pendingObjects.end(), object);
-	if (iter != _pendingObjects.end()) {
-		std::iter_swap(iter, _pendingObjects.end() - 1);
-		_pendingObjects.pop_back();
-	}
-
-	iter = std::find(_objects.begin(), _objects.end(), object);
-	if (iter != _objects.end()) {
-		std::iter_swap(iter, _objects.end() - 1);
-		_objects.pop_back();
-	}
-}
-
 #pragma endregion
 
 #pragma region Private Functions
 
 void Game::ProcessInput() {
+
 	SDL_Event event;
 	while (SDL_PollEvent(&event)) {
 		if (event.type == SDL_EVENT_QUIT) {
@@ -139,85 +114,50 @@ void Game::ProcessInput() {
 	}
 
 	_input->Update();
-	if (_input->IsInputDown(InputMap::INPUT_BRIGHT)) {
-		_brightness += 0.1f;
-	}
-	if (_input->IsInputDown(InputMap::INPUT_BLEFT)) {
-		_brightness -= 0.1f;
-	}
+	
+	_sceneManager->ProcessInput(_input);
 
-	_isUpdating = true;
-	for (auto& obj : _objects) {
-		obj->ProcessInput(_input);
-	}
-	_isUpdating = false;
 }
 
 void Game::Update() {
 	_frame->Update();
+
+	PhysUpdate();
+
+	UpdateScene();
+}
+
+void Game::PhysUpdate() {
+
 	while (_frame->ShouldDoFixedUpdate()) {
 		float deltaTime = _frame->GetFixedDeltaTime();
-		for (auto& obj : _objects) {
-			obj->PhysUpdate(deltaTime);
-		}
+		
+		_sceneManager->PhysUpdate(deltaTime);
+
 		_physWorld->Update(deltaTime);
 		_frame->ConsumeFixedDeltaTime();
 	}
 
-	// レンダリング更新（補間処理を含む）
-	_isUpdating = true;
-	for (auto& obj : _objects) {
-		obj->Update(_frame);
-	}
-	_isUpdating = false;
+}
 
-	for (auto pend : _pendingObjects) {
-		pend->ComputeWorldTransform();
-		_objects.emplace_back(pend);
-	}
-	_pendingObjects.clear();
-
-	std::vector<GameObject*> deadObjects;
-	for (auto obj : _objects) {
-		if (obj->State() == GameObject::STATE::DEAD) {
-			deadObjects.emplace_back(obj);
-		}
-	}
-
-	for (auto obj : deadObjects) {
-		delete obj;
-	}
-	_objects.erase(std::remove_if(_objects.begin(), _objects.end(),
-		[](GameObject* obj) { return obj->State() == GameObject::STATE::DEAD; }), _objects.end());
+void Game::UpdateScene() {
+	_sceneManager->Update(_frame->DeltaTime());
 }
 
 void Game::ProcessOutput() {
 
-	_renderer->SetLightPos(_player->Position());
-	_renderer->Draw();
+	_renderer->Render();
 }
 
-void Game::LoadData() {
-	_textureManager->Load("Player", "Assets/AKAGE.png");
-	_textureManager->Load("Sky", "Assets/Sky.png");
-	_textureManager->Load("Plain", "Assets/Plain.png");
-	_textureManager->Load("Mountain", "Assets/Mountain.png");
-	_textureManager->Load("Tile", "Assets/Tile.png");
-	_textureManager->Load("RedBox", "Assets/RedBox.png");
-	_tileMapManager->Load("TileMap", "Assets/test.csv");
-	_player = new Player(this);
-	_tileMapObject = new TileMapObject(this);
-	_tileMapObject->SetOnTile(_player, -2);
-	_renderer->SetLightPos(_player->Position());
-	_camera = new Camera(this);
-	_camera->Position(_player->Position());
-	new Background(this);
+void Game::LoadScene() {
+	_sceneManager = new SceneManager(this);
+	_sceneManager->Initialize();
+	TestScene* scene = _sceneManager->ChangeScene<TestScene>();
+	//Player* player = new Player(scene);
+
 }
 
 void Game::UnloadData() {
-	while (!_objects.empty()) {
-		delete _objects.back();
-	}
 
 	if (_renderer) {
 		_renderer->UnloadData();

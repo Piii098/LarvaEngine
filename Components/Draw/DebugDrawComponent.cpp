@@ -27,7 +27,7 @@ void DebugDrawComponent::SetBox(const Vector2& position, const Vector2& size, co
 
 }
 
-void DebugDrawComponent::Draw(Shader* shader) {
+void DebugDrawComponent::Render(Shader* shader) {
 
     if (_boxComp && _texture) {
 

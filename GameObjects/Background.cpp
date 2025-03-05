@@ -4,8 +4,8 @@
 
 #pragma region コンストラクタ:デストラクタ
 
-Background::Background(Game* game) 
-	: GameObject(game){
+Background::Background(Scene* scene)
+	: GameObject(scene){
 	
 	BGComponent* _sky = new BGComponent(this, 1, 10);
 	_sky->SetTexture("Sky");

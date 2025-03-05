@@ -7,6 +7,8 @@
 #include "Components/Draw/BGComponent.h"
 #include "Core/Game.h"
 #include "GameObjects/Camera.h"
+#include "Scene/SceneManager.h"
+#include "Scene/Scene.h"
 
 #pragma region コンストラクタ:デストラクタ
 
@@ -100,12 +102,21 @@ void Renderer::UnloadData() {
 
 }
 
-void Renderer::Draw() {
+void Renderer::Render() {
+
+	_camera = _game->GetSceneManager()->GetCurrentScene()->GetCamera();
+	Matrix4 view;
+	float  zoom = 1.f;
+	if (_camera) {
+		view = _camera->GetViewMatrix();
+		zoom = _camera->Zoom();
+	}
+
 	ClearScreen();
 	SetupShaders();
-	DrawScene();
+	DrawScene(view);
 	ApplyBloomEffect();
-	FinalizeFrame();
+	FinalizeFrame(zoom);
 	SwapWindow();
 }
 
@@ -286,11 +297,10 @@ void Renderer::ApplyBloom(bool& horizontal) {
 	}
 }
 
-void Renderer::DrawSprite() {
+void Renderer::DrawSprite(Matrix4 view) {
 	_spriteShader->SetActive();
 	_spriteVerts->SetActive();
 
-	Matrix4 view = _game->GetCamera()->GetViewMatrix();
 	_spriteShader->SetMatrixUniform("uViewScreen", view);
 
 	_spriteShader->SetVector3Uniform("ambientLightColor", Vector3(1.f, 1.f, 1.f));
@@ -303,23 +313,21 @@ void Renderer::DrawSprite() {
 
 	/*スプライトコンポーネント*/
 	for (auto spri : _sprites) {
-		spri->Draw(_spriteShader);
+		spri->Render(_spriteShader);
 	}
 }
 
-void Renderer::DrawBackground() {
+void Renderer::DrawBackground(Matrix4 view) {
 	_backgroundShader->SetActive();
 	_screenVerts->SetActive();
 
-
-	Matrix4 view = _game->GetCamera()->GetViewMatrix();
 	_spriteShader->SetMatrixUniform("uViewScreen", view);
 
 	_backgroundShader->SetVector3Uniform("ambientLightColor", Vector3(1.0f, 1.0f, 1.0f)); // 白 (無調整)
 	_backgroundShader->SetFloatUniform("ambientLightIntensity", 1.0f);
 
 	for (auto bg : _backgrounds) {
-		bg->Draw(_backgroundShader);
+		bg->Render(_backgroundShader);
 	}
 }
 
@@ -368,9 +376,9 @@ void Renderer::SetupShaders() {
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
-void Renderer::DrawScene() {
-	DrawBackground();
-	DrawSprite();
+void Renderer::DrawScene(Matrix4 view) {
+	DrawBackground(view);
+	DrawSprite(view);
 
 	_upscaleShader->SetActive();
 	glBindFramebuffer(GL_FRAMEBUFFER, _upscaleFBO);
@@ -404,7 +412,7 @@ void Renderer::ApplyBloomEffect() {
 	}
 }
 
-void Renderer::FinalizeFrame() {
+void Renderer::FinalizeFrame(float zoom) {
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glViewport(0, 0, _screenWidth, _screenHeight);
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -416,7 +424,6 @@ void Renderer::FinalizeFrame() {
 	glBindTexture(GL_TEXTURE_2D, _pingpongBuffer[!_horizontal]);
 	_bloomFinalShader->SetIntUniform("uIsBloom", true);
 	_bloomFinalShader->SetFloatUniform("exposure", 1.0f);
-	float zoom = _game->GetCamera()->Zoom();
 	_bloomFinalShader->SetFloatUniform("zoom", zoom);
 
 	_screenVerts->SetActive();

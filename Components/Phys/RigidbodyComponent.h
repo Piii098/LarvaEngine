@@ -16,7 +16,7 @@ public:
     RigidbodyComponent(GameObject* parent, int updateLayer = 30);
     ~RigidbodyComponent() override;
 
-    void Update(Frame* frame) override;  // 新しいUpdate関数を追加
+    void Update(float deltaTime) override;  // 新しいUpdate関数を追加
     void PhysUpdate(float deltaTime) override;
     void CalculateVelocity(float deltaTime); //・ｽ・ｽ・ｽx・ｽ・ｽ・ｽv・ｽZ
     void UpdatePosition(float deltaTime); //・ｽj・ｽ・ｽ・ｽ[・ｽg・ｽ・ｽ・ｽﾍ学・ｽ・ｽ・ｽv・ｽZ

@@ -13,16 +13,5 @@ Component::~Component() {
 
 #pragma region パブリック関数
 
-void Component::ProcessInput(Input* input) {
-
-}
-
-void Component::Update(Frame* frame) {
-
-}
-
-void Component::PhysUpdate(float deltaTime){
-
-}
 
 #pragma endregion

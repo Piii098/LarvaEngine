@@ -44,6 +44,12 @@
     <Filter Include="AssetManagers\AssetData">
       <UniqueIdentifier>{0454944c-f56e-4ec7-ae19-3f1b867f17fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{9fc7a5eb-cf4a-46b1-9b4c-106ce0da6a9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Scenes">
+      <UniqueIdentifier>{3fe3ef5f-ad91-4f39-9f0c-71c2057cdc78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManagers\TextureManager.cpp">
@@ -151,6 +157,15 @@
     <ClCompile Include="AssetManagers\AssetData\TileMap.cpp">
       <Filter>AssetManagers\AssetData</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\SceneManager.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Scenes\TestScene.cpp">
+      <Filter>Scene\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManagers\AssetManager.h">
@@ -257,6 +272,15 @@
     </ClInclude>
     <ClInclude Include="AssetManagers\AssetData\TileMap.h">
       <Filter>AssetManagers\AssetData</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneManager.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Scenes\TestScene.h">
+      <Filter>Scene\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

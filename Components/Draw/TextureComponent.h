@@ -17,7 +17,7 @@ public:
 	TextureComponent(GameObject* parent, int drawLayer = 150);
     virtual ~TextureComponent();
 
-    virtual void Draw(Shader* shader);
+    virtual void Render(Shader* shader);
     void SetTexture(const std::string& textureName);
 
 

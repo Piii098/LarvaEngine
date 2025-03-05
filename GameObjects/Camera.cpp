@@ -7,11 +7,11 @@
 
 #pragma region コンストラクタ:デストラクタ
 
-Camera::Camera(Game* game) 
-	: GameObject(game){
-
+Camera::Camera(Scene* scene)
+	: GameObject(scene){
+	Position(Vector2Int(800, 500));
 	_camera = new FollowCameraComponent(this);
-	_camera->Target(GetGame()->GetPlayer()->Position());
+	//_camera->Target(GetGame()->GetPlayer()->Position());
 	_zoom = 2.f;
 	_camera->Zoom(_zoom);
 	_camera->YOffset(35.f);
@@ -38,8 +38,8 @@ void Camera::InputObject(Input* input) {
 	_camera->Zoom(_zoom);
 }
 
-void Camera::UpdateObject(Frame* frame) {
-	_camera->Target(GetGame()->GetPlayer()->Position());
+void Camera::UpdateObject(float deltaTime) {
+	_camera->Target(_target->Position());
 }
 
 Matrix4 Camera::GetViewMatrix() const {
@@ -53,6 +53,5 @@ float Camera::Zoom() const {
 Vector2 Camera::SubPixelOffset() const {
 	return _camera->SubPixelOffset();
 }
-
 
 #pragma endregion

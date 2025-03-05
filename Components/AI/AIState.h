@@ -7,7 +7,7 @@ class AIState {
 public:
 	AIState(AIComponent* parent);
 
-	virtual void Update(Frame* frame) = 0;
+	virtual void Update(float deltaTime) = 0;
 	virtual void OnEnter() = 0;
 	virtual void OnExit() = 0;
 

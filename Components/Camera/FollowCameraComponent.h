@@ -6,7 +6,7 @@ public:
     FollowCameraComponent(GameObject* parent, int updateLayer = 1000);
     ~FollowCameraComponent() override;
 
-    void Update(Frame* frame) override;
+    void Update(float deltaTime) override;
     void PhysUpdate(float deltaTime) override;
 
     // オフセット関連

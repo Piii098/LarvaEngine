@@ -9,7 +9,7 @@ public:
 	~CameraComponent() override;
 
 	void ProcessInput(Input* input) override;
-	void Update(Frame* frame) override;
+	void Update(float deltaTime) override;
 
 	void Zoom(float zoom) { _zoom = zoom; };
 	float Zoom() { return  _zoom; };

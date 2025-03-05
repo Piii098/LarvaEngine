@@ -9,9 +9,9 @@ public:
 	Component(GameObject* parent, int updateLayer = 100);
 	virtual ~Component();
 
-	virtual void ProcessInput(Input* input); 
-	virtual void Update(Frame* frame);
-	virtual void PhysUpdate(float deltaTime);
+	virtual void ProcessInput(Input* input) {};
+	virtual void Update(float deltaTime) {};
+	virtual void PhysUpdate(float deltaTime) {};
 	virtual void OnUpdateWorldTransform() {};
 	
 	/*ゲッターセッター*/

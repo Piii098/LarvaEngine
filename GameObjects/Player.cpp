@@ -16,8 +16,8 @@
 
 #pragma region コンストラクタ:デストラクタ
 
-Player::Player(Game* game) 
-	: GameObject(game) {
+Player::Player(Scene* scene)
+	: GameObject(scene) {
 	Tag(TAG::PLAYER);
 	Scale(1.f);
 	Position(Vector2Int(50, 500));
@@ -41,7 +41,7 @@ Player::Player(Game* game)
 	_moveInputComp->MoveSpeedX(80.f);
 	_moveInputComp->JumpForce(1000000.f);
 
-	new DebugDrawComponent(this, _boxComp, true);
+	//new DebugDrawComponent(this, _boxComp, true);
 }
 
 Player::~Player() {
@@ -65,7 +65,7 @@ void Player::InputObject(Input* input) {
 	}
 }
 
-void Player::UpdateObject(Frame* frame) {
+void Player::UpdateObject(float deltaTime) {
 	//SDL_Log("PlayerVelocity(%f, %f)", _rigidbodyComp->Velocity().x, _rigidbodyComp->Velocity().y);
 	// 右向きに移動したら
 	if (_moveInputComp->Direction().x < 0.f) {
@@ -81,9 +81,6 @@ void Player::UpdateObject(Frame* frame) {
 	// SDL_Log("ObjectBoxMin(%d, %d), ObjectBoxMax(%d, %d)", _boxComp->ObjectMin().x, _boxComp->ObjectMin().y, _boxComp->ObjectMax().x, _boxComp->ObjectMax().y);
 }
 
-void Player::FixCollision(Frame frame) {
-	
-}
 
 #pragma endregion
 

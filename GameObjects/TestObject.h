@@ -3,7 +3,7 @@
 
 class TestObject : public GameObject {
 public:
-	TestObject(Game* game);
+	TestObject(Scene* scene);
 	~TestObject() override;
 
 private:

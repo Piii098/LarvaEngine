@@ -15,7 +15,7 @@ public:
 
 	void SetBox(const Vector2& position, const Vector2& size, const Vector3& color);
 	void DrawBox(const Vector2& position, const Vector2& size, const Vector3& color);
-	void Draw(Shader* shader) override;
+	void Render(Shader* shader) override;
 
 private:
 	BoxComponent2D* _boxComp;

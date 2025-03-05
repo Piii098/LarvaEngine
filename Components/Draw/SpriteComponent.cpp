@@ -6,23 +6,25 @@
 #include "AssetManagers/AssetData/Texture.h"
 #include "GameObjects/Camera.h"
 #include "Renderer/Renderer.h"
+#include "Scene/Scene.h"
+#include "Scene/SceneManager.h"
 
 #pragma region コンストラクタ：デストラクタ
 
 SpriteComponent::SpriteComponent(GameObject* parent, int drawLayer)
 	: TextureComponent(parent, drawLayer){
-	_parent->GetGame()->GetRenderer()->AddSprite(this);
+	_parent->GetScene()->GetManager()->GetGame()->GetRenderer()->AddSprite(this);
 }
 
 SpriteComponent::~SpriteComponent() {
-	_parent->GetGame()->GetRenderer()->RemoveSprite(this);
+	_parent->GetScene()->GetManager()->GetGame()->GetRenderer()->RemoveSprite(this);
 }
 
 #pragma endregion
 
 #pragma region パブリック関数
 
-void SpriteComponent::Draw(Shader* shader) {
+void SpriteComponent::Render(Shader* shader) {
 
 	if (_texture) {
 

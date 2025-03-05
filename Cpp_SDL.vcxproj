@@ -49,6 +49,9 @@
     <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Renderer\Shader.cpp" />
     <ClCompile Include="Renderer\VertexArray.cpp" />
+    <ClCompile Include="Scene\Scene.cpp" />
+    <ClCompile Include="Scene\SceneManager.cpp" />
+    <ClCompile Include="Scene\Scenes\TestScene.cpp" />
     <ClCompile Include="Utilities\Collision2D.cpp" />
     <ClCompile Include="Utilities\Font.cpp" />
     <ClCompile Include="Utilities\Frame.cpp" />
@@ -86,6 +89,9 @@
     <ClInclude Include="Renderer\Renderer.h" />
     <ClInclude Include="Renderer\Shader.h" />
     <ClInclude Include="Renderer\VertexArray.h" />
+    <ClInclude Include="Scene\Scene.h" />
+    <ClInclude Include="Scene\SceneManager.h" />
+    <ClInclude Include="Scene\Scenes\TestScene.h" />
     <ClInclude Include="Utilities\Collision2D.h" />
     <ClInclude Include="Utilities\Font.h" />
     <ClInclude Include="Utilities\Frame.h" />

@@ -1,10 +1,10 @@
 ﻿#include "GameObjects/TestObject.h"
-
+#include "Scene/Scene.h"
 
 #pragma region コンストラクタ:デストラクタ
 
-TestObject::TestObject(Game* game)
-	: GameObject(game){
+TestObject::TestObject(Scene* scene)
+	: GameObject(scene){
 	Scale(1);
 	
 }

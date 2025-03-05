@@ -4,24 +4,24 @@
 #include "Utilities/Frame.h"
 #include "Core/Game.h"
 #include <algorithm>
+#include "Scene/Scene.h"
 
 #pragma region con
 
-
-GameObject::GameObject(Game* game)
+GameObject::GameObject(Scene* scene)
 	: _state(STATE::ACTIVE)
 	, _tag(TAG::NONE)
-	, _game(game)
+	, _scene(scene)
 	, _position(Vector2Int::Zero)
 	, _scale(1.0f)
 	, _rotation(0.0f)
 	, _recomputeWorldTransform(true)
 	{
-	_game->AddObject(this);
+	_scene->AddObject(this);
 }
 
 GameObject::~GameObject() {
-	_game->RemoveObject(this);
+	_scene->RemoveObject(this);
 }
 
 
@@ -43,7 +43,7 @@ void GameObject::InputObject(Input* input) {
 
 }
 
-void GameObject::Update(Frame* frame) {
+void GameObject::Update(float deltaTime) {
 
 	/*ゲーム側から呼び出される更新関数*/
 
@@ -51,23 +51,23 @@ void GameObject::Update(Frame* frame) {
 	{
 		ComputeWorldTransform();
 
-		UpdateComponents(frame);
-		UpdateObject(frame);
+		UpdateComponents(deltaTime);
+		UpdateObject(deltaTime);
 
 		ComputeWorldTransform();
 	}
 }
 
-void GameObject::UpdateComponents(Frame* frame) {
+void GameObject::UpdateComponents(float deltaTime) {
 
 	/*つけられたコンポーネントを順に実行する*/
 
 	for (auto comp : _components) {
-		comp->Update(frame);
+		comp->Update(deltaTime);
 	}
 }
 
-void GameObject::UpdateObject(Frame* frame) {
+void GameObject::UpdateObject(float deltaTime) {
 	
 }
 

@@ -3,6 +3,8 @@
 #include "Core/Game.h"
 #include "Phys/PhysWorld2D.h"
 #include "Renderer/Renderer.h"
+#include "Scene/Scene.h"
+#include "Scene/SceneManager.h"
 
 #pragma region コンストラクタ:デストラクタ
 
@@ -13,12 +15,12 @@ BoxComponent2D::BoxComponent2D(GameObject* parent, bool isCollision, bool isDyna
 	, _isCollision(isCollision)
 	, _isDynamic(isDynamic){
 
-	_parent->GetGame()->GetPhysWorld()->AddBoxComp(this);
+	_parent->GetScene()->GetManager()->GetGame()->GetPhysWorld()->AddBoxComp(this);
 
 }
 
 BoxComponent2D::~BoxComponent2D() {
-	_parent->GetGame()->GetPhysWorld()->RemoveBoxComp(this);
+	_parent->GetScene()->GetManager()->GetGame()->GetPhysWorld()->RemoveBoxComp(this);
 }
 
 #pragma endregion

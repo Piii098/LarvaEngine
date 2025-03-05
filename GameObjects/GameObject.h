@@ -7,6 +7,7 @@ class Frame;
 class Component;
 class Game;
 class ChildObject;
+class Scene;
 
 class GameObject {
 public:
@@ -26,7 +27,7 @@ public:
         OBSTACLE
     };
 
-    GameObject(Game* game);
+    GameObject(Scene* scene);
     virtual ~GameObject();
 
     /*入力*/
@@ -36,9 +37,9 @@ public:
 
     /*更新*/
 
-    void Update(Frame* frame); // Gameクラスで実行される更新
-    void UpdateComponents(Frame* frame); // 全Componentの更新
-    virtual void UpdateObject(Frame* frame); // 継承先オブジェクトのユニークな更新
+    void Update(float deltaTime); // Gameクラスで実行される更新
+    void UpdateComponents(float deltaTime); // 全Componentの更新
+    virtual void UpdateObject(float deltaTime); // 継承先オブジェクトのユニークな更新
     void PhysUpdate(float deltaTime);
 	virtual void PhysUpdateComponents(float deltaTime);
 	virtual void PhysUpdateObject(float deltaTime);
@@ -68,7 +69,7 @@ public:
 
     /*ゲッターセッター*/
 
-    Game* GetGame() { return _game; };
+    Scene* GetScene() { return _scene; };
 	GameObject* GetParent() { return _parent; };
 	std::vector<GameObject*> GetChildren() { return _childrenObjects; };
 	void SetParent(GameObject* parent) { _parent = parent; };
@@ -91,7 +92,7 @@ public:
 
 private:
 
-
+	Scene* _scene;
 
     STATE _state;
     TAG _tag;

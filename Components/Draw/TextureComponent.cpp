@@ -5,6 +5,8 @@
 #include "Renderer/Shader.h"
 #include "Renderer/Renderer.h"
 #include "AssetManagers/AssetManager.h"
+#include "Scene/Scene.h"
+#include "Scene/SceneManager.h"
 
 #pragma region コンストラクタ:デストラクタ
 
@@ -20,7 +22,7 @@ TextureComponent::TextureComponent(GameObject* parent, int drawLayer)
 	, _flipX(false)
 	, _flipY(false)
 	, _drawLayer(drawLayer){
-	_textureManager = _parent->GetGame()->GetTextureManager();
+	_textureManager = _parent->GetScene()->GetManager()->GetGame()->GetTextureManager();
 }
 
 TextureComponent::~TextureComponent() {
@@ -30,7 +32,7 @@ TextureComponent::~TextureComponent() {
 
 #pragma endregion
 
-void TextureComponent::Draw(Shader* shader) {
+void TextureComponent::Render(Shader* shader) {
     if (_texture) {
 
 		float scaleX = _flipX ? -1.f : 1.f;

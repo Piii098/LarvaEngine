@@ -42,9 +42,7 @@ bool PhysWorld2D::SegmentCast(const LineSegment2D& l, CollisionInfo& outColl, co
 }
 
 void PhysWorld2D::Update(float deltaTime) {
-    CalculateVelocity(deltaTime); // 速度の計算
     CollisionUpdate(deltaTime); // 衝突の更新
-    UpdatePosition(deltaTime); // 位置の更新
 }
 
 void PhysWorld2D::RemoveRigidbodyComp(RigidbodyComponent* box) {

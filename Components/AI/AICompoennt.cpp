@@ -17,10 +17,10 @@ AIComponent::~AIComponent() {
 
 #pragma region パブリック関数
 
-void AIComponent::Update(Frame* frame) {
+void AIComponent::Update(float deltaTime) {
 
 	if (_currentState) {
-		_currentState->Update(frame);
+		_currentState->Update(deltaTime);
 	}
 
 }

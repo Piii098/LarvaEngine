@@ -16,7 +16,7 @@ class AssetManager;
 class TileMapObject : public GameObject {
 public:
 
-    TileMapObject(Game* game);
+    TileMapObject(Scene* scene);
     ~TileMapObject() override;
     void SetOnTile(GameObject* object, int tileId);
 	void RemoveTile(int tileId);

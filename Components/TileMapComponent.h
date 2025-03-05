@@ -17,7 +17,6 @@ class DebugDrawComponent;
 // タイルデータを保持する構造体
 struct TileInfo {
 	
-    
     int id;                     // タイルID
 	GameObject::TAG tag;        // タグ
     
@@ -37,7 +36,7 @@ struct TileInfo {
 
 class Tile : public GameObject {
 public:
-    Tile(Game* game, int tileId, const Vector2Int& position, const std::string& tileSetName);
+    Tile(Scene* scene, int tileId, const Vector2Int& position, const std::string& tileSetName);
     ~Tile() override;
 
 

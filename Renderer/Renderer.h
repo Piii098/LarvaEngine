@@ -8,6 +8,7 @@
 class Game;
 class VertexArray;
 class Shader;
+class Camera;
 class Texture;
 class SpriteComponent;
 class BGComponent;
@@ -24,7 +25,7 @@ public:
 
 	void UnloadData();
 
-	void Draw();
+	void Render();
 
 	void AddSprite(SpriteComponent* sprite);
 	void RemoveSprite(SpriteComponent* sprite);
@@ -38,14 +39,14 @@ private:
 
 	bool InitializeFrameBuffer();
 
-	void DrawBackground();
-	void DrawSprite();
+	void DrawBackground(Matrix4 view);
+	void DrawSprite(Matrix4 view);
 
 	void ClearScreen();
 	void SetupShaders();
-	void DrawScene();
+	void DrawScene(Matrix4 view);
 	void ApplyBloomEffect();
-	void FinalizeFrame();
+	void FinalizeFrame(float zoom);
 	void SwapWindow();
 
 
@@ -97,5 +98,8 @@ private:
 	bool _horizontal;
 
 	Vector2Int _lightPos;
+
+	Camera* _camera;
+
 
 };
