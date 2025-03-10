@@ -9,8 +9,8 @@
 
 #pragma region コンストラクタ:デストラクタ
 
-DebugDrawComponent::DebugDrawComponent(GameObject* parent, BoxComponent2D* boxComp, int drawLayer)
-	: SpriteComponent(parent, drawLayer)
+DebugDrawComponent::DebugDrawComponent(GameObject* parent, BoxComponent2D* boxComp)
+	: SpriteComponent(parent, 16)
 	, _boxComp(boxComp){
     SetTexture("RedBox");
 }

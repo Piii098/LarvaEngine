@@ -1,4 +1,4 @@
-#version 330
+ï»¿#version 330
 
 in vec2 fragTexCoord;
 in vec2 fragPosition;
@@ -14,9 +14,9 @@ void main()
 {
 	vec4 texColor = texture(uTexture, fragTexCoord);
 
-    outColor = texColor; // ƒAƒ‹ƒtƒ@‚ÍŒ³‚ÌƒeƒNƒXƒ`ƒƒ‚©‚çŽæ“¾
+    outColor = texColor; // ã‚¢ãƒ«ãƒ•ã‚¡ã¯å…ƒã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‹ã‚‰å–å¾—
 
-	// ‹P“x‚ÌŒvŽZ‚Æo—Í
+	// è¼åº¦ã®è¨ˆç®—ã¨å‡ºåŠ›
     float brightnessValue = dot(FragColor.rgb, vec3(0.2126, 0.7152, 0.0722));
     if (brightnessValue > 1.0)
         BrightColor = vec4(FragColor.rgb, FragColor.w);

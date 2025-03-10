@@ -1,21 +1,21 @@
-#version 330 core
+ï»¿#version 330 core
 
 in vec2 fragTexCoord;
 
 layout (location = 0) out vec4 FragColor;
 layout (location = 1) out vec4 BrightColor;
 
-uniform sampler2D uTexture;           // ”wŒiƒeƒNƒXƒ`ƒƒ
-uniform vec3 ambientLightColor;       // ŠÂ‹«Œõ‚ÌF
-uniform float ambientLightIntensity;   // ”wŒi‚Ì–¾‚é‚³’²®
+uniform sampler2D uTexture;           // èƒŒæ™¯ãƒ†ã‚¯ã‚¹ãƒãƒ£
+uniform vec3 ambientLightColor;       // ç’°å¢ƒå…‰ã®è‰²
+uniform float ambientLightIntensity;   // èƒŒæ™¯ã®æ˜ã‚‹ã•èª¿æ•´
 
-uniform vec3 selfLightColor;          // •¨‘Ì©‘Ì‚Ì”­ŒõF
+uniform vec3 selfLightColor;          // ç‰©ä½“è‡ªä½“ã®ç™ºå…‰è‰²
 uniform float selfLightIntensity;  
 
 void main() {
     vec4 texColor = texture(uTexture, fragTexCoord);
 
-    // ©ŒÈ”­Œõ‚ÌŒvZ
+    // è‡ªå·±ç™ºå…‰ã®è¨ˆç®—
     vec3 selfLight = selfLightColor * selfLightIntensity;
     
     vec3 finalColor = texColor.rgb * ambientLightColor * ambientLightIntensity * selfLight;

@@ -14,7 +14,7 @@ class Texture;
 class TextureComponent : public Component {
 public:
 
-	TextureComponent(GameObject* parent, int drawLayer = 150);
+	TextureComponent(GameObject* parent,int bufferLayer, int drawLayer = 150);
     virtual ~TextureComponent();
 
     virtual void Render(Shader* shader);
@@ -38,6 +38,8 @@ public:
 	void FlipX(bool flag) { _flipX = flag; };
 	void FlipY(bool flag) { _flipY = flag; };
 
+	int BufferLayer() const { return _bufferLayer; };
+
 protected:
 
 	AssetManager<Texture>* _textureManager;
@@ -56,5 +58,9 @@ protected:
 
 	bool _flipX;
 	bool _flipY;
+
+private:
+
+	int _bufferLayer;
 
 };

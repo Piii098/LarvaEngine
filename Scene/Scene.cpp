@@ -1,4 +1,4 @@
-#include "Scene/Scene.h"
+ï»¿#include "Scene/Scene.h"
 #include "Scene/SceneManager.h"
 #include "Core/Game.h"
 #include "GameObjects/GameObject.h"
@@ -8,12 +8,15 @@
 #include "GameObjects/Camera.h"
 #include "GameObjects/Player.h"
 #include "AssetManagers/AssetData/Texture.h"
+#include "UI/UIScreen.h"
 
-#pragma region ƒRƒ“ƒXƒgƒ‰ƒNƒ^:ƒfƒXƒgƒ‰ƒNƒ^
+#pragma region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿:ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 Scene::Scene(SceneManager* maneger)
 	: _manager(maneger) 
-	, _isUpdating(false){
+	, _isUpdating(false)
+	, _state(STATE::GAME_PLAY)
+	, _camera(nullptr){
 }
 
 Scene::~Scene() {
@@ -23,7 +26,7 @@ Scene::~Scene() {
 #pragma endregion
 
 
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
+#pragma region ãƒ‘ãƒ–ãƒªãƒƒã‚¯é–¢æ•°
 
 void Scene::Initialize() {
 
@@ -37,11 +40,23 @@ void Scene::Shutdown() {
 }
 
 void Scene::ProcessInput(Input* input) {
-	_isUpdating = true;
-	for (auto& obj : _objects) {
-		obj->ProcessInput(input);
+	switch (_state) {
+	case STATE::GAME_PLAY:
+		_isUpdating = true;
+		for (auto& obj : _objects) {
+			obj->ProcessInput(input);
+		}
+		_isUpdating = false;
+		break;
+	case STATE::PAUSE:
+		_uiScreens.back()->ProcessInput(input);
+		break;
+	default:
+
+		break;
 	}
-	_isUpdating = false;
+
+	InputScene(input);
 }
 
 void Scene::Update(float deltaTime) {
@@ -58,6 +73,9 @@ void Scene::Update(float deltaTime) {
 	}
 	_pendingObjects.clear();
 
+	UpdateScene(deltaTime);
+
+	// æ­»äº¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤
 	std::vector<GameObject*> deadObjects;
 	for (auto obj : _objects) {
 		if (obj->State() == GameObject::STATE::DEAD) {
@@ -71,7 +89,26 @@ void Scene::Update(float deltaTime) {
 	_objects.erase(std::remove_if(_objects.begin(), _objects.end(),
 		[](GameObject* obj) { return obj->State() == GameObject::STATE::DEAD; }), _objects.end());
 
+	for (auto ui : _uiScreens) {
+		if (ui->State() == UIScreen::STATE::ACTIVE) {
+			ui->Update(deltaTime);
+		}
+	}
+
+	auto iter = _uiScreens.begin();
+	while (iter != _uiScreens.end()) {
+		if ((*iter)->State() == UIScreen::STATE::CLOSING) {
+			delete *iter;
+			*iter = nullptr;
+			iter = _uiScreens.erase(iter);
+		}
+		else {
+			++iter;
+		}
+	}
 }
+
+
 
 void Scene::PhysUpdate(float deltaTime) {
 
@@ -95,15 +132,15 @@ void Scene::AddObject(GameObject* object) {
 }
 
 void Scene::RemoveObject(GameObject* object) {
-	// eƒIƒuƒWƒFƒNƒg‚©‚çíœ
+	// è¦ªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰å‰Šé™¤
 	if (object->GetParent()) {
 		object->GetParent()->RemoveChildren(object);
 	}
 
-	// qƒIƒuƒWƒFƒNƒg‚ğíœ
+	// å­ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤
 	for (auto child : object->GetChildren()) {
-		child->SetParent(nullptr); // e‚ğ‰ğœ
-		RemoveObject(child);       // qƒIƒuƒWƒFƒNƒg‚ğíœ
+		child->SetParent(nullptr); // è¦ªã‚’è§£é™¤
+		RemoveObject(child);       // å­ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤
 	}
 
 	auto iter = std::find(_pendingObjects.begin(), _pendingObjects.end(), object);
@@ -120,26 +157,30 @@ void Scene::RemoveObject(GameObject* object) {
 }
 
 void Scene::DestroyObject(GameObject* object) {
-    // _pendingObjects‚©‚çíœ
+    // _pendingObjectsã‹ã‚‰å‰Šé™¤
     auto iter = std::find(_pendingObjects.begin(), _pendingObjects.end(), object);
     if (iter != _pendingObjects.end()) {
-        delete *iter; // ƒƒ‚ƒŠ‚ğ‰ğ•ú
-        *iter = nullptr; // nullptr‚Éİ’è
+        delete *iter; // ãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾
+        *iter = nullptr; // nullptrã«è¨­å®š
         _pendingObjects.erase(iter);
     }
 
-    // _objects‚©‚çíœ
+    // _objectsã‹ã‚‰å‰Šé™¤
     iter = std::find(_objects.begin(), _objects.end(), object);
     if (iter != _objects.end()) {
-        delete *iter; // ƒƒ‚ƒŠ‚ğ‰ğ•ú
-        *iter = nullptr; // nullptr‚Éİ’è
+        delete *iter; // ãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾
+        *iter = nullptr; // nullptrã«è¨­å®š
         _objects.erase(iter);
     }
 }
 
+void Scene::PushUI(UIScreen* screen) {
+	_uiScreens.emplace_back(screen);
+}
+
 #pragma endregion
 
-#pragma region ƒvƒ‰ƒCƒx[ƒgŠÖ”
+#pragma region ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
 
 
 void Scene::LoadData() {

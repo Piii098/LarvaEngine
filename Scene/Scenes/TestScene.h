@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Scene/Scene.h"
 
 
@@ -7,6 +7,7 @@ public:
 	TestScene(SceneManager* manager);
 	~TestScene() override;
 	
+	void InputScene(Input* input) override;
 	void LoadData() override;
 
 private:

@@ -23,7 +23,7 @@ Tile::Tile(Scene* scene, int tileId, const Vector2Int& position, const std::stri
     , _sprite(nullptr) {
     Position(position);
 	Scale(1.f);
-    _sprite = new SpriteComponent(this,10);
+    _sprite = new SpriteComponent(this, 10,10);
     _sprite->SetTexture(tileSetName);
 
     // デフォルトでは衝突なし
@@ -136,7 +136,7 @@ void TileMapComponent::CreateTiles() {
             int tileId = _tileMap->GetTileID(x, y);
 			if (tileId > _tileSetSize) continue;
             if (tileId < -1) {
-                Vector2Int position(x * _tileSize, (_mapHeight - 1 - y) * _tileSize);
+                Vector2Int position(x * _tileSize + GetParent()->Position().x, (_mapHeight - 1 - y) * _tileSize + GetParent()->Position().y);
                 auto tile = GetParent()->GetScene()->CreateChildObject<Tile>(GetParent(), tileId, Vector2Int(x * _tileSize, (_mapHeight - 1 - y) * _tileSize), _tileSetName);
                 Vector2 offset = Vector2(0, 0);
                 tile->SetTexOffset(offset);
@@ -144,7 +144,7 @@ void TileMapComponent::CreateTiles() {
                 tile->SetTexScale(scale);
                 tile->Scale(1.0f); // スケールを1.0に設定
             }else if (tileId != -1 && tileId < _tileInfos.size()) { // 有効なタイルIDの場合
-                Vector2Int position(x * _tileSize, (_mapHeight - 1 - y) * _tileSize);
+                Vector2Int position(x * _tileSize + GetParent()->Position().x, (_mapHeight - 1 - y) * _tileSize + GetParent()->Position().y);
                 auto tile = GetParent()->GetScene()->CreateChildObject<Tile>(GetParent(),tileId, position, _tileSetName);
                 tile->TileSize(_tileSize);
                 tile->Tag(_tileInfos[tileId].tag);

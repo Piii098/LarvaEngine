@@ -50,6 +50,9 @@
     <Filter Include="Scene\Scenes">
       <UniqueIdentifier>{3fe3ef5f-ad91-4f39-9f0c-71c2057cdc78}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{566842a5-190c-4d4b-8a96-38d24722da36}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManagers\TextureManager.cpp">
@@ -166,6 +169,18 @@
     <ClCompile Include="Scene\Scenes\TestScene.cpp">
       <Filter>Scene\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Components\Draw\TextComponent.cpp">
+      <Filter>Components\Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\UIScreen.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\HUD.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\PauseMenu.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManagers\AssetManager.h">
@@ -281,6 +296,18 @@
     </ClInclude>
     <ClInclude Include="Scene\Scenes\TestScene.h">
       <Filter>Scene\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Draw\TextComponent.h">
+      <Filter>Components\Draw</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\UIScreen.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\HUD.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\PauseMenu.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

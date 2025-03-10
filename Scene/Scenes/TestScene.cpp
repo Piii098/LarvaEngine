@@ -1,4 +1,4 @@
-#include "Scene/Scenes/TestScene.h"
+ï»¿#include "Scene/Scenes/TestScene.h"
 #include "GameObjects/Player.h"
 #include "GameObjects/TileMapObject.h"
 #include "GameObjects/Background.h"
@@ -8,8 +8,10 @@
 #include "AssetManagers/AssetManager.h"
 #include "AssetManagers/AssetData/Texture.h"
 #include "AssetManagers/AssetData/TileMap.h"
+#include "UI/PauseMenu.h"
+#include "Utilities/Input.h"
 
-#pragma region ƒRƒ“ƒXƒgƒ‰ƒNƒ^:ƒfƒXƒgƒ‰ƒNƒ^
+#pragma region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿:ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 TestScene::TestScene(SceneManager* manager) 
 	: Scene(manager) {
@@ -22,21 +24,35 @@ TestScene::~TestScene() {
 
 #pragma endregion
 
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
+#pragma region ãƒ‘ãƒ–ãƒªãƒƒã‚¯é–¢æ•°
+
+void TestScene::InputScene(Input* input) {
+	if(input->IsInputDown(InputMap::INPUT_START) && _state != STATE::PAUSE) {
+		PauseMenu* pauseMenu = new PauseMenu(this);
+	}
+}
 
 #pragma endregion
 
-#pragma region ƒvƒ‰ƒCƒx[ƒgŠÖ”
+#pragma region ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
 
 void TestScene::LoadData() {
-	GetManager()->GetGame()->GetTextureManager()->Load("Player", "Assets/AKAGE.png");
+	GetManager()->GetGame()->GetTextureManager()->Load("Player", "Assets/16Player.png");
 	GetManager()->GetGame()->GetTextureManager()->Load("Sky", "Assets/Sky.png");
 	GetManager()->GetGame()->GetTextureManager()->Load("Plain", "Assets/Plain.png");
 	GetManager()->GetGame()->GetTextureManager()->Load("Mountain", "Assets/Mountain.png");
-	GetManager()->GetGame()->GetTextureManager()->Load("Tile", "Assets/Tile.png");
+	GetManager()->GetGame()->GetTextureManager()->Load("Bg0", "Assets/bg_0.png");
+	GetManager()->GetGame()->GetTextureManager()->Load("Bg1", "Assets/bg_1.png");
+	GetManager()->GetGame()->GetTextureManager()->Load("Bg2", "Assets/bg_2.png");
+	GetManager()->GetGame()->GetTextureManager()->Load("Bg3", "Assets/bg_3.png");
+	GetManager()->GetGame()->GetTextureManager()->Load("Bg4", "Assets/bg_4.png");
+	GetManager()->GetGame()->GetTextureManager()->Load("Bg5", "Assets/bg_5.png");
+	GetManager()->GetGame()->GetTextureManager()->Load("Bg6", "Assets/bg_6.png");
+	GetManager()->GetGame()->GetTextureManager()->Load("Tile", "Assets/16Tile.png");
 	GetManager()->GetGame()->GetTextureManager()->Load("RedBox", "Assets/RedBox.png");
-	GetManager()->GetGame()->GetTileMapManager()->Load("TileMap", "Assets/test.csv");
-	
+	GetManager()->GetGame()->GetTileMapManager()->Load("TileMap", "Assets/TileMap.csv");
+	GetManager()->GetGame()->GetFontManager()->Load("DelaSuko", "Assets/DelaSukoGothicOne-R.ttf");
+
 	Player* _player = new Player(this);
 	TileMapObject* _tileMapObject = new TileMapObject(this);
 	_tileMapObject->SetOnTile(_player, -2);

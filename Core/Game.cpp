@@ -1,6 +1,7 @@
 ﻿
 #include <iostream>
 #include <algorithm>
+#include <SDL3_ttf/SDL_ttf.h>
 #include "Scene/Scene.h"
 #include "Scene/Scenes/TestScene.h"
 #include "Components/Draw/TextureComponent.h"
@@ -48,8 +49,13 @@ bool Game::Initialize() {
 		return false;
 	}
 
+	if (!TTF_Init()) {
+		SDL_Log("Failed to intialized TTF : %s", SDL_GetError());
+		return false;
+	}
+
 	_renderer = new Renderer(this);
-	if (!_renderer->Initialize(1024.f, 768.f, 1024.f, 768.f)) {
+	if (!_renderer->Initialize(1920.f, 1080.f, 480.f, 270.f)) {
 		SDL_Log("Failed to intialized renderer");
 		delete _renderer;
 		_renderer = nullptr;
@@ -61,6 +67,7 @@ bool Game::Initialize() {
 	_physWorld = new PhysWorld2D(this);
 	_textureManager = new AssetManager<Texture>();
 	_tileMapManager = new AssetManager<TileMap>();
+	_fontManager = new AssetManager<Font>();
 
 	_frame->SetFixedDeltaTime(1.f / 60.f);
 

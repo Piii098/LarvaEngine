@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include "Utilities/Math.h"
 #include "GameObjects/GameObject.h"
+#include "Utilities/Font.h"
 
 class Input;
 class Frame;
@@ -43,10 +44,11 @@ public:
     Renderer* GetRenderer() const { return _renderer; }
 	AssetManager<Texture>* GetTextureManager() { return _textureManager; }
 	AssetManager<TileMap>* GetTileMapManager()  { return _tileMapManager; }
-    
+    AssetManager<Font>* GetFontManager() { return _fontManager; };
 	Frame* GetFrame() { return _frame; }
 	SceneManager* GetSceneManager() { return _sceneManager; }
-    
+
+
 private:
     void ProcessInput(); // 入力処理
     void Update(); // 更新処理
@@ -63,6 +65,7 @@ private:
 	TileMapObject* _tileMapObject;
     Frame* _frame;
     Input* _input;
+	//Font* _font;
 
     SceneManager* _sceneManager;
     PhysWorld2D* _physWorld;
@@ -71,5 +74,6 @@ private:
 
 	AssetManager<Texture>* _textureManager;
 	AssetManager<TileMap>* _tileMapManager;
+	AssetManager<Font>* _fontManager;
 
 };

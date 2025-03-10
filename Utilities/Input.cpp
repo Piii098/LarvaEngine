@@ -17,7 +17,7 @@ Input::InputManager::InputManager()
 	_keyboradMap[InputMap::INPUT_BLEFT] = SDL_SCANCODE_A;
 	_keyboradMap[InputMap::INPUT_BRIGHT] = SDL_SCANCODE_D;
 	_keyboradMap[InputMap::INPUT_START] = SDL_SCANCODE_TAB;
-	_keyboradMap[InputMap::INPUT_BACK] = SDL_SCANCODE_ESCAPE;
+	_keyboradMap[InputMap::INPUT_BACK] = SDL_SCANCODE_LSHIFT;
 
 }
 

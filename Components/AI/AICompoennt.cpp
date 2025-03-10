@@ -1,8 +1,8 @@
-#include "Components/AI/AICompoennt.h"
+ï»¿#include "Components/AI/AICompoennt.h"
 #include "Components/AI/AIState.h"
 #include "SDL3/SDL.h"
 
-#pragma region ƒRƒ“ƒXƒgƒ‰ƒNƒ^:ƒfƒXƒgƒ‰ƒNƒ^
+#pragma region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿:ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 AIComponent::AIComponent(GameObject* parent)
 	: Component(parent){
@@ -15,7 +15,7 @@ AIComponent::~AIComponent() {
 
 #pragma endregion
 
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
+#pragma region ãƒ‘ãƒ–ãƒªãƒƒã‚¯é–¢æ•°
 
 void AIComponent::Update(float deltaTime) {
 

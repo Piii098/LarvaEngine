@@ -1,4 +1,4 @@
-#version 330 core
+ï»¿#version 330 core
 
 in vec2 fragTexCoord;
 in vec2 fragPosition;
@@ -8,40 +8,40 @@ layout (location = 1) out vec4 BrightColor;
 
 uniform sampler2D uTexture;
 
-uniform vec3 ambientLightColor;       // ŠÂ‹«Œõ‚ÌF
-uniform float ambientLightIntensity;  // ŠÂ‹«Œõ‚Ì‹­“x
+uniform vec3 ambientLightColor;       // ç’°å¢ƒå…‰ã®è‰²
+uniform float ambientLightIntensity;  // ç’°å¢ƒå…‰ã®å¼·åº¦
 
 uniform vec2 pointLightPos;    
 uniform vec3 pointLightColor;  
-uniform float pointLightIntensity;    // Œõ‚Ì‹­“x
-uniform float pointLightRadius;       // Œõ‚Ì“Í‚­Å‘å‹——£
+uniform float pointLightIntensity;    // å…‰ã®å¼·åº¦
+uniform float pointLightRadius;       // å…‰ã®å±Šãæœ€å¤§è·é›¢
 
-uniform vec3 selfLightColor;          // •¨‘ÌŽ©‘Ì‚Ì”­ŒõF
-uniform float selfLightIntensity;     // •¨‘ÌŽ©‘Ì‚Ì”­Œõ‹­“x
+uniform vec3 selfLightColor;          // ç‰©ä½“è‡ªä½“ã®ç™ºå…‰è‰²
+uniform float selfLightIntensity;     // ç‰©ä½“è‡ªä½“ã®ç™ºå…‰å¼·åº¦
 
 void main()
 {
     vec4 texColor = texture(uTexture, fragTexCoord);
 
-    // ŠÂ‹«Œõ‚ÌŒvŽZ
+    // ç’°å¢ƒå…‰ã®è¨ˆç®—
     vec3 ambientLight = texColor.rgb * ambientLightColor * ambientLightIntensity;
 
-    // ‹——£ƒx[ƒX‚Ìƒ‰ƒCƒeƒBƒ“ƒOŒvŽZ
+    // è·é›¢ãƒ™ãƒ¼ã‚¹ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°è¨ˆç®—
     vec2 lightDir = pointLightPos - fragPosition;
     float distSq = dot(lightDir, lightDir);
     float dist = sqrt(distSq);
     float attenuation = smoothstep(pointLightRadius, 0.0, dist); 
     vec3 pointLight = texColor.rgb * pointLightColor * attenuation * pointLightIntensity;
 
-    // Ž©ŒÈ”­Œõ‚ÌŒvŽZ
+    // è‡ªå·±ç™ºå…‰ã®è¨ˆç®—
     vec3 selfLight = selfLightColor * selfLightIntensity;
 
-    // ŠÂ‹«Œõ‚Æ“_ŒõŒ¹‚ð‡¬
+    // ç’°å¢ƒå…‰ã¨ç‚¹å…‰æºã‚’åˆæˆ
     vec3 finalColor = ambientLight + pointLight + selfLight;
 
-    FragColor = vec4(finalColor, texColor.a); // ƒAƒ‹ƒtƒ@‚ÍŒ³‚ÌƒeƒNƒXƒ`ƒƒ‚©‚çŽæ“¾
+    FragColor = vec4(finalColor, texColor.a); // ã‚¢ãƒ«ãƒ•ã‚¡ã¯å…ƒã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‹ã‚‰å–å¾—
 
-    // ‹P“x‚ÌŒvŽZ‚Æo—Í
+    // è¼åº¦ã®è¨ˆç®—ã¨å‡ºåŠ›
     float brightnessValue = dot(finalColor, vec3(0.2126, 0.7152, 0.0722)); 
     BrightColor = brightnessValue > 0.9 ? vec4(finalColor, texColor.a) : vec4(0.0, 0.0, 0.0, texColor.a);
 }

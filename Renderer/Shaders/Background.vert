@@ -1,13 +1,13 @@
-#version 330 core
+ï»¿#version 330 core
 
-layout(location = 0) in vec3 inPosition; // ’¸“_À•W
-layout(location = 1) in vec2 inTexCoord; // ƒeƒNƒXƒ`ƒƒÀ•W
+layout(location = 0) in vec3 inPosition; // é ‚ç‚¹åº§æ¨™
+layout(location = 1) in vec2 inTexCoord; // ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™
 
 out vec2 fragTexCoord;
 
 uniform mat4 uWorldTransform;
-uniform mat4 uViewProj;    // ƒrƒ…[“Š‰es—ñ
-uniform float uCameraPosX;   // ƒJƒƒ‰ˆÊ’u
+uniform mat4 uViewProj;    // ãƒ“ãƒ¥ãƒ¼æŠ•å½±è¡Œåˆ—
+uniform float uCameraPosX;   // ã‚«ãƒ¡ãƒ©ä½ç½®
 uniform float uTextureWidth; 
 
 void main() {

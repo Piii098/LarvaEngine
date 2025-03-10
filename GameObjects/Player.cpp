@@ -13,6 +13,8 @@
 #include "Utilities/Frame.h"
 #include "Phys/PhysWorld2D.h"
 #include "GameObjects/TestObject.h"
+#include "Scene/Scene.h"
+#include "Components/Draw/TextComponent.h"
 
 #pragma region コンストラクタ:デストラクタ
 
@@ -21,7 +23,7 @@ Player::Player(Scene* scene)
 	Tag(TAG::PLAYER);
 	Scale(1.f);
 	Position(Vector2Int(50, 500));
-	_spriteComp = new SpriteComponent(this, 100);
+	_spriteComp = new SpriteComponent(this, 10, 100);
 	_spriteComp->SetTexture("Player");
 	_spriteComp->SelfLightIntensity(0.1f);
 
@@ -29,7 +31,7 @@ Player::Player(Scene* scene)
 
 	_rigidbodyComp = new RigidbodyComponent(this, true);
 	_boxComp = new BoxComponent2D(this, true, true);
-	AABB2D myBox(Vector2Int(-6.0f, -16.f), Vector2Int(6.0f, 13.0f));
+	AABB2D myBox(Vector2Int(-6.0f, -8.f), Vector2Int(6.0f, 6.f));
 	_boxComp->SetObjectBox(myBox);
 	_rigidbodyComp->Velocity(Vector2::Zero);
 	_rigidbodyComp->Mass(50.f);
@@ -40,6 +42,8 @@ Player::Player(Scene* scene)
 	_moveInputComp = new MoveInputComponent(this, _rigidbodyComp);
 	_moveInputComp->MoveSpeedX(80.f);
 	_moveInputComp->JumpForce(1000000.f);
+	//TextComponent* textComp = new TextComponent(this, 15, "DelaSuko");
+	//textComp->CreateTextTexture("PLAYER", Vector3::fromIntRGB(255, 0, 0), 30);
 
 	//new DebugDrawComponent(this, _boxComp, true);
 }
@@ -63,6 +67,7 @@ void Player::InputObject(Input* input) {
 		//TestObject* bullet = new TestObject(GetGame());
 		//bullet->Position(Position());
 	}
+
 }
 
 void Player::UpdateObject(float deltaTime) {

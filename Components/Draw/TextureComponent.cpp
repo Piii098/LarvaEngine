@@ -10,7 +10,7 @@
 
 #pragma region コンストラクタ:デストラクタ
 
-TextureComponent::TextureComponent(GameObject* parent, int drawLayer)
+TextureComponent::TextureComponent(GameObject* parent, int bufferLayer, int drawLayer)
 	: Component(parent)
 	, _texture(nullptr)
 	, _texWidth(0.f)
@@ -21,7 +21,8 @@ TextureComponent::TextureComponent(GameObject* parent, int drawLayer)
 	, _selfLightIntensity(0.f)
 	, _flipX(false)
 	, _flipY(false)
-	, _drawLayer(drawLayer){
+	, _drawLayer(drawLayer)
+	, _bufferLayer(bufferLayer){
 	_textureManager = _parent->GetScene()->GetManager()->GetGame()->GetTextureManager();
 }
 

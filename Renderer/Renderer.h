@@ -1,7 +1,5 @@
 ﻿#pragma once
-#include <unordered_map>
 #include <vector>
-#include <string>
 #include <SDL3/SDL.h>
 #include "Utilities/Math.h"
 
@@ -9,97 +7,70 @@ class Game;
 class VertexArray;
 class Shader;
 class Camera;
-class Texture;
 class SpriteComponent;
-class BGComponent;
-class TextureComponent;
+class TextComponent;
+class UIScreen;
 
 class Renderer {
 public:
+    Renderer(Game* game);
+    ~Renderer();
 
-	Renderer(Game* game);
-	~Renderer();
+    bool Initialize(float screenWidth, float screenHeight, float lowResWidth, float lowResHeight);
+    void Shutdown();
+    void Render();
 
-	bool Initialize(float screenWidth, float screenHeight, float dotWidth, float dotHeight);
-	void Shutdown();
+    // スプライト管理機能
+    void AddSprite(SpriteComponent* sprite);
+    void RemoveSprite(SpriteComponent* sprite);
+
+    void AddText(TextComponent* text);
+
+    void SetParallaxFactor(int layer, float factor);
+    float GetParallaxFactor(int layer) const;
+    void SetCentralLayer(int layer);
 
 	void UnloadData();
-
-	void Render();
-
-	void AddSprite(SpriteComponent* sprite);
-	void RemoveSprite(SpriteComponent* sprite);
-	void AddBackground(BGComponent* background);
-	void RemoveBackground(BGComponent* background);
-	void AddTexture(TextureComponent* texture);
-	void RemoveTexture(TextureComponent* texture);
-
-	void SetLightPos(Vector2Int lightPos) { _lightPos = lightPos; };
 private:
+    bool InitializeFrameBuffer();
+    void DrawSprite(Matrix4 view, int region);
+    void DrawText(Matrix4 view, int region);
+	void DrawUI();
+    void SwapWindow();
+    bool LoadShaders();
+    void CreateSpriteVerts();
 
-	bool InitializeFrameBuffer();
+    // フレームバッファ関連
+    std::vector<unsigned int> _layerFBOs;
+    std::vector<unsigned int> _layerTextures;
+    unsigned int _combineUpscaleFBO;
+    unsigned int _combineUpscaleBuffer;
+    int _numLayers;
 
-	void DrawBackground(Matrix4 view);
-	void DrawSprite(Matrix4 view);
+    // パララックス関連
+    std::vector<float> _parallaxFactors;  // 各レイヤーの視差係数 (0.0=中央レイヤーと同じ、1.0=最背面)
+    int _centralLayer;                    // 中央レイヤー (基準となるレイヤー)
 
-	void ClearScreen();
-	void SetupShaders();
-	void DrawScene(Matrix4 view);
-	void ApplyBloomEffect();
-	void FinalizeFrame(float zoom);
-	void SwapWindow();
+    // 基本的なレンダリングリソース
+    SDL_Window* _window;
+    SDL_GLContext _context;
+    VertexArray* _frameVerts;
+    VertexArray* _spriteVerts;
+    Shader* _frameShader;
+    Shader* _spriteShader;
 
+    // ウィンドウ設定
+    float _screenWidth;
+    float _screenHeight;
+    float _lowResWidth;
+    float _lowResHeight;
 
-	void UpScale();
-	void ApplyBloom(bool& horizontal);
-	bool LoadShaders();
-	void CreateSpriteVerts();
-
-	unsigned int _colorBuffer[2];
-	unsigned int _hdrFBO;
-	VertexArray* _screenVerts;
-	bool _isBloom;
-
-	unsigned int _pingpongFBO[2];
-	unsigned int _pingpongBuffer[2];
-
-	Shader* _blurShader;               // ガウシアンブラー用シェーダー
-	Shader* _bloomFinalShader;         // 最終合成用シェーダー
-
-	// ブルーム設定
-	float _bloomThreshold = 1.0f;      // 明るい部分とみなす閾値
-	float _bloomIntensity = 0.8f;      // ブルームの強度
-
-	std::vector<BGComponent*> _backgrounds;
-	std::vector<SpriteComponent*> _sprites;
-
-	Game* _game;
-
-	SDL_Window* _window; //ウィンドウ
-	SDL_GLContext _context;
-	VertexArray* _spriteVerts;
-	Shader* _spriteShader;
-	Shader* _backgroundShader;
-	Shader* _frameBufferShader;
-
-	unsigned int _upscaleBuffer[2];
-	unsigned int _upscaleFBO;
-	Shader* _upscaleShader;
-
-	unsigned int _finalBuffer;
-	unsigned int _finalFBO;
-
-	Shader* _retroShader;
-
-	float _screenWidth;
-	float _screenHeight;
-	float _lowResWidth;
-	float _lowResHeight;
-	bool _horizontal;
-
-	Vector2Int _lightPos;
-
-	Camera* _camera;
+    // ゲームリソース
+    Game* _game;
+    Camera* _camera;
+    std::vector<SpriteComponent*> _sprites;
+	std::vector<TextComponent*> _texts;
+	//std::vector<UIScreen*> _uiScreens;
 
 
 };

@@ -12,15 +12,13 @@
 
 TileMapObject::TileMapObject(Scene* scene)
     : GameObject(scene){
+    Position(Vector2Int(0, -100));
 	_tileMapComp = new TileMapComponent(this);
-	_tileMapComp->SetTileMap("TileMap", "Tile", 24, 32);
+	_tileMapComp->SetTileMap("TileMap", "Tile", 2, 16);
+
+    _tileMapComp->RegisterTileInfo(0, true, Vector3(1, 1, 1), 0., GameObject::TAG::GROUND);
 
 	_tileMapComp->RegisterTileInfo(1, true, Vector3(1, 1, 1), 0., GameObject::TAG::GROUND );
-    _tileMapComp->RegisterTileInfo(2, true, Vector3(1, 1, 1), 0., GameObject::TAG::GROUND);
-	_tileMapComp->RegisterTileInfo(6, true, Vector3(1, 1, 1), 0., GameObject::TAG::GROUND);
-	_tileMapComp->RegisterTileInfo(7, true, Vector3(1, 1, 1), 0., GameObject::TAG::GROUND);
-    _tileMapComp->RegisterTileInfo(8, true, Vector3(1, 1, 1), 0., GameObject::TAG::GROUND);
-    _tileMapComp->RegisterTileInfo(9, true, Vector3(1, 1, 1), 0., GameObject::TAG::GROUND);
     _tileMapComp->CreateTiles();
 }
 

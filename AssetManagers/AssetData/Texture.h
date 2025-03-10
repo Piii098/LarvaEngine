@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include <string>
+#include "Utilities/Math.h"
 
+struct SDL_Surface;
 
 class Texture {
 public:
@@ -9,6 +11,7 @@ public:
 
 	bool Load(const std::string& fileName);
 	void Unload();
+	void CreateFromSurface(SDL_Surface* surface);
 
 	void SetActive();
 
@@ -19,4 +22,6 @@ private:
 	unsigned int _textureID;
 	int _width;
 	int _height;
+
+	
 };

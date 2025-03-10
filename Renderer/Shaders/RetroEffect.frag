@@ -1,4 +1,4 @@
-#version 330 core
+Ôªø#version 330 core
 
 in vec2 TexCoords;
 
@@ -11,7 +11,7 @@ uniform float time;
 const float CRT_CURVE_AMOUNT = 0.1;
 const float SCANLINE_INTENSITY = 0.1;
 const float NOISE_INTENSITY = 0.05;
-const vec3 BORDER_COLOR = vec3(0.5, 0.5, 0.5); // íPêFÇÃêF (çï)
+const vec3 BORDER_COLOR = vec3(0.5, 0.5, 0.5); // ÂçòËâ≤„ÅÆËâ≤ (Èªí)
 
 vec2 applyCRTCurve(vec2 uv) {
     uv = uv * 2.0 - 1.0;

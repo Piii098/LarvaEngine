@@ -1,11 +1,11 @@
-#version 330 core
+ï»¿#version 330 core
 out vec4 FragColor;
   
 in vec2 TexCoords;
 
 uniform sampler2D image;
 uniform bool horizontal;
-// ƒJ[ƒlƒ‹ƒTƒCƒY‚ğ‘‚â‚µ‚ÄA‚æ‚èƒXƒ€[ƒY‚Èƒuƒ‰[Œø‰Ê‚ğÀŒ»
+// ã‚«ãƒ¼ãƒãƒ«ã‚µã‚¤ã‚ºã‚’å¢—ã‚„ã—ã¦ã€ã‚ˆã‚Šã‚¹ãƒ ãƒ¼ã‚ºãªãƒ–ãƒ©ãƒ¼åŠ¹æœã‚’å®Ÿç¾
 uniform float weight[7] = float[] (0.2270270270, 0.1945945946, 0.1216216216, 
                                  0.0540540541, 0.0162162162, 0.0047297297, 
                                  0.0012972973);

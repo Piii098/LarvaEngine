@@ -16,14 +16,11 @@ class Texture;
 class SpriteComponent : public TextureComponent {
 public:
 
-	SpriteComponent(GameObject* parent, int drawLayer = 150);
+	SpriteComponent(GameObject* parent, int bufferLayer, int drawLayer = 150);
 	~SpriteComponent() override;
 
 	virtual void Render(Shader* shader) override;
 
 	/*ゲッターセッター*/
-
-private:
-
 
 };

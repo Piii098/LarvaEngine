@@ -1,9 +1,9 @@
-#include "Scene/SceneManager.h" 
+ï»¿#include "Scene/SceneManager.h" 
 #include "Core/Game.h" 
 #include "Scene/Scene.h" 
 #include "Utilities/Input.h"
 
-#pragma region ƒRƒ“ƒXƒgƒ‰ƒNƒ^:ƒfƒXƒgƒ‰ƒNƒ^
+#pragma region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿:ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 SceneManager::SceneManager(Game* game)
     : _game(game) {
@@ -15,7 +15,7 @@ SceneManager::~SceneManager() {
 
 #pragma endregion
 
-#pragma region ƒpƒuƒŠƒbƒNŠÖ”
+#pragma region ãƒ‘ãƒ–ãƒªãƒƒã‚¯é–¢æ•°
 
 void SceneManager::Initialize() {
 	_currentScene = new Scene(this);

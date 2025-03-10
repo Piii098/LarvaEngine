@@ -10,6 +10,7 @@ D:\Github\Cpp_SDL\Components\Component.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\C
 D:\Github\Cpp_SDL\Components\Draw\BGComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\BGComponent.obj
 D:\Github\Cpp_SDL\Components\Draw\DebugDrawComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\DebugDrawComponent.obj
 D:\Github\Cpp_SDL\Components\Draw\SpriteComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\SpriteComponent.obj
+D:\Github\Cpp_SDL\Components\Draw\TextComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\TextComponent.obj
 D:\Github\Cpp_SDL\Components\Draw\TextureComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\TextureComponent.obj
 D:\Github\Cpp_SDL\Components\MoveInputComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\MoveInputComponent.obj
 D:\Github\Cpp_SDL\Components\Phys\BoxComponent2D.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\BoxComponent2D.obj
@@ -31,6 +32,9 @@ D:\Github\Cpp_SDL\Renderer\VertexArray.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\V
 D:\Github\Cpp_SDL\Scene\Scene.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Scene.obj
 D:\Github\Cpp_SDL\Scene\SceneManager.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\SceneManager.obj
 D:\Github\Cpp_SDL\Scene\Scenes\TestScene.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\TestScene.obj
+D:\Github\Cpp_SDL\UI\HUD.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\HUD.obj
+D:\Github\Cpp_SDL\UI\PauseMenu.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\PauseMenu.obj
+D:\Github\Cpp_SDL\UI\UIScreen.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\UIScreen.obj
 D:\Github\Cpp_SDL\Utilities\Collision2D.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Collision2D.obj
 D:\Github\Cpp_SDL\Utilities\Font.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Font.obj
 D:\Github\Cpp_SDL\Utilities\Frame.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Frame.obj

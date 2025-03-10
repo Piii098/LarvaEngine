@@ -10,7 +10,7 @@ class BoxComponent2D;
 class DebugDrawComponent : public SpriteComponent {
 public:
 
-	DebugDrawComponent(GameObject* parent,BoxComponent2D* boxComp, int drawLayer = 10000);
+	DebugDrawComponent(GameObject* parent,BoxComponent2D* boxComp);
 	~DebugDrawComponent() override;
 
 	void SetBox(const Vector2& position, const Vector2& size, const Vector3& color);

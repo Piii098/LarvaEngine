@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "GameObjects/GameObject.h"
 
-class BGComponent;
+class SpriteComponent;
 
 class Background : public GameObject {
 public:
@@ -9,6 +9,6 @@ public:
 	~Background() override;
 
 public:
-	std::vector<BGComponent*> _bgComps;
+	std::vector<SpriteComponent*> _bgComps;
 
 };

@@ -54,6 +54,70 @@ void Texture::Unload() {
 	glDeleteTextures(1, &_textureID);
 }
 
+void Texture::CreateFromSurface(SDL_Surface* surface) {
+    if (!surface) {
+        SDL_Log("ERROR: Null surface provided to CreateFromSurfaceSafe");
+        return;
+    }
+
+    // 既存のテクスチャがあれば解放
+    if (_textureID != 0) {
+        glDeleteTextures(1, &_textureID);
+        _textureID = 0;
+    }
+
+    // サーフェスの寸法を保存
+    _width = surface->w;
+    _height = surface->h;
+
+    // RGBA形式に変換 - SDL3の新しいAPIを使用
+    SDL_Surface* rgbaSurface = SDL_ConvertSurface(surface, SDL_PIXELFORMAT_RGBA32);
+    if (!rgbaSurface) {
+        SDL_Log("Failed to convert surface to RGBA32: %s", SDL_GetError());
+        return;
+    }
+
+    // テクスチャを生成
+    glGenTextures(1, &_textureID);
+    glBindTexture(GL_TEXTURE_2D, _textureID);
+
+    // 1バイトアライメントを設定（テキストレンダリングに重要）
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+    // OpenGLにテクスチャデータを転送
+    glTexImage2D(
+        GL_TEXTURE_2D,
+        0,
+        GL_RGBA,     // 内部フォーマットはRGBAに固定
+        _width,
+        _height,
+        0,
+        GL_RGBA,     // データフォーマットもRGBAに固定
+        GL_UNSIGNED_BYTE,
+        rgbaSurface->pixels
+    );
+
+    // OpenGLエラーがあれば検出
+    GLenum glError = glGetError();
+    if (glError != GL_NO_ERROR) {
+        SDL_Log("OpenGL error in CreateFromSurfaceSafe: %d", glError);
+        SDL_DestroySurface(rgbaSurface);
+        return;
+    }
+
+    // フィルタリング設定
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+    // アライメント設定をリセット
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
+
+    // 変換したサーフェスを解放
+    SDL_DestroySurface(rgbaSurface);
+
+    return;
+}
+
 void Texture::SetActive() {
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, _textureID);
