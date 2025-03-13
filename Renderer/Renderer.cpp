@@ -8,7 +8,7 @@
 #include "GameObjects/Camera.h"
 #include "Scene/SceneManager.h"
 #include "Scene/Scene.h"
-#include "UI/UIScreen.h"
+#include "Scene/UI/UIScene.h"
 
 Renderer::Renderer(Game* game)
     : _game(game)
@@ -29,9 +29,8 @@ bool Renderer::Initialize(float screenWidth, float screenHeight, float lowResWid
     _lowResWidth = lowResWidth;
     _lowResHeight = lowResHeight;
 
-    int layerCountX = _screenWidth / _lowResWidth;
-    int layerCountY = _screenHeight / _lowResHeight;
-    _numLayers = layerCountX * layerCountY;
+   
+    _numLayers = 16;
 
     // パララックス係数を初期化 (すべて0.0 = 中央レイヤーと同じ動き)
     _parallaxFactors.resize(_numLayers, 0.0f);
@@ -112,7 +111,7 @@ void Renderer::Shutdown() {
 
 void Renderer::Render() {
 
-    _camera = _game->GetSceneManager()->GetCurrentScene()->GetCamera();
+    _camera = _game->GetSceneManager()->GetCurrentMainScene()->GetCamera();
     Matrix4 view;
     Vector2Int cameraPos;
 
@@ -121,7 +120,7 @@ void Renderer::Render() {
         cameraPos = _camera->Position();
     }
 
-
+	_currentMainScene = _game->GetSceneManager()->GetCurrentMainScene();
 
     // ステップ1: 各レイヤーを個別にレンダリング
     for (int i = 0; i < _numLayers; i++) {
@@ -153,8 +152,8 @@ void Renderer::Render() {
             regionView = regionView * parallaxTranslation;
         }
 
-        DrawSprite(regionView, i);
-        DrawText(regionView, i);
+        DrawGame(regionView, i);
+       
     }
 
     // ステップ2: 合成用フレームバッファにレイヤーを合成
@@ -182,7 +181,7 @@ void Renderer::Render() {
 
     // ステップ3: 最終出力（ウィンドウに描画）
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    glViewport(0, 0, _screenWidth, _screenHeight);
+    //glViewport(0, 0, _screenWidth, _screenHeight);
     glClear(GL_COLOR_BUFFER_BIT);
 
     // 通常のアルファブレンディングに戻す
@@ -218,32 +217,6 @@ void Renderer::SetCentralLayer(int layer) {
     if (layer >= 0 && layer < _numLayers) {
         _centralLayer = layer;
     }
-}
-
-void Renderer::AddSprite(SpriteComponent* sprite) {
-    int layer = sprite->DrawLayer();
-    auto iter = _sprites.begin();
-    for (; iter != _sprites.end(); ++iter) {
-        if (layer < (*iter)->DrawLayer()) {
-            break;
-        }
-    }
-    _sprites.insert(iter, sprite);
-}
-
-void Renderer::RemoveSprite(SpriteComponent* sprite) {
-    auto iter = std::find(_sprites.begin(), _sprites.end(), sprite);
-    if (iter != _sprites.end()) {
-        _sprites.erase(iter);
-    }
-}
-
-void Renderer::AddText(TextComponent* text) {
-	_texts.emplace_back(text);
-}
-
-void Renderer::UnloadData() {
-
 }
 
 #pragma endregion
@@ -301,7 +274,7 @@ bool Renderer::InitializeFrameBuffer() {
     return true;
 }
 
-void Renderer::DrawSprite(Matrix4 view, int region) {
+void Renderer::DrawGame(Matrix4 view, int region) {
     _spriteShader->SetActive();
     _spriteVerts->SetActive();
 
@@ -315,30 +288,7 @@ void Renderer::DrawSprite(Matrix4 view, int region) {
     _spriteShader->SetVector3Uniform("ambientLightColor", Vector3(1.0f, 1.0f, 1.0f));
     _spriteShader->SetFloatUniform("ambientLightIntensity", 1.0f);
 
-    // 指定されたリージョンに属するスプライトのみ描画
-    for (auto sprite : _sprites) {
-        if (sprite->BufferLayer() == region) {
-            sprite->Render(_spriteShader);
-        }
-    }
-}
-
-void Renderer::DrawText(Matrix4 view, int region) {
-    _spriteShader->SetActive();
-    _spriteVerts->SetActive();
-
-    _spriteShader->SetMatrixUniform("uViewScreen", view);
-
-    // シンプル化のため、ライティング情報を基本設定のみに
-    _spriteShader->SetVector3Uniform("ambientLightColor", Vector3(1.0f, 1.0f, 1.0f));
-    _spriteShader->SetFloatUniform("ambientLightIntensity", 1.0f);
-
-    // 指定されたリージョンに属するスプライトのみ描画
-    for (auto text : _texts) {
-        if (text->BufferLayer() == region) {
-            text->RenderText(_spriteShader, Vector2Int(1, 1), 1, Color::Red);
-        }
-    }
+    _currentMainScene->Render(_spriteShader, region);
 }
 
 void Renderer::DrawUI() {
@@ -349,20 +299,13 @@ void Renderer::DrawUI() {
 
     _spriteShader->SetMatrixUniform("uViewProj", viewProj);
 
-    Matrix4 view = Matrix4::Identity;
-
-    _spriteShader->SetMatrixUniform("uViewScreen", view);
+    _spriteShader->SetMatrixUniform("uViewScreen", Matrix4::Identity);
 
     // シンプル化のため、ライティング情報を基本設定のみに
     _spriteShader->SetVector3Uniform("ambientLightColor", Vector3(1.0f, 1.0f, 1.0f));
     _spriteShader->SetFloatUniform("ambientLightIntensity", 1.0f);
-
-    // 指定されたリージョンに属するスプライトのみ描画
-    for (auto ui : _game->GetSceneManager()->GetCurrentScene()->GetUIScreens()) {
-		ui->Render(_spriteShader);
-    }
+    _currentMainScene->RenderUIs(_spriteShader);
 }
-
 
 void Renderer::SwapWindow() {
     SDL_GL_SwapWindow(_window);

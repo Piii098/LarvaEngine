@@ -13,11 +13,11 @@
 
 SpriteComponent::SpriteComponent(GameObject* parent, int bufferLayer, int drawLayer)
 	: TextureComponent(parent, bufferLayer){
-	_parent->GetScene()->GetManager()->GetGame()->GetRenderer()->AddSprite(this);
+	//_parent->GetScene()->GetManager()->GetGame()->GetRenderer()->AddSprite(this);
 }
 
 SpriteComponent::~SpriteComponent() {
-	_parent->GetScene()->GetManager()->GetGame()->GetRenderer()->RemoveSprite(this);
+	//_parent->GetScene()->GetManager()->GetGame()->GetRenderer()->RemoveSprite(this);
 }
 
 #pragma endregion

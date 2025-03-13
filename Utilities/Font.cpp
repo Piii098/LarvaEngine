@@ -6,7 +6,8 @@
 
 #pragma region コンストラクタ:デストラクタ
 
-Font::Font() {
+Font::Font() 
+    : _isOutline(false){
 }
 
 Font::~Font() {
@@ -54,6 +55,9 @@ Texture* Font::RenderText(const std::string& text, const Vector3& color, int poi
     auto iter = _textMap.find(pointSize);
     if (iter != _textMap.end()) {
         TTF_Font* font = iter->second;
+
+		if (_isOutline) TTF_SetFontOutline(font, 1);
+		else TTF_SetFontOutline(font, 0);
 
         // SDL3_ttfの正しいシグネチャを使用
         // text.c_str()は文字列、0はヌル終端文字列を使用することを示す

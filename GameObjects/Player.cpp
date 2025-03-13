@@ -42,6 +42,7 @@ Player::Player(Scene* scene)
 	_moveInputComp = new MoveInputComponent(this, _rigidbodyComp);
 	_moveInputComp->MoveSpeedX(80.f);
 	_moveInputComp->JumpForce(1000000.f);
+	_moveInputComp->SetState(Component::STATE::INACTIVE);
 	//TextComponent* textComp = new TextComponent(this, 15, "DelaSuko");
 	//textComp->CreateTextTexture("PLAYER", Vector3::fromIntRGB(255, 0, 0), 30);
 

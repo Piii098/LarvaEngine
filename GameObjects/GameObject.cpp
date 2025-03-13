@@ -33,7 +33,9 @@ void GameObject::ProcessInput(Input* input) {
 	
 	if (_state == STATE::ACTIVE) {
 		for (auto& comp : _components) {
-			comp->ProcessInput(input);
+			if (comp->GetState() == Component::STATE::ACTIVE) {
+				comp->ProcessInput(input);
+			}
 		}
 		InputObject(input);
 	}
@@ -63,7 +65,9 @@ void GameObject::UpdateComponents(float deltaTime) {
 	/*つけられたコンポーネントを順に実行する*/
 
 	for (auto comp : _components) {
-		comp->Update(deltaTime);
+		if (comp->GetState() == Component::STATE::ACTIVE) {
+			comp->Update(deltaTime);
+		}
 	}
 }
 
@@ -92,11 +96,38 @@ void GameObject::PhysUpdateComponents(float deltaTime) {
 	/*つけられたコンポーネントを順に実行する*/
 
 	for (auto comp : _components) {
-		comp->PhysUpdate(deltaTime);
+		if (comp->GetState() == Component::STATE::ACTIVE) {
+			comp->PhysUpdate(deltaTime);
+		}
 	}
 }
 
 void GameObject::PhysUpdateObject(float deltaTime) {
+
+}
+
+void GameObject::Render(Shader* shader, int bufferLayer) {
+
+	/*描画関数。ゲーム側から呼び出される。*/
+
+	if (_state == STATE::ACTIVE) {
+		for (auto& comp : _components) {
+			if (comp->GetBufferLayer() == bufferLayer && comp->GetState() == Component::STATE::ACTIVE) {
+				comp->Render(shader);
+			}
+		}
+	}
+}
+
+void GameObject::RenderUI(Shader* shader) {
+
+	/*UI描画関数。ゲーム側から呼び出される。*/
+
+	if (_state == STATE::ACTIVE) {
+		for (auto& comp : _components) {
+			comp->Render(shader);
+		}
+	}
 
 }
 

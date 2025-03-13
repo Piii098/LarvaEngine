@@ -16,7 +16,8 @@ TextComponent::TextComponent(GameObject* gameObject, int bufferLayer, std::strin
 	, _textTexture(nullptr) {
 	_font = GetParent()->GetScene()->GetManager()->GetGame()->GetFontManager()->Get(fontName);
 
-	GetParent()->GetScene()->GetManager()->GetGame()->GetRenderer()->AddText(this);
+	_fontName = fontName;
+	//GetParent()->GetScene()->GetManager()->GetGame()->GetRenderer()->AddText(this);
 }
 
 TextComponent::~TextComponent() {
@@ -31,13 +32,16 @@ TextComponent::~TextComponent() {
 
 #pragma region パブリック関数
 
-void TextComponent::CreateTextTexture(std::string text, Vector3 color, int pointSize) {
+void TextComponent::CreateTextTexture(std::string text, Vector3 color, int pointSize, bool isOutline) {
 	if (_texture) {
 		_texture->Unload();
 		delete _texture;
 		_texture = nullptr;
 	}
 
+	_text = text;
+	_pointSize = pointSize;
+	_font->IsOutline(isOutline);
 	_texture = _font->RenderText(text, color, pointSize);
 
 	if (_texture) {
@@ -50,14 +54,13 @@ void TextComponent::CreateTextTexture(std::string text, Vector3 color, int point
 
 }
 
-void TextComponent::RenderText(Shader* shader, const Vector2Int& offset, float scale, Vector3 color) {
+void TextComponent::Render(Shader* shader) {
 	
 	if (!_texture) {
 		return;
 	}
 
 	Matrix4 scaleMat = Matrix4::CreateScale(static_cast<float>(_texWidth), static_cast<float>(_texHeight), 1.0f);
-	Matrix4 transMat = Matrix4::CreateTranslation(Vector3(offset.x, offset.y, 0.0f));
 	Matrix4 world = scaleMat * GetParent()->WorldTransform();
 
 	shader->SetMatrixUniform("uWorldTransform", world);

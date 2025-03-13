@@ -1,7 +1,10 @@
 ﻿#include "Scene/SceneManager.h" 
 #include "Core/Game.h" 
+#include "Scene/Game/TestScene.h"
+#include "Scene/Game/Title/TitleScene.h"
 #include "Scene/Scene.h" 
 #include "Utilities/Input.h"
+#include "AssetManagers/AssetManager.h"
 
 #pragma region コンストラクタ:デストラクタ
 
@@ -18,24 +21,26 @@ SceneManager::~SceneManager() {
 #pragma region パブリック関数
 
 void SceneManager::Initialize() {
-	_currentScene = new Scene(this);
-	_currentScene->Initialize();
+	LoadData();
+
+	_currentMainScene = new TitleScene(this);
+	_currentMainScene->Initialize();
 }
 
 void SceneManager::ProcessInput(Input* input) {
-	_currentScene->ProcessInput(input);
+	_currentMainScene->ProcessInput(input);
 }
 
 void SceneManager::Update(float deltaTime) {
-	_currentScene->Update(deltaTime);
+	_currentMainScene->Update(deltaTime);
 }
 
 void SceneManager::PhysUpdate(float deltaTime) {
-	_currentScene->PhysUpdate(deltaTime);
+	_currentMainScene->PhysUpdate(deltaTime);
 }
 
 void SceneManager::Output() {
-	_currentScene->Output();
+	_currentMainScene->Output();
 }   
 
 void SceneManager::Shutdown() {
@@ -43,12 +48,22 @@ void SceneManager::Shutdown() {
 }
 
 void SceneManager::DestroyScene() {
-	_currentScene->Shutdown();
-	if (_currentScene != nullptr) {
-		_currentScene->Shutdown();
-		delete _currentScene;
-		_currentScene = nullptr;
+	_currentMainScene->Shutdown();
+	if (_currentMainScene != nullptr) {
+		_currentMainScene->Shutdown();
+		delete _currentMainScene;
+		_currentMainScene = nullptr;
 	}
 }
+
+#pragma endregion
+
+#pragma region プライベート関数
+
+void SceneManager::LoadData() {
+	_game->GetFontManager()->Load("DelaSuko", "Assets/DelaSukoGothicOne-R.ttf");
+
+}
+
 
 #pragma endregion

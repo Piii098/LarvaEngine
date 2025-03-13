@@ -14,6 +14,10 @@ public:
 	bool Load(const std::string& fileName);
 	void Unload();
 	Texture* RenderText(const std::string& text, const Vector3& color = Color::White, int pointSize = 30);
+
+	void IsOutline(bool isOutline) { _isOutline = isOutline; }
+
 private:
 	std::unordered_map<int, TTF_Font*> _textMap;
+	bool _isOutline;
 };

@@ -9,7 +9,8 @@ class Shader;
 class Camera;
 class SpriteComponent;
 class TextComponent;
-class UIScreen;
+class MainScene;
+class UIScene;
 
 class Renderer {
 public:
@@ -21,20 +22,17 @@ public:
     void Render();
 
     // スプライト管理機能
-    void AddSprite(SpriteComponent* sprite);
-    void RemoveSprite(SpriteComponent* sprite);
-
-    void AddText(TextComponent* text);
-
+   
     void SetParallaxFactor(int layer, float factor);
     float GetParallaxFactor(int layer) const;
     void SetCentralLayer(int layer);
 
-	void UnloadData();
+    void UnloadData() {};
+
 private:
+
     bool InitializeFrameBuffer();
-    void DrawSprite(Matrix4 view, int region);
-    void DrawText(Matrix4 view, int region);
+    void DrawGame(Matrix4 view, int region);
 	void DrawUI();
     void SwapWindow();
     bool LoadShaders();
@@ -67,10 +65,9 @@ private:
 
     // ゲームリソース
     Game* _game;
+    MainScene* _currentMainScene;
+	UIScene* _uiScene;
     Camera* _camera;
-    std::vector<SpriteComponent*> _sprites;
-	std::vector<TextComponent*> _texts;
 	//std::vector<UIScreen*> _uiScreens;
-
 
 };
