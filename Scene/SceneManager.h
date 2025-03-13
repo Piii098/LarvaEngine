@@ -2,9 +2,10 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
-#include "Scene/Scene.h"
+#include "Scene/MainScene.h"
 
 class GameObject;
+class UIScene;
 class Game;
 
 class SceneManager {
@@ -21,15 +22,15 @@ public:
 
 	template <typename T, typename... Args>
 	T* ChangeScene(Args&& ...args) {
-		if (_currentScene != nullptr) {
-			_currentScene->Shutdown();
-			delete _currentScene;
-			_currentScene = nullptr;
+		if (_currentMainScene != nullptr) {
+			_currentMainScene->Shutdown();
+			delete _currentMainScene;
+			_currentMainScene = nullptr;
 		}
 
 		T* tempScene = new T(this, std::forward<Args>(args)...);
-		_currentScene = tempScene;
-		_currentScene->Initialize();
+		_currentMainScene = tempScene;
+		_currentMainScene->Initialize();
 		return tempScene;
 	}
 
@@ -38,15 +39,19 @@ public:
 	void Initialize();
 	
 	Game* GetGame() const { return _game; }
-
-	Scene* GetCurrentScene() const { return _currentScene; }
+	std::vector<UIScene*> GetCurrentUIScenes() const { return _currentMainScene->GetUIScenes(); }
+	MainScene* GetCurrentMainScene() const { return _currentMainScene; }
 
 private:
 
-	Game* _game;
-	Scene* _currentScene;
+	void LoadData();
 
-	std::unordered_map<std::string, Scene*> _scenes;
+	Game* _game;
+	MainScene* _currentMainScene;
+	//std::vector<UIScene*> _currentUIScenes;
+
+	std::unordered_map<std::string, GameScene*> _scenes;
+
 
 	bool _isUpdating;
 };

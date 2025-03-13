@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <SDL3_ttf/SDL_ttf.h>
 #include "Scene/Scene.h"
-#include "Scene/Scenes/TestScene.h"
+#include "Scene/Game/TestScene.h"
 #include "Components/Draw/TextureComponent.h"
 #include "GameObjects/GameObject.h"
 #include "GameObjects/Player.h"
@@ -55,7 +55,7 @@ bool Game::Initialize() {
 	}
 
 	_renderer = new Renderer(this);
-	if (!_renderer->Initialize(1920.f, 1080.f, 480.f, 270.f)) {
+	if (!_renderer->Initialize(960.f, 540.f, 480.f, 270.f)) {
 		SDL_Log("Failed to intialized renderer");
 		delete _renderer;
 		_renderer = nullptr;
@@ -159,7 +159,7 @@ void Game::ProcessOutput() {
 void Game::LoadScene() {
 	_sceneManager = new SceneManager(this);
 	_sceneManager->Initialize();
-	TestScene* scene = _sceneManager->ChangeScene<TestScene>();
+	//TestScene* scene = _sceneManager->ChangeGameScene<TestScene>();
 	//Player* player = new Player(scene);
 
 }

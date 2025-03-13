@@ -14,10 +14,11 @@ class Texture;
 class TextureComponent : public Component {
 public:
 
-	TextureComponent(GameObject* parent,int bufferLayer, int drawLayer = 150);
-    virtual ~TextureComponent();
+	TextureComponent(GameObject* parent, int bufferLayer, int drawLayer = 150);
+    
+	virtual ~TextureComponent();
 
-    virtual void Render(Shader* shader);
+    virtual void Render(Shader* shader) override;
     void SetTexture(const std::string& textureName);
 
 
@@ -58,9 +59,5 @@ protected:
 
 	bool _flipX;
 	bool _flipY;
-
-private:
-
-	int _bufferLayer;
 
 };

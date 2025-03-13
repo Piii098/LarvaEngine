@@ -2,7 +2,9 @@
 #include "GameObjects/GameObject.h"
 
 Component::Component(GameObject* parent,int updateLayer) 
-	: _parent(parent) 
+	: _parent(parent)
+	, _state(STATE::ACTIVE)
+	, _bufferLayer(0)
 	, _updateLayer(updateLayer){
 	_parent->AddComponent(this);
 }

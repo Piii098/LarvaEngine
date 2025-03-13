@@ -46,16 +46,23 @@
     <ClCompile Include="GameObjects\Player.cpp" />
     <ClCompile Include="GameObjects\TestObject.cpp" />
     <ClCompile Include="GameObjects\TileMapObject.cpp" />
+    <ClCompile Include="GameObjects\UI\Button.cpp" />
     <ClCompile Include="Phys\PhysWorld2D.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Renderer\Shader.cpp" />
     <ClCompile Include="Renderer\VertexArray.cpp" />
+    <ClCompile Include="Scene\Game\PlaySubScene.cpp" />
+    <ClCompile Include="Scene\MainScene.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
-    <ClCompile Include="Scene\Scenes\TestScene.cpp" />
-    <ClCompile Include="UI\HUD.cpp" />
-    <ClCompile Include="UI\PauseMenu.cpp" />
-    <ClCompile Include="UI\UIScreen.cpp" />
+    <ClCompile Include="Scene\Game\TestScene.cpp" />
+    <ClCompile Include="Scene\Game\Title\TitleScene.cpp" />
+    <ClCompile Include="Scene\SubScene.cpp" />
+    <ClCompile Include="Scene\UI\PauseMenu.cpp" />
+    <ClCompile Include="Scene\Game\Title\PlaySubScene.cpp" />
+    <ClCompile Include="Scene\UI\TitleUI.cpp" />
+    <ClCompile Include="Scene\UI\UIScene.cpp" />
+    <ClCompile Include="GameObjects\UI\Text.cpp" />
     <ClCompile Include="Utilities\Collision2D.cpp" />
     <ClCompile Include="Utilities\Font.cpp" />
     <ClCompile Include="Utilities\Frame.cpp" />
@@ -84,6 +91,11 @@
     <ClInclude Include="Components\Phys\RigidbodyComponent.h" />
     <ClInclude Include="Components\TileMapComponent.h" />
     <ClInclude Include="Core\Game.h" />
+    <ClInclude Include="GameObjects\UI\Button.h" />
+    <ClInclude Include="GameObjects\UI\Text.h" />
+    <ClInclude Include="Scene\Game\PlaySubScene.h" />
+    <ClInclude Include="Scene\MainScene.h" />
+    <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="GameObjects\Background.h" />
     <ClInclude Include="GameObjects\Camera.h" />
     <ClInclude Include="GameObjects\GameObject.h" />
@@ -94,12 +106,14 @@
     <ClInclude Include="Renderer\Renderer.h" />
     <ClInclude Include="Renderer\Shader.h" />
     <ClInclude Include="Renderer\VertexArray.h" />
-    <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Scene\SceneManager.h" />
-    <ClInclude Include="Scene\Scenes\TestScene.h" />
-    <ClInclude Include="UI\HUD.h" />
-    <ClInclude Include="UI\PauseMenu.h" />
-    <ClInclude Include="UI\UIScreen.h" />
+    <ClInclude Include="Scene\Game\TestScene.h" />
+    <ClInclude Include="Scene\Game\Title\TitleScene.h" />
+    <ClInclude Include="Scene\SubScene.h" />
+    <ClInclude Include="Scene\UI\PauseMenu.h" />
+    <ClInclude Include="Scene\Game\Title\PlaySubScene.h" />
+    <ClInclude Include="Scene\UI\TItleUI.h" />
+    <ClInclude Include="Scene\UI\UIScene.h" />
     <ClInclude Include="Utilities\Collision2D.h" />
     <ClInclude Include="Utilities\Font.h" />
     <ClInclude Include="Utilities\Frame.h" />
@@ -191,7 +205,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir);D:\SDL3-3.2.4\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ObjectFileName>$(IntDir)%(RelativeDir)%(Filename).obj</ObjectFileName>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalOptions>/source-charset:utf-8 /execution-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -215,7 +229,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir);D:\SDL3-3.2.4\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ObjectFileName>$(IntDir)%(RelativeDir)%(Filename).obj</ObjectFileName>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalOptions>/source-charset:utf-8 /execution-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -239,7 +253,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir);D:\SDL3-3.2.4\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ObjectFileName>$(IntDir)%(RelativeDir)%(Filename).obj</ObjectFileName>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalOptions>/source-charset:utf-8 /execution-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -263,7 +277,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir);D:\SDL3-3.2.4\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ObjectFileName>$(IntDir)%(RelativeDir)%(Filename).obj</ObjectFileName>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalOptions>/source-charset:utf-8 /execution-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>

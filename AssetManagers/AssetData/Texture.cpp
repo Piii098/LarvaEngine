@@ -106,8 +106,8 @@ void Texture::CreateFromSurface(SDL_Surface* surface) {
     }
 
     // フィルタリング設定
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
     // アライメント設定をリセット
     glPixelStorei(GL_UNPACK_ALIGNMENT, 4);

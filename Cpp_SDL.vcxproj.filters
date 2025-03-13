@@ -47,11 +47,20 @@
     <Filter Include="Scene">
       <UniqueIdentifier>{9fc7a5eb-cf4a-46b1-9b4c-106ce0da6a9d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scene\Scenes">
+    <Filter Include="Scene\Game">
       <UniqueIdentifier>{3fe3ef5f-ad91-4f39-9f0c-71c2057cdc78}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UI">
+    <Filter Include="Scene\UI">
       <UniqueIdentifier>{566842a5-190c-4d4b-8a96-38d24722da36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\NewFilter1">
+      <UniqueIdentifier>{46b96bae-855a-40e6-9b6f-9e2245c7e32a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\UI">
+      <UniqueIdentifier>{502d2382-dd37-4de8-8cf9-f145ad656910}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Game\TItle">
+      <UniqueIdentifier>{d7dd5063-ef93-4c0f-abaa-9a32c49a638f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -163,23 +172,42 @@
     <ClCompile Include="Scene\SceneManager.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Scene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\Scenes\TestScene.cpp">
-      <Filter>Scene\Scenes</Filter>
+    <ClCompile Include="Scene\Game\TestScene.cpp">
+      <Filter>Scene\Game</Filter>
     </ClCompile>
     <ClCompile Include="Components\Draw\TextComponent.cpp">
       <Filter>Components\Draw</Filter>
     </ClCompile>
-    <ClCompile Include="UI\UIScreen.cpp">
-      <Filter>UI</Filter>
+    <ClCompile Include="Scene\UI\UIScene.cpp">
+      <Filter>Scene\UI</Filter>
     </ClCompile>
-    <ClCompile Include="UI\HUD.cpp">
-      <Filter>UI</Filter>
+    <ClCompile Include="Scene\UI\PauseMenu.cpp">
+      <Filter>Scene\UI</Filter>
     </ClCompile>
-    <ClCompile Include="UI\PauseMenu.cpp">
-      <Filter>UI</Filter>
+    <ClCompile Include="Scene\Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\UI\Button.cpp">
+      <Filter>GameObjects\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\UI\Text.cpp">
+      <Filter>GameObjects\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SubScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Game\PlaySubScene.cpp">
+      <Filter>Scene\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\MainScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\UI\TitleUI.cpp" />
+    <ClCompile Include="Scene\Game\Title\TitleScene.cpp">
+      <Filter>Scene\Game\TItle</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Game\Title\PlaySubScene.cpp">
+      <Filter>Scene\Game\TItle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -291,23 +319,42 @@
     <ClInclude Include="Scene\SceneManager.h">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Scene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\Scenes\TestScene.h">
-      <Filter>Scene\Scenes</Filter>
+    <ClInclude Include="Scene\Game\TestScene.h">
+      <Filter>Scene\Game</Filter>
     </ClInclude>
     <ClInclude Include="Components\Draw\TextComponent.h">
       <Filter>Components\Draw</Filter>
     </ClInclude>
-    <ClInclude Include="UI\UIScreen.h">
-      <Filter>UI</Filter>
+    <ClInclude Include="Scene\UI\UIScene.h">
+      <Filter>Scene\UI</Filter>
     </ClInclude>
-    <ClInclude Include="UI\HUD.h">
-      <Filter>UI</Filter>
+    <ClInclude Include="Scene\UI\PauseMenu.h">
+      <Filter>Scene\UI</Filter>
     </ClInclude>
-    <ClInclude Include="UI\PauseMenu.h">
-      <Filter>UI</Filter>
+    <ClInclude Include="Scene\Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\UI\Button.h">
+      <Filter>GameObjects\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\UI\Text.h">
+      <Filter>GameObjects\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SubScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Game\PlaySubScene.h">
+      <Filter>Scene\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\MainScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\UI\TItleUI.h" />
+    <ClInclude Include="Scene\Game\Title\TitleScene.h">
+      <Filter>Scene\Game\TItle</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Game\Title\PlaySubScene.h">
+      <Filter>Scene\Game\TItle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

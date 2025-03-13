@@ -7,14 +7,16 @@ class Frame;
 class Component;
 class Game;
 class ChildObject;
+class GameScene;
 class Scene;
+class Shader;
 
 class GameObject {
 public:
 
     enum class STATE {
         ACTIVE,
-        PAUSED,
+        INACTIVE,
         DEAD
     };
 
@@ -43,6 +45,9 @@ public:
     void PhysUpdate(float deltaTime);
 	virtual void PhysUpdateComponents(float deltaTime);
 	virtual void PhysUpdateObject(float deltaTime);
+
+    void Render(Shader* shader, int bufferLayer); // 描画(継承先でオーバーライド)
+	void RenderUI(Shader* shader); // UI描画(継承先でオーバーライド)
 
     void ComputeWorldTransform();
 

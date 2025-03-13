@@ -81,6 +81,7 @@ void MoveInputComponent::PhysUpdate(float deltaTime){
 	}
 
 	_rigidbodyComp->AddForce(force);
+	_direction = Vector2::Zero;
 }
 
 #pragma endregion

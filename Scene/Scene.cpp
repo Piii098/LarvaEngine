@@ -1,26 +1,18 @@
 ﻿#include "Scene/Scene.h"
-#include "Scene/SceneManager.h"
-#include "Core/Game.h"
-#include "GameObjects/GameObject.h"
-#include "AssetManagers/AssetManager.h"
-#include "Utilities/Input.h"
 #include <algorithm>
-#include "GameObjects/Camera.h"
-#include "GameObjects/Player.h"
-#include "AssetManagers/AssetData/Texture.h"
-#include "UI/UIScreen.h"
+#include "UI/UIScene.h"
 
-#pragma region コンストラクタ:デストラクタ
+#pragma region コンスト
 
-Scene::Scene(SceneManager* maneger)
-	: _manager(maneger) 
-	, _isUpdating(false)
-	, _state(STATE::GAME_PLAY)
-	, _camera(nullptr){
+
+Scene::Scene(SceneManager* manager)
+	: _manager(manager)
+	, _camera(nullptr)
+	, _state(STATE::ACTIVE)
+	, _isUpdating(false) {
 }
 
 Scene::~Scene() {
-
 }
 
 #pragma endregion
@@ -28,35 +20,20 @@ Scene::~Scene() {
 
 #pragma region パブリック関数
 
-void Scene::Initialize() {
-
-	_camera = new Camera(this);
-
-	LoadData();
-}
-
-void Scene::Shutdown() {
-	UnloadData();
-}
-
 void Scene::ProcessInput(Input* input) {
-	switch (_state) {
-	case STATE::GAME_PLAY:
+
+	if (_state == STATE::ACTIVE) {
+
 		_isUpdating = true;
 		for (auto& obj : _objects) {
 			obj->ProcessInput(input);
 		}
 		_isUpdating = false;
-		break;
-	case STATE::PAUSE:
-		_uiScreens.back()->ProcessInput(input);
-		break;
-	default:
-
-		break;
+	
 	}
 
 	InputScene(input);
+
 }
 
 void Scene::Update(float deltaTime) {
@@ -67,13 +44,13 @@ void Scene::Update(float deltaTime) {
 	}
 	_isUpdating = false;
 
+	UpdateScene(deltaTime);
+
 	for (auto pend : _pendingObjects) {
 		pend->ComputeWorldTransform();
 		_objects.emplace_back(pend);
 	}
 	_pendingObjects.clear();
-
-	UpdateScene(deltaTime);
 
 	// 死亡オブジェクトを削除
 	std::vector<GameObject*> deadObjects;
@@ -89,25 +66,7 @@ void Scene::Update(float deltaTime) {
 	_objects.erase(std::remove_if(_objects.begin(), _objects.end(),
 		[](GameObject* obj) { return obj->State() == GameObject::STATE::DEAD; }), _objects.end());
 
-	for (auto ui : _uiScreens) {
-		if (ui->State() == UIScreen::STATE::ACTIVE) {
-			ui->Update(deltaTime);
-		}
-	}
-
-	auto iter = _uiScreens.begin();
-	while (iter != _uiScreens.end()) {
-		if ((*iter)->State() == UIScreen::STATE::CLOSING) {
-			delete *iter;
-			*iter = nullptr;
-			iter = _uiScreens.erase(iter);
-		}
-		else {
-			++iter;
-		}
-	}
 }
-
 
 
 void Scene::PhysUpdate(float deltaTime) {
@@ -121,6 +80,7 @@ void Scene::PhysUpdate(float deltaTime) {
 void Scene::Output() {
 
 }
+
 
 void Scene::AddObject(GameObject* object) {
 	if (_isUpdating) {
@@ -157,42 +117,35 @@ void Scene::RemoveObject(GameObject* object) {
 }
 
 void Scene::DestroyObject(GameObject* object) {
-    // _pendingObjectsから削除
-    auto iter = std::find(_pendingObjects.begin(), _pendingObjects.end(), object);
-    if (iter != _pendingObjects.end()) {
-        delete *iter; // メモリを解放
-        *iter = nullptr; // nullptrに設定
-        _pendingObjects.erase(iter);
-    }
+	// _pendingObjectsから削除
+	auto iter = std::find(_pendingObjects.begin(), _pendingObjects.end(), object);
+	if (iter != _pendingObjects.end()) {
+		delete* iter; // メモリを解放
+		*iter = nullptr; // nullptrに設定
+		_pendingObjects.erase(iter);
+	}
 
-    // _objectsから削除
-    iter = std::find(_objects.begin(), _objects.end(), object);
-    if (iter != _objects.end()) {
-        delete *iter; // メモリを解放
-        *iter = nullptr; // nullptrに設定
-        _objects.erase(iter);
-    }
-}
-
-void Scene::PushUI(UIScreen* screen) {
-	_uiScreens.emplace_back(screen);
-}
-
-#pragma endregion
-
-#pragma region プライベート関数
-
-
-void Scene::LoadData() {
-	
+	// _objectsから削除
+	iter = std::find(_objects.begin(), _objects.end(), object);
+	if (iter != _objects.end()) {
+		delete* iter; // メモリを解放
+		*iter = nullptr; // nullptrに設定
+		_objects.erase(iter);
+	}
 }
 
 void Scene::UnloadData() {
 	for (auto& obj : _objects) {
-		delete obj;
-		obj = nullptr;
+		if (obj != nullptr) {
+			delete obj;
+			obj = nullptr;
+		}
 	}
 	_objects.clear();
+}
+
+void Scene::Shutdown() {
+	UnloadData();
 }
 
 #pragma endregion

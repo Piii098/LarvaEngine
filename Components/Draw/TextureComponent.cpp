@@ -21,10 +21,11 @@ TextureComponent::TextureComponent(GameObject* parent, int bufferLayer, int draw
 	, _selfLightIntensity(0.f)
 	, _flipX(false)
 	, _flipY(false)
-	, _drawLayer(drawLayer)
-	, _bufferLayer(bufferLayer){
+	, _drawLayer(drawLayer){
+	SetBufferLayer(bufferLayer);
 	_textureManager = _parent->GetScene()->GetManager()->GetGame()->GetTextureManager();
 }
+
 
 TextureComponent::~TextureComponent() {
 	delete _texture;
