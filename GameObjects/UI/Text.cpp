@@ -6,8 +6,7 @@
 Text::Text(Scene* scene, const std::string& fontName, const Vector3& color, int pointSize, const std::string& text)
 	: GameObject(scene)
 {
-	_textComp = new TextComponent(this, 0, fontName);
-	_textComp->CreateTextTexture(text, color, pointSize);
+	CreateText(fontName, color, pointSize, text);
 }
 
 Text::~Text() {
@@ -30,6 +29,20 @@ void Text::CreateOutline(const Vector3& color) {
 	_outlineComp = new TextComponent(this, 0, _textComp->GetFontName());
 	_outlineComp->CreateTextTexture(_textComp->GetText(), color, _textComp->GetPointSize(), true);
 
+}
+
+void Text::CreateText(const std::string& fontName, const Vector3& color, int pointSize, const std::string& text) {
+	if (_textComp) {
+		_textComp->CreateTextTexture(text, color, pointSize);
+	}
+	else {
+		_textComp = new TextComponent(this, 0, fontName);
+		_textComp->CreateTextTexture(text, color, pointSize);
+	}
+}
+
+void Text::SetAlignLeft() {
+	_textComp->SetHorizontalAlign(TextureComponent::HorizontalAlign::Left);
 }
 
 

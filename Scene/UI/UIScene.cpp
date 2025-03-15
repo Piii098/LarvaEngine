@@ -23,6 +23,10 @@ UIScene::~UIScene() {
 
 #pragma region パブリック関数
 
+void UIScene::Initialize() {
+	LoadData();
+}
+
 void UIScene::InputScene(Input* input) {
 	Scene::InputScene(input);
 	InputUI(input);

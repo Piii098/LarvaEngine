@@ -12,6 +12,7 @@
 #include "Utilities/Input.h"
 #include "Scene/Game/PlaySubScene.h"
 #include "GameObjects/UI/Text.h"
+#include "Scene/UI/HUD.h"
 
 #pragma region コンストラクタ:デストラクタ
 
@@ -51,14 +52,13 @@ void TestScene::LoadData() {
 	GetManager()->GetGame()->GetTextureManager()->Load("Tile", "Assets/16Tile.png");
 	GetManager()->GetGame()->GetTextureManager()->Load("RedBox", "Assets/RedBox.png");
 	GetManager()->GetGame()->GetTileMapManager()->Load("TileMap", "Assets/TileMap.csv");
-	GetManager()->GetGame()->GetFontManager()->Load("DelaSuko", "Assets/DelaSukoGothicOne-R.ttf");
 
 	_player = new Player(this);
 	TileMapObject* _tileMapObject = new TileMapObject(this);
 	
 	_tileMapObject->SetOnTile(_player, -2);
 	_camera = new Camera(this);
-
+	GetCamera()->Position(_player->Position());
 	GetCamera()->Target(_player);
 	new Background(this);
 
@@ -66,6 +66,7 @@ void TestScene::LoadData() {
 
 	_currentSubScene = new test::PlaySubScene(this, _player);
 	_currentSubScene->Initialize();
+	CreateUIScene<HUD>();
 }
 
 #pragma endregion

@@ -16,7 +16,7 @@ public:
 	UIScene(MainScene* scene);
 	virtual ~UIScene();
 
-	virtual void Initialize() override {};
+	virtual void Initialize() override;
 	void InputScene(Input* input) override;
 	virtual void InputUI(Input* input) {};
 	void UpdateScene(float deltaTime) override;

@@ -5,6 +5,8 @@
 #include "Core/Game.h"
 #include <algorithm>
 #include "Scene/Scene.h"
+#include "Scene/MainScene.h"
+#include "Scene/SceneManager.h"
 
 #pragma region con
 
@@ -23,7 +25,6 @@ GameObject::GameObject(Scene* scene)
 GameObject::~GameObject() {
 	_scene->RemoveObject(this);
 }
-
 
 #pragma endregion
 
@@ -188,6 +189,10 @@ void GameObject::ComputeWorldTransform() {
 	}
 }
 
+
+MainScene* GameObject::GetMainScene() {
+	return _scene->GetManager()->GetCurrentMainScene();
+}
 
 #pragma endregion
 

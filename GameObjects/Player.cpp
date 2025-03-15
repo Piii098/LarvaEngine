@@ -12,6 +12,7 @@
 #include <iostream>
 #include "Utilities/Frame.h"
 #include "Phys/PhysWorld2D.h"
+#include "Scene/MainScene.h"
 #include "GameObjects/TestObject.h"
 #include "Scene/Scene.h"
 #include "Components/Draw/TextComponent.h"
@@ -43,6 +44,10 @@ Player::Player(Scene* scene)
 	_moveInputComp->MoveSpeedX(80.f);
 	_moveInputComp->JumpForce(1000000.f);
 	_moveInputComp->SetState(Component::STATE::INACTIVE);
+	
+	GetMainScene()->SetData("Player.Position.X", Position().x);
+	GetMainScene()->SetGetter("Player.Position.X", [this]() {return Position().x; });
+
 	//TextComponent* textComp = new TextComponent(this, 15, "DelaSuko");
 	//textComp->CreateTextTexture("PLAYER", Vector3::fromIntRGB(255, 0, 0), 30);
 

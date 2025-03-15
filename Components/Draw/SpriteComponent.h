@@ -19,8 +19,6 @@ public:
 	SpriteComponent(GameObject* parent, int bufferLayer, int drawLayer = 150);
 	~SpriteComponent() override;
 
-	void Render(Shader* shader) override;
-
 	/*ゲッターセッター*/
 
 };

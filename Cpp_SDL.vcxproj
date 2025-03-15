@@ -47,6 +47,7 @@
     <ClCompile Include="GameObjects\TestObject.cpp" />
     <ClCompile Include="GameObjects\TileMapObject.cpp" />
     <ClCompile Include="GameObjects\UI\Button.cpp" />
+    <ClCompile Include="GameObjects\UI\DataText.cpp" />
     <ClCompile Include="Phys\PhysWorld2D.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Renderer\Shader.cpp" />
@@ -66,6 +67,7 @@
     <ClCompile Include="Utilities\Collision2D.cpp" />
     <ClCompile Include="Utilities\Font.cpp" />
     <ClCompile Include="Utilities\Frame.cpp" />
+    <ClCompile Include="Scene\UI\HUD.cpp" />
     <ClCompile Include="Utilities\Input.cpp" />
     <ClCompile Include="Utilities\Math.cpp" />
   </ItemGroup>
@@ -92,6 +94,7 @@
     <ClInclude Include="Components\TileMapComponent.h" />
     <ClInclude Include="Core\Game.h" />
     <ClInclude Include="GameObjects\UI\Button.h" />
+    <ClInclude Include="GameObjects\UI\DataText.h" />
     <ClInclude Include="GameObjects\UI\Text.h" />
     <ClInclude Include="Scene\Game\PlaySubScene.h" />
     <ClInclude Include="Scene\MainScene.h" />
@@ -112,13 +115,16 @@
     <ClInclude Include="Scene\SubScene.h" />
     <ClInclude Include="Scene\UI\PauseMenu.h" />
     <ClInclude Include="Scene\Game\Title\PlaySubScene.h" />
-    <ClInclude Include="Scene\UI\TItleUI.h" />
+    <ClInclude Include="Scene\UI\TitleUI.h" />
     <ClInclude Include="Scene\UI\UIScene.h" />
     <ClInclude Include="Utilities\Collision2D.h" />
+    <ClInclude Include="Utilities\DataTypes.h" />
     <ClInclude Include="Utilities\Font.h" />
     <ClInclude Include="Utilities\Frame.h" />
+    <ClInclude Include="Scene\UI\HUD.h" />
     <ClInclude Include="Utilities\Input.h" />
     <ClInclude Include="Utilities\Math.h" />
+    <ClInclude Include="Utilities\Reactive.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Renderer\Shaders\Background.frag" />

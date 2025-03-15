@@ -1,14 +1,19 @@
 #pragma once
 #include "Scene/UI/UIScene.h"
 
+class Button;
+
 class TitleUI : public UIScene {
 public:
-	TitleUI(SceneManager* manager);
+	TitleUI(MainScene* scene);
 	~TitleUI() override;
 
-	void Initialize() override;
+	//void Initialize() override;
 
-	void LoadData() override;
 private:
+	
+	void LoadData() override;
+
+	Button* _button;
 
 };

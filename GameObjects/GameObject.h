@@ -10,6 +10,7 @@ class ChildObject;
 class GameScene;
 class Scene;
 class Shader;
+class MainScene;
 
 class GameObject {
 public:
@@ -75,6 +76,7 @@ public:
     /*ゲッターセッター*/
 
     Scene* GetScene() { return _scene; };
+    MainScene* GetMainScene();
 	GameObject* GetParent() { return _parent; };
 	std::vector<GameObject*> GetChildren() { return _childrenObjects; };
 	void SetParent(GameObject* parent) { _parent = parent; };
