@@ -26,6 +26,7 @@ D:\Github\Cpp_SDL\GameObjects\Player.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Gam
 D:\Github\Cpp_SDL\GameObjects\TestObject.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\GameObjects\TestObject.obj
 D:\Github\Cpp_SDL\GameObjects\TileMapObject.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\GameObjects\TileMapObject.obj
 D:\Github\Cpp_SDL\GameObjects\UI\Button.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\GameObjects\UI\Button.obj
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\GameObjects\UI\DataText.obj
 D:\Github\Cpp_SDL\Phys\PhysWorld2D.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Phys\PhysWorld2D.obj
 D:\Github\Cpp_SDL\Renderer\Renderer.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Renderer\Renderer.obj
 D:\Github\Cpp_SDL\Renderer\Shader.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Renderer\Shader.obj
@@ -45,5 +46,6 @@ D:\Github\Cpp_SDL\GameObjects\UI\Text.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Ga
 D:\Github\Cpp_SDL\Utilities\Collision2D.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Utilities\Collision2D.obj
 D:\Github\Cpp_SDL\Utilities\Font.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Utilities\Font.obj
 D:\Github\Cpp_SDL\Utilities\Frame.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Utilities\Frame.obj
+D:\Github\Cpp_SDL\Scene\UI\HUD.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Scene\UI\HUD.obj
 D:\Github\Cpp_SDL\Utilities\Input.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Utilities\Input.obj
 D:\Github\Cpp_SDL\Utilities\Math.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Utilities\Math.obj

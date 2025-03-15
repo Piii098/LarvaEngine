@@ -1,5 +1,7 @@
 #pragma once
 #include <functional>
+#include <unordered_map>
+#include <vector>
 #include <string>
 #include "GameObjects/GameObject.h"
 
@@ -8,22 +10,40 @@ class SpriteComponent;
 class TextComponent;
 
 
+struct ButtonData {
+	bool isPressed = false;
+	bool isHovered = false;
+	std::function<void()> onClick = nullptr;
+	SpriteComponent* spriteComp = nullptr;
+	TextComponent* textComp = nullptr;
+};
+
 class Button : public GameObject {
 public:
 	Button(Scene* scene);
 	~Button() override;
 
 	void InputObject(Input* input) override;
-	void SetText(const std::string& text, const std::string& fontPath, int pointSize, const Vector3& color);
-	void IsPresse(bool isPressed) { _isPressed = isPressed; }
-	bool IsPressed() const { return _isPressed; }
 
-	void SetOnClick(std::function<void()> onClick) { _onClick = onClick; }
+	void UpdateObject(float deltaTime) override;
+	void SetText(int key, const std::string& text, const std::string& fontName, int pointSize, const Vector3& color);
+
+	void SetOnClick(int key, std::function<void()> onClick);
+	
+	void CreateButtonData();
+
+	void SetOffset(const Vector2& offset);
 
 private:
+
+	Vector2 _offset;
+
 	bool _isPressed;
 	bool _isHovered;
 	std::function<void()> _onClick;
 	SpriteComponent* _spriteComp;
 	TextComponent* _textComp;
+
+	std::vector<ButtonData> _buttonData;
+	int _hoveredIndex;
 };

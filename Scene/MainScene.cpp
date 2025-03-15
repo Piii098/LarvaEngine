@@ -82,6 +82,38 @@ void MainScene::RemoveUIScene(UIScene* uiScene) {
 void MainScene::Shutdown() {
 }
 
+void MainScene::SetData(const std::string& key, GameTypes::DataValue value) {
+	
+	_data[key] = value;
+}
 
+void MainScene::SetGetter(const std::string& key, std::function<GameTypes::DataValue()> getter) {
+	_getter[key] = getter;
+}
+
+GameTypes::DataValue MainScene::GetData(const std::string& key) {
+	// まずデータが存在するか確認
+	auto iterData = _data.find(key);
+	if (iterData == _data.end()) {
+		return std::monostate{};  // データが存在しない
+	}
+
+	// ゲッターがあるか確認
+	auto iterGetter = _getter.find(key);
+	if (iterGetter != _getter.end()) {
+
+		// ゲッターが存在する場合は現在値を取得して比較
+		auto currentValue = iterGetter->second();
+		auto& sceneValue = iterData->second;
+		if (sceneValue != currentValue) {
+			// 値が変わっていれば更新
+			sceneValue = currentValue;
+		}
+
+	}
+
+	// 最終的には_data内の値を返す
+	return iterData->second;
+}
 
 #pragma endregion

@@ -21,6 +21,9 @@ TextureComponent::TextureComponent(GameObject* parent, int bufferLayer, int draw
 	, _selfLightIntensity(0.f)
 	, _flipX(false)
 	, _flipY(false)
+	, _positionOffset(Vector2::Zero)
+	, _color(Vector3(1.f, 1.f, 1.f))
+	, _horizontalAlign(HorizontalAlign::Center)
 	, _drawLayer(drawLayer){
 	SetBufferLayer(bufferLayer);
 	_textureManager = _parent->GetScene()->GetManager()->GetGame()->GetTextureManager();
@@ -35,17 +38,53 @@ TextureComponent::~TextureComponent() {
 #pragma endregion
 
 void TextureComponent::Render(Shader* shader) {
+
     if (_texture) {
+        float scaleX = _flipX ? -1.f : 1.f;
+        float scaleY = _flipY ? -1.f : 1.f;
 
-		float scaleX = _flipX ? -1.f : 1.f;
-		float scaleY = _flipY ? -1.f : 1.f;
+        // テクスチャの実際の幅（スケールを適用した値）
+        float actualWidth = static_cast<float>(_texWidth) * _texScale.x;
 
-		Matrix4 scaleMat = Matrix4::CreateScale(25, 25, 1.0f);
-		Matrix4 world = scaleMat ;
+        // 水平方向の位置調整オフセット値を計算
+        float horizontalOffset = 0.0f;
 
+        switch (_horizontalAlign) {
+        case HorizontalAlign::Left:
+            // 左揃えの場合、テクスチャの半分の幅を右に移動
+            horizontalOffset = actualWidth * 0.5f;
+            break;
+
+        case HorizontalAlign::Right:
+            // 右揃えの場合、テクスチャの半分の幅を左に移動
+            horizontalOffset = -actualWidth * 0.5f;
+            break;
+
+        case HorizontalAlign::Center:
+        default:
+            // 中央揃えの場合、位置調整は不要
+            horizontalOffset = 0.0f;
+            break;
+        }
+
+        // スケールマトリックスの作成
+        Matrix4 scaleMat = Matrix4::CreateScale(
+            scaleX * actualWidth,
+            scaleY * static_cast<float>(_texHeight) * _texScale.y,
+            1.0f);
+
+        // 平行移動マトリックスの作成（水平方向の揃えを考慮）
+        Matrix4 translationMat = Matrix4::CreateTranslation(
+            Vector3(_positionOffset.x + horizontalOffset, _positionOffset.y, 0.0f));
+
+        // ワールド変換マトリックスの計算
+        Matrix4 world = scaleMat * translationMat * _parent->WorldTransform();
+
+        // 以下は既存のコード
         shader->SetMatrixUniform("uWorldTransform", world);
         shader->SetVector2Uniform("uTexOffset", _texOffset);
         shader->SetVector2Uniform("uTexScale", _texScale);
+        shader->SetVector3Uniform("uColor", _color);
 
         _texture->SetActive();
 

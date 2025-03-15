@@ -1,8 +1,13 @@
 #pragma once
 #include "Scene/Scene.h"
 #include <vector>
+#include <functional>
+#include <unordered_map>
 #include "GameObjects/GameObject.h"
 #include "Scene/SubScene.h"
+#include "Utilities/DataTypes.h"
+#include <string>
+#include <variant>
 
 class SceneManager;
 class Input;
@@ -56,10 +61,15 @@ public:
     virtual void UnloadData() override {}; // ƒf[ƒ^‚Ì‰ğ•ú
     Camera* GetCamera() const { return _camera; }
 
+    void SetData(const std::string& key, GameTypes::DataValue value);
+    GameTypes::DataValue GetData(const std::string& key);
+    void SetGetter(const std::string& key, std::function<GameTypes::DataValue()> getter);
+       
 protected:
     Camera* _camera;
 
 	SubScene* _currentSubScene;
 	std::vector<UIScene*> _uiScenes;
-
+	std::unordered_map<std::string, GameTypes::DataValue> _data;
+    std::unordered_map<std::string, std::function<GameTypes::DataValue()>> _getter;
 };

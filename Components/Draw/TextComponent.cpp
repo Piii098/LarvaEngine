@@ -41,6 +41,7 @@ void TextComponent::CreateTextTexture(std::string text, Vector3 color, int point
 
 	_text = text;
 	_pointSize = pointSize;
+	_textColor = color;
 	_font->IsOutline(isOutline);
 	_texture = _font->RenderText(text, color, pointSize);
 
@@ -52,26 +53,6 @@ void TextComponent::CreateTextTexture(std::string text, Vector3 color, int point
 		SDL_Log("Failed to load texture: %s", text.c_str());
 	}
 
-}
-
-void TextComponent::Render(Shader* shader) {
-	
-	if (!_texture) {
-		return;
-	}
-
-	Matrix4 scaleMat = Matrix4::CreateScale(static_cast<float>(_texWidth), static_cast<float>(_texHeight), 1.0f);
-	Matrix4 world = scaleMat * GetParent()->WorldTransform();
-
-	shader->SetMatrixUniform("uWorldTransform", world);
-	shader->SetVector2Uniform("uTexOffset", Vector2(1.f, 1.f));
-	shader->SetVector2Uniform("uTexScale", Vector2(1.f, 1.f));
-	shader->SetVector3Uniform("selfLightColor", Vector3(1.f, 1.f, 1.f));
-	shader->SetFloatUniform("selfLightIntensity", 1.f);
-
-	_texture->SetActive();
-
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 }
 
 

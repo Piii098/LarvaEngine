@@ -44,11 +44,11 @@ void SceneManager::Output() {
 }   
 
 void SceneManager::Shutdown() {
-	DestroyScene();
+	//DestroyScene();
 }
 
 void SceneManager::DestroyScene() {
-	_currentMainScene->Shutdown();
+	
 	if (_currentMainScene != nullptr) {
 		_currentMainScene->Shutdown();
 		delete _currentMainScene;

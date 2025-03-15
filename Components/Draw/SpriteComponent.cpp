@@ -24,32 +24,6 @@ SpriteComponent::~SpriteComponent() {
 
 #pragma region パブリック関数
 
-void SpriteComponent::Render(Shader* shader) {
-
-	if (_texture) {
-
-
-		float scaleX = _flipX ? -1.f : 1.f;
-		float scaleY = _flipY ? -1.f : 1.f;
-
-		Matrix4 scaleMat = Matrix4::CreateScale(scaleX * static_cast<float>(_texWidth) * _texScale.x,
-			scaleY * static_cast<float>(_texHeight) * _texScale.y,
-			1.0f);
-		Matrix4 world = scaleMat * _parent->WorldTransform();
-
-		shader->SetMatrixUniform("uWorldTransform", world);
-		shader->SetVector2Uniform("uTexOffset", _texOffset);
-        shader->SetVector2Uniform("uTexScale", _texScale);
-		//shader->SetVector3Uniform("selfLightColor", _selfLightColor);
-		//shader->SetFloatUniform("selfLightIntensity", _selfLightIntensity);
-
-		_texture->SetActive();
-
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
-	}
-
-}
-
 #pragma endregion
 
 #pragma region プライベート関数
