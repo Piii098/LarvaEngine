@@ -23,8 +23,11 @@
     <ClCompile Include="AssetManagers\AssetData\TileMap.cpp" />
     <ClCompile Include="AssetManagers\TextureManager.cpp" />
     <ClCompile Include="AssetManagers\TileMapManager.cpp" />
+    <ClCompile Include="Audio\AudioSystem.cpp" />
+    <ClCompile Include="Audio\SoundEvent.cpp" />
     <ClCompile Include="Components\AI\AICompoennt.cpp" />
     <ClCompile Include="Components\AI\AIState.cpp" />
+    <ClCompile Include="Components\Audio\AudioComponent.cpp" />
     <ClCompile Include="Components\Camera\CameraComponent.cpp" />
     <ClCompile Include="Components\Camera\FollowCameraComponent.cpp" />
     <ClCompile Include="Components\Component.cpp" />
@@ -77,8 +80,11 @@
     <ClInclude Include="AssetManagers\AssetManager.h" />
     <ClInclude Include="AssetManagers\TextureManager.h" />
     <ClInclude Include="AssetManagers\TileMapManager.h" />
+    <ClInclude Include="Audio\AudioSystem.h" />
+    <ClInclude Include="Audio\SoundEvent.h" />
     <ClInclude Include="Components\AI\AICompoennt.h" />
     <ClInclude Include="Components\AI\AIState.h" />
+    <ClInclude Include="Components\Audio\AudioComponent.h" />
     <ClInclude Include="Components\Camera\CameraComponent.h" />
     <ClInclude Include="Components\Camera\FollowCameraComponent.h" />
     <ClInclude Include="Components\Component.h" />
@@ -210,7 +216,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);D:\SDL3-3.2.4\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);D:\SDL3-3.2.4\include;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\studio\inc;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(Filename).obj</ObjectFileName>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalOptions>/source-charset:utf-8 /execution-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
@@ -218,8 +224,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\SDL3-3.2.4\lib\x64</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL3_test.lib;SDL3.lib;SDL3_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\SDL3-3.2.4\lib\x64;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\core\lib\x64;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\studio\lib\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL3_test.lib;SDL3.lib;SDL3_ttf.lib;fmodstudio_vc.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -234,7 +240,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);D:\SDL3-3.2.4\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);D:\SDL3-3.2.4\include;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\studio\inc;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(Filename).obj</ObjectFileName>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalOptions>/source-charset:utf-8 /execution-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
@@ -244,8 +250,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\SDL3-3.2.4\lib\x64</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL3_test.lib;SDL3.lib;SDL3_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\SDL3-3.2.4\lib\x64;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\core\lib\x64;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\studio\lib\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL3_test.lib;SDL3.lib;SDL3_ttf.lib;fmodstudio_vc.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -258,7 +264,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);D:\SDL3-3.2.4\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);D:\SDL3-3.2.4\include;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\studio\inc;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(Filename).obj</ObjectFileName>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalOptions>/source-charset:utf-8 /execution-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
@@ -266,8 +272,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\SDL3-3.2.4\lib\x64</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL3_test.lib;SDL3.lib;SDL3_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\SDL3-3.2.4\lib\x64;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\core\lib\x64;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\studio\lib\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL3_test.lib;SDL3.lib;SDL3_ttf.lib;fmodstudio_vc.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -282,7 +288,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);D:\SDL3-3.2.4\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);D:\SDL3-3.2.4\include;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\studio\inc;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(Filename).obj</ObjectFileName>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalOptions>/source-charset:utf-8 /execution-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
@@ -292,8 +298,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\SDL3-3.2.4\lib\x64</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL3_test.lib;SDL3.lib;SDL3_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\SDL3-3.2.4\lib\x64;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\core\lib\x64;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\studio\lib\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL3_test.lib;SDL3.lib;SDL3_ttf.lib;fmodstudio_vc.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>

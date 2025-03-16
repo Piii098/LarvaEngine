@@ -1,4 +1,1503 @@
-﻿  HUD.cpp
+﻿  Player.cpp
+D:\Github\Cpp_SDL\Utilities\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Frame.h(12,38): warning C4244: 'return': 'const float' から 'Uint64' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x653 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x655 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x657 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x659 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x660 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x661 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x662 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x693 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x695 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x697 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x699 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x69c から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x55 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x57 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x59 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5a から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5d から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x63 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x65 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x66 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x67 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6f から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x70 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc5 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc6 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc7 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc8 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc9 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xca から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xce から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x51 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x54 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x55 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x57 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x59 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x5b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x5d から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x5e から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x5f から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x65 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x66 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x6a から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x6b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x71 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x75 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x77 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x78 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x79 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x7b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x7c から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x80 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x81 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x83 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x84 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x87 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x89 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x8b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x8c から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x8d から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x8e から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x8f から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x91 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x93 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x98 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x9b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0x9e から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Audio\SoundEvent.h(1,1): warning C4828: オフセット 0xa2 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/Player.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\GameObjects\Player.cpp(37,57): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\GameObjects\Player.cpp(37,51): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\GameObjects\Player.cpp(37,34): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\GameObjects\Player.cpp(37,27): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  TestObject.cpp
+D:\Github\Cpp_SDL\Utilities\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/TestObject.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/TestObject.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/TestObject.cpp' をコンパイルしています)
+  
+  TileMapObject.cpp
+D:\Github\Cpp_SDL\Utilities\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/TileMapObject.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/TileMapObject.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/TileMapObject.cpp' をコンパイルしています)
+  
+  Button.cpp
+D:\Github\Cpp_SDL\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/UI/Button.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\GameObjects\UI\Button.cpp(16,3): warning C4150: 'SpriteComponent' 型を削除するため delete 演算子が呼び出されましたが、定義がありません。
+  D:\Github\Cpp_SDL\GameObjects\UI\Button.h(9,7):
+  'SpriteComponent' の宣言を確認してください
+  
+D:\Github\Cpp_SDL\GameObjects\UI\Button.cpp(39,44): warning C4267: '=': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+D:\Github\Cpp_SDL\GameObjects\UI\Button.cpp(56,74): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+D:\Github\Cpp_SDL\GameObjects\UI\Button.cpp(56,70): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+D:\Github\Cpp_SDL\GameObjects\UI\Button.cpp(56,66): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+D:\Github\Cpp_SDL\GameObjects\UI\Button.cpp(65,46): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\GameObjects\UI\Button.cpp(77,52): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  DataText.cpp
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4d0 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4d1 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4d2 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4d4 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4d5 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4d6 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4d7 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4d8 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4d9 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4da から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4db から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4de から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4df から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4e0 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4e3 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4e4 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4e6 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4e7 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4e8 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4ec から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4ee から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4f0 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4f1 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x4f5 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x546 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x547 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x548 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x54a から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x54b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x54c から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x54d から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x54e から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x551 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x552 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x556 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x55a から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x55c から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x55e から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\GameObjects\UI\DataText.cpp(1,1): warning C4828: オフセット 0x561 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Github\Cpp_SDL\Utilities\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x55 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x57 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x59 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5a から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5d から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x63 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x65 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x66 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x67 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6f から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x70 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc5 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc6 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc7 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc8 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc9 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xca から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xce から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x653 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x655 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x657 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x659 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x660 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x661 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x662 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x693 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x695 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x697 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x699 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x69c から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'GameObjects/UI/DataText.cpp' をコンパイルしています)
+  
+  PhysWorld2D.cpp
+D:\Github\Cpp_SDL\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Phys/PhysWorld2D.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Frame.h(12,38): warning C4244: 'return': 'const float' から 'Uint64' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Phys/PhysWorld2D.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Phys\PhysWorld2D.cpp(125,15): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Phys\PhysWorld2D.cpp(126,15): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Phys\PhysWorld2D.cpp(127,15): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Phys\PhysWorld2D.cpp(128,15): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
+  Renderer.cpp
+D:\Github\Cpp_SDL\Utilities\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x653 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x655 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x657 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x659 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x660 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x661 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x662 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x693 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x695 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x697 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x699 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x69c から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x55 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x57 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x59 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5a から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5d から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x63 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x65 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x66 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x67 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6f から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x70 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc5 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc6 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc7 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc8 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc9 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xca から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xce から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Renderer/Renderer.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Renderer\Renderer.cpp(59,54): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer\Renderer.cpp(59,40): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer\Renderer.cpp(128,40): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer\Renderer.cpp(128,26): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer\Renderer.cpp(148,33): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer\Renderer.cpp(161,36): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer\Renderer.cpp(161,22): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer\Renderer.cpp(237,63): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer\Renderer.cpp(237,49): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer\Renderer.cpp(258,59): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+D:\Github\Cpp_SDL\Renderer\Renderer.cpp(258,45): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
+  PlaySubScene.cpp
+D:\Github\Cpp_SDL\Utilities\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x653 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x655 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x657 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x659 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x660 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x661 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x662 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x693 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x695 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x697 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x699 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x69c から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x55 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x57 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x59 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5a から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5d から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x63 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x65 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x66 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x67 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6f から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x70 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc5 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc6 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc7 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc8 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc9 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xca から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xce から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/PlaySubScene.cpp' をコンパイルしています)
+  
+  MainScene.cpp
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x653 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x655 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x657 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x659 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x660 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x661 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x662 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x693 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x695 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x697 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x699 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x69c から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x55 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x57 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x59 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5a から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5d から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x63 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x65 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x66 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x67 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6f から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x70 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc5 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc6 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc7 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc8 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc9 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xca から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xce から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/MainScene.cpp' をコンパイルしています)
+  
+  Scene.cpp
+D:\Github\Cpp_SDL\Utilities\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/Scene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/Scene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/Scene.cpp' をコンパイルしています)
+  
+  SceneManager.cpp
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x653 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x655 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x657 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x659 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x660 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x661 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x662 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x693 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x695 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x697 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x699 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x69c から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x55 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x57 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x59 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5a から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5d から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x63 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x65 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x66 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x67 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6f から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x70 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc5 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc6 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc7 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc8 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc9 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xca から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xce から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/SceneManager.cpp' をコンパイルしています)
+  
+  TestScene.cpp
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x653 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x655 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x657 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x659 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x660 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x661 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x662 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x693 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x695 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x697 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x699 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x69c から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x55 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x57 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x59 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5a から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5d から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x63 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x65 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x66 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x67 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6f から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x70 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc5 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc6 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc7 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc8 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc9 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xca から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xce から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/TestScene.cpp' をコンパイルしています)
+  
+  TitleScene.cpp
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x653 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x655 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x657 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x659 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x660 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x661 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x662 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x693 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x695 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x697 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x699 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x69c から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x55 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x57 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x59 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5a から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5d から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x63 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x65 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x66 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x67 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6f から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x70 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc5 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc6 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc7 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc8 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc9 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xca から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xce から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/TitleScene.cpp' をコンパイルしています)
+  
+  PauseMenu.cpp
+D:\Github\Cpp_SDL\Utilities\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x653 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x655 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x657 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x659 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x660 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x661 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x662 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x693 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x695 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x697 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x699 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x69c から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x55 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x57 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x59 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5a から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5d から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x63 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x65 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x66 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x67 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6f から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x70 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc5 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc6 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc7 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc8 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc9 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xca から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xce から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/PauseMenu.cpp' をコンパイルしています)
+  
+  PlaySubScene.cpp
+D:\Github\Cpp_SDL\Utilities\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x653 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x655 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x657 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x659 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x660 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x661 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x662 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x693 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x695 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x697 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x699 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x69c から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x55 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x57 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x59 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5a から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5d から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x63 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x65 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x66 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x67 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6f から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x70 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc5 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc6 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc7 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc8 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc9 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xca から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xce から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/Game/Title/PlaySubScene.cpp' をコンパイルしています)
+  
+  TitleUI.cpp
+D:\Github\Cpp_SDL\Utilities\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x653 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x655 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x657 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x659 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x660 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x661 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x662 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x693 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x695 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x697 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x699 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x69c から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x55 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x57 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x59 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5a から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5d から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x63 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x65 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x66 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x67 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6f から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x70 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc5 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc6 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc7 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc8 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc9 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xca から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xce から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/TitleUI.cpp' をコンパイルしています)
+  
+  UIScene.cpp
+D:\Github\Cpp_SDL\Utilities\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x653 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x655 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x657 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x659 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x660 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x661 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x662 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x693 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x695 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x697 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x699 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Scene\MainScene.h(1,1): warning C4828: オフセット 0x69c から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x55 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x57 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x59 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5a から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x5d から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x63 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x65 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x66 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x67 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x6f から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0x70 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc5 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc6 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc7 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc8 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xc9 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xca から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\DataTypes.h(1,1): warning C4828: オフセット 0xce から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+  (ソース ファイル 'Scene/UI/UIScene.cpp' をコンパイルしています)
+  
+  Text.cpp
+D:\Github\Cpp_SDL\Utilities\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/UI/Text.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/UI/Text.cpp' をコンパイルしています)
+  
+D:\Github\Cpp_SDL\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameObjects/UI/Text.cpp' をコンパイルしています)
+  
+  HUD.cpp
 D:\Github\Cpp_SDL\Utilities\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Scene/UI/HUD.cpp' をコンパイルしています)
   

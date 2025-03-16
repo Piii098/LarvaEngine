@@ -2,8 +2,11 @@ D:\Github\Cpp_SDL\AssetManagers\AssetData\Texture.cpp;D:\Github\Cpp_SDL\Cpp_SDL\
 D:\Github\Cpp_SDL\AssetManagers\AssetData\TileMap.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\AssetManagers\AssetData\TileMap.obj
 D:\Github\Cpp_SDL\AssetManagers\TextureManager.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\AssetManagers\TextureManager.obj
 D:\Github\Cpp_SDL\AssetManagers\TileMapManager.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\AssetManagers\TileMapManager.obj
+D:\Github\Cpp_SDL\Audio\AudioSystem.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Audio\AudioSystem.obj
+D:\Github\Cpp_SDL\Audio\SoundEvent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Audio\SoundEvent.obj
 D:\Github\Cpp_SDL\Components\AI\AICompoennt.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Components\AI\AICompoennt.obj
 D:\Github\Cpp_SDL\Components\AI\AIState.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Components\AI\AIState.obj
+D:\Github\Cpp_SDL\Components\Audio\AudioComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Components\Audio\AudioComponent.obj
 D:\Github\Cpp_SDL\Components\Camera\CameraComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Components\Camera\CameraComponent.obj
 D:\Github\Cpp_SDL\Components\Camera\FollowCameraComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Components\Camera\FollowCameraComponent.obj
 D:\Github\Cpp_SDL\Components\Component.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Components\Component.obj

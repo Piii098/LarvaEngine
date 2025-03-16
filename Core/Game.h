@@ -23,6 +23,7 @@ template <typename T>
 class AssetManager;
 class TileMapObject;
 class Camera;
+class AudioSystem;
 
 struct Ball {
     Vector2 pos;
@@ -42,6 +43,7 @@ public:
     Player* GetPlayer() const { return _player; }
     PhysWorld2D* GetPhysWorld() const { return _physWorld; }
     Renderer* GetRenderer() const { return _renderer; }
+	AudioSystem* GetAudioSystem() const { return _audioSystem; }
 	AssetManager<Texture>* GetTextureManager() { return _textureManager; }
 	AssetManager<TileMap>* GetTileMapManager()  { return _tileMapManager; }
     AssetManager<Font>* GetFontManager() { return _fontManager; };
@@ -69,6 +71,7 @@ private:
 
     SceneManager* _sceneManager;
     PhysWorld2D* _physWorld;
+	AudioSystem* _audioSystem;
     Renderer* _renderer;
     bool _isRunning;
 

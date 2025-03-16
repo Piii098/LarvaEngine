@@ -20,6 +20,7 @@
 #include "AssetManagers/AssetData/TileMap.h"
 #include "GameObjects/TileMapObject.h"
 #include "Scene/SceneManager.h"
+#include "Audio/AudioSystem.h"
 
 #pragma region Constructor:Destructor
 
@@ -59,6 +60,14 @@ bool Game::Initialize() {
 		SDL_Log("Failed to intialized renderer");
 		delete _renderer;
 		_renderer = nullptr;
+		return false;
+	}
+
+	_audioSystem = new AudioSystem(this);
+	if (!_audioSystem->Initialize()) {
+		SDL_Log("Failed to intialized audio system");
+		delete _audioSystem;
+		_audioSystem = nullptr;
 		return false;
 	}
 
@@ -132,6 +141,8 @@ void Game::Update() {
 	PhysUpdate();
 
 	UpdateScene();
+
+	_audioSystem->Update(_frame->DeltaTime());
 }
 
 void Game::PhysUpdate() {

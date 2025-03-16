@@ -16,6 +16,8 @@
 #include "GameObjects/TestObject.h"
 #include "Scene/Scene.h"
 #include "Components/Draw/TextComponent.h"
+#include "Components/Audio/AudioComponent.h"
+#include "Audio/SoundEvent.h"
 
 #pragma region コンストラクタ:デストラクタ
 
@@ -47,6 +49,9 @@ Player::Player(Scene* scene)
 	
 	GetMainScene()->SetData("Player.Position.X", Position().x);
 	GetMainScene()->SetGetter("Player.Position.X", [this]() {return Position().x; });
+
+	_audioComp = new AudioComponent(this);
+	_audioComp->PlayEvent("event:/Player_footsteps_grass");
 
 	//TextComponent* textComp = new TextComponent(this, 15, "DelaSuko");
 	//textComp->CreateTextTexture("PLAYER", Vector3::fromIntRGB(255, 0, 0), 30);
