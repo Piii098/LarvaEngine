@@ -51,8 +51,9 @@ Player::Player(Scene* scene)
 	GetMainScene()->SetGetter("Player.Position.X", [this]() {return Position().x; });
 
 	_audioComp = new AudioComponent(this);
-	_audioComp->PlayEvent("event:/Player_footsteps_grass");
-
+	_footstepEvent = _audioComp->PlayEvent("event:/Footsteps_grass");
+	_footstepEvent.SetVolume(0.1);
+	_footstepEvent.Stop();
 	//TextComponent* textComp = new TextComponent(this, 15, "DelaSuko");
 	//textComp->CreateTextTexture("PLAYER", Vector3::fromIntRGB(255, 0, 0), 30);
 
@@ -74,16 +75,14 @@ Player::~Player() {
 #pragma region パブリック関数
 
 void Player::InputObject(Input* input) {
-	if (input->IsInputDown(InputMap::INPUT_BRIGHT)) {
-		//TestObject* bullet = new TestObject(GetGame());
-		//bullet->Position(Position());
-	}
+
 
 }
 
 void Player::UpdateObject(float deltaTime) {
 	//SDL_Log("PlayerVelocity(%f, %f)", _rigidbodyComp->Velocity().x, _rigidbodyComp->Velocity().y);
 	// 右向きに移動したら
+
 	if (_moveInputComp->Direction().x < 0.f) {
 		_spriteComp->FlipX(false);
 	}

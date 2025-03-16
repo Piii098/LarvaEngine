@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AssetManagers\AssetData\Audio.cpp" />
     <ClCompile Include="AssetManagers\AssetData\Texture.cpp" />
     <ClCompile Include="AssetManagers\AssetData\TileMap.cpp" />
     <ClCompile Include="AssetManagers\TextureManager.cpp" />
@@ -31,8 +32,10 @@
     <ClCompile Include="Components\Camera\CameraComponent.cpp" />
     <ClCompile Include="Components\Camera\FollowCameraComponent.cpp" />
     <ClCompile Include="Components\Component.cpp" />
+    <ClCompile Include="Components\Draw\AnimationComponent.cpp" />
     <ClCompile Include="Components\Draw\BGComponent.cpp" />
     <ClCompile Include="Components\Draw\DebugDrawComponent.cpp" />
+    <ClCompile Include="GameObjects\Particle.cpp" />
     <ClCompile Include="Components\Draw\SpriteComponent.cpp" />
     <ClCompile Include="Components\Draw\TextComponent.cpp" />
     <ClCompile Include="Components\Draw\TextureComponent.cpp" />
@@ -75,6 +78,7 @@
     <ClCompile Include="Utilities\Math.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AssetManagers\AssetData\Audio.h" />
     <ClInclude Include="AssetManagers\AssetData\Texture.h" />
     <ClInclude Include="AssetManagers\AssetData\TileMap.h" />
     <ClInclude Include="AssetManagers\AssetManager.h" />
@@ -88,8 +92,10 @@
     <ClInclude Include="Components\Camera\CameraComponent.h" />
     <ClInclude Include="Components\Camera\FollowCameraComponent.h" />
     <ClInclude Include="Components\Component.h" />
+    <ClInclude Include="Components\Draw\AnimationComponent.h" />
     <ClInclude Include="Components\Draw\BGComponent.h" />
     <ClInclude Include="Components\Draw\DebugDrawComponent.h" />
+    <ClInclude Include="GameObjects\Particle.h" />
     <ClInclude Include="Components\Draw\SpriteComponent.h" />
     <ClInclude Include="Components\Draw\TextComponent.h" />
     <ClInclude Include="Components\Draw\TextureComponent.h" />

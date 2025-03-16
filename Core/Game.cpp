@@ -21,6 +21,7 @@
 #include "GameObjects/TileMapObject.h"
 #include "Scene/SceneManager.h"
 #include "Audio/AudioSystem.h"
+#include "AssetManagers/AssetData/Audio.h"
 
 #pragma region Constructor:Destructor
 
@@ -77,6 +78,7 @@ bool Game::Initialize() {
 	_textureManager = new AssetManager<Texture>();
 	_tileMapManager = new AssetManager<TileMap>();
 	_fontManager = new AssetManager<Font>();
+	_audioManager = new AssetManager<Audio>();
 
 	_frame->SetFixedDeltaTime(1.f / 60.f);
 
@@ -122,11 +124,6 @@ void Game::ProcessInput() {
 		if (event.type == SDL_EVENT_QUIT) {
 			_isRunning = false;
 		}
-	}
-
-	const bool* state = SDL_GetKeyboardState(NULL);
-	if (state[SDL_SCANCODE_ESCAPE]) {
-		_isRunning = false;
 	}
 
 	_input->Update();

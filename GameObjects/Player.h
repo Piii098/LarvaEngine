@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "GameObject.h"
-
+#include "Audio/SoundEvent.h"
 
 class TestObject;
 class RigidbodyComponent;
@@ -28,6 +28,8 @@ private:
 	RigidbodyComponent* _rigidbodyComp;
 	BoxComponent2D* _boxComp;
 	AudioComponent* _audioComp;
+
+	SoundEvent _footstepEvent;
 
 	float _jumpForce;
 };

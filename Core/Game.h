@@ -24,11 +24,7 @@ class AssetManager;
 class TileMapObject;
 class Camera;
 class AudioSystem;
-
-struct Ball {
-    Vector2 pos;
-    Vector2 vel;
-};
+class Audio;
 
 class Game {
 public:
@@ -47,6 +43,8 @@ public:
 	AssetManager<Texture>* GetTextureManager() { return _textureManager; }
 	AssetManager<TileMap>* GetTileMapManager()  { return _tileMapManager; }
     AssetManager<Font>* GetFontManager() { return _fontManager; };
+	AssetManager<Audio>* GetAudioManager() { return _audioManager; }
+
 	Frame* GetFrame() { return _frame; }
 	SceneManager* GetSceneManager() { return _sceneManager; }
 
@@ -78,5 +76,6 @@ private:
 	AssetManager<Texture>* _textureManager;
 	AssetManager<TileMap>* _tileMapManager;
 	AssetManager<Font>* _fontManager;
+	AssetManager<Audio>* _audioManager;
 
 };

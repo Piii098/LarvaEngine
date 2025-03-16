@@ -40,21 +40,28 @@ bool Input::InputManager::IsKey(InputMap input) {
 	return _currentKeyState[GetKeyCode(input)];
 }
 
+bool Input::InputManager::IsKeyUp(InputMap input) {
+	return !_currentKeyState[GetKeyCode(input)] && _previousKeyState[GetKeyCode(input)];
+}
+
+
 void Input::InputManager::UpdateKeyboard() {
-	SDL_Event event;
-	SDL_PollEvent(&event);
+	//SDL_Event event;
+	//SDL_PollEvent(&event);
 	const bool* keys = SDL_GetKeyboardState(NULL);
 
-	for (int i = 0; i < SDL_SCANCODE_COUNT;i++) {
-		_currentKeyState[i] = keys[i];
-	}
-
 	for (int i = 0; i < SDL_SCANCODE_COUNT; i++) {
-		_keyDownState[i] = (_currentKeyState[i] != 0) && (_previousKeyState[i] == 0);
-	}
+		bool current = keys[i] != 0;
+		bool previous = _currentKeyState[i];
 
-	for (int i = 0; i < SDL_SCANCODE_COUNT; i++) {
+		// キーダウン状態を更新
+		_keyDownState[i] = current && !previous;
+
+		// 前の状態を現在の状態で更新
 		_previousKeyState[i] = _currentKeyState[i];
+
+		// 現在の状態を更新
+		_currentKeyState[i] = current;
 	}
 
 }
@@ -99,6 +106,10 @@ bool Input::IsInput(InputMap key) {
 	return s_InputManager.IsKey(key);
 }
 
+bool Input::IsInputUp(InputMap key) {
+	return s_InputManager.IsKeyUp(key);
+}
+
 bool Input::CheckInputAll() {
 	return (CheckHitKeyboradAll());
 }
@@ -123,4 +134,3 @@ bool Input::CheckHitKeyboradAll() {
 
 
 #pragma endregion
-

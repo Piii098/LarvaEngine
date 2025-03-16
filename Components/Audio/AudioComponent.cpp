@@ -4,9 +4,12 @@
 #include "Scene/Scene.h"
 #include "Scene/SceneManager.h"
 #include "Audio/SoundEvent.h"
+#include "AssetManagers/AssetData/Audio.h"
+#include "AssetManagers/AssetManager.h"
 
 AudioComponent::AudioComponent(GameObject* parent, int updateOrder)
 	: Component(parent, updateOrder) {
+	_audioManager = GetParent()->GetScene()->GetManager()->GetGame()->GetAudioManager();
 }
 
 AudioComponent::~AudioComponent() {
@@ -59,6 +62,7 @@ SoundEvent AudioComponent::PlayEvent(const std::string& name) {
 
 	return event;
 }
+
 
 void AudioComponent::StopAllEvents() {
 }

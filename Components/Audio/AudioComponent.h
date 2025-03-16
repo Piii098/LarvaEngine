@@ -4,6 +4,9 @@
 #include <vector>
 
 class SoundEvent;
+template<typename T>
+class AssetManager;
+class Audio;
 
 class AudioComponent : public Component {
 public:
@@ -16,6 +19,9 @@ public:
 	SoundEvent PlayEvent(const std::string& name);
 	void StopAllEvents();
 private:
+
+	AssetManager<Audio>* _audioManager;
+
 	std::vector<SoundEvent> _events2D;
 	std::vector<SoundEvent> _events3D;
 };

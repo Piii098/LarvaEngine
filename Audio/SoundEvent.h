@@ -1,10 +1,10 @@
-#pragma once
+ï»¿#pragma once
 #include <string>
 #include "Utilities/Math.h"
 
 /*
-EventInstance‚Ìƒ‰ƒbƒp[ƒNƒ‰ƒX
-ID‚ğ‚¿AFMOD‚ÌƒCƒxƒ“ƒg‚ğÄ¶A’â~Aƒpƒ‰ƒ[ƒ^‚Ìİ’è‚È‚Ç‚ğs‚¤
+EventInstanceã®ãƒ©ãƒƒãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹
+IDã‚’æŒã¡ã€FMODã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’å†ç”Ÿã€åœæ­¢ã€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®è¨­å®šãªã©ã‚’è¡Œã†
 */
 
 class SoundEvent
@@ -12,7 +12,7 @@ class SoundEvent
 public:
 	SoundEvent();
 	// Returns true if associated FMOD event still exists
-	bool IsValid();
+	bool IsValid() ;
 	// Restart event from beginning
 	void Restart();
 	// Stop this event

@@ -29,6 +29,7 @@ public:
 		void UpdateKeyboard(); // キーボードの状態を更新
 		bool IsKeyDown(InputMap input); //押した瞬間のみ
 		bool IsKey(InputMap input);
+		bool IsKeyUp(InputMap input); //離した瞬間のみ
 
 	private:
 
@@ -49,6 +50,7 @@ public:
 	void Update();
 	bool IsInputDown(InputMap input); //押した瞬間trueを返す
 	bool IsInput(InputMap input); //押している間trueを返す
+	bool IsInputUp(InputMap input); //離した瞬間trueを返す
 
 	static InputManager& S_InputManager() { return s_InputManager; };
 	bool CheckInputAll();

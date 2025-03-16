@@ -1,3 +1,4 @@
+D:\Github\Cpp_SDL\AssetManagers\AssetData\Audio.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\AssetManagers\AssetData\Audio.obj
 D:\Github\Cpp_SDL\AssetManagers\AssetData\Texture.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\AssetManagers\AssetData\Texture.obj
 D:\Github\Cpp_SDL\AssetManagers\AssetData\TileMap.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\AssetManagers\AssetData\TileMap.obj
 D:\Github\Cpp_SDL\AssetManagers\TextureManager.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\AssetManagers\TextureManager.obj
@@ -10,8 +11,10 @@ D:\Github\Cpp_SDL\Components\Audio\AudioComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\
 D:\Github\Cpp_SDL\Components\Camera\CameraComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Components\Camera\CameraComponent.obj
 D:\Github\Cpp_SDL\Components\Camera\FollowCameraComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Components\Camera\FollowCameraComponent.obj
 D:\Github\Cpp_SDL\Components\Component.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Components\Component.obj
+D:\Github\Cpp_SDL\Components\Draw\AnimationComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Components\Draw\AnimationComponent.obj
 D:\Github\Cpp_SDL\Components\Draw\BGComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Components\Draw\BGComponent.obj
 D:\Github\Cpp_SDL\Components\Draw\DebugDrawComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Components\Draw\DebugDrawComponent.obj
+D:\Github\Cpp_SDL\GameObjects\Particle.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\GameObjects\Particle.obj
 D:\Github\Cpp_SDL\Components\Draw\SpriteComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Components\Draw\SpriteComponent.obj
 D:\Github\Cpp_SDL\Components\Draw\TextComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Components\Draw\TextComponent.obj
 D:\Github\Cpp_SDL\Components\Draw\TextureComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Components\Draw\TextureComponent.obj

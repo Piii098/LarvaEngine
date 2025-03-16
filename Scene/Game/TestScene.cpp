@@ -13,6 +13,7 @@
 #include "Scene/Game/PlaySubScene.h"
 #include "GameObjects/UI/Text.h"
 #include "Scene/UI/HUD.h"
+#include "GameObjects/Particle.h"
 
 #pragma region コンストラクタ:デストラクタ
 
@@ -50,12 +51,18 @@ void TestScene::LoadData() {
 	GetManager()->GetGame()->GetTextureManager()->Load("Bg5", "Assets/bg_5.png");
 	GetManager()->GetGame()->GetTextureManager()->Load("Bg6", "Assets/bg_6.png");
 	GetManager()->GetGame()->GetTextureManager()->Load("Tile", "Assets/16Tile.png");
+	GetManager()->GetGame()->GetTextureManager()->Load("Fire", "Assets/fire.png");
 	GetManager()->GetGame()->GetTextureManager()->Load("RedBox", "Assets/RedBox.png");
 	GetManager()->GetGame()->GetTileMapManager()->Load("TileMap", "Assets/TileMap.csv");
 
 	_player = new Player(this);
 	TileMapObject* _tileMapObject = new TileMapObject(this);
 	
+	Particle* particle = new Particle(this);
+	particle->Position(Vector2(100, 50));
+	particle->SetTexture("Fire");
+	particle->SetSpriteSheet(32,32,0,0,16, 0.08f,true);
+
 	_tileMapObject->SetOnTile(_player, -2);
 	_camera = new Camera(this);
 	GetCamera()->Position(_player->Position());
