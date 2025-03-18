@@ -18,6 +18,7 @@
 #include "Components/Draw/TextComponent.h"
 #include "Components/Audio/AudioComponent.h"
 #include "Audio/SoundEvent.h"
+#include "Components/Draw/LightComponent.h"
 
 #pragma region コンストラクタ:デストラクタ
 
@@ -38,13 +39,13 @@ Player::Player(Scene* scene)
 	_boxComp->SetObjectBox(myBox);
 	_rigidbodyComp->Velocity(Vector2::Zero);
 	_rigidbodyComp->Mass(50.f);
-	_rigidbodyComp->IsGravity(true);
+	_rigidbodyComp->IsGravity(false);
 	_rigidbodyComp->Drag(0.f);
 	_rigidbodyComp->SetInterpolationMode(RigidbodyComponent::InterpolationMode::Interpolate);
 
 	_moveInputComp = new MoveInputComponent(this, _rigidbodyComp);
-	_moveInputComp->MoveSpeedX(80.f);
-	_moveInputComp->JumpForce(1000000.f);
+	_moveInputComp->MoveSpeed(80.f);
+	//_moveInputComp->JumpForce(1000000.f);
 	_moveInputComp->SetState(Component::STATE::INACTIVE);
 	
 	GetMainScene()->SetData("Player.Position.X", Position().x);
@@ -54,6 +55,12 @@ Player::Player(Scene* scene)
 	_footstepEvent = _audioComp->PlayEvent("event:/Footsteps_grass");
 	_footstepEvent.SetVolume(0.1);
 	_footstepEvent.Stop();
+
+	_lightComp = new LightComponent(this, 10, 100);
+	_lightComp->LightRange(10.f);
+	_lightComp->LightColor(Vector3(1,0.2,0.2));
+	_lightComp->LightIntensity(0.3f);
+
 	//TextComponent* textComp = new TextComponent(this, 15, "DelaSuko");
 	//textComp->CreateTextTexture("PLAYER", Vector3::fromIntRGB(255, 0, 0), 30);
 

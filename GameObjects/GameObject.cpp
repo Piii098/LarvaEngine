@@ -107,32 +107,6 @@ void GameObject::PhysUpdateObject(float deltaTime) {
 
 }
 
-void GameObject::Render(Shader* shader, int bufferLayer) {
-
-	/*描画関数。ゲーム側から呼び出される。*/
-
-	if (_state == STATE::ACTIVE) {
-		for (auto& comp : _components) {
-			if (comp->GetBufferLayer() == bufferLayer && comp->GetState() == Component::STATE::ACTIVE) {
-				comp->Render(shader);
-			}
-		}
-	}
-}
-
-void GameObject::RenderUI(Shader* shader) {
-
-	/*UI描画関数。ゲーム側から呼び出される。*/
-
-	if (_state == STATE::ACTIVE) {
-		for (auto& comp : _components) {
-			comp->Render(shader);
-		}
-	}
-
-}
-
-
 void GameObject::AddComponent(Component* component) {
 	
 	/*コンポーネントのupdateLayerの値に応じて昇順に並べる*/

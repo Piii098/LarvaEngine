@@ -12,7 +12,7 @@
 #pragma region コンストラクタデストラクタ
 
 TextComponent::TextComponent(GameObject* gameObject, int bufferLayer, std::string fontName)
-	: TextureComponent(gameObject, bufferLayer)
+	: SpriteComponent(gameObject, bufferLayer)
 	, _textTexture(nullptr) {
 	_font = GetParent()->GetScene()->GetManager()->GetGame()->GetFontManager()->Get(fontName);
 

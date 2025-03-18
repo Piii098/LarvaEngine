@@ -1,6 +1,7 @@
 ﻿#include "Scene/Scene.h"
 #include <algorithm>
 #include "UI/UIScene.h"
+#include "Components/Draw/SpriteComponent.h"
 
 #pragma region コンスト
 
@@ -81,7 +82,6 @@ void Scene::Output() {
 
 }
 
-
 void Scene::AddObject(GameObject* object) {
 	if (_isUpdating) {
 		_pendingObjects.emplace_back(object);
@@ -131,6 +131,33 @@ void Scene::DestroyObject(GameObject* object) {
 		delete* iter; // メモリを解放
 		*iter = nullptr; // nullptrに設定
 		_objects.erase(iter);
+	}
+}
+
+
+void Scene::AddSprite(SpriteComponent* sprite) {
+	// Find the insertion point in the sorted vector
+	// (The first element with a higher draw order than me)
+	int myDrawOrder = sprite->DrawLayer();
+	auto iter = _sprites.begin();
+	for (;
+		iter != _sprites.end();
+		++iter)
+	{
+		if (myDrawOrder < (*iter)->DrawLayer())
+		{
+			break;
+		}
+	}
+
+	// Inserts element before position of iterator
+	_sprites.insert(iter, sprite);
+}
+
+void Scene::RemoveSprite(SpriteComponent* sprite) {
+	auto iter = std::find(_sprites.begin(), _sprites.end(), sprite);
+	if (iter != _sprites.end()) {
+		_sprites.erase(iter);
 	}
 }
 

@@ -68,7 +68,7 @@ void MoveInputComponent::ProcessInput(Input* input) {
 void MoveInputComponent::PhysUpdate(float deltaTime){
 	Vector2 currentVelocity = _rigidbodyComp->Velocity();
 
-	Vector2 desiredVelocity(static_cast<float>(_direction.x) * (_moveSpeed + _moveSpeedX), currentVelocity.y);
+	Vector2 desiredVelocity(static_cast<float>(_direction.x) * (_moveSpeed + _moveSpeedX), static_cast<float>(_direction.y) * (_moveSpeed + _moveSpeedY));
 	Vector2 velocityChange = desiredVelocity - currentVelocity;
 
 	// 質量を考慮して力を計算

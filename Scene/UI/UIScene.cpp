@@ -6,6 +6,7 @@
 #include "Scene/SceneManager.h"
 #include "Core/Game.h"
 #include "AssetManagers/AssetManager.h"
+#include "Components/Draw/SpriteComponent.h"
 
 #pragma region コンストラクタ:デストラクタ
 
@@ -38,8 +39,14 @@ void UIScene::UpdateScene(float deltaTime) {
 }
 
 void UIScene::Render(Shader* shader) {
-	for (auto& obj : _objects) {
-		obj->RenderUI(shader);
+	if (_state == STATE::ACTIVE) {
+		for (auto& spri : _sprites) {
+			if (spri->GetState() == Component::STATE::ACTIVE && spri->GetParent()->State() == GameObject::STATE::ACTIVE) {
+				
+				spri->Render(shader);
+		
+			}
+		}
 	}
 }
 

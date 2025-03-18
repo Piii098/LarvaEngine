@@ -10,6 +10,7 @@ class MoveInputComponent;
 class TileMapComponent;
 class BoxComponent2D;
 class AudioComponent;
+class LightComponent;
 
 class Player : public GameObject {
 public:
@@ -28,6 +29,8 @@ private:
 	RigidbodyComponent* _rigidbodyComp;
 	BoxComponent2D* _boxComp;
 	AudioComponent* _audioComp;
+
+	LightComponent* _lightComp;
 
 	SoundEvent _footstepEvent;
 

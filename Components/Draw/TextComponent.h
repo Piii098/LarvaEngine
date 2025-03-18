@@ -1,5 +1,5 @@
 ﻿#pragma
-#include "Components/Draw/TextureComponent.h"
+#include "Components/Draw/SpriteComponent.h"
 #include <string>
 #include "Utilities/Math.h"
 
@@ -7,7 +7,7 @@ class Font;
 class Texture;
 class Shader;
 
-class TextComponent : public TextureComponent {
+class TextComponent : public SpriteComponent {
 public:
 	TextComponent(GameObject* gameObject,int bufferLayer, std::string fontName);
 	~TextComponent() override;

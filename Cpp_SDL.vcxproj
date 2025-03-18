@@ -35,6 +35,7 @@
     <ClCompile Include="Components\Draw\AnimationComponent.cpp" />
     <ClCompile Include="Components\Draw\BGComponent.cpp" />
     <ClCompile Include="Components\Draw\DebugDrawComponent.cpp" />
+    <ClCompile Include="Components\Draw\LightComponent.cpp" />
     <ClCompile Include="GameObjects\Particle.cpp" />
     <ClCompile Include="Components\Draw\SpriteComponent.cpp" />
     <ClCompile Include="Components\Draw\TextComponent.cpp" />
@@ -95,6 +96,8 @@
     <ClInclude Include="Components\Draw\AnimationComponent.h" />
     <ClInclude Include="Components\Draw\BGComponent.h" />
     <ClInclude Include="Components\Draw\DebugDrawComponent.h" />
+    <ClInclude Include="Components\Draw\LightComponent.h" />
+    <ClInclude Include="Renderer\Shaders\Light.vert" />
     <ClInclude Include="GameObjects\Particle.h" />
     <ClInclude Include="Components\Draw\SpriteComponent.h" />
     <ClInclude Include="Components\Draw\TextComponent.h" />
@@ -139,10 +142,14 @@
     <ClInclude Include="Utilities\Reactive.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Renderer\Shaders\Combine.frag" />
+    <None Include="Renderer\Shaders\Combine.vert" />
+    <None Include="Renderer\Shaders\ExtractBright.frag" />
+    <None Include="Renderer\Shaders\Light.frag" />
     <None Include="Renderer\Shaders\Background.frag" />
     <None Include="Renderer\Shaders\Background.vert" />
     <None Include="Renderer\Shaders\Bloom.vert" />
-    <None Include="Renderer\Shaders\BloomFinal.frag" />
+    <None Include="Renderer\Shaders\FinalBloom.frag" />
     <None Include="Renderer\Shaders\Blur.frag" />
     <None Include="Renderer\Shaders\FrameBuffer.frag" />
     <None Include="Renderer\Shaders\FrameBuffer.vert" />

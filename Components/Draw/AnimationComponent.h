@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Components/Draw/TextureComponent.h"
+#include "Components/Draw/SpriteComponent.h"
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -23,9 +23,9 @@ struct AnimationClip {
     float totalDuration;
 };
 
-class AnimationComponent : public TextureComponent {
+class AnimationComponent : public SpriteComponent {
 public:
-    AnimationComponent(GameObject* parent, int bufferLayer = 0, int updateOrder = 100);
+    AnimationComponent(GameObject* parent, int bufferLayer = 0, int updateOrder = 200);
     ~AnimationComponent();
 
     void Update(float deltaTime) override;

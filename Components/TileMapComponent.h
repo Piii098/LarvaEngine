@@ -22,7 +22,7 @@ struct TileInfo {
     
     bool isCollider;            // 衝突判定の有無
     Vector3 lightColor;         // 発光色
-    float lightIntensity;       // 発光強度
+    float lightIntensity;                                                                                // 発光強度
 
     TileInfo(int tileId = -1)
         : id(tileId)

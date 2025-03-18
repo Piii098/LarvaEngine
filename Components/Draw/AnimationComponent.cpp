@@ -2,7 +2,7 @@
 #include <SDL3/SDL.h>
 
 AnimationComponent::AnimationComponent(GameObject* parent, int bufferLayer, int updateOrder)
-    : TextureComponent(parent, bufferLayer, updateOrder) {
+    : SpriteComponent(parent, bufferLayer, updateOrder) {
 }
 
 AnimationComponent::~AnimationComponent() {

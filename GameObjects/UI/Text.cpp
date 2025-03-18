@@ -42,7 +42,7 @@ void Text::CreateText(const std::string& fontName, const Vector3& color, int poi
 }
 
 void Text::SetAlignLeft() {
-	_textComp->SetHorizontalAlign(TextureComponent::HorizontalAlign::Left);
+	_textComp->SetHorizontalAlign(SpriteComponent::HorizontalAlign::Left);
 }
 
 

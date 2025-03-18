@@ -14,6 +14,7 @@ D:\Github\Cpp_SDL\Components\Component.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\C
 D:\Github\Cpp_SDL\Components\Draw\AnimationComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Components\Draw\AnimationComponent.obj
 D:\Github\Cpp_SDL\Components\Draw\BGComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Components\Draw\BGComponent.obj
 D:\Github\Cpp_SDL\Components\Draw\DebugDrawComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Components\Draw\DebugDrawComponent.obj
+D:\Github\Cpp_SDL\Components\Draw\LightComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Components\Draw\LightComponent.obj
 D:\Github\Cpp_SDL\GameObjects\Particle.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\GameObjects\Particle.obj
 D:\Github\Cpp_SDL\Components\Draw\SpriteComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Components\Draw\SpriteComponent.obj
 D:\Github\Cpp_SDL\Components\Draw\TextComponent.cpp;D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Components\Draw\TextComponent.obj

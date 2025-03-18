@@ -1,5 +1,6 @@
 ﻿#include "Renderer/Renderer.h"
 #include <gl/glew.h>
+#include <algorithm>
 #include "Renderer/Shader.h"
 #include "Renderer/VertexArray.h"
 #include "Components/Draw/SpriteComponent.h"
@@ -9,6 +10,7 @@
 #include "Scene/SceneManager.h"
 #include "Scene/Scene.h"
 #include "Scene/UI/UIScene.h"
+#include "Components/Draw/LightComponent.h"
 
 Renderer::Renderer(Game* game)
     : _game(game)
@@ -44,6 +46,8 @@ bool Renderer::Initialize(float screenWidth, float screenHeight, float lowResWid
     SetParallaxFactor(5, 0.7f);
     SetParallaxFactor(14, -1.0f);
     SetParallaxFactor(15, 0.f);
+
+    _ambientLightFactors.resize(_numLayers, AmbientLight(Vector3(0.9,0.8,1), 0.6));
 
     // OpenGL属性の設定
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
@@ -153,12 +157,26 @@ void Renderer::Render() {
         }
 
         DrawGame(regionView, i);
-       
+        
+        glBindFramebuffer(GL_FRAMEBUFFER, _lightFBOs[i]);
+        glViewport(0, 0, _lowResWidth, _lowResHeight);
+        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);  // 完全に透明なバックグラウンド
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+
+		DrawLight(regionView, i);
+        
+
     }
 
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     // ステップ2: 合成用フレームバッファにレイヤーを合成
-    glBindFramebuffer(GL_FRAMEBUFFER, _combineUpscaleFBO);
-    glViewport(0, 0, _screenWidth, _screenHeight);
+    glBindFramebuffer(GL_FRAMEBUFFER, _combineLightFBO);
+    glViewport(0, 0, _lowResWidth, _lowResHeight);
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
@@ -166,22 +184,74 @@ void Renderer::Render() {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // アディティブブレンディング
 
-    _frameShader->SetActive();
+    _combineShader->SetActive();
     _frameVerts->SetActive();
 
     // 各レイヤーを合成
     for (int i = 0; i < _numLayers; i++) {
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, _layerTextures[i]);
-        _frameShader->SetIntUniform("frameTexture", 0);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+        CombineLight(i);
     }
 
-    DrawUI();
+    glBindFramebuffer(GL_FRAMEBUFFER, _extractBrightFBO);
+    glViewport(0, 0, _lowResWidth, _lowResHeight);
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // アディティブブレンディング
+
+	_extractBrightShader->SetActive();
+	glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, _combineLightBuffer);
+    _extractBrightShader->SetIntUniform("frameTexture", 0);
+
+    _frameVerts->SetActive();
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+
+    bool horizontal = true, first_iteration = true;
+    int amount = 5;
+
+    _blurShader->SetActive();
+
+    for (unsigned int i = 0; i < amount; i++)
+    {
+        glBindFramebuffer(GL_FRAMEBUFFER, _pingpongFBO[horizontal]);
+        _blurShader->SetIntUniform("horizontal", horizontal);
+        glBindTexture(
+            GL_TEXTURE_2D, first_iteration ? _extractBrightBuffer[1] : _pingpongBuffer[!horizontal]
+        );
+        _frameVerts->SetActive();
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+        horizontal = !horizontal;
+        if (first_iteration)
+            first_iteration = false;
+    }
+
+    glBindFramebuffer(GL_FRAMEBUFFER, _finalBloomFBO);
+	_finalBloomShader->SetActive();
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, _extractBrightBuffer[0]);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, _pingpongBuffer[!horizontal]);
+	_finalBloomShader->SetIntUniform("scene", 0);
+	_finalBloomShader->SetIntUniform("bloomBlur", 1);
+	_finalBloomShader->SetFloatUniform("exposure", 1.0f);
+    _finalBloomShader->SetIntUniform("uIsBloom", true);
+
+	_frameVerts->SetActive();
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+    
+    glBindFramebuffer(GL_FRAMEBUFFER, _finalFBO);
+    glViewport(0, 0, _screenWidth, _screenHeight);
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    CombineUI();
 
     // ステップ3: 最終出力（ウィンドウに描画）
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    //glViewport(0, 0, _screenWidth, _screenHeight);
+    glViewport(0, 0, _screenWidth, _screenHeight);
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
     // 通常のアルファブレンディングに戻す
@@ -189,7 +259,7 @@ void Renderer::Render() {
 
     _frameShader->SetActive();
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, _combineUpscaleBuffer);
+    glBindTexture(GL_TEXTURE_2D, _finalBuffer);
     _frameShader->SetIntUniform("frameTexture", 0);
 
     _frameVerts->SetActive();
@@ -217,6 +287,38 @@ void Renderer::SetCentralLayer(int layer) {
     if (layer >= 0 && layer < _numLayers) {
         _centralLayer = layer;
     }
+}
+
+void Renderer::SetAmbientLightFactor(int layer, AmbientLight factor) {
+	if (layer >= 0 && layer < _numLayers) {
+		// 環境光係数を0.0～1.0の範囲に制限
+        _ambientLightFactors[layer] = factor;
+	}
+}
+
+void Renderer::SetAllAmbientLightFactor(AmbientLight factor) {
+	for (int i = 0; i < _numLayers; i++) {
+        SetAmbientLightFactor(i, factor);
+	}
+}
+
+AmbientLight Renderer::GetAmbientLightFactor(int layer) const {
+	if (layer >= 0 && layer < _numLayers) {
+		return _ambientLightFactors[layer];
+	}
+	return AmbientLight();
+}
+
+void Renderer::AddLight(LightComponent* light) {
+	_lights.emplace_back(light);
+}
+
+void Renderer::RemoveLight(LightComponent* light) {
+	auto iter = std::find(_lights.begin(), _lights.end(), light);
+	if (iter != _lights.end()) {
+		std::iter_swap(iter, _lights.end() - 1);
+		_lights.pop_back();
+	}
 }
 
 #pragma endregion
@@ -249,25 +351,136 @@ bool Renderer::InitializeFrameBuffer() {
         }
     }
 
-    // 合成用フレームバッファの作成
-    glGenFramebuffers(1, &_combineUpscaleFBO);
-    glBindFramebuffer(GL_FRAMEBUFFER, _combineUpscaleFBO);
+	_lightFBOs.resize(_numLayers);
+	_lightTextures.resize(_numLayers);
 
-    glGenTextures(1, &_combineUpscaleBuffer);
-    glBindTexture(GL_TEXTURE_2D, _combineUpscaleBuffer);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _screenWidth, _screenHeight, 0, GL_RGBA, GL_FLOAT, nullptr);
+    // レイヤーごとのフレームバッファの作成
+    glGenFramebuffers(_numLayers, _lightFBOs.data());
+    glGenTextures(_numLayers, _lightTextures.data());
+
+    for (int i = 0; i < _numLayers; i++) {
+        glBindFramebuffer(GL_FRAMEBUFFER, _lightFBOs[i]);
+
+        glBindTexture(GL_TEXTURE_2D, _lightTextures[i]);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _lowResWidth, _lowResHeight, 0, GL_RGBA, GL_FLOAT, nullptr);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _lightTextures[i], 0);
+
+        // フレームバッファの完全性チェック
+        if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+            SDL_Log("Layer framebuffer %d is not complete!", i);
+            return false;
+        }
+    }
+
+
+    // 合成用フレームバッファの作成
+    glGenFramebuffers(1, &_combineLightFBO);
+    glBindFramebuffer(GL_FRAMEBUFFER, _combineLightFBO);
+
+    glGenTextures(1, &_combineLightBuffer);
+    glBindTexture(GL_TEXTURE_2D, _combineLightBuffer);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _lowResWidth, _lowResHeight, 0, GL_RGBA, GL_FLOAT, nullptr);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _combineUpscaleBuffer, 0);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _combineLightBuffer, 0);
 
     // 合成フレームバッファの完全性チェック
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
         SDL_Log("Combine framebuffer is not complete!");
         return false;
     }
+
+    // set up floating point framebuffer to render scene to
+    glGenFramebuffers(1, &_extractBrightFBO);
+    glBindFramebuffer(GL_FRAMEBUFFER, _extractBrightFBO);
+
+    glGenTextures(2, _extractBrightBuffer);
+    for (unsigned int i = 0; i < 2; i++)
+    {
+        glBindTexture(GL_TEXTURE_2D, _extractBrightBuffer[i]);
+        glTexImage2D(
+            GL_TEXTURE_2D, 0, GL_RGBA16F, _lowResWidth, _lowResHeight, 0, GL_RGBA, GL_FLOAT, NULL
+        );
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        // attach texture to framebuffer
+        glFramebufferTexture2D(
+            GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, GL_TEXTURE_2D, _extractBrightBuffer[i], 0
+        );
+    }
+
+    unsigned int attachments[2] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1 };
+    glDrawBuffers(2, attachments);
+
+    glGenFramebuffers(2, _pingpongFBO);
+    glGenTextures(2, _pingpongBuffer);
+    for (unsigned int i = 0; i < 2; i++)
+    {
+        glBindFramebuffer(GL_FRAMEBUFFER, _pingpongFBO[i]);
+        glBindTexture(GL_TEXTURE_2D, _pingpongBuffer[i]);
+        glTexImage2D(
+            GL_TEXTURE_2D, 0, GL_RGBA16F, _lowResWidth, _lowResHeight, 0, GL_RGBA, GL_FLOAT, NULL
+        );
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        glFramebufferTexture2D(
+            GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _pingpongBuffer[i], 0
+        );
+    }
+
+    // 合成用フレームバッファの作成
+    glGenFramebuffers(1, &_finalBloomFBO);
+    glBindFramebuffer(GL_FRAMEBUFFER, _finalBloomFBO);
+
+    glGenTextures(1, &_finalBloomBuffer);
+    glBindTexture(GL_TEXTURE_2D, _finalBloomBuffer);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _lowResWidth, _lowResHeight, 0, GL_RGBA, GL_FLOAT, nullptr);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _finalBloomBuffer, 0);
+
+    // 合成フレームバッファの完全性チェック
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+        SDL_Log("Combine framebuffer is not complete!");
+        return false;
+    }
+
+
+    // 合成用フレームバッファの作成
+    glGenFramebuffers(1, &_finalFBO);
+    glBindFramebuffer(GL_FRAMEBUFFER, _finalFBO);
+
+    glGenTextures(1, &_finalBuffer);
+    glBindTexture(GL_TEXTURE_2D, _finalBuffer);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _screenWidth, _screenHeight, 0, GL_RGBA, GL_FLOAT, nullptr);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _finalBuffer, 0);
+
+    // 合成フレームバッファの完全性チェック
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+        SDL_Log("Combine framebuffer is not complete!");
+        return false;
+    }
+
 
     // デフォルトのフレームバッファに戻す
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -289,6 +502,52 @@ void Renderer::DrawGame(Matrix4 view, int region) {
     _spriteShader->SetFloatUniform("ambientLightIntensity", 1.0f);
 
     _currentMainScene->Render(_spriteShader, region);
+
+}
+
+void Renderer::CombineLight(int region) {
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, _layerTextures[region]);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, _lightTextures[region]);
+    _combineShader->SetIntUniform("spriteTexture", 0);
+    _combineShader->SetIntUniform("lightTexture", 1);
+    _combineShader->SetVector3Uniform("uAmbientColor", _ambientLightFactors[region].color);
+	_combineShader->SetFloatUniform("uAmbientIntensity", _ambientLightFactors[region].intensity);
+
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+}
+
+
+void Renderer::DrawLight(Matrix4 view, int region) {
+	_lightShader->SetActive();
+	_spriteVerts->SetActive();
+
+	Matrix4 viewProj = Matrix4::CreateSimpleViewProj(_lowResWidth, _lowResHeight);
+
+	_lightShader->SetMatrixUniform("uViewProj", viewProj);
+
+	_lightShader->SetMatrixUniform("uViewScreen", view);
+
+	for (auto& light : _lights) {
+		if (light->GetBufferLayer() == region) {
+			light->RenderLight(_lightShader);
+		}
+	}
+}
+
+void Renderer::CombineUI() {
+
+    _frameShader->SetActive();
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, _finalBloomBuffer);
+    _frameShader->SetIntUniform("frameTexture", 0);
+	_frameShader->SetFloatUniform("uAmbientFactor", 1.0f); 
+
+    _frameVerts->SetActive();
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+
+    DrawUI();
 }
 
 void Renderer::DrawUI() {
@@ -324,14 +583,61 @@ bool Renderer::LoadShaders() {
         return false;
     }
 
+	_lightShader = new Shader();
+    if (!_lightShader->Load("Renderer/Shaders/Light.vert", "Renderer/Shaders/Light.frag")) {
+		SDL_Log("Failed to load Light shader");
+		return false;
+    }
+
+	_combineShader = new Shader();
+    if (!_combineShader->Load("Renderer/Shaders/FrameBuffer.vert", "Renderer/Shaders/Combine.frag")) {
+		SDL_Log("Failed to load Combine shader");
+		return false;
+    }
+
+	_extractBrightShader = new Shader();
+    if (!_extractBrightShader->Load("Renderer/Shaders/FrameBuffer.vert", "Renderer/Shaders/ExtractBright.frag")) {
+		SDL_Log("Failed to load ExtractBright shader");
+		return false;
+    }
+
+	_blurShader = new Shader();
+    if (!_blurShader->Load("Renderer/Shaders/FrameBuffer.vert", "Renderer/Shaders/Blur.frag")) {
+		SDL_Log("Failed to load Blur shader");
+		return false;
+    }
+
+	_finalBloomShader = new Shader();
+    if (!_finalBloomShader->Load("Renderer/Shaders/FrameBuffer.vert", "Renderer/Shaders/FinalBloom.frag")) {
+		SDL_Log("Failed to load FinalBloom shader");
+		return false;
+    }
+
     // シェーダーの基本設定
     Matrix4 viewProj = Matrix4::CreateSimpleViewProj(_lowResWidth, _lowResHeight);
 
     _spriteShader->SetActive();
     _spriteShader->SetMatrixUniform("uViewProj", viewProj);
 
+    _lightShader->SetActive();
+	_lightShader->SetMatrixUniform("uViewProj", viewProj);
+
     _frameShader->SetActive();
     _frameShader->SetIntUniform("frameTexture", 0);
+
+	_combineShader->SetActive();
+	_combineShader->SetIntUniform("spriteTexture", 0);
+	_combineShader->SetIntUniform("lightTexture", 1);
+
+	_extractBrightShader->SetActive();
+	_extractBrightShader->SetIntUniform("frameTexture", 0);
+
+	_blurShader->SetActive();
+	_blurShader->SetIntUniform("image", 0);
+
+	_finalBloomShader->SetActive();
+	_finalBloomShader->SetIntUniform("scene", 0);
+	_finalBloomShader->SetIntUniform("bloomBlur", 1);
 
     return true;
 }

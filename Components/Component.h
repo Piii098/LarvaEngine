@@ -20,13 +20,13 @@ public:
 	virtual void ProcessInput(Input* input) {};
 	virtual void Update(float deltaTime) {};
 	virtual void PhysUpdate(float deltaTime) {};
-	virtual void Render(Shader* shader) {};
 	virtual void OnUpdateWorldTransform() {};
 	
 	/*ゲッターセッター*/
 
 	int GetBufferLayer() const { return _bufferLayer; };
 	void SetBufferLayer(int bufferLayer) { _bufferLayer = bufferLayer; };
+	int GetRenderType() const { return _renderType; };
 	GameObject* GetParent() const { return _parent; };
 	int UpdateLayer() const { return _updateLayer; };
 
@@ -38,4 +38,5 @@ protected:
 	GameObject* _parent;
 	int _updateLayer;
 	int _bufferLayer;
+	int _renderType;
 };

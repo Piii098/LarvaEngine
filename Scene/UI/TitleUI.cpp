@@ -2,6 +2,7 @@
 #include "Scene/UI/TitleUI.h"
 #include "GameObjects/UI/Button.h"
 #include "Scene/Game/TestScene.h"
+#include "GameObjects/UI/Text.h"
 #include "Scene/SceneManager.h"
 
 #pragma region コンストラクタデストラクタ
@@ -39,7 +40,7 @@ void TitleUI::LoadData() {
 	_button->SetOffset(Vector2(50,-50));
 
 	_button->Position(Vector2Int(-300, -100));
-
+	
 }
 
 #pragma endregion

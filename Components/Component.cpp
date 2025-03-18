@@ -5,6 +5,7 @@ Component::Component(GameObject* parent,int updateLayer)
 	: _parent(parent)
 	, _state(STATE::ACTIVE)
 	, _bufferLayer(0)
+	, _renderType(0)
 	, _updateLayer(updateLayer){
 	_parent->AddComponent(this);
 }

@@ -6,9 +6,7 @@ in vec2 TexCoords;
 uniform sampler2D image;
 uniform bool horizontal;
 // カーネルサイズを増やして、よりスムーズなブラー効果を実現
-uniform float weight[7] = float[] (0.2270270270, 0.1945945946, 0.1216216216, 
-                                 0.0540540541, 0.0162162162, 0.0047297297, 
-                                 0.0012972973);
+uniform float weight[5] = float[] (0.227027, 0.1945946, 0.1216216, 0.054054, 0.016216);
 
 void main()
 {             
@@ -17,7 +15,7 @@ void main()
     
     if(horizontal)
     {
-        for(int i = 1; i < 7; ++i)
+        for(int i = 1; i < 5; ++i)
         {
             result += texture(image, TexCoords + vec2(tex_offset.x * i, 0.0)).rgb * weight[i];
             result += texture(image, TexCoords - vec2(tex_offset.x * i, 0.0)).rgb * weight[i];
@@ -25,7 +23,7 @@ void main()
     }
     else
     {
-        for(int i = 1; i < 7; ++i)
+        for(int i = 1; i < 5; ++i)
         {
             result += texture(image, TexCoords + vec2(0.0, tex_offset.y * i)).rgb * weight[i];
             result += texture(image, TexCoords - vec2(0.0, tex_offset.y * i)).rgb * weight[i];

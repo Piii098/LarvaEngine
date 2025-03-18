@@ -10,6 +10,7 @@ class UIScreen;
 class Shader;
 class TextureComponent;
 class UIScene;
+class SpriteComponent;
 
 class Scene {
 public:
@@ -29,6 +30,7 @@ public:
 	virtual void InputScene(Input* input) {};
     void Update(float deltaTime);
 	virtual void UpdateScene(float deltaTime) {};
+
     void PhysUpdate(float deltaTime);
     void Output();
     virtual void Shutdown();
@@ -49,6 +51,9 @@ public:
     void AddObject(GameObject* object); // GameObject配列に追加
     void RemoveObject(GameObject* gameObject);  // GameObject配列から削除
 
+	void AddSprite(SpriteComponent* sprite);
+	void RemoveSprite(SpriteComponent* sprite);
+
     void DestroyObject(GameObject* object);
 
     SceneManager* GetManager() const { return _manager; }
@@ -65,6 +70,7 @@ protected:
 
     std::vector<GameObject*> _pendingObjects;
     std::vector<GameObject*> _objects;
+	std::vector<SpriteComponent*> _sprites;
 
     Camera* _camera;
     STATE _state;

@@ -1,6 +1,7 @@
 ﻿#include "Scene/MainScene.h"
 #include "Scene/UI/UIScene.h"
 #include <algorithm>
+#include "Components/Draw/SpriteComponent.h"
 
 #pragma region コンストラクタデストラクタ
 
@@ -53,8 +54,18 @@ void MainScene::UpdateScene(float deltaTime) {
 
 void MainScene::Render(Shader* shader, int bufferLayer) {
 
-	for (auto& obj : _objects) {
-		obj->Render(shader, bufferLayer);
+	if (_state == STATE::ACTIVE) {
+
+		for (auto& spri : _sprites) {
+
+			if (spri->GetState() == Component::STATE::ACTIVE && spri->GetParent()->State() == GameObject::STATE::ACTIVE) {
+				if (spri->GetBufferLayer() == bufferLayer) {
+					spri->Render(shader);
+				}
+			}
+
+		}
+
 	}
 
 }
