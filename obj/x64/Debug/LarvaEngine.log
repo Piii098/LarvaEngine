@@ -1,0 +1,13 @@
+﻿  HUD.cpp
+D:\Github\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'src/Examples/Game/Test/HUD.cpp' をコンパイルしています)
+  
+D:\Github\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'src/Examples/Game/Test/HUD.cpp' をコンパイルしています)
+  
+D:\Github\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'src/Examples/Game/Test/HUD.cpp' をコンパイルしています)
+  
+  LarvaEngine.vcxproj -> D:\Github\LarvaEngine\bin\x64\Debug\LarvaEngine.exe
+  'pwsh.exe' は、内部コマンドまたは外部コマンド、
+  操作可能なプログラムまたはバッチ ファイルとして認識されていません。

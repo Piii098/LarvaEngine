@@ -17,9 +17,6 @@
     <Filter Include="Utilities">
       <UniqueIdentifier>{3a9376c7-fef7-4388-afe1-497efdea5588}</UniqueIdentifier>
     </Filter>
-    <Filter Include="AssetManagers">
-      <UniqueIdentifier>{3033577f-0af8-4470-a967-f12709dfa175}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Components\Camera">
       <UniqueIdentifier>{02fff3cb-dc7e-4a9e-a5fd-9c17074f045d}</UniqueIdentifier>
     </Filter>
@@ -32,367 +29,357 @@
     <Filter Include="Renderer">
       <UniqueIdentifier>{bd58d0a0-a4d1-4f2f-9d2c-bc10ea4c3770}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Phys">
-      <UniqueIdentifier>{f82e81dd-1361-4013-947a-483839290552}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core">
       <UniqueIdentifier>{73e4ebbd-c3c3-4660-922d-48b7abc1fe21}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Renderer\Shaders">
-      <UniqueIdentifier>{9388e102-fdbd-4804-9987-0d097b2e11f6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="AssetManagers\AssetData">
-      <UniqueIdentifier>{0454944c-f56e-4ec7-ae19-3f1b867f17fa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene">
-      <UniqueIdentifier>{9fc7a5eb-cf4a-46b1-9b4c-106ce0da6a9d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene\Game">
-      <UniqueIdentifier>{3fe3ef5f-ad91-4f39-9f0c-71c2057cdc78}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene\UI">
-      <UniqueIdentifier>{566842a5-190c-4d4b-8a96-38d24722da36}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\NewFilter1">
-      <UniqueIdentifier>{46b96bae-855a-40e6-9b6f-9e2245c7e32a}</UniqueIdentifier>
     </Filter>
     <Filter Include="GameObjects\UI">
       <UniqueIdentifier>{502d2382-dd37-4de8-8cf9-f145ad656910}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scene\Game\TItle">
-      <UniqueIdentifier>{d7dd5063-ef93-4c0f-abaa-9a32c49a638f}</UniqueIdentifier>
+    <Filter Include="Components\Audio">
+      <UniqueIdentifier>{46b96bae-855a-40e6-9b6f-9e2245c7e32a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio">
+      <UniqueIdentifier>{33ee4055-5758-44a7-adbb-a1c02bf5f903}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Resouces">
+      <UniqueIdentifier>{d05e583e-1192-4480-be6f-21919db94abd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Events">
+      <UniqueIdentifier>{b857b81b-90c4-43d1-a063-833f56b1d9e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Utilities">
+      <UniqueIdentifier>{e17d4d1f-cfe5-480c-a075-916065c6a2a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{f82e81dd-1361-4013-947a-483839290552}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Light">
+      <UniqueIdentifier>{d9735079-c436-4812-9de8-bf5d18d8c70b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Examples">
+      <UniqueIdentifier>{3fa076a7-70d1-479a-b839-0c15cbd36f20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Examples\Game">
+      <UniqueIdentifier>{1443cf27-9d00-4afd-85bc-f8df029c0fcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Examples\Game\Test">
+      <UniqueIdentifier>{5fee42c2-3924-4902-b7ef-1031512b805e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Examples\Game\Title">
+      <UniqueIdentifier>{8607734f-cc31-485e-9934-dc34686706aa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AssetManagers\TextureManager.cpp">
-      <Filter>AssetManagers</Filter>
-    </ClCompile>
-    <ClCompile Include="AssetManagers\TileMapManager.cpp">
-      <Filter>AssetManagers</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\Component.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\MoveInputComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\TileMapComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\Phys\BoxComponent2D.cpp">
-      <Filter>Components\Phys</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\Phys\CapsuleComponent.cpp">
-      <Filter>Components\Phys</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\Phys\RigidbodyComponent.cpp">
-      <Filter>Components\Phys</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\Draw\DebugDrawComponent.cpp">
-      <Filter>Components\Draw</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\Draw\SpriteComponent.cpp">
-      <Filter>Components\Draw</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\Draw\TextureComponent.cpp">
-      <Filter>Components\Draw</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\Draw\BGComponent.cpp">
-      <Filter>Components\Draw</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\Camera\CameraComponent.cpp">
-      <Filter>Components\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\Camera\FollowCameraComponent.cpp">
-      <Filter>Components\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\AI\AICompoennt.cpp">
+    <ClCompile Include="src\Components\AI\AICompoennt.cpp">
       <Filter>Components\AI</Filter>
     </ClCompile>
-    <ClCompile Include="Components\AI\AIState.cpp">
+    <ClCompile Include="src\Components\AI\AIState.cpp">
       <Filter>Components\AI</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjects\Background.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjects\Camera.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjects\GameObject.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjects\Player.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjects\TestObject.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjects\TileMapObject.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\Game.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\Main.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Phys\PhysWorld2D.cpp">
-      <Filter>Phys</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer\Renderer.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer\Shader.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer\VertexArray.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Utilities\Font.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="Utilities\Frame.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="Utilities\Input.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="Utilities\Math.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="Utilities\Collision2D.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="AssetManagers\AssetData\Texture.cpp">
-      <Filter>AssetManagers\AssetData</Filter>
-    </ClCompile>
-    <ClCompile Include="AssetManagers\AssetData\TileMap.cpp">
-      <Filter>AssetManagers\AssetData</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\SceneManager.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\Game\TestScene.cpp">
-      <Filter>Scene\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\Draw\TextComponent.cpp">
+    <ClCompile Include="src\Components\Draw\AnimationComponent.cpp">
       <Filter>Components\Draw</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\UI\UIScene.cpp">
-      <Filter>Scene\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\UI\PauseMenu.cpp">
-      <Filter>Scene\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\Scene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjects\UI\Button.cpp">
+    <ClCompile Include="src\GameObjects\UI\DataText.cpp">
       <Filter>GameObjects\UI</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjects\UI\Text.cpp">
+    <ClCompile Include="src\GameObjects\UI\Button.cpp">
       <Filter>GameObjects\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\SubScene.cpp">
-      <Filter>Scene</Filter>
+    <ClCompile Include="src\Components\Audio\AudioComponent.cpp">
+      <Filter>Components\Audio</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Game\PlaySubScene.cpp">
-      <Filter>Scene\Game</Filter>
+    <ClCompile Include="src\GameObjects\Background.cpp">
+      <Filter>GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\MainScene.cpp">
-      <Filter>Scene</Filter>
+    <ClCompile Include="src\GameObjects\Camera.cpp">
+      <Filter>GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\UI\TitleUI.cpp" />
-    <ClCompile Include="Scene\Game\Title\TitleScene.cpp">
-      <Filter>Scene\Game\TItle</Filter>
+    <ClCompile Include="src\Core\Resources\TileMap.cpp">
+      <Filter>GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Game\Title\PlaySubScene.cpp">
-      <Filter>Scene\Game\TItle</Filter>
+    <ClCompile Include="src\GameObjects\Player.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObjects\Particle.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObjects\UI\Text.cpp">
+      <Filter>GameObjects\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\Camera\FollowCameraComponent.cpp">
+      <Filter>Components\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\Camera\CameraComponent.cpp">
+      <Filter>Components\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\Physics\BoxComponent2D.cpp">
+      <Filter>Components\Phys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Audio\AudioSystem.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Events\Input.cpp">
+      <Filter>Core\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Frame.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Resources\Font.cpp">
+      <Filter>Core\Resouces</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Resources\Texture.cpp">
+      <Filter>Components\Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\Draw\SpriteComponent.cpp">
+      <Filter>Components\Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\Draw\TextComponent.cpp">
+      <Filter>Components\Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\Draw\DebugDrawComponent.cpp">
+      <Filter>Components\Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\GameObject.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\Physics\MoveInputComponent.cpp">
+      <Filter>Components\Phys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\Renderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\Shader.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\VertexArray.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\SubScene.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Scene.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\UIScene.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\Physics\RigidbodyComponent.cpp">
+      <Filter>Components\Phys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Physics\Collision2D.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Physics\PhysWorld2D.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\SceneManager.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Main.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Game.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Component.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Audio\SoundEvent.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\TileMapComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObjects\TileMapObject.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Utilities\Math.cpp">
+      <Filter>Core\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\MainScene.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\Light\LightComponent.cpp">
+      <Filter>Components\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\Game\Test\PlaySubScene.cpp">
+      <Filter>Examples\Game\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\Game\Test\TestScene.cpp">
+      <Filter>Examples\Game\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\Game\Title\PlaySubScene.cpp">
+      <Filter>Examples\Game\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\Game\Title\TitleScene.cpp">
+      <Filter>Examples\Game\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\Game\Test\HUD.cpp">
+      <Filter>Examples\Game\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\Game\Test\PauseMenu.cpp">
+      <Filter>Examples\Game\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\Game\Title\TitleUI.cpp">
+      <Filter>Examples\Game\Title</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AssetManagers\AssetManager.h">
-      <Filter>AssetManagers</Filter>
-    </ClInclude>
-    <ClInclude Include="AssetManagers\TextureManager.h">
-      <Filter>AssetManagers</Filter>
-    </ClInclude>
-    <ClInclude Include="AssetManagers\TileMapManager.h">
-      <Filter>AssetManagers</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Component.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\MoveInputComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\TileMapComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Phys\BoxComponent2D.h">
-      <Filter>Components\Phys</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Phys\CapsuleComponent.h">
-      <Filter>Components\Phys</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Phys\RigidbodyComponent.h">
-      <Filter>Components\Phys</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Draw\BGComponent.h">
-      <Filter>Components\Draw</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Draw\DebugDrawComponent.h">
-      <Filter>Components\Draw</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Draw\SpriteComponent.h">
-      <Filter>Components\Draw</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Draw\TextureComponent.h">
-      <Filter>Components\Draw</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Camera\CameraComponent.h">
-      <Filter>Components\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Camera\FollowCameraComponent.h">
-      <Filter>Components\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\AI\AICompoennt.h">
+    <ClInclude Include="include\LarvaEngine\Components\AI\AICompoennt.h">
       <Filter>Components\AI</Filter>
     </ClInclude>
-    <ClInclude Include="Components\AI\AIState.h">
+    <ClInclude Include="include\LarvaEngine\Components\AI\AIState.h">
       <Filter>Components\AI</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjects\Background.h">
+    <ClInclude Include="include\LarvaEngine\Components\Draw\AnimationComponent.h">
+      <Filter>Components\Draw</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\GameObjects\UI\DataText.h">
+      <Filter>GameObjects\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\GameObjects\UI\Button.h">
+      <Filter>GameObjects\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Components\Audio\AudioComponent.h">
+      <Filter>Components\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\GameObjects\Background.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjects\Camera.h">
+    <ClInclude Include="include\LarvaEngine\GameObjects\Camera.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjects\GameObject.h">
+    <ClInclude Include="include\LarvaEngine\Core\Resources\TileMap.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjects\Player.h">
+    <ClInclude Include="include\LarvaEngine\GameObjects\Player.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjects\TestObject.h">
+    <ClInclude Include="include\LarvaEngine\GameObjects\Particle.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjects\TileMapObject.h">
-      <Filter>GameObjects</Filter>
+    <ClInclude Include="include\LarvaEngine\GameObjects\UI\Text.h">
+      <Filter>GameObjects\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Game.h">
+    <ClInclude Include="include\LarvaEngine\Components\Camera\FollowCameraComponent.h">
+      <Filter>Components\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Components\Camera\CameraComponent.h">
+      <Filter>Components\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Components\Physics\BoxComponent2D.h">
+      <Filter>Components\Phys</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Core\Resources\AssetManager.h">
+      <Filter>Core\Resouces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Audio\AudioSystem.h">
+      <Filter>Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Core\Events\Input.h">
+      <Filter>Core\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Core\Frame.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Phys\PhysWorld2D.h">
-      <Filter>Phys</Filter>
+    <ClInclude Include="include\LarvaEngine\Core\Resources\Font.h">
+      <Filter>Core\Resouces</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer\Renderer.h">
-      <Filter>Renderer</Filter>
+    <ClInclude Include="include\LarvaEngine\Core\Resources\Texture.h">
+      <Filter>Core\Resouces</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer\Shader.h">
-      <Filter>Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer\VertexArray.h">
-      <Filter>Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Utilities\Collision2D.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Utilities\Font.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Utilities\Frame.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Utilities\Input.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Utilities\Math.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="AssetManagers\AssetData\Texture.h">
-      <Filter>AssetManagers\AssetData</Filter>
-    </ClInclude>
-    <ClInclude Include="AssetManagers\AssetData\TileMap.h">
-      <Filter>AssetManagers\AssetData</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\SceneManager.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\Game\TestScene.h">
-      <Filter>Scene\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Draw\TextComponent.h">
+    <ClInclude Include="include\LarvaEngine\Components\Draw\SpriteComponent.h">
       <Filter>Components\Draw</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\UI\UIScene.h">
-      <Filter>Scene\UI</Filter>
+    <ClInclude Include="include\LarvaEngine\Components\Draw\TextComponent.h">
+      <Filter>Components\Draw</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\UI\PauseMenu.h">
-      <Filter>Scene\UI</Filter>
+    <ClInclude Include="include\LarvaEngine\Components\Draw\DebugDrawComponent.h">
+      <Filter>Components\Draw</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Scene.h">
-      <Filter>Scene</Filter>
+    <ClInclude Include="include\LarvaEngine\Core\GameObject.h">
+      <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjects\UI\Button.h">
-      <Filter>GameObjects\UI</Filter>
+    <ClInclude Include="include\LarvaEngine\Components\Physics\MoveInputComponent.h">
+      <Filter>Components\Phys</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjects\UI\Text.h">
-      <Filter>GameObjects\UI</Filter>
+    <ClInclude Include="include\LarvaEngine\Renderer\Renderer.h">
+      <Filter>Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\SubScene.h">
-      <Filter>Scene</Filter>
+    <ClInclude Include="include\LarvaEngine\Renderer\Shader.h">
+      <Filter>Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Game\PlaySubScene.h">
-      <Filter>Scene\Game</Filter>
+    <ClInclude Include="include\LarvaEngine\Renderer\VertexArray.h">
+      <Filter>Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\MainScene.h">
-      <Filter>Scene</Filter>
+    <ClInclude Include="include\LarvaEngine\Core\SubScene.h">
+      <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\UI\TItleUI.h" />
-    <ClInclude Include="Scene\Game\Title\TitleScene.h">
-      <Filter>Scene\Game\TItle</Filter>
+    <ClInclude Include="include\LarvaEngine\Core\Scene.h">
+      <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Game\Title\PlaySubScene.h">
-      <Filter>Scene\Game\TItle</Filter>
+    <ClInclude Include="include\LarvaEngine\Core\UIScene.h">
+      <Filter>Core</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Renderer\Shaders\BloomFinal.frag">
-      <Filter>Renderer\Shaders</Filter>
-    </None>
-    <None Include="Renderer\Shaders\Blur.frag">
-      <Filter>Renderer\Shaders</Filter>
-    </None>
-    <None Include="Renderer\Shaders\FrameBuffer.frag">
-      <Filter>Renderer\Shaders</Filter>
-    </None>
-    <None Include="Renderer\Shaders\FrameBuffer.vert">
-      <Filter>Renderer\Shaders</Filter>
-    </None>
-    <None Include="Renderer\Shaders\LightSprite.frag">
-      <Filter>Renderer\Shaders</Filter>
-    </None>
-    <None Include="Renderer\Shaders\RetroEffect.frag">
-      <Filter>Renderer\Shaders</Filter>
-    </None>
-    <None Include="Renderer\Shaders\Sprite.frag">
-      <Filter>Renderer\Shaders</Filter>
-    </None>
-    <None Include="Renderer\Shaders\Sprite.vert">
-      <Filter>Renderer\Shaders</Filter>
-    </None>
-    <None Include="Renderer\Shaders\Upscale.frag">
-      <Filter>Renderer\Shaders</Filter>
-    </None>
-    <None Include="Renderer\Shaders\Background.frag">
-      <Filter>Renderer\Shaders</Filter>
-    </None>
-    <None Include="Renderer\Shaders\Background.vert">
-      <Filter>Renderer\Shaders</Filter>
-    </None>
-    <None Include="Renderer\Shaders\Bloom.vert">
-      <Filter>Renderer\Shaders</Filter>
-    </None>
+    <ClInclude Include="include\LarvaEngine\Components\Physics\RigidbodyComponent.h">
+      <Filter>Components\Phys</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Physics\Collision2D.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Physics\PhysWorld2D.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Core\SceneManager.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Core\Game.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Core\Component.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Audio\SoundEvent.h">
+      <Filter>Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Components\TileMapComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\GameObjects\TileMapObject.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Core\Utilities\Math.h">
+      <Filter>Core\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Core\MainScene.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Core\Utilities\DataTypes.h">
+      <Filter>Core\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Components\Light\LightComponent.h">
+      <Filter>Components\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Examples\Game\Test\TestScene.h">
+      <Filter>Examples\Game\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Examples\Game\Test\PlaySubScene.h">
+      <Filter>Examples\Game\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Examples\Game\Title\PlaySubScene.h">
+      <Filter>Examples\Game\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Examples\Game\Title\TitleScene.h">
+      <Filter>Examples\Game\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Examples\Game\Test\PauseMenu.h">
+      <Filter>Examples\Game\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Examples\Game\Test\HUD.h">
+      <Filter>Examples\Game\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Examples\Game\Title\TItleUI.h">
+      <Filter>Examples\Game\Title</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

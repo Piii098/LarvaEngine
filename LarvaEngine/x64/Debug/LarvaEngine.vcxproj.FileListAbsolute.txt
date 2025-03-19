@@ -1,2 +1,0 @@
-D:\Github\Cpp_SDL\x64\Debug\glew32d.dll
-D:\Github\Cpp_SDL\LarvaEngine\x64\Debug\LarvaEng.1016FB74.Up2Date
