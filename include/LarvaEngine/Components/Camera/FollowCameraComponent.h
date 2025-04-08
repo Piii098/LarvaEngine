@@ -3,7 +3,7 @@
 
 class FollowCameraComponent : public CameraComponent {
 public:
-    FollowCameraComponent(GameObject* parent, int updateLayer = 1000);
+    FollowCameraComponent(GameObject& parent, int updateLayer = 1000);
     ~FollowCameraComponent() override;
 
     void Update(float deltaTime) override;

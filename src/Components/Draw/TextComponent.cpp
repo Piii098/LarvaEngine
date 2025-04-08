@@ -11,21 +11,17 @@
 
 #pragma region コンストラクタデストラクタ
 
-TextComponent::TextComponent(GameObject* gameObject, int bufferLayer, std::string fontName)
-	: SpriteComponent(gameObject, bufferLayer)
+TextComponent::TextComponent(GameObject& parent, int bufferLayer, std::string fontName)
+	: SpriteComponent(parent, bufferLayer)
 	, _textTexture(nullptr) {
-	_font = GetParent()->GetScene()->GetManager()->GetGame()->GetFontManager()->Get(fontName);
+	_font = _parent.GetScene().GetManager().GetGame().GetFontManager().Get(fontName);
 
 	_fontName = fontName;
 	//GetParent()->GetScene()->GetManager()->GetGame()->GetRenderer()->AddText(this);
 }
 
 TextComponent::~TextComponent() {
-	if (_texture) {
-		_texture->Unload();
-		delete _texture;
-		_texture = nullptr;
-	}
+
 }
 
 #pragma endregion
@@ -33,21 +29,16 @@ TextComponent::~TextComponent() {
 #pragma region パブリック関数
 
 void TextComponent::CreateTextTexture(std::string text, Vector3 color, int pointSize, bool isOutline) {
-	if (_texture) {
-		_texture->Unload();
-		delete _texture;
-		_texture = nullptr;
-	}
 
 	_text = text;
 	_pointSize = pointSize;
 	_textColor = color;
 	_font->IsOutline(isOutline);
-	_texture = _font->RenderText(text, color, pointSize);
+	Texture* texture = _font->RenderText(text, color, pointSize);
 
-	if (_texture) {
-		_texWidth = _texture->Width();
-		_texHeight = _texture->Height();
+	if (texture) {
+		_texWidth = texture->Width();
+		_texHeight = texture->Height();
 	}
 	else {
 		SDL_Log("Failed to load texture: %s", text.c_str());

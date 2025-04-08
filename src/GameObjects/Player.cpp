@@ -3,14 +3,12 @@
 #include "LarvaEngine/Components/Physics/MoveInputComponent.h"
 #include "LarvaEngine/Components/Physics/RigidbodyComponent.h"
 #include "LarvaEngine/Core/Game.h"
-#include "LarvaEngine/Core/Events/Input.h"
 #include <SDL3/SDL.h>
 #include "LarvaEngine/Components/TileMapComponent.h"
 #include "LarvaEngine/Physics/Collision2D.h"
 #include "LarvaEngine/Components/Physics/BoxComponent2D.h"
 #include "LarvaEngine/Components/Draw/DebugDrawComponent.h"
 #include <iostream>
-#include "LarvaEngine/Core/Frame.h"
 #include "LarvaEngine/Physics/PhysWorld2D.h"
 #include "LarvaEngine/Core/MainScene.h"
 
@@ -22,41 +20,41 @@
 
 #pragma region コンストラクタ:デストラクタ
 
-Player::Player(Scene* scene)
+Player::Player(Scene& scene)
 	: GameObject(scene) {
 	Tag(TAG::PLAYER);
 	Scale(1.f);
 	Position(Vector2Int(50, 500));
-	_spriteComp = new SpriteComponent(this, 10, 100);
+	_spriteComp = &CreateComponent<SpriteComponent>(10, 100);
 	_spriteComp->SetTexture("Player");
 	_spriteComp->SelfLightIntensity(0.1f);
 
 	_jumpForce = 700.f;
 
-	_rigidbodyComp = new RigidbodyComponent(this, true);
-	_boxComp = new BoxComponent2D(this, true, true);
+	_rigidbodyComp = &CreateComponent<RigidbodyComponent>(true);
+	_boxComp = &CreateComponent<BoxComponent2D>(true, true);
 	AABB2D myBox(Vector2Int(-6.0f, -8.f), Vector2Int(6.0f, 6.f));
 	_boxComp->SetObjectBox(myBox);
 	_rigidbodyComp->Velocity(Vector2::Zero);
 	_rigidbodyComp->Mass(50.f);
-	_rigidbodyComp->IsGravity(false);
+	_rigidbodyComp->IsGravity(true);
 	_rigidbodyComp->Drag(0.f);
 	_rigidbodyComp->SetInterpolationMode(RigidbodyComponent::InterpolationMode::Interpolate);
 
-	_moveInputComp = new MoveInputComponent(this, _rigidbodyComp);
-	_moveInputComp->MoveSpeed(80.f);
-	//_moveInputComp->JumpForce(1000000.f);
-	_moveInputComp->SetState(Component::STATE::INACTIVE);
+	_moveInputComp = &CreateComponent<MoveInputComponent>(_rigidbodyComp);
+	_moveInputComp->MoveSpeedX(80.f);
+	_moveInputComp->JumpForce(1000000.f);
+	_moveInputComp->State(Component::STATE::INACTIVE);
 	
-	GetMainScene()->SetData("Player.Position.X", Position().x);
-	GetMainScene()->SetGetter("Player.Position.X", [this]() {return Position().x; });
+	GetMainScene().SetData("Player.Position.X", Position().x);
+	GetMainScene().SetDataUpdate("Player.Position.X", [this]() {return Position().x; });
 
-	_audioComp = new AudioComponent(this);
+	_audioComp = &CreateComponent<AudioComponent>();
 	_footstepEvent = _audioComp->PlayEvent("event:/Footsteps_grass");
 	_footstepEvent.SetVolume(0.1);
 	_footstepEvent.Stop();
 
-	_lightComp = new LightComponent(this, 10, 100);
+	_lightComp = &CreateComponent<LightComponent>(10, 100);
 	_lightComp->LightRange(10.f);
 	_lightComp->LightColor(Vector3(1,0.2,0.2));
 	_lightComp->LightIntensity(0.3f);
@@ -68,12 +66,6 @@ Player::Player(Scene* scene)
 }
 
 Player::~Player() {
-	delete _spriteComp;
-	_spriteComp = nullptr;
-	delete _moveInputComp;
-	_moveInputComp = nullptr;
-	delete _rigidbodyComp;
-	_rigidbodyComp = nullptr;
 
 }
 #pragma endregion
@@ -81,7 +73,7 @@ Player::~Player() {
 
 #pragma region パブリック関数
 
-void Player::InputObject(Input* input) {
+void Player::InputObject(const InputAction& input) {
 
 
 }

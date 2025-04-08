@@ -5,7 +5,7 @@ class SpriteComponent;
 
 class Background : public GameObject {
 public:
-	Background(Scene* scene);
+	Background(Scene& scene);
 	~Background() override;
 
 public:

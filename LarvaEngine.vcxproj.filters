@@ -14,9 +14,6 @@
     <Filter Include="GameObjects">
       <UniqueIdentifier>{dc039731-891d-41d4-b332-5f2fbef74eba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utilities">
-      <UniqueIdentifier>{3a9376c7-fef7-4388-afe1-497efdea5588}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Components\Camera">
       <UniqueIdentifier>{02fff3cb-dc7e-4a9e-a5fd-9c17074f045d}</UniqueIdentifier>
     </Filter>
@@ -68,6 +65,12 @@
     <Filter Include="Examples\Game\Title">
       <UniqueIdentifier>{8607734f-cc31-485e-9934-dc34686706aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{d57b60fc-6e6c-429e-8cc5-59cedc18b6ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Examples\Game\2DScroll">
+      <UniqueIdentifier>{645404c5-1759-4009-aab7-709b06d6ac9a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Components\AI\AICompoennt.cpp">
@@ -79,32 +82,8 @@
     <ClCompile Include="src\Components\Draw\AnimationComponent.cpp">
       <Filter>Components\Draw</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameObjects\UI\DataText.cpp">
-      <Filter>GameObjects\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObjects\UI\Button.cpp">
-      <Filter>GameObjects\UI</Filter>
-    </ClCompile>
     <ClCompile Include="src\Components\Audio\AudioComponent.cpp">
       <Filter>Components\Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObjects\Background.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObjects\Camera.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Resources\TileMap.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObjects\Player.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObjects\Particle.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObjects\UI\Text.cpp">
-      <Filter>GameObjects\UI</Filter>
     </ClCompile>
     <ClCompile Include="src\Components\Camera\FollowCameraComponent.cpp">
       <Filter>Components\Camera</Filter>
@@ -118,17 +97,11 @@
     <ClCompile Include="src\Audio\AudioSystem.cpp">
       <Filter>Audio</Filter>
     </ClCompile>
-    <ClCompile Include="src\Core\Events\Input.cpp">
-      <Filter>Core\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Frame.cpp">
+    <ClCompile Include="src\Core\FrameSystem.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Core\Resources\Font.cpp">
       <Filter>Core\Resouces</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Resources\Texture.cpp">
-      <Filter>Components\Draw</Filter>
     </ClCompile>
     <ClCompile Include="src\Components\Draw\SpriteComponent.cpp">
       <Filter>Components\Draw</Filter>
@@ -190,9 +163,6 @@
     <ClCompile Include="src\Components\TileMapComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameObjects\TileMapObject.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="src\Core\Utilities\Math.cpp">
       <Filter>Core\Utilities</Filter>
     </ClCompile>
@@ -202,16 +172,46 @@
     <ClCompile Include="src\Components\Light\LightComponent.cpp">
       <Filter>Components\Light</Filter>
     </ClCompile>
+    <ClCompile Include="src\Input\InputSystem.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Input\InputAction.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Resources\Texture.cpp">
+      <Filter>Core\Resouces</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Resources\TileMap.cpp">
+      <Filter>Core\Resouces</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObjects\Camera.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObjects\Background.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObjects\Particle.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObjects\Player.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObjects\TileMapObject.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObjects\UI\Text.cpp">
+      <Filter>GameObjects\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObjects\UI\DataText.cpp">
+      <Filter>GameObjects\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObjects\UI\Button.cpp">
+      <Filter>GameObjects\UI</Filter>
+    </ClCompile>
     <ClCompile Include="src\Examples\Game\Test\PlaySubScene.cpp">
       <Filter>Examples\Game\Test</Filter>
     </ClCompile>
-    <ClCompile Include="src\Examples\Game\Test\TestScene.cpp">
-      <Filter>Examples\Game\Test</Filter>
-    </ClCompile>
     <ClCompile Include="src\Examples\Game\Title\PlaySubScene.cpp">
-      <Filter>Examples\Game\Title</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Examples\Game\Title\TitleScene.cpp">
       <Filter>Examples\Game\Title</Filter>
     </ClCompile>
     <ClCompile Include="src\Examples\Game\Test\HUD.cpp">
@@ -220,9 +220,16 @@
     <ClCompile Include="src\Examples\Game\Test\PauseMenu.cpp">
       <Filter>Examples\Game\Test</Filter>
     </ClCompile>
+    <ClCompile Include="src\Examples\Game\Title\TitleScene.cpp">
+      <Filter>Examples\Game\Title</Filter>
+    </ClCompile>
     <ClCompile Include="src\Examples\Game\Title\TitleUI.cpp">
       <Filter>Examples\Game\Title</Filter>
     </ClCompile>
+    <ClCompile Include="src\Examples\Game\Test\TestScene.cpp">
+      <Filter>Examples\Game\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\Game\2DScroll\GameMainScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\LarvaEngine\Components\AI\AICompoennt.h">
@@ -234,32 +241,8 @@
     <ClInclude Include="include\LarvaEngine\Components\Draw\AnimationComponent.h">
       <Filter>Components\Draw</Filter>
     </ClInclude>
-    <ClInclude Include="include\LarvaEngine\GameObjects\UI\DataText.h">
-      <Filter>GameObjects\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LarvaEngine\GameObjects\UI\Button.h">
-      <Filter>GameObjects\UI</Filter>
-    </ClInclude>
     <ClInclude Include="include\LarvaEngine\Components\Audio\AudioComponent.h">
       <Filter>Components\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LarvaEngine\GameObjects\Background.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LarvaEngine\GameObjects\Camera.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LarvaEngine\Core\Resources\TileMap.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LarvaEngine\GameObjects\Player.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LarvaEngine\GameObjects\Particle.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LarvaEngine\GameObjects\UI\Text.h">
-      <Filter>GameObjects\UI</Filter>
     </ClInclude>
     <ClInclude Include="include\LarvaEngine\Components\Camera\FollowCameraComponent.h">
       <Filter>Components\Camera</Filter>
@@ -276,10 +259,7 @@
     <ClInclude Include="include\LarvaEngine\Audio\AudioSystem.h">
       <Filter>Audio</Filter>
     </ClInclude>
-    <ClInclude Include="include\LarvaEngine\Core\Events\Input.h">
-      <Filter>Core\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LarvaEngine\Core\Frame.h">
+    <ClInclude Include="include\LarvaEngine\Core\FrameSystem.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="include\LarvaEngine\Core\Resources\Font.h">
@@ -345,9 +325,6 @@
     <ClInclude Include="include\LarvaEngine\Components\TileMapComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="include\LarvaEngine\GameObjects\TileMapObject.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="include\LarvaEngine\Core\Utilities\Math.h">
       <Filter>Core\Utilities</Filter>
     </ClInclude>
@@ -360,8 +337,41 @@
     <ClInclude Include="include\LarvaEngine\Components\Light\LightComponent.h">
       <Filter>Components\Light</Filter>
     </ClInclude>
-    <ClInclude Include="include\LarvaEngine\Examples\Game\Test\TestScene.h">
-      <Filter>Examples\Game\Test</Filter>
+    <ClInclude Include="include\LarvaEngine\Input\InputSystem.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Input\InputCode.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Input\InputAction.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Core\Resources\TileMap.h">
+      <Filter>Core\Resouces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\GameObjects\Camera.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\GameObjects\Background.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\GameObjects\Particle.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\GameObjects\Player.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\GameObjects\TileMapObject.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\GameObjects\UI\Text.h">
+      <Filter>GameObjects\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\GameObjects\UI\DataText.h">
+      <Filter>GameObjects\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\GameObjects\UI\Button.h">
+      <Filter>GameObjects\UI</Filter>
     </ClInclude>
     <ClInclude Include="include\LarvaEngine\Examples\Game\Test\PlaySubScene.h">
       <Filter>Examples\Game\Test</Filter>
@@ -369,17 +379,21 @@
     <ClInclude Include="include\LarvaEngine\Examples\Game\Title\PlaySubScene.h">
       <Filter>Examples\Game\Title</Filter>
     </ClInclude>
-    <ClInclude Include="include\LarvaEngine\Examples\Game\Title\TitleScene.h">
-      <Filter>Examples\Game\Title</Filter>
+    <ClInclude Include="include\LarvaEngine\Examples\Game\Test\HUD.h">
+      <Filter>Examples\Game\Test</Filter>
     </ClInclude>
     <ClInclude Include="include\LarvaEngine\Examples\Game\Test\PauseMenu.h">
       <Filter>Examples\Game\Test</Filter>
     </ClInclude>
-    <ClInclude Include="include\LarvaEngine\Examples\Game\Test\HUD.h">
-      <Filter>Examples\Game\Test</Filter>
+    <ClInclude Include="include\LarvaEngine\Examples\Game\Title\TitleScene.h">
+      <Filter>Examples\Game\Title</Filter>
     </ClInclude>
     <ClInclude Include="include\LarvaEngine\Examples\Game\Title\TItleUI.h">
       <Filter>Examples\Game\Title</Filter>
     </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Examples\Game\Test\TestScene.h">
+      <Filter>Examples\Game\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Examples\Game\2DScroll\GameMainScene.h" />
   </ItemGroup>
 </Project>

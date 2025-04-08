@@ -5,12 +5,13 @@
 #include "LarvaEngine/Renderer/Shader.h"
 #include "LarvaEngine/Renderer/Renderer.h"
 #include "LarvaEngine/Core/Resources/AssetManager.h"
+#include "LarvaEngine/Core/Resources/Texture.h"
 #include "LarvaEngine/Core/Scene.h"
 #include "LarvaEngine/Core/SceneManager.h"
 
 #pragma region コンストラクタ:デストラクタ
 
-SpriteComponent::SpriteComponent(GameObject* parent, int bufferLayer, int drawLayer)
+SpriteComponent::SpriteComponent(GameObject& parent, int bufferLayer, int drawLayer)
     : Component(parent)
     , _texture(nullptr)
     , _texWidth(0.f)
@@ -24,22 +25,20 @@ SpriteComponent::SpriteComponent(GameObject* parent, int bufferLayer, int drawLa
     , _positionOffset(Vector2::Zero)
     , _color(Vector3(1.f, 1.f, 1.f))
     , _horizontalAlign(HorizontalAlign::Center)
-    , _drawLayer(drawLayer) {
+    , _drawLayer(drawLayer)
+    , _textureManager(_parent.GetScene().GetManager().GetGame().GetTextureManager()){
     SetBufferLayer(bufferLayer);
-    _textureManager = _parent->GetScene()->GetManager()->GetGame()->GetTextureManager();
-	GetParent()->GetScene()->AddSprite(this);
+    _parent.GetScene().AddSprite(this);
 }
 
 
 SpriteComponent::~SpriteComponent() {
-    delete _texture;
-    _texture = nullptr;
-    GetParent()->GetScene()->RemoveSprite(this);
+    _parent.GetScene().RemoveSprite(this);
 }
 
 #pragma endregion
 
-void SpriteComponent::Render(Shader* shader) {
+void SpriteComponent::Render(Shader& shader) const {
 
     if (_texture) {
         float scaleX = _flipX ? -1.f : 1.f;
@@ -80,13 +79,13 @@ void SpriteComponent::Render(Shader* shader) {
             Vector3(_positionOffset.x + horizontalOffset, _positionOffset.y, 0.0f));
 
         // ワールド変換マトリックスの計算
-        Matrix4 world = scaleMat * translationMat * _parent->WorldTransform();
+        Matrix4 world = scaleMat * translationMat * _parent.WorldTransform();
 
         // 以下は既存のコード
-        shader->SetMatrixUniform("uWorldTransform", world);
-        shader->SetVector2Uniform("uTexOffset", _texOffset);
-        shader->SetVector2Uniform("uTexScale", _texScale);
-        shader->SetVector3Uniform("uColor", _color);
+        shader.SetMatrixUniform("uWorldTransform", world);
+        shader.SetVector2Uniform("uTexOffset", _texOffset);
+        shader.SetVector2Uniform("uTexScale", _texScale);
+        shader.SetVector3Uniform("uColor", _color);
 
         _texture->SetActive();
 
@@ -95,7 +94,7 @@ void SpriteComponent::Render(Shader* shader) {
 }
 
 void SpriteComponent::SetTexture(const std::string& textureName) {
-    _texture = _textureManager->Get(textureName);
+    _texture = _textureManager.Get(textureName);
     if (_texture) {
         _texWidth = _texture->Width();
         _texHeight = _texture->Height();

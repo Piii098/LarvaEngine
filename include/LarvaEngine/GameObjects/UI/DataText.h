@@ -4,7 +4,7 @@
 
 class DataText : public Text {
 public:
-	DataText(Scene* scene, const std::string& fontName, const Vector3& color, int pointSize);
+	DataText(Scene& scene, const std::string& fontName, const Vector3& color, int pointSize);
 
 	~DataText() override;
 

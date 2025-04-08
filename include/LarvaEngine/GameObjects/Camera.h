@@ -6,10 +6,10 @@ class GameObject;
 
 class Camera : public GameObject {
 public:
-	Camera(Scene* scene);
+	Camera(Scene& scene);
 	~Camera() override;
 
-	void InputObject(Input* input) override;
+	void InputObject(const InputAction& input) override;
 	void UpdateObject(float deltaTime) override;
 
 	Matrix4 GetViewMatrix() const;
@@ -19,7 +19,7 @@ public:
 	void Target(GameObject* target) { _target = target; }
 
 private:
-	FollowCameraComponent* _camera;
+	FollowCameraComponent& _camera;
 	GameObject* _target;
 	float _zoom;
 };

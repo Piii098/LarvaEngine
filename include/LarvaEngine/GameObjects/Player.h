@@ -14,10 +14,10 @@ class LightComponent;
 
 class Player : public GameObject {
 public:
-	Player(Scene* scene);
+	Player(Scene& scene);
 	~Player() override;
 
-	void InputObject(Input* input) override;
+	void InputObject(const InputAction& input) override;
 	void UpdateObject(float deltaTime) override;
 
 private:

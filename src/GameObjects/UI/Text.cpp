@@ -3,7 +3,7 @@
 
 #pragma region コンストラクタデストラクタ
 
-Text::Text(Scene* scene, const std::string& fontName, const Vector3& color, int pointSize, const std::string& text)
+Text::Text(Scene& scene, const std::string& fontName, const Vector3& color, int pointSize, const std::string& text)
 	: GameObject(scene)
 {
 	CreateText(fontName, color, pointSize, text);
@@ -25,10 +25,6 @@ void Text::CreateOutline(const Vector3& color) {
 		delete _outlineComp;
 		_outlineComp = nullptr;
 	}
-
-	_outlineComp = new TextComponent(this, 0, _textComp->GetFontName());
-	_outlineComp->CreateTextTexture(_textComp->GetText(), color, _textComp->GetPointSize(), true);
-
 }
 
 void Text::CreateText(const std::string& fontName, const Vector3& color, int pointSize, const std::string& text) {
@@ -36,7 +32,7 @@ void Text::CreateText(const std::string& fontName, const Vector3& color, int poi
 		_textComp->CreateTextTexture(text, color, pointSize);
 	}
 	else {
-		_textComp = new TextComponent(this, 0, fontName);
+		_textComp = new TextComponent(*this, 0, fontName);
 		_textComp->CreateTextTexture(text, color, pointSize);
 	}
 }

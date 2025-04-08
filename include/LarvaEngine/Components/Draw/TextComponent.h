@@ -1,6 +1,7 @@
 ﻿#pragma
 #include "LarvaEngine/Components/Draw/SpriteComponent.h"
 #include <string>
+#include <GL/glew.h>
 #include "LarvaEngine/Core/Utilities/Math.h"
 
 class Font;
@@ -9,11 +10,11 @@ class Shader;
 
 class TextComponent : public SpriteComponent {
 public:
-	TextComponent(GameObject* gameObject,int bufferLayer, std::string fontName);
+	TextComponent(GameObject& parent,int bufferLayer, std::string fontName);
 	~TextComponent() override;
 
 	void CreateTextTexture(std::string text, Vector3 color, int pointSize, bool isOutline = false);
-	//void Render(Shader* shader) override;
+	//void Render(Shader& shader) override;
 
 	std::string GetText() const { return _text; };
 	std::string GetFontName() const { return _fontName; };
@@ -26,6 +27,7 @@ private:
 	int _pointSize;
 	Font* _font;
 	Vector3 _textColor;
-	Texture* _textTexture;
-	Texture* _outlineTexture;
+	Texture* _textTexture;    // テキストのテクスチャ(参照する用) いらないかも
 };
+
+// 備考: テクスチャ自体はFontクラスで管理しているため、TextComponentはテクスチャのポインタを持つだけでよい

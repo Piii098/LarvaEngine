@@ -3,7 +3,7 @@
 
 #pragma region コンストラクタデストラクタ
 
-ExampleTitle::TitleScene::TitleScene(SceneManager* manager)
+ExampleTitle::TitleScene::TitleScene(SceneManager& manager)
 	: MainScene(manager){
 }
 
@@ -21,7 +21,7 @@ ExampleTitle::TitleScene::~TitleScene(){
 #pragma region プライベート関数
 
 void ExampleTitle::TitleScene::LoadData() {
-	_currentSubScene = new PlaySubScene(this);
+	ChangeSubScene<PlaySubScene>();
 	_currentSubScene->Initialize();
 }
 

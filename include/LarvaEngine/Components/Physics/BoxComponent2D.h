@@ -4,7 +4,7 @@
 
 class BoxComponent2D : public Component {
 public:
-	BoxComponent2D(GameObject* parent, bool isCollision, bool isDynamic, int updateLayer = 10);
+	BoxComponent2D(GameObject& parent, bool isCollision, bool isDynamic, int updateLayer = 10);
 	~BoxComponent2D();
 	void OnUpdateWorldTransform() override;
 	

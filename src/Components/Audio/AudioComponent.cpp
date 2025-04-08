@@ -6,9 +6,8 @@
 #include "LarvaEngine/Audio/SoundEvent.h"
 #include "LarvaEngine/Core/Resources/AssetManager.h"
 
-AudioComponent::AudioComponent(GameObject* parent, int updateOrder)
+AudioComponent::AudioComponent(GameObject& parent, int updateOrder)
 	: Component(parent, updateOrder) {
-	_audioManager = GetParent()->GetScene()->GetManager()->GetGame()->GetAudioManager();
 }
 
 AudioComponent::~AudioComponent() {
@@ -41,7 +40,7 @@ void AudioComponent::Update(float deltaTime) {
 }
 
 void AudioComponent::OnUpdateWorldTransform() {
-	Matrix4 worldTransform = _parent->WorldTransform();
+	Matrix4 worldTransform = _parent.WorldTransform();
 	for (auto& event : _events3D) {
 		if (event.IsValid()) {
 			event.Set3DAttributes(worldTransform);
@@ -50,7 +49,7 @@ void AudioComponent::OnUpdateWorldTransform() {
 }
 
 SoundEvent AudioComponent::PlayEvent(const std::string& name) {
-	SoundEvent event = _parent->GetScene()->GetManager()->GetGame()->GetAudioSystem()->PlayEvent(name);
+	SoundEvent event = _parent.GetScene().GetManager().GetGame().GetAudioSystem().PlayEvent(name);
 
 	if (event.Is3D()) {
 		_events3D.emplace_back(event);

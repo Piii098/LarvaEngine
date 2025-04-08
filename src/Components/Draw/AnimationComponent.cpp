@@ -1,7 +1,7 @@
 ﻿#include "LarvaEngine/Components/Draw/AnimationComponent.h"
 #include <SDL3/SDL.h>
 
-AnimationComponent::AnimationComponent(GameObject* parent, int bufferLayer, int updateOrder)
+AnimationComponent::AnimationComponent(GameObject& parent, int bufferLayer, int updateOrder)
     : SpriteComponent(parent, bufferLayer, updateOrder) {
 }
 

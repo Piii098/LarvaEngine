@@ -8,7 +8,7 @@ class AIState;
 
 class AIComponent : public Component {
 public:
-	AIComponent(GameObject* parent);
+	AIComponent(GameObject& parent);
 	~AIComponent() override;
 
 	void Update(float deltaTime) override;

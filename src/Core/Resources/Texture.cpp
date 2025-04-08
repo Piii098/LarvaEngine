@@ -3,7 +3,9 @@
 #include <SDL3/SDL.h>
 #include "LarvaEngine/Core/Resources/Texture.h"
 
-#pragma region コンストラタ:デストラクタ
+//==============================================================================
+// コンストラクタ・デストラクタ
+//==============================================================================
 
 Texture::Texture()
 	: _textureID(0)
@@ -17,11 +19,18 @@ Texture::~Texture() {
 }
 
 
-#pragma endregion
+//==============================================================================
+// パブリック関数
+//==============================================================================
 
 
-#pragma region パブリック関数
+// ===== ロード・アンロード ===== //
 
+/**
+ * テクスチャを読み込む
+ * 
+ * SOILを使用し、OpenGLへテクスチャを転送しTextureIDを保持する
+ */
 bool Texture::Load(const std::string& fileName) {
 	
 	int channels = 0;
@@ -50,10 +59,22 @@ bool Texture::Load(const std::string& fileName) {
 	return true;
 }
 
+/**
+ * テクスチャをアンロードする
+ * 
+ * テクスチャIDを削除する
+ */
 void Texture::Unload() {
 	glDeleteTextures(1, &_textureID);
 }
 
+
+/**
+ * SDL_Surfaceからテクスチャを作成する
+ *
+ * SDL_Surfaceからテクスチャを作成し、OpenGLへテクスチャを転送する
+ * TextureIDを保持する
+ */
 void Texture::CreateFromSurface(SDL_Surface* surface) {
     if (!surface) {
         SDL_Log("ERROR: Null surface provided to CreateFromSurfaceSafe");
@@ -118,9 +139,13 @@ void Texture::CreateFromSurface(SDL_Surface* surface) {
     return;
 }
 
+
+/**
+ * テクスチャをアクティブ化する
+ *
+ * テクスチャIDをバインドする
+ */
 void Texture::SetActive() {
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, _textureID);
 }
-
-#pragma endregion

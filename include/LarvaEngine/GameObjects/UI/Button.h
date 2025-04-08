@@ -3,12 +3,12 @@
 #include <unordered_map>
 #include <vector>
 #include <string>
+#include <SDL3/SDL.h>
 #include "LarvaEngine/Core/GameObject.h"
 
-class Texture;
 class SpriteComponent;
 class TextComponent;
-
+class InputAction;
 
 struct ButtonData {
 	bool isPressed = false;
@@ -16,34 +16,45 @@ struct ButtonData {
 	std::function<void()> onClick = nullptr;
 	SpriteComponent* spriteComp = nullptr;
 	TextComponent* textComp = nullptr;
+	SDL_Rect rect;      // ボタンの表示領域（スクリーン座標）
+	Vector2 offset;     // 親オブジェクトからの相対位置
 };
 
 class Button : public GameObject {
 public:
-	Button(Scene* scene);
+	Button(Scene& scene, const Vector2& offset = Vector2::Zero);
 	~Button() override;
 
-	void InputObject(Input* input) override;
+	void InputObject(const InputAction& input) override;
 
 	void UpdateObject(float deltaTime) override;
-	void SetText(int key, const std::string& text, const std::string& fontName, int pointSize, const Vector3& color);
+	bool SetText(int index, const std::string& text, const std::string& fontName
+		, int pointSize, const Vector3& color);
 
 	void SetOnClick(int key, std::function<void()> onClick);
 	
-	void CreateButtonData();
+	int CreateButtonData(const std::string& text = "", const std::string& fontName = "",
+		int pointSize = 16, const Vector3& color = Vector3(1, 1, 1)
+		, std::function<void()> onClick = nullptr);
 
 	void SetOffset(const Vector2& offset);
 
+	void SelectButton(int index);
+
+	int GetSelectedButton() const { return _hoveredIndex; }
+
+	void UpdateButtonRects();  // ボタンの表示領域を更新
+
 private:
 
+	void HandleKeyboardInput(const InputAction& input);
+	void HandleMouseInput(const InputAction& input);
+	void HandleGamepadInput(const InputAction& input);
+
+	SDL_Rect CalculateButtonRect(int index) const;
+
 	Vector2 _offset;
-
-	bool _isPressed;
-	bool _isHovered;
-	std::function<void()> _onClick;
-	SpriteComponent* _spriteComp;
-	TextComponent* _textComp;
-
 	std::vector<ButtonData> _buttonData;
 	int _hoveredIndex;
+
 };

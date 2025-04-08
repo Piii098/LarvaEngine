@@ -8,7 +8,7 @@
 
 unsigned int AudioSystem::s_nextID = 0;
 
-AudioSystem::AudioSystem(Game* game)
+AudioSystem::AudioSystem(Game& game)
 	: _game(game), _studioSystem(nullptr), _coreSystem(nullptr) {
 }
 

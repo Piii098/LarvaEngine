@@ -5,10 +5,10 @@
 class CameraComponent : public Component {
 public:
 
-	CameraComponent(GameObject* parent, int updateLayer = 500);
+	CameraComponent(GameObject& parent, int updateLayer = 500);
 	~CameraComponent() override;
 
-	void ProcessInput(Input* input) override;
+	void ProcessInput(const InputAction& input) override;
 	void Update(float deltaTime) override;
 
 	void Zoom(float zoom) { _zoom = zoom; };

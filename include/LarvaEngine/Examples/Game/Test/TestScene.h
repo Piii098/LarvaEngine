@@ -7,7 +7,7 @@ namespace Example {
 
 	class TestScene : public MainScene {
 	public:
-		TestScene(SceneManager* manager);
+		TestScene(SceneManager& manager);
 		~TestScene() override;
 
 		void Initialize() override;

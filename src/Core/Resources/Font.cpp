@@ -4,30 +4,45 @@
 #include "LarvaEngine/Core/Resources/Font.h"
 #include "LarvaEngine/Core/Resources/Texture.h"
 
-#pragma region コンストラクタ:デストラクタ
+//==============================================================================
+// コンストラクタ・デストラクタ
+//==============================================================================
 
 Font::Font() 
     : _isOutline(false){
+	_texture = nullptr;
 }
 
 Font::~Font() {
+    if (!_textMap.empty()) {
+        Unload();
+    }
 }
 
-#pragma endregion
+//==============================================================================
+// パブリック関数
+//==============================================================================
 
-#pragma region パブリック関数
+// ===== ロード・アンロード ===== //
 
+/**
+ * フォントを読み込む
+ * 
+ * TTFフォントを読み込み、フォントサイズとフォントデータを保持する
+ */
 bool Font::Load(const std::string& fileName) {
+
+	// フォントサイズのリスト
     std::vector<int> fontSizes = {
         10, 20, 30, 40, 50, 60, 70, 80, 90, 100
     };
 
+	// フォントサイズごとにフォントを読み込む
     for (auto& size : fontSizes) {
-        // ハードコードではなく、渡されたfileNameを使用
+
         TTF_Font* font = TTF_OpenFont(fileName.c_str(), size);
         if (font == nullptr) {
-            SDL_Log("Failed to load font %s with size %d: %s",
-                fileName.c_str(), size, SDL_GetError());
+            SDL_Log("Failed to load font %s with size %d: %s",fileName.c_str(), size, SDL_GetError());
             return false;
         }
         _textMap.emplace(size, font);
@@ -35,6 +50,12 @@ bool Font::Load(const std::string& fileName) {
 
     return true;
 }
+
+/**
+ * フォントをアンロードする
+ *
+ * フォントを削除する
+ */
 void Font::Unload() {
 	for (auto& font : _textMap) {
 		TTF_CloseFont(font.second);
@@ -42,8 +63,19 @@ void Font::Unload() {
 	_textMap.clear();
 }
 
+// ===== テキスト描画 ===== //
+
+/**
+ * テキストを描画する
+ *
+ * SDL_ttfを使用してテキストを描画し、SDL_SurfaceをOpenGL用のテクスチャクラスに変換し返す
+ * RenderText_Blendedを使用してテキストを描画
+ */
 Texture* Font::RenderText(const std::string& text, const Vector3& color, int pointSize) {
-    Texture* texture = nullptr;
+
+	if (_texture == nullptr) {
+		_texture = std::make_unique<Texture>();
+	}
 
     // SDLカラーを正しく設定
     SDL_Color sdlColor{};
@@ -56,17 +88,13 @@ Texture* Font::RenderText(const std::string& text, const Vector3& color, int poi
     if (iter != _textMap.end()) {
         TTF_Font* font = iter->second;
 
-		if (_isOutline) TTF_SetFontOutline(font, 1);
-		else TTF_SetFontOutline(font, 0);
+		TTF_SetFontOutline(font, 0);
 
-        // SDL3_ttfの正しいシグネチャを使用
-        // text.c_str()は文字列、0はヌル終端文字列を使用することを示す
         SDL_Surface* surf = TTF_RenderText_Blended(font, text.c_str(), 0, sdlColor);
    
         if (surf != nullptr) {
-            texture = new Texture();
-            
-            texture->CreateFromSurface(surf);
+           
+			_texture->CreateFromSurface(surf);
             SDL_DestroySurface(surf);
         }
     }
@@ -74,12 +102,7 @@ Texture* Font::RenderText(const std::string& text, const Vector3& color, int poi
         SDL_Log("Font size %d not found in font map", pointSize);
     }
 
-    return texture;
+    return _texture.get();
 }
 
-void Font::IsOutline(bool isOutline) {
-    
-	_isOutline = isOutline;
-}
-#pragma endregion
 

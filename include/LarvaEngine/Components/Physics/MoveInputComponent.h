@@ -2,16 +2,15 @@
 #include "LarvaEngine/Core/Component.h"
 #include "LarvaEngine/Core/Utilities/Math.h"
 
-class Input;
 class RigidbodyComponent;
 
 class MoveInputComponent: public Component {
 public:
 
-	MoveInputComponent(GameObject* parent, RigidbodyComponent* rigidbodyComp, int updateLayer = 100);
+	MoveInputComponent(GameObject& parent, RigidbodyComponent* rigidbodyComp, int updateLayer = 100);
 	~MoveInputComponent() override;
 
-	void ProcessInput(Input* input) override;
+	void ProcessInput(const InputAction& input) override;
 	void PhysUpdate(float deltaTime) override;
 
 

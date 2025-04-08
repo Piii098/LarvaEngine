@@ -13,7 +13,7 @@ public:
         Interpolate // 前回と現在の物理位置を補間
     };
 
-    RigidbodyComponent(GameObject* parent, int updateLayer = 30);
+    RigidbodyComponent(GameObject& parent, int updateLayer = 30);
     ~RigidbodyComponent() override;
 
     void Update(float deltaTime) override;  // 新しいUpdate関数を追加
@@ -45,7 +45,7 @@ public:
     InterpolationMode GetInterpolationMode() const { return _interpolationMode; }
 
 private:
-    PhysWorld2D* _phys;
+    PhysWorld2D& _phys;
     float _angularSpeed; //・ｽ・ｽ]・ｽ・ｽ・ｽx
     float _forwardSpeed; //・ｽO・ｽ・ｽ・ｽ^・ｽ・ｽ・ｽ・ｽ・ｽx
 

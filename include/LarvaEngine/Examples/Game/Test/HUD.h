@@ -8,10 +8,10 @@ namespace Example {
 
 	class HUD : public UIScene {
 	public:
-		HUD(MainScene* parent);
+		HUD(MainScene& parent);
 		~HUD() override;
 
-		//void InputUI(Input* input) override;
+		//void InputUI(const InputAction& input) override;
 
 		//void UpdateUI(float deltaTime) override;
 

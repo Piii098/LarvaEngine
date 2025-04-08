@@ -1,2 +1,0 @@
-D:\Github\Cpp_SDL\x64\Debug\glew32d.dll
-D:\Github\Cpp_SDL\Cpp_SDL\x64\Debug\Cpp_SDL.vcxproj.Up2Date

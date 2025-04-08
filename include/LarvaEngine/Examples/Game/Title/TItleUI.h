@@ -8,10 +8,11 @@ namespace ExampleTitle
 
 	class TitleUI : public UIScene {
 	public:
-		TitleUI(MainScene* scene);
+		TitleUI(MainScene& scene);
 		~TitleUI() override;
 
 		//void Initialize() override;
+		void UpdateScene(float deltaTime) override;
 
 	private:
 

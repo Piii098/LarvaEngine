@@ -4,7 +4,7 @@
 
 #pragma region コンストラクタ:デストラクタ
 
-AIComponent::AIComponent(GameObject* parent)
+AIComponent::AIComponent(GameObject& parent)
 	: Component(parent){
 
 }
