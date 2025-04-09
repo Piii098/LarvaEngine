@@ -229,7 +229,12 @@
     <ClCompile Include="src\Examples\Game\Test\TestScene.cpp">
       <Filter>Examples\Game\Test</Filter>
     </ClCompile>
-    <ClCompile Include="src\Examples\Game\2DScroll\GameMainScene.cpp" />
+    <ClCompile Include="src\Examples\Game\2DScroll\GameMainScene.cpp">
+      <Filter>Examples\Game\2DScroll</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\Game\2DScroll\Player.cpp">
+      <Filter>Examples\Game\2DScroll</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\LarvaEngine\Components\AI\AICompoennt.h">
@@ -394,6 +399,11 @@
     <ClInclude Include="include\LarvaEngine\Examples\Game\Test\TestScene.h">
       <Filter>Examples\Game\Test</Filter>
     </ClInclude>
-    <ClInclude Include="include\LarvaEngine\Examples\Game\2DScroll\GameMainScene.h" />
+    <ClInclude Include="include\LarvaEngine\Examples\Game\2DScroll\GameMainScene.h">
+      <Filter>Examples\Game\2DScroll</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Examples\Game\2DScroll\Player.h">
+      <Filter>Examples\Game\2DScroll</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

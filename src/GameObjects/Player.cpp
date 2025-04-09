@@ -62,6 +62,7 @@ Player::Player(Scene& scene)
 	//TextComponent* textComp = new TextComponent(this, 15, "DelaSuko");
 	//textComp->CreateTextTexture("PLAYER", Vector3::fromIntRGB(255, 0, 0), 30);
 
+	SDL_Log("Player was created");
 	//new DebugDrawComponent(this, _boxComp, true);
 }
 

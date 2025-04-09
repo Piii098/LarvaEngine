@@ -37,6 +37,7 @@ struct TileInfo {
 class Tile : public GameObject {
 public:
     Tile(GameObject* parent, int tileId, const Vector2Int& position, const std::string& tileSetName);
+    Tile(Scene& parent, int tileId, const Vector2Int& position, const std::string& tileSetName);
     ~Tile() override;
 
 

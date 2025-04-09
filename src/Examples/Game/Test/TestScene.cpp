@@ -55,9 +55,10 @@ void Example::TestScene::LoadData() {
 	GetManager().GetGame().GetTextureManager().Load("RedBox", "Assets/Textures/RedBox.png");
 	GetManager().GetGame().GetTileMapManager().Load("TileMap", "Assets/TileMaps/TileMap.csv");
 
-	_player = &CreateGameObject<Player>();
+	Player& player = CreateGameObject<Player>();
+	_player = &player;
 
-	TileMapObject& _tileMapObject = CreateGameObject<TileMapObject>();
+	TileMapObject& tileMapObject = CreateGameObject<TileMapObject>();
 	
 	Particle& particle = CreateGameObject<Particle>();
 	particle.Position(Vector2(100, 50));
@@ -65,10 +66,10 @@ void Example::TestScene::LoadData() {
 	particle.SetSpriteSheet(32,32,0,0,16, 0.08f,true);
 	particle.SetLight(Vector3(1,0.2,0.2), 0.5f, 20.f, Vector2(0, -5));
 
-	_tileMapObject.SetOnTile(_player, -2);
+	tileMapObject.SetOnTile(&player, -2);
 	_camera = &CreateGameObject<Camera>();
-	GetCamera()->Position(_player->Position());
-	GetCamera()->Target(_player);
+	GetCamera()->Position(player.Position());
+	GetCamera()->Target(&player);
 
 	Particle& sun = CreateGameObject<Particle>();
 	sun.Position(Vector2(-120,70));

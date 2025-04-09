@@ -7,8 +7,8 @@ int main(int argc, char* argv[]) {
 	
 	Game game;
 	game.SetInitialScene<Example::TestScene>();
-	game.SetWindowsSize(1280, 720, 640, 360);
-	game.SetWindowsName("Doppel");
+	game.SetWindowsSize(1440, 810, 480, 270);
+	game.SetWindowsName("sample");
 	bool success = game.Initialize();
 
 	if (success) {

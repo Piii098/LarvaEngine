@@ -29,6 +29,22 @@ Tile::Tile(GameObject* parent, int tileId, const Vector2Int& position, const std
     _boxComp = nullptr;
 }
 
+Tile::Tile(Scene& parent, int tileId, const Vector2Int& position, const std::string& tileSetName)
+    : GameObject(parent)
+    , _tileId(tileId)
+    , _tileSize(0)
+    , _texOffset(Vector2::Zero)
+    , _boxComp(nullptr)
+    , _sprite(nullptr) {
+    Position(position);
+    Scale(1.f);
+    _sprite = &CreateComponent<SpriteComponent>(10, 10);
+    _sprite->SetTexture(tileSetName);
+
+    // デフォルトでは衝突なし
+    _boxComp = nullptr;
+}
+
 Tile::~Tile() {
 
 }
@@ -83,6 +99,7 @@ TileMapComponent::TileMapComponent(GameObject& parent, int drawLayer)
     _tileInfos.resize(256);
 }
 
+
 TileMapComponent::~TileMapComponent() {
 }
 
@@ -126,7 +143,7 @@ void TileMapComponent::CreateTiles() {
 			if (tileId > _tileSetSize) continue;
             if (tileId < -1) {
                 Vector2Int position(x * _tileSize + GetParent().Position().x, (_mapHeight - 1 - y) * _tileSize + GetParent().Position().y);
-                auto tile = GetParent().GetScene().CreateChildObject<Tile>(&GetParent(), tileId, Vector2Int(x * _tileSize, (_mapHeight - 1 - y) * _tileSize), _tileSetName);
+                auto tile = GetParent().GetScene().CreateGameObject<Tile>( tileId, Vector2Int(x * _tileSize, (_mapHeight - 1 - y) * _tileSize), _tileSetName);
                 Vector2 offset = Vector2(0, 0);
                 tile.SetTexOffset(offset);
                 Vector2 scale = Vector2(1.0f / tilePerRow, 1.0f / tilePerColumn);
@@ -134,7 +151,7 @@ void TileMapComponent::CreateTiles() {
                 tile.Scale(1.0f); // スケールを1.0に設定
             }else if (tileId != -1 && tileId < _tileInfos.size()) { // 有効なタイルIDの場合
                 Vector2Int position(x * _tileSize + GetParent().Position().x, (_mapHeight - 1 - y) * _tileSize + GetParent().Position().y);
-                auto tile = GetParent().GetScene().CreateChildObject<Tile>(&GetParent(),tileId, position, _tileSetName);
+                auto tile = GetParent().GetScene().CreateGameObject<Tile>(tileId, position, _tileSetName);
                 tile.TileSize(_tileSize);
                 tile.Tag(_tileInfos[tileId].tag);
                 tile.SetCollider(_tileInfos[tileId].isCollider);
