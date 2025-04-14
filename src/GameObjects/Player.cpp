@@ -31,7 +31,7 @@ Player::Player(Scene& scene)
 
 	_jumpForce = 700.f;
 
-	_rigidbodyComp = &CreateComponent<RigidbodyComponent>(true);
+	_rigidbodyComp = &CreateComponent<RigidbodyComponent>();
 	_boxComp = &CreateComponent<BoxComponent2D>(true, true);
 	AABB2D myBox(Vector2Int(-6.0f, -8.f), Vector2Int(6.0f, 6.f));
 	_boxComp->SetObjectBox(myBox);

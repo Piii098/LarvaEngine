@@ -20,6 +20,7 @@ MoveInputComponent::MoveInputComponent(GameObject& parent, RigidbodyComponent* r
 	, _maxHorizontalForce(0.f)
 	, _maxVerticalVelocity(0.f)
 	, _maxHorizontalVelocity(0.f){
+	//SDL_Log("MoveInputComponent::MoveInputComponent\n");
 	
 }
 
@@ -34,9 +35,11 @@ void MoveInputComponent::ProcessInput(const InputAction& input) {
 	_direction = Vector2::Zero;
 
 	if (input.IsKey(SDL_SCANCODE_RIGHT)) {
+		//SDL_Log("RIGHT KEY PRESSED\n");
 		_direction.x += 1;
 	}
 	if (input.IsKey(SDL_SCANCODE_LEFT)) {
+		//SDL_Log("LEFT KEY PRESSED\n");
 		_direction.x -= 1;
 	}
 	if (input.IsKey(SDL_SCANCODE_UP)) {
@@ -65,6 +68,7 @@ void MoveInputComponent::PhysUpdate(float deltaTime){
 	Vector2 currentVelocity = _rigidbodyComp->Velocity();
 
 	Vector2 desiredVelocity(static_cast<float>(_direction.x) * (_moveSpeed + _moveSpeedX), currentVelocity.y);
+	//SDL_Log("Desired Velocity: %f, %f\n", desiredVelocity.x, desiredVelocity.y);
 	Vector2 velocityChange = desiredVelocity - currentVelocity;
 
 	// 質量を考慮して力を計算

@@ -1,6 +1,11 @@
 #pragma once
 #include "LarvaEngine/Core/GameObject.h"
 
+class SpriteComponent;
+class RigidbodyComponent;
+class MoveInputComponent;
+class BoxComponent2D;
+
 namespace Example2DScroll {
 
 	class Player : public GameObject {
@@ -9,8 +14,13 @@ namespace Example2DScroll {
 		Player(Scene& scene);
 		~Player() override;
 
+		void UpdateObject(float deltaTime) override;
+
 
 	private:
-
+		SpriteComponent* _spriteComp;
+		RigidbodyComponent* _rigidbodyComp;
+		MoveInputComponent* _moveInputComp;
+		BoxComponent2D* _boxComp;
 	};
 }

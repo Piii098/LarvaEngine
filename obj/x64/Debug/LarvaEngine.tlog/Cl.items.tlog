@@ -1,3 +1,4 @@
+C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Examples\Game\2DScroll\PlaySubScene.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Examples\Game\2DScroll\PlaySubScene.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Examples\Game\2DScroll\GameMainScene.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Examples\Game\2DScroll\GameMainScene.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Audio\AudioSystem.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Audio\AudioSystem.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Audio\SoundEvent.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Audio\SoundEvent.obj
@@ -16,6 +17,7 @@ C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\Physics\MoveInput
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\Physics\RigidbodyComponent.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Components\Physics\RigidbodyComponent.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\TileMapComponent.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Components\TileMapComponent.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Core\Component.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Core\Component.obj
+C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Examples\Game\2DScroll\Player.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Examples\Game\2DScroll\Player.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Examples\Game\Test\HUD.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Examples\Game\Test\HUD.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Examples\Game\Test\PauseMenu.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Examples\Game\Test\PauseMenu.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Examples\Game\Test\PlaySubScene.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Examples\Game\Test\PlaySubScene.obj

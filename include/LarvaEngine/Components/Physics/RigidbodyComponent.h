@@ -18,12 +18,10 @@ public:
 
     void Update(float deltaTime) override;  // 新しいUpdate関数を追加
     void PhysUpdate(float deltaTime) override;
-    void CalculateVelocity(float deltaTime); //・ｽ・ｽ・ｽx・ｽ・ｽ・ｽv・ｽZ
-    void UpdatePosition(float deltaTime); //・ｽj・ｽ・ｽ・ｽ[・ｽg・ｽ・ｽ・ｽﾍ学・ｽ・ｽ・ｽv・ｽZ
+    void CalculateVelocity(float deltaTime); 
+    void UpdatePosition(float deltaTime); 
 
     void AddForce(Vector2 force);
-
-    /*・ｽQ・ｽb・ｽ^・ｽ[・ｽZ・ｽb・ｽ^・ｽ[*/
 
     float AngularSpeed() const { return _angularSpeed; };
     float ForwardSpeed() const { return _forwardSpeed; };
@@ -46,13 +44,12 @@ public:
 
 private:
     PhysWorld2D& _phys;
-    float _angularSpeed; //・ｽ・ｽ]・ｽ・ｽ・ｽx
-    float _forwardSpeed; //・ｽO・ｽ・ｽ・ｽ^・ｽ・ｽ・ｽ・ｽ・ｽx
+    float _angularSpeed; 
+    float _forwardSpeed; 
 
-    /*・ｽj・ｽ・ｽ・ｽ[・ｽg・ｽ・ｽ・ｽﾍ学*/
-    float _mass; //・ｽ・ｽ・ｽ・ｽ
-    Vector2 _sumOfForces; //・ｽﾍの搾ｿｽ・ｽv
-    Vector2 _velocity; //・ｽ・ｽ・ｽx
+    float _mass; 
+    Vector2 _sumOfForces;
+    Vector2 _velocity;
 
     Vector2 _nextPosition;
     Vector2 _internalPosition;

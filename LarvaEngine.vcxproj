@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Examples\Game\2DScroll\PlaySubScene.cpp" />
     <ClCompile Include="src\Examples\Game\2DScroll\GameMainScene.cpp" />
     <ClCompile Include="src\Audio\AudioSystem.cpp" />
     <ClCompile Include="src\Audio\SoundEvent.cpp" />
@@ -93,6 +94,7 @@
     <ClInclude Include="include\LarvaEngine\Components\TileMapComponent.h" />
     <ClInclude Include="include\LarvaEngine\Core\Component.h" />
     <ClInclude Include="include\LarvaEngine\Examples\Game\2DScroll\Player.h" />
+    <ClInclude Include="include\LarvaEngine\Examples\Game\2DScroll\PlaySubScene.h" />
     <ClInclude Include="include\LarvaEngine\Examples\Game\Test\HUD.h" />
     <ClInclude Include="include\LarvaEngine\Examples\Game\Test\PauseMenu.h" />
     <ClInclude Include="include\LarvaEngine\Examples\Game\Test\PlaySubScene.h" />

@@ -19,16 +19,14 @@ RigidbodyComponent::RigidbodyComponent(GameObject& parent, int updateLayer)
     , _internalPosition(Vector2::Zero)
     , _prevInternalPosition(Vector2::Zero)  // 前回位置の初期化
     , _interpolationMode(InterpolationMode::None) 
-    , _phys(_parent.GetScene().GetManager().GetGame().GetPhysWorld()){  // デフォルトは補間なし
+    , _phys(_parent.GetScene().GetManager().GetGame().GetPhysWorld()){  
     //_internalPosition = _parent->PositionToFloat();
-    
+
 }
 
 RigidbodyComponent::~RigidbodyComponent() {
 
 }
-
-#pragma region �p�u���b�N�֐�
 
 // 位置設定時に前回の位置も更新するように変更
 void RigidbodyComponent::InternalPosition(Vector2 internalPosition) {
@@ -38,30 +36,13 @@ void RigidbodyComponent::InternalPosition(Vector2 internalPosition) {
 
 // 更新処理で補間を適用
 void RigidbodyComponent::Update(float deltaTime) {
-    if (_interpolationMode == InterpolationMode::None) {
-        // 補間なしの場合は物理計算の位置をそのまま使用
-        _parent.Position(_internalPosition);
-        return;
-    }
-
-    // 補間モードの場合、前回と現在の位置を補間
-    float alpha = GetParent().GetScene().GetManager().GetGame().GetFrameSystem().GetAlpha();  // Frame クラスから補間係数を取得
-    Vector2 interpolatedPosition = Vector2::Lerp(_prevInternalPosition, _internalPosition, alpha);
-
-    // 補間位置をゲームオブジェクトに適用
-    _parent.Position(interpolatedPosition);
+	_internalPosition = _parent.PositionToFloat();  // 親オブジェクトの位置を取得
 }
 
-
 void RigidbodyComponent::PhysUpdate(float deltaTime) {
+    
 
-    if (_internalPosition == Vector2::Zero) {
-        _internalPosition = _parent.PositionToFloat();
-        return;
-    }
-
-
-    const float GRAVITY_CONSTANT = 50000; // 重力定数を現実的な値に修正
+    const float GRAVITY_CONSTANT = 200; // 重力定数を現実的な値に修正
    
     float gravityForce = 0.f;
 
@@ -76,7 +57,7 @@ void RigidbodyComponent::PhysUpdate(float deltaTime) {
 
         if (!_phys.SegmentCast(ray, outColl, GetParent())) {
             gravityForce = _mass * GRAVITY_CONSTANT * deltaTime;
-         
+              
         }
         
         AddForce(Vector2(0, -gravityForce));
@@ -107,7 +88,9 @@ void RigidbodyComponent::CalculateVelocity(float deltaTime) {
 
 void RigidbodyComponent::UpdatePosition(float deltaTime) {
   
+   
     _parent.Position(_internalPosition);
+	SDL_Log("PlayerInternalPos(%.6f, %.6f)", _internalPosition.x, _internalPosition.y);
  
 }
 

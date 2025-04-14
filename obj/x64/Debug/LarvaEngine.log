@@ -1,7 +1,20 @@
-﻿  GameMainScene.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Examples/Game/2DScroll/GameMainScene.cpp' をコンパイルしています)
+﻿  RigidbodyComponent.cpp
+C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(69,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'src/Components/Physics/RigidbodyComponent.cpp' をコンパイルしています)
   
+C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(114,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'src/Components/Physics/RigidbodyComponent.cpp' をコンパイルしています)
+  
+C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(411,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'src/Components/Physics/RigidbodyComponent.cpp' をコンパイルしています)
+  
+C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\FrameSystem.h(45,38): warning C4244: 'return': 'const float' から 'Uint64' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'src/Components/Physics/RigidbodyComponent.cpp' をコンパイルしています)
+  
+C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\Physics\RigidbodyComponent.cpp(54,69): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\Physics\RigidbodyComponent.cpp(54,63): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\Physics\RigidbodyComponent.cpp(55,59): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\GameObject.h(144): warning C4172: ローカル変数またはテンポラリのアドレスを返します
   LarvaEngine.vcxproj -> C:\Users\amary\source\repos\Piii098\LarvaEngine\bin\x64\Debug\LarvaEngine.exe
   'pwsh.exe' は、内部コマンドまたは外部コマンド、
   操作可能なプログラムまたはバッチ ファイルとして認識されていません。

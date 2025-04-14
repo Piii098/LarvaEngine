@@ -235,6 +235,9 @@
     <ClCompile Include="src\Examples\Game\2DScroll\Player.cpp">
       <Filter>Examples\Game\2DScroll</Filter>
     </ClCompile>
+    <ClCompile Include="src\Examples\Game\2DScroll\PlaySubScene.cpp">
+      <Filter>Examples\Game\2DScroll</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\LarvaEngine\Components\AI\AICompoennt.h">
@@ -403,6 +406,9 @@
       <Filter>Examples\Game\2DScroll</Filter>
     </ClInclude>
     <ClInclude Include="include\LarvaEngine\Examples\Game\2DScroll\Player.h">
+      <Filter>Examples\Game\2DScroll</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Examples\Game\2DScroll\PlaySubScene.h">
       <Filter>Examples\Game\2DScroll</Filter>
     </ClInclude>
   </ItemGroup>

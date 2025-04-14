@@ -37,7 +37,7 @@ void Camera::InputObject(const InputAction& input) {
 }
 
 void Camera::UpdateObject(float deltaTime) {
-	_camera.Target(_target->Position());
+	//_camera.Target(_target->Position());
 }
 
 Matrix4 Camera::GetViewMatrix() const {

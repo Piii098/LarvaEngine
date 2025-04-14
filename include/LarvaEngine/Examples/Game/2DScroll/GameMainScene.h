@@ -3,19 +3,17 @@
 
 namespace Example2DScroll
 {
-
+	class Player;
 	class GameMainScene : public MainScene
 	{
 	public:
 		GameMainScene(SceneManager& manager) ;
-		~GameMainScene() override {};
+		~GameMainScene() override;
 
-		void LoadData() override {};
+		void LoadData() override;
 
 	private:
-		GameObject* _player;
-		GameObject* _pauseMenu;
-		GameObject* _gameOverMenu;
-		GameObject* _gameClearMenu;
+		Player* _player;
+
 	};
 }
