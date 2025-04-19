@@ -99,12 +99,12 @@ void Scene::Update(const float deltaTime) {
  * シーンがアクティブ状態かつ、ゲームオブジェクトがアクティブ状態の場合
  * ゲームオブジェクトの物理更新処理を行う
  */
-void Scene::PhysUpdate(const float deltaTime) {
+void Scene::FixedUpdate(const float deltaTime) {
 
 	if (_state != STATE::ACTIVE) return;
 
 	for (auto& obj : _objects) {
-		obj->PhysUpdate(deltaTime);
+		obj->FixedUpdate(deltaTime);
 	}
 
 }

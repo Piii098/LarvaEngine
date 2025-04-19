@@ -99,14 +99,14 @@ void GameObject::Update(const float deltaTime) {
  * コンポーネントと独自の物理更新処理を呼び出し、ワールド変換行列を計算する
  * アクティブ状態でなければ処理しない
  */
-void GameObject::PhysUpdate(const float deltaTime) {
+void GameObject::FixedUpdate(const float deltaTime) {
 
 	if (_state != STATE::ACTIVE) return;
 
 	ComputeWorldTransform();
 
-	PhysUpdateComponents(deltaTime);
-	PhysUpdateObject(deltaTime);
+	FixedUpdateComponents(deltaTime);
+	FixedUpdateObject(deltaTime);
 
 	ComputeWorldTransform();
 
@@ -259,11 +259,11 @@ void GameObject::UpdateComponents(const float deltaTime) {
  *
  * コンポーネントの物理更新処理を呼び出す
  */
-void GameObject::PhysUpdateComponents(const float deltaTime) {
+void GameObject::FixedUpdateComponents(const float deltaTime) {
 
 	for (auto& comp : _components) {
 		if (comp->State() == Component::STATE::ACTIVE) { // アクティブ状態のコンポーネントのみ更新
-			comp->PhysUpdate(deltaTime);
+			comp->FixedUpdate(deltaTime);
 		}
 	}
 }

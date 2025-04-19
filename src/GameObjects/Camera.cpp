@@ -9,12 +9,11 @@
 
 Camera::Camera(Scene& scene)
 	: GameObject(scene)
-	, _camera(CreateComponent<FollowCameraComponent>()){
-	Position(Vector2Int(800, 500));
+	, _cameraComp(CreateComponent<CameraComponent>()){
+	Position(Vector2Int(0, 0));
 	_zoom = 2.f;
-	_camera.Zoom(_zoom);
-	_camera.YOffset(35.f);
-	_camera.AttenRate(4);
+	_cameraComp.Zoom(_zoom);
+	
 }
 
 Camera::~Camera() {
@@ -33,7 +32,7 @@ void Camera::InputObject(const InputAction& input) {
 	if (input.IsKeyDown(SDL_SCANCODE_DOWN)) {
 		_zoom -= 1;
 	}
-	_camera.Zoom(_zoom);
+	_cameraComp.Zoom(_zoom);
 }
 
 void Camera::UpdateObject(float deltaTime) {
@@ -41,15 +40,15 @@ void Camera::UpdateObject(float deltaTime) {
 }
 
 Matrix4 Camera::GetViewMatrix() const {
-	return _camera.GetViewMatrix();
+	return _cameraComp.GetViewMatrix();
 }
 
 float Camera::Zoom() const {
-	return _camera.Zoom();
+	return _cameraComp.Zoom();
 }
 
 Vector2 Camera::SubPixelOffset() const {
-	return _camera.SubPixelOffset();
+	return _cameraComp.SubPixelOffset();
 }
 
 #pragma endregion

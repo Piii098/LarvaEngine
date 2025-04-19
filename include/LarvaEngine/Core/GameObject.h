@@ -62,7 +62,7 @@ public:
     /// コンポーネントと独自の入力処理を呼び出す
     /// シーンより呼び出される 
     /// @param deltaTime フレーム間の時間
-    void PhysUpdate(float deltaTime);
+    void FixedUpdate(float deltaTime);
 
 
     // ====== ワールド変換行列関連 ===== //
@@ -142,6 +142,8 @@ public:
     const Matrix4& WorldTransform() const { return _worldTransform; }
     const Vector2Int& Position() const { return _position; }
     const Vector2& PositionToFloat() const { return Vector2::ToFloat(_position); }
+    Vector2Int& Position()  { return _position; }
+    
     Scene& GetScene() { return _scene; }
     MainScene& GetMainScene();
     GameObject* GetParent() { return _parent; }
@@ -174,12 +176,12 @@ private:
 	/// @brief コンポーネントの物理更新処理
 	/// アクティブ状態のコンポーネントの物理更新処理を行う
 	/// @param deltaTime フレーム間の時間
-    void PhysUpdateComponents(float deltaTime);
+    void FixedUpdateComponents(float deltaTime);
 
 	/// @brief オブジェクトの物理更新処理
 	/// 仮想関数、オブジェクト独自の物理更新処理を行う
 	/// @param deltaTime フレーム間の時間
-    virtual void PhysUpdateObject(float deltaTime) {};
+    virtual void FixedUpdateObject(float deltaTime) {};
 
 
 	// ===== オブジェクト関連 ===== //

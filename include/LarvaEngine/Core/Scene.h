@@ -57,7 +57,7 @@ public:
 	/// @brief 物理更新処理
 	/// ゲームオブジェクトの物理更新処理を行う
 	/// @param deltaTime 補正されたフレーム間の時間
-    void PhysUpdate(float deltaTime);
+    void FixedUpdate(float deltaTime);
 
 	/// @brief 出力処理
 	/// ゲームオブジェクトの出力処理を行う

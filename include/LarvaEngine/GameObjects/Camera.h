@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "LarvaEngine/Core/GameObject.h"
 
-class FollowCameraComponent;
+class CameraComponent;
 class GameObject;
 
 class Camera : public GameObject {
@@ -19,7 +19,7 @@ public:
 	void Target(GameObject* target) { _target = target; }
 
 private:
-	FollowCameraComponent& _camera;
+	CameraComponent& _cameraComp;
 	GameObject* _target;
 	float _zoom;
 };

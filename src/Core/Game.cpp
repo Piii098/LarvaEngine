@@ -119,7 +119,6 @@ bool Game::Initialize() {
 	_fontManager = std::make_unique<AssetManager<Font>>();		      // フォントマネージャの初期化
 
 	// フレームレートの設定
-	_frameSystem->FixedDeltaTime(1.f / 60.f);
 
 	LoadScene();
 
@@ -199,14 +198,19 @@ void Game::Update() {
 	// フレームシステムの更新
 	_frameSystem->Update();
 
-	// 物理更新
-	PhysUpdate();
+
+	while (_frameSystem->ShouldRunFixedTimeStep())
+	{
+		FixedUpdate();
+	}
 
 	// シーンの更新
 	UpdateScene();
 
 	// オーディオシステムの更新
 	_audioSystem->Update(_frameSystem->DeltaTime());
+
+	//SDL_Log("FPS : %f", _frameSystem->Fps());
 }
 
 /**
@@ -216,17 +220,11 @@ void Game::Update() {
  * また、シーンマネージャ->シーン->ゲームオブジェクトの順に物理更新を行う
  * 物理システムの更新を行う
  */
-void Game::PhysUpdate() {
+void Game::FixedUpdate() {
 
-	while (_frameSystem->GetShouldDoFixedUpdate()) { // 固定フレームレートで物理更新
-		// 物理更新
-		const float deltaTime = _frameSystem->FixedDeltaTime();
-		
-		_sceneManager->PhysUpdate(deltaTime);
+	_sceneManager->FixedUpdate(_frameSystem->FixedDeltaTime());
 
-		_physWorld->Update(deltaTime);
-		_frameSystem->GetConsumeFixedDeltaTime();
-	}
+	_physWorld->FixedUpdate(_frameSystem->FixedDeltaTime());
 
 }
 
@@ -240,6 +238,10 @@ void Game::UpdateScene() {
 }
 
 void Game::ProcessOutput() {
+
+	// SDL_Log("FPS : %f", _frameSystem->FPS());
+	// SDL_Log("GameTime : %f", _frameSystem->GameTime());
+	// SDL_Log("DeltaTime : %f", _frameSystem->DeltaTime());
 
 	_renderer->Render();
 }

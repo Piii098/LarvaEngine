@@ -45,9 +45,9 @@ public:
 	// ===== 更新処理 =====//
 
 	/// @brief 更新処理
-	/// Game::PhysUpdate()から呼び出す
+	/// Game::FixedUpdate()から呼び出す
 	/// @param deltaTime 補正されたデルタ時間
-    void Update(float deltaTime);
+    void FixedUpdate(float deltaTime);
 
 	// ===== ボックスコンポーネント関連 =====//
 
@@ -58,6 +58,14 @@ public:
 	/// @brief ボックスコンポーネントを削除
 	/// @param obj ボックスコンポーネント
 	void RemoveBoxComponent(BoxComponent2D* obj); // 静的ボックスコンポーネントを削除
+
+	/// @brief リジットボディコンポーネントを追加
+	/// @param obj リジットボディコンポーネント
+	void AddRigidbodyComponent(RigidbodyComponent* obj); // 動的リジッドボディコンポーネントを追加
+	
+	/// @brief リジットボディコンポーネントを追加
+	/// @param obj リジットボディコンポーネント
+	void RemoveRigidbodyComponent(RigidbodyComponent* obj); // 動的リジッドボディコンポーネントを削除
 
 private:
 
@@ -79,5 +87,5 @@ private:
 	Game& game;								///< ゲームクラス
 	const float CCD_STEP_SIZE = 0.01f; 		///< CCDのステップサイズ
 	std::vector<BoxComponent2D*> _boxComps; ///< ボックスコンポーネントの配列
-
+	std::vector<RigidbodyComponent*> _rigidbodyComps; ///< リジッドボディコンポーネントの配列
 };

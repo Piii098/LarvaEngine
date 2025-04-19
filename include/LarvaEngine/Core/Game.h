@@ -114,7 +114,7 @@ private:
     void Update();
 
 	/// @brief 物理更新処理を行う
-    void PhysUpdate();
+    void FixedUpdate();
 
 	/// @brief シーンの更新処理を行う
     void UpdateScene();

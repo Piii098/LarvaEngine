@@ -57,10 +57,15 @@ bool PhysWorld2D::SegmentCast(const LineSegment2D& l, CollisionInfo& outColl, Ga
 /**
  * 更新処理
  *
- * Game::PhysUpdate()から呼びだされる
+ * Game::FixedUpdate()から呼びだされる
  */
-void PhysWorld2D::Update(float deltaTime) {
-    CollisionUpdate(deltaTime); // 衝突の更新
+void PhysWorld2D::FixedUpdate(float deltaTime) {
+    // CollisionUpdate(deltaTime); // 衝突の更新
+
+    for (auto& rigid : _rigidbodyComps) {
+		rigid->CalculateVelocity(deltaTime); // 速度の計算
+		rigid->UpdatePosition(deltaTime); // 位置の更新
+    }
 }
 
 /**
@@ -79,6 +84,24 @@ void PhysWorld2D::RemoveBoxComponent(BoxComponent2D* box) {
         std::iter_swap(iter, _boxComps.end() - 1); // 最後の要素とスワップ
         _boxComps.pop_back(); // 最後の要素を削除
     }
+}
+
+/**
+ * リジットボディコンポーネントを追加
+ */
+void PhysWorld2D::AddRigidbodyComponent(RigidbodyComponent* obj) {
+	_rigidbodyComps.push_back(obj); // リジットボディコンポーネントを追加
+}
+
+/**
+ * リジットボディコンポーネントを削除
+ */
+void PhysWorld2D::RemoveRigidbodyComponent(RigidbodyComponent* obj) {
+	auto iter = std::find(_rigidbodyComps.begin(), _rigidbodyComps.end(), obj);
+	if (iter != _rigidbodyComps.end()) {
+		std::iter_swap(iter, _rigidbodyComps.end() - 1); // 最後の要素とスワップ
+		_rigidbodyComps.pop_back(); // 最後の要素を削除
+	}
 }
 
 

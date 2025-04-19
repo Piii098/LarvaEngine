@@ -11,7 +11,7 @@ public:
 	~MoveInputComponent() override;
 
 	void ProcessInput(const InputAction& input) override;
-	void PhysUpdate(float deltaTime) override;
+	void FixedUpdate(float deltaTime) override;
 
 
 	/*ゲッターセッター*/

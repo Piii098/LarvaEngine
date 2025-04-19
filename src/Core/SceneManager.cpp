@@ -56,8 +56,8 @@ void SceneManager::Update(const float deltaTime) {
  *
  * 現在のメインシーンの物理更新処理を行う
  */
-void SceneManager::PhysUpdate(const float deltaTime) {
-	_currentMainScene->PhysUpdate(deltaTime);
+void SceneManager::FixedUpdate(const float deltaTime) {
+	_currentMainScene->FixedUpdate(deltaTime);
 }
 
 /**

@@ -16,8 +16,7 @@ Example2DScroll::Player::Player(Scene& scene)
 	_spriteComp->SetTexture("Player");
 
 	_rigidbodyComp = &CreateComponent<RigidbodyComponent>(true);
-	_rigidbodyComp->Mass(1.0f);
-	_rigidbodyComp->Drag(0.f);
+	_rigidbodyComp->Mass(5);
 	_rigidbodyComp->IsGravity(true);
 
 	_moveInputComp = &CreateComponent<MoveInputComponent>(_rigidbodyComp);
@@ -36,5 +35,6 @@ Example2DScroll::Player::~Player() {
 ///	====================================================================================================
 
 void Example2DScroll::Player::UpdateObject(float deltaTime) {
-	
+	//SDL_Log("position : %f, %f", _rigidbodyComp->InternalPosition().x, _rigidbodyComp->InternalPosition().y);
+	//SDL_Log("position : %d, %d", Position().x, Position().y);
 }

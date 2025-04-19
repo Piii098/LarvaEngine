@@ -38,8 +38,6 @@ Player::Player(Scene& scene)
 	_rigidbodyComp->Velocity(Vector2::Zero);
 	_rigidbodyComp->Mass(50.f);
 	_rigidbodyComp->IsGravity(true);
-	_rigidbodyComp->Drag(0.f);
-	_rigidbodyComp->SetInterpolationMode(RigidbodyComponent::InterpolationMode::Interpolate);
 
 	_moveInputComp = &CreateComponent<MoveInputComponent>(_rigidbodyComp);
 	_moveInputComp->MoveSpeedX(80.f);

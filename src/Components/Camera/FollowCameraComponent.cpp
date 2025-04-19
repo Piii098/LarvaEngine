@@ -30,7 +30,7 @@ void FollowCameraComponent::Update(float deltaTime) {
  
 }
 
-void FollowCameraComponent::PhysUpdate(float deltaTime) {
+void FollowCameraComponent::FixedUpdate(float deltaTime) {
 	if (_internalPosition == Vector2::Zero) {
 		_internalPosition = _parent.PositionToFloat();
 		return;

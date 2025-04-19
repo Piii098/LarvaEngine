@@ -49,36 +49,22 @@ void MoveInputComponent::ProcessInput(const InputAction& input) {
 		_direction.y -= 1;
 	}
 
-	PhysWorld2D& phys = _parent.GetScene().GetManager().GetGame().GetPhysWorld();
-	PhysWorld2D::CollisionInfo outColl;
-
-	_parent.ComputeWorldTransform();
-
-	// プレイヤーの少し下から地面方向へレイを飛ばす
-	Vector2Int rayStart = _parent.Position() + Vector2Int(0.f, -1.0f);  // プレイヤーの足元あたり
-	LineSegment2D ray(rayStart, rayStart + Vector2Int(0.f, -15));
-	if (phys.SegmentCast(ray, outColl, _parent)) {
-		if (input.IsKeyDown(SDL_SCANCODE_UP) && outColl._object->Tag() == GameObject::TAG::GROUND) {
-			_isJumping = true;
-		}
-	}
+	if (input.IsKeyDown(SDL_SCANCODE_SPACE) && _isJumping == false) {
+		_isJumping = true;
+	} 
 }
 
-void MoveInputComponent::PhysUpdate(float deltaTime){
-	Vector2 currentVelocity = _rigidbodyComp->Velocity();
+void MoveInputComponent::FixedUpdate(float deltaTime){
+	Vector2 force = Vector2::Zero;
 
-	Vector2 desiredVelocity(static_cast<float>(_direction.x) * (_moveSpeed + _moveSpeedX), currentVelocity.y);
-	//SDL_Log("Desired Velocity: %f, %f\n", desiredVelocity.x, desiredVelocity.y);
-	Vector2 velocityChange = desiredVelocity - currentVelocity;
-
-	// 質量を考慮して力を計算
-	float mass = _rigidbodyComp->Mass(); // 新たに質量を取得する必要があります
-	Vector2 force = velocityChange * mass / deltaTime;
+	force += _direction * 100000 * deltaTime;
 
 	if (_isJumping) {
-		force.y += _jumpForce;
+		force.y += 100000;
 		_isJumping = false;
 	}
+
+	//SDL_Log("Force(%f, %f)\n", force.x, force.y);
 
 	_rigidbodyComp->AddForce(force);
 	_direction = Vector2::Zero;

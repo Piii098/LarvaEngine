@@ -26,7 +26,7 @@ public:
 
 	virtual void ProcessInput(const InputAction& input) {};
 	virtual void Update(float deltaTime) {};
-	virtual void PhysUpdate(float deltaTime) {};
+	virtual void FixedUpdate(float deltaTime) {};
 	virtual void OnUpdateWorldTransform() {};
 	
 	/*ゲッターセッター*/
