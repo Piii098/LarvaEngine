@@ -84,14 +84,13 @@ public:
 	/// @tparam T 生成するコンポーネントの型
 	/// @tparam Args コンストラクタに渡す引数の型
 	/// @param args コンストラクタに渡す引数 ( 第一引数のGameObjectへの参照は自動で設定される )
-	/// @return 生成したコンポーネントへの参照
+	/// @return 生成したコンポーネントへの参照( 一時的な参照を推奨 )
     template<typename T, typename... Args>
     T& CreateComponent(Args&&... args) {
-		T* component = new T(*this, std::forward<Args>(args)...);
-		T& compRef = *component;
-
-        _components.emplace_back(component);
-		return compRef;
+        auto component = std::make_unique<T>(*this, std::forward<Args>(args)...);
+        T& compRef = *component; // 生ポインタではなく参照を取得
+        _components.emplace_back(std::move(component));
+        return compRef;
     }
 
     /// @brief コンポーネントの取得
@@ -100,13 +99,12 @@ public:
     /// @return コンポーネントのポインタ
     template <typename T>
     T* GetComponent() {
-        
-		for (auto& comp : _components) {
-			if (T* t = dynamic_cast<T*>(comp)) {
-				return t;
-			}
-		}
-		return nullptr;
+        for (auto& comp : _components) {
+            if (T* t = dynamic_cast<T*>(comp.get())) { // unique_ptrから生ポインタを取得
+                return t;
+            }
+        }
+        return nullptr;
     }
 
 
@@ -206,7 +204,7 @@ private:
     std::vector<GameObject*> _childrenObjects;  ///< 子オブジェクトリスト
 
     // コンポーネント
-    std::vector<Component*> _components;        ///< コンポーネントリスト
+    std::vector <std::unique_ptr<Component>> _components;        ///< コンポーネントリスト
 
     // トランスフォーム関連
     Matrix4 _worldTransform;                    ///< ワールド変換行列

@@ -17,7 +17,13 @@ public:
 	/// デルタタイムの計算
 	void Update();
 
+	/// @brief 固定タイムステップの処理
+	///
+	/// @return true: 固定タイムステップの処理を行う
+	/// @return false: 固定タイムステップの処理を行わない
 	bool ShouldRunFixedTimeStep();
+
+
 	// ----- アクセサ ----- //
 
 	float DeltaTime() const { return _deltaTime; }

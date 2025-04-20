@@ -16,10 +16,8 @@ public:
 	float Zoom() const;
 	Vector2 SubPixelOffset() const;
 
-	void Target(GameObject* target) { _target = target; }
 
 private:
-	CameraComponent& _cameraComp;
-	GameObject* _target;
+	CameraComponent* _cameraComp;
 	float _zoom;
 };

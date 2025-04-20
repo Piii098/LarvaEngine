@@ -160,9 +160,6 @@
     <ClCompile Include="src\Audio\SoundEvent.cpp">
       <Filter>Audio</Filter>
     </ClCompile>
-    <ClCompile Include="src\Components\TileMapComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="src\Core\Utilities\Math.cpp">
       <Filter>Core\Utilities</Filter>
     </ClCompile>
@@ -187,18 +184,6 @@
     <ClCompile Include="src\GameObjects\Camera.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameObjects\Background.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObjects\Particle.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObjects\Player.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObjects\TileMapObject.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="src\GameObjects\UI\Text.cpp">
       <Filter>GameObjects\UI</Filter>
     </ClCompile>
@@ -207,27 +192,6 @@
     </ClCompile>
     <ClCompile Include="src\GameObjects\UI\Button.cpp">
       <Filter>GameObjects\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Examples\Game\Test\PlaySubScene.cpp">
-      <Filter>Examples\Game\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Examples\Game\Title\PlaySubScene.cpp">
-      <Filter>Examples\Game\Title</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Examples\Game\Test\HUD.cpp">
-      <Filter>Examples\Game\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Examples\Game\Test\PauseMenu.cpp">
-      <Filter>Examples\Game\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Examples\Game\Title\TitleScene.cpp">
-      <Filter>Examples\Game\Title</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Examples\Game\Title\TitleUI.cpp">
-      <Filter>Examples\Game\Title</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Examples\Game\Test\TestScene.cpp">
-      <Filter>Examples\Game\Test</Filter>
     </ClCompile>
     <ClCompile Include="src\Examples\Game\2DScroll\GameMainScene.cpp">
       <Filter>Examples\Game\2DScroll</Filter>
@@ -330,9 +294,6 @@
     <ClInclude Include="include\LarvaEngine\Audio\SoundEvent.h">
       <Filter>Audio</Filter>
     </ClInclude>
-    <ClInclude Include="include\LarvaEngine\Components\TileMapComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="include\LarvaEngine\Core\Utilities\Math.h">
       <Filter>Core\Utilities</Filter>
     </ClInclude>
@@ -360,18 +321,6 @@
     <ClInclude Include="include\LarvaEngine\GameObjects\Camera.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="include\LarvaEngine\GameObjects\Background.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LarvaEngine\GameObjects\Particle.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LarvaEngine\GameObjects\Player.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LarvaEngine\GameObjects\TileMapObject.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="include\LarvaEngine\GameObjects\UI\Text.h">
       <Filter>GameObjects\UI</Filter>
     </ClInclude>
@@ -380,27 +329,6 @@
     </ClInclude>
     <ClInclude Include="include\LarvaEngine\GameObjects\UI\Button.h">
       <Filter>GameObjects\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LarvaEngine\Examples\Game\Test\PlaySubScene.h">
-      <Filter>Examples\Game\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LarvaEngine\Examples\Game\Title\PlaySubScene.h">
-      <Filter>Examples\Game\Title</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LarvaEngine\Examples\Game\Test\HUD.h">
-      <Filter>Examples\Game\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LarvaEngine\Examples\Game\Test\PauseMenu.h">
-      <Filter>Examples\Game\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LarvaEngine\Examples\Game\Title\TitleScene.h">
-      <Filter>Examples\Game\Title</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LarvaEngine\Examples\Game\Title\TItleUI.h">
-      <Filter>Examples\Game\Title</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LarvaEngine\Examples\Game\Test\TestScene.h">
-      <Filter>Examples\Game\Test</Filter>
     </ClInclude>
     <ClInclude Include="include\LarvaEngine\Examples\Game\2DScroll\GameMainScene.h">
       <Filter>Examples\Game\2DScroll</Filter>

@@ -18,10 +18,10 @@ public:
 	void LightIntensity(float intensity) { _lightIntensity = intensity; };
 	void LightRange(float range) { _lightRange = range; };
 
-	Vector3& LightColor() { return _lightColor; };
-	float LightIntensity() { return _lightIntensity; };
-	float LightRange() { return _lightRange; };
-	int BufferLayer() { return _bufferLayer; };
+	Vector3& LightColor()  { return _lightColor; };
+	float LightIntensity() const  { return _lightIntensity; };
+	float LightRange() const { return _lightRange; };
+	int BufferLayer() const { return _bufferLayer; };
 
 private:
 

@@ -12,7 +12,7 @@ public:
 	void Update(float deltaTime) override;
 
 	void Zoom(float zoom) { _zoom = zoom; };
-	float Zoom() { return  _zoom; };
+	float Zoom() const { return  _zoom; };
 	void Target(const Vector2Int& target) { _target = target; };
 	
 	Vector2 SubPixelOffset() const { return _subPixelOffset; };	

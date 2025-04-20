@@ -69,7 +69,6 @@ void Example::TestScene::LoadData() {
 	tileMapObject.SetOnTile(&player, -2);
 	_camera = &CreateGameObject<Camera>();
 	GetCamera()->Position(player.Position());
-	GetCamera()->Target(&player);
 
 	Particle& sun = CreateGameObject<Particle>();
 	sun.Position(Vector2(-120,70));

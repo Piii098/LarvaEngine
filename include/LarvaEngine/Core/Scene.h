@@ -119,7 +119,6 @@ public:
 	/// @param object 破棄するゲームオブジェクト
 	void DestroyObject(GameObject* object);
 
-
 	// ===== スプライト関連 ===== //
 
 	/// @brief スプライトの追加
@@ -136,11 +135,11 @@ public:
 	// ===== ゲッター・セッター =====//
 
     SceneManager& GetManager() { return _manager; }
-    Camera& GetCamera() { return *_camera.get(); }
-	STATE State() { return _state; }
+    Camera& GetCamera()  { return *_camera.get(); }
+	STATE State() const { return _state; }
 	const SceneManager& GetManager() const { return _manager; }
 	const Camera& GetCamera() const { return *_camera.get(); }
-	const STATE State() const { return _state; }
+	const STATE State()  { return _state; }
 
 	void State(STATE state) { _state = state; }
 

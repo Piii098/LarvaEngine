@@ -18,9 +18,6 @@ namespace Example2DScroll {
 
 
 	private:
-		SpriteComponent* _spriteComp;
-		RigidbodyComponent* _rigidbodyComp;
-		MoveInputComponent* _moveInputComp;
-		BoxComponent2D* _boxComp;
+
 	};
 }

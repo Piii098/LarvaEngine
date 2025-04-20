@@ -12,16 +12,16 @@
 Example2DScroll::Player::Player(Scene& scene)
 	: GameObject(scene){
 
-	_spriteComp = &CreateComponent<SpriteComponent>(10);
-	_spriteComp->SetTexture("Player");
+	SpriteComponent& spriteComp = CreateComponent<SpriteComponent>(10);
+	spriteComp.SetTexture("Player");
 
-	_rigidbodyComp = &CreateComponent<RigidbodyComponent>(true);
-	_rigidbodyComp->Mass(5);
-	_rigidbodyComp->IsGravity(true);
+	RigidbodyComponent& rigidbodyComp = CreateComponent<RigidbodyComponent>(true);
+	rigidbodyComp.Mass(5);
+	rigidbodyComp.IsGravity(true);
 
-	_moveInputComp = &CreateComponent<MoveInputComponent>(_rigidbodyComp);
-	_moveInputComp->MoveSpeedX(80.f);
-	_moveInputComp->State(Component::STATE::INACTIVE);
+	MoveInputComponent& moveInputComp = CreateComponent<MoveInputComponent>();
+	moveInputComp.MoveSpeedX(80.f);
+	moveInputComp.State(Component::STATE::INACTIVE);
 
 
 }

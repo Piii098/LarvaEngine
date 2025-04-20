@@ -22,9 +22,9 @@ void Example2DScroll::GameMainScene::LoadData() {
 
 	_manager.GetGame().GetTextureManager().Load("Player", "Assets/Textures/16Player.png");
 
+	
 	_player = &CreateGameObject<Player>();
 	_camera = &CreateGameObject<Camera>();
-	_camera->Target(_player);
 
 	ChangeSubScene<PlaySubScene>(*_player);
 	_currentSubScene->Initialize();

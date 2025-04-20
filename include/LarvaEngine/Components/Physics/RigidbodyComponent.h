@@ -29,11 +29,11 @@ public:
     float Mass() { return _mass; };
     const Vector2& Velocity() const { return _velocity; };
 
-    Vector2 InternalPosition() { return _internalPosition; };
+    Vector2 InternalPosition() const { return _internalPosition; };
     void InternalPosition(Vector2 internalPosition) { _internalPosition = internalPosition; };
 
 private:
-    PhysWorld2D& _phys;
+
     float _angularSpeed; 
     float _forwardSpeed; 
 

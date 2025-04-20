@@ -11,6 +11,8 @@ namespace Example2DScroll {
 		~PlaySubScene() override;
 
 		void Initialize() override;
+
+		void UpdateScene(float deltaTime) override;
 	private:
 		Player& _player;
 	};

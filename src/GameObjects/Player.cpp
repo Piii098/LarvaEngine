@@ -25,21 +25,21 @@ Player::Player(Scene& scene)
 	Tag(TAG::PLAYER);
 	Scale(1.f);
 	Position(Vector2Int(50, 500));
-	_spriteComp = &CreateComponent<SpriteComponent>(10, 100);
+	_spriteComp = CreateComponent<SpriteComponent>(10, 100);
 	_spriteComp->SetTexture("Player");
 	_spriteComp->SelfLightIntensity(0.1f);
 
 	_jumpForce = 700.f;
 
-	_rigidbodyComp = &CreateComponent<RigidbodyComponent>();
-	_boxComp = &CreateComponent<BoxComponent2D>(true, true);
+	_rigidbodyComp = CreateComponent<RigidbodyComponent>();
+	_boxComp = CreateComponent<BoxComponent2D>(true, true);
 	AABB2D myBox(Vector2Int(-6.0f, -8.f), Vector2Int(6.0f, 6.f));
 	_boxComp->SetObjectBox(myBox);
 	_rigidbodyComp->Velocity(Vector2::Zero);
 	_rigidbodyComp->Mass(50.f);
 	_rigidbodyComp->IsGravity(true);
 
-	_moveInputComp = &CreateComponent<MoveInputComponent>(_rigidbodyComp);
+	_moveInputComp = CreateComponent<MoveInputComponent>(_rigidbodyComp);
 	_moveInputComp->MoveSpeedX(80.f);
 	_moveInputComp->JumpForce(1000000.f);
 	_moveInputComp->State(Component::STATE::INACTIVE);
@@ -47,12 +47,12 @@ Player::Player(Scene& scene)
 	GetMainScene().SetData("Player.Position.X", Position().x);
 	GetMainScene().SetDataUpdate("Player.Position.X", [this]() {return Position().x; });
 
-	_audioComp = &CreateComponent<AudioComponent>();
+	_audioComp = CreateComponent<AudioComponent>();
 	_footstepEvent = _audioComp->PlayEvent("event:/Footsteps_grass");
 	_footstepEvent.SetVolume(0.1);
 	_footstepEvent.Stop();
 
-	_lightComp = &CreateComponent<LightComponent>(10, 100);
+	_lightComp = CreateComponent<LightComponent>(10, 100);
 	_lightComp->LightRange(10.f);
 	_lightComp->LightColor(Vector3(1,0.2,0.2));
 	_lightComp->LightIntensity(0.3f);

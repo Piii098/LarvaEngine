@@ -76,18 +76,11 @@ void Scene::Update(const float deltaTime) {
 	}
 
 	// 次にすべてのオブジェクトを一括で移動
-	std::move(_pendingObjects.begin(), _pendingObjects.end(),
-		std::back_inserter(_objects));
-
-	// 最後に保留リストをクリア（この時点でunique_ptrは既にnullptr）
-	_pendingObjects.clear();
-
-	// デッドオブジェクトを削除
-	auto removeIt = std::remove_if(_objects.begin(), _objects.end(), // DEAD状態のオブジェクトを前方に移動
-		[](const std::unique_ptr<GameObject>& obj) {
-			return obj->State() == GameObject::STATE::DEAD;
-		});
-	_objects.erase(removeIt, _objects.end()); // DEAD状態のオブジェクトを削除
+	if (!_pendingObjects.empty()) {
+		std::move(_pendingObjects.begin(), _pendingObjects.end(),
+			std::back_inserter(_objects));
+		_pendingObjects.clear(); // 移動後は明示的にクリア
+	}
 
 }
 

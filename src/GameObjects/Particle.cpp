@@ -6,7 +6,7 @@ Particle::Particle(Scene& scene, int bufferLayer)
 	: GameObject(scene)
 	, _bufferLayer(bufferLayer){
 	Scale(1.f);
-	_animation = &CreateComponent<AnimationComponent>(_bufferLayer);
+	_animation = CreateComponent<AnimationComponent>(_bufferLayer);
 }
 
 Particle::~Particle() {
@@ -25,7 +25,7 @@ void Particle::SetSpriteSheet(int frameWidth, int frameHeight, int startX, int s
 }
 
 void Particle::SetLight(Vector3 color, float intensity, float range, Vector2 offset) {
-	_light = &CreateComponent<LightComponent>(_bufferLayer);
+	_light = CreateComponent<LightComponent>(_bufferLayer);
 	_light->LightColor(color);
 	_light->LightIntensity(intensity);
 	_light->LightRange(range);

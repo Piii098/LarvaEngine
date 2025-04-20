@@ -16,16 +16,15 @@ RigidbodyComponent::RigidbodyComponent(GameObject& parent, int updateLayer)
     , _sumOfForces(Vector2::Zero)
     , _velocity(Vector2::Zero)
     , _isGravity(false)
-    , _internalPosition(Vector2::Zero)
-    , _phys(_parent.GetScene().GetManager().GetGame().GetPhysWorld()){  
+    , _internalPosition(Vector2::Zero){  
     
     //_internalPosition = _parent->PositionToFloat();
-	_phys.AddRigidbodyComponent(this);  // Rigidbodyを物理ワールドに追加  
+    _parent.GetScene().GetManager().GetGame().GetPhysWorld().AddRigidbodyComponent(this);  // Rigidbodyを物理ワールドに追加  
 
 }
 
 RigidbodyComponent::~RigidbodyComponent() {
-	_phys.RemoveRigidbodyComponent(this);  // Rigidbodyを物理ワールドから削除
+    _parent.GetScene().GetManager().GetGame().GetPhysWorld().RemoveRigidbodyComponent(this);  // Rigidbodyを物理ワールドから削除
 }
 
 

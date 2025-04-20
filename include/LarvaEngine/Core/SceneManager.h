@@ -20,7 +20,7 @@ public:
 	~SceneManager();
 
 
-	// ===== 初期設定 =====
+	// ===== 初期設定 ===== //
 
 	/// @brief シーンの初期化
 	/// 基底クラスMainSceneで初期化する
@@ -40,7 +40,7 @@ public:
 	}
 
 
-	// ====== ループ処理 ======
+	// ====== ループ処理 ====== //
 
 	/// @brief メインシーンの入力処理
 	/// 現在のメインシーンの入力処理を行う
@@ -62,7 +62,7 @@ public:
 	void Output();
 
 
-	// ====== シーン関連 ======
+	// ====== シーン関連 ====== //
 
 	/// @brief シーンの切り替え
 	/// 現在のメインシーンを破棄し、新しいシーンを生成する
@@ -70,8 +70,9 @@ public:
 	/// @param args シーンの初期化に必要な引数( 第一引数のシーンマネージャーの参照は自動で設定される )
 	template <typename T, typename... Args>
 	T* ChangeScene(Args&& ...args) {
+		_currentMainScene->State(MainScene::STATE::CLOSE); // 現在のシーンをCLOSEにする
 		// 新しいシーンを作成
-		std::unique_ptr<T> newScene = std::make_unique<T>(this, std::forward<Args>(args)...);
+		std::unique_ptr<T> newScene = std::make_unique<T>(*this, std::forward<Args>(args)...);
 
 		// 初期化
 		newScene->Initialize();
@@ -88,6 +89,10 @@ public:
 	/// 現在のメインシーンを破棄する
 	void DestroyScene();
 
+	/// @brief シーンのリロード
+	/// 現在のメインシーンを破棄し、再度初期化する
+	void ReloadMainScene();
+
 
 	// ===== ゲッター ===== //
 
@@ -100,7 +105,7 @@ public:
 
 private:
 
-	// ===== リソース管理 =====
+	// ===== リソース管理 ===== //
 
 	/// @brief データの読み込み
 	/// ゲームの初期化時にデータを読み込む
@@ -108,7 +113,7 @@ private:
 	void LoadData();
 
 
-	// ===== シャットダウン処理 =====
+	// ===== シャットダウン処理 ===== //
 
 	/// @brief シャットダウン処理
 	/// シーンの破棄処理を行う

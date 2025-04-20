@@ -8,9 +8,8 @@
 #include "LarvaEngine/Core/Game.h"
 #include "LarvaEngine/Input/InputAction.h"
 
-MoveInputComponent::MoveInputComponent(GameObject& parent, RigidbodyComponent* rigidbodyComp, int updateLayer)
+MoveInputComponent::MoveInputComponent(GameObject& parent, int updateLayer)
 	: Component(parent, updateLayer)
-	, _rigidbodyComp(rigidbodyComp)
 	, _moveSpeed(0.f)
 	, _moveSpeedX(0.f)
 	, _moveSpeedY(0.f)
@@ -65,8 +64,8 @@ void MoveInputComponent::FixedUpdate(float deltaTime){
 	}
 
 	//SDL_Log("Force(%f, %f)\n", force.x, force.y);
-
-	_rigidbodyComp->AddForce(force);
+	RigidbodyComponent* rigidbodyComp = _parent.GetComponent<RigidbodyComponent>();
+	rigidbodyComp->AddForce(force);
 	_direction = Vector2::Zero;
 }
 

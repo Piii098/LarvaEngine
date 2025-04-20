@@ -9,6 +9,5 @@ public:
 	~Background() override;
 
 public:
-	std::vector<SpriteComponent*> _bgComps;
 
 };
