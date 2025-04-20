@@ -4,20 +4,31 @@
 #include "LarvaEngine/Core/Game.h"
 #include "LarvaEngine/Renderer/Renderer.h"
 #include "LarvaEngine/Core/GameObject.h"
-#include "LarvaEngine/Core/Frame.h"
 #include "LarvaEngine/Components/Physics/RigidbodyComponent.h"
 
-#pragma region コンストラクタ
 
-PhysWorld2D::PhysWorld2D(Game* game)
+//============================================================
+// コンストラクタ・デストラクタ
+//============================================================
+
+PhysWorld2D::PhysWorld2D(Game& game)
     : game(game) {
 }
 
-#pragma endregion
 
-#pragma region 衝突判定
+//============================================================
+// パブリック関数
+//============================================================
 
-bool PhysWorld2D::SegmentCast(const LineSegment2D& l, CollisionInfo& outColl, const GameObject* ignoreObj) {
+
+// ===== 衝突判定 =====//
+
+/**
+ * 線分との衝突判定
+ * 
+ * 
+ */
+bool PhysWorld2D::SegmentCast(const LineSegment2D& l, CollisionInfo& outColl, GameObject& ignoreObj) {
     bool collided = false;
     float closestT = std::numeric_limits<float>::infinity();
     Vector2Int norm;
@@ -25,7 +36,7 @@ bool PhysWorld2D::SegmentCast(const LineSegment2D& l, CollisionInfo& outColl, co
     // 衝突判定のためのループ
     for (auto box : _boxComps) {
         float t;
-        if (box->GetParent() == ignoreObj) continue; // 無視するオブジェクトをスキップ
+        if (box->GetParent().IsEqual(ignoreObj)) continue; // 無視するオブジェクトをスキップ
 
         if (Intersect(l, box->GetWorldBox(), t, norm)) { // 衝突判定
             if (t < closestT) { // 最も近い衝突点を更新
@@ -33,7 +44,7 @@ bool PhysWorld2D::SegmentCast(const LineSegment2D& l, CollisionInfo& outColl, co
                 outColl._point = l.PointOnSegment(t);
                 outColl._normal = norm;
                 outColl._box = box;
-                outColl._object = box->GetParent();
+				outColl._object = &box->GetParent();
                 collided = true;
             }
         }
@@ -41,19 +52,33 @@ bool PhysWorld2D::SegmentCast(const LineSegment2D& l, CollisionInfo& outColl, co
     return collided; // 衝突したかどうかを返す
 }
 
-void PhysWorld2D::Update(float deltaTime) {
-    CollisionUpdate(deltaTime); // 衝突の更新
-}
+// ===== 更新処理 =====//
 
-void PhysWorld2D::RemoveRigidbodyComp(RigidbodyComponent* box) {
-    auto iter = std::find(_rigidbodyComps.begin(), _rigidbodyComps.end(), box);
-    if (iter != _rigidbodyComps.end()) {
-        std::iter_swap(iter, _rigidbodyComps.end() - 1); // 最後の要素とスワップ
-        _rigidbodyComps.pop_back(); // 最後の要素を削除
+/**
+ * 更新処理
+ *
+ * Game::FixedUpdate()から呼びだされる
+ */
+void PhysWorld2D::FixedUpdate(float deltaTime) {
+    // CollisionUpdate(deltaTime); // 衝突の更新
+
+    for (auto& rigid : _rigidbodyComps) {
+		rigid->CalculateVelocity(deltaTime); // 速度の計算
+		rigid->UpdatePosition(deltaTime); // 位置の更新
     }
 }
 
-void PhysWorld2D::RemoveBoxComp(BoxComponent2D* box) {
+/**
+ * ボックスコンポーネントを追加
+ */
+void PhysWorld2D::AddBoxComponent(BoxComponent2D* obj) {
+    _boxComps.push_back(obj); // ボックスコンポーネントを追加
+}
+
+/**
+ * ボックスコンポーネントを削除
+ */
+void PhysWorld2D::RemoveBoxComponent(BoxComponent2D* box) {
     auto iter = std::find(_boxComps.begin(), _boxComps.end(), box);
     if (iter != _boxComps.end()) {
         std::iter_swap(iter, _boxComps.end() - 1); // 最後の要素とスワップ
@@ -61,38 +86,46 @@ void PhysWorld2D::RemoveBoxComp(BoxComponent2D* box) {
     }
 }
 
-void PhysWorld2D::AddRigidbodyComp(RigidbodyComponent* obj) {
-    _rigidbodyComps.push_back(obj); // 剛体コンポーネントを追加
+/**
+ * リジットボディコンポーネントを追加
+ */
+void PhysWorld2D::AddRigidbodyComponent(RigidbodyComponent* obj) {
+	_rigidbodyComps.push_back(obj); // リジットボディコンポーネントを追加
 }
 
-void PhysWorld2D::AddBoxComp(BoxComponent2D* obj) {
-    _boxComps.push_back(obj); // ボックスコンポーネントを追加
+/**
+ * リジットボディコンポーネントを削除
+ */
+void PhysWorld2D::RemoveRigidbodyComponent(RigidbodyComponent* obj) {
+	auto iter = std::find(_rigidbodyComps.begin(), _rigidbodyComps.end(), obj);
+	if (iter != _rigidbodyComps.end()) {
+		std::iter_swap(iter, _rigidbodyComps.end() - 1); // 最後の要素とスワップ
+		_rigidbodyComps.pop_back(); // 最後の要素を削除
+	}
 }
 
-#pragma endregion
 
-#pragma region 物理計算
+//============================================================
+// プライベート関数
+//============================================================
 
-void PhysWorld2D::CalculateVelocity(float deltaTime) {
-    for (auto rigid : _rigidbodyComps) {
-        rigid->CalculateVelocity(deltaTime); // 各剛体の速度を計算
-    }
-}
 
-void PhysWorld2D::UpdatePosition(float deltaTime) {
-    for (auto rigid : _rigidbodyComps) {
-        rigid->UpdatePosition(deltaTime); // 各剛体の位置を更新
-    }
-}
+// ===== 衝突判定 =====//
 
+/**
+ * 衝突判定
+ *
+ * サブステップでの衝突判定を行う
+ *
+ */
 void PhysWorld2D::CollisionUpdate(float deltaTime) {
     int subSteps = 5; // サブステップの数
     float subDeltaTime = deltaTime / subSteps; // サブステップごとの時間
 
     for (int i = 0; i < subSteps; ++i) {
         for (auto boxA : _boxComps) {
-            auto rigidA = boxA->GetParent()->GetComponent<RigidbodyComponent>();
-            if (!rigidA || !boxA->IsCollision() || !boxA->IsDynamic()) {
+            auto rigidA = boxA->GetParent().GetComponent<RigidbodyComponent>();
+            if (rigidA == nullptr || !boxA->IsCollision() || !boxA->IsDynamic()) {
                 continue; // 衝突判定が無効な場合はスキップ
             }
 
@@ -101,7 +134,7 @@ void PhysWorld2D::CollisionUpdate(float deltaTime) {
             Vector2 nextPosA = currentPosA + velocityA * subDeltaTime; // 次の位置
 
             AABB2D nextBoxA = boxA->GetWorldBox();
-            nextBoxA.MoveCenterTo(Vector2Int::ToInterger(nextPosA)); // 次のボックスの位置を更新
+            nextBoxA.MoveCenterTo(Vector2Int::ToInteger(nextPosA)); // 次のボックスの位置を更新
 
             // 他のボックスとの衝突判定
             for (auto boxB : _boxComps) {
@@ -117,6 +150,13 @@ void PhysWorld2D::CollisionUpdate(float deltaTime) {
     }
 }
 
+
+/**
+ * 衝突修正
+ *
+ * 衝突したボックスコンポーネントを修正する
+ *
+ */
 void PhysWorld2D::FixCollision(BoxComponent2D* boxA, Vector2& velocityA, Vector2& nextPosA, AABB2D& nextBoxA, BoxComponent2D* boxB) {
     AABB2D dynBox = nextBoxA; // 動的ボックス
     AABB2D staBox = boxB->GetWorldBox(); // 静的ボックス
@@ -149,5 +189,3 @@ void PhysWorld2D::FixCollision(BoxComponent2D* boxA, Vector2& velocityA, Vector2
     boxA->OnUpdateWorldTransform();
     boxB->OnUpdateWorldTransform();
 }
-
-#pragma endregion

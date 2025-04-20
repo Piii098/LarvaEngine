@@ -1,35 +1,26 @@
 ﻿
-#include <iostream>
-#include <algorithm>
 #include <SDL3_ttf/SDL_ttf.h>
-#include "LarvaEngine/Core/Scene.h"
-#include "LarvaEngine/Examples/Game/Test/TestScene.h"
-#include "LarvaEngine/Core/GameObject.h"
-#include "LarvaEngine/GameObjects/Player.h"
 #include "LarvaEngine/Core/Game.h"
-#include "LarvaEngine/Core/Frame.h"
-#include "LarvaEngine/Core/Events/Input.h"
-#include "LarvaEngine/GameObjects/Camera.h"
-#include "LarvaEngine/GameObjects/TileMapObject.h"
-#include "LarvaEngine/Components/TileMapComponent.h"
+#include "LarvaEngine/Core/FrameSystem.h"
 #include "LarvaEngine/Renderer/Renderer.h"
 #include "LarvaEngine/Physics/PhysWorld2D.h"
-#include "LarvaEngine/GameObjects/Background.h"
 #include "LarvaEngine/Core/Resources/AssetManager.h"
+#include "LarvaEngine/Core/Resources/Texture.h"
 #include "LarvaEngine/Core/Resources/TileMap.h"
 #include "LarvaEngine/GameObjects/TileMapObject.h"
 #include "LarvaEngine/Core/SceneManager.h"
 #include "LarvaEngine/Audio/AudioSystem.h"
+#include "LarvaEngine/Input/InputAction.h"
+#include "LarvaEngine/Input/InputSystem.h"
 
-#pragma region Constructor:Destructor
+/// ====================================================================================================
+/// コンストラクタ・デストラクタ
+/// ====================================================================================================
 
 Game::Game()
 	: _renderer(nullptr)
 	, _isRunning(true)
-	, _camera(nullptr)
-	, _player(nullptr)
-	, _frame(nullptr)
-	, _input(nullptr)
+	, _frameSystem(nullptr)
 	, _physWorld(nullptr)
 	, _textureManager(nullptr) 
 	, _tileMapManager(nullptr)
@@ -40,73 +31,105 @@ Game::Game()
 }
 
 Game::~Game() {
-	Shutdown();
+	
 }
 
-#pragma endregion
+/// ====================================================================================================
+/// パブリック関数
+/// ====================================================================================================
 
-#pragma region Public Functions
-
+/**
+ * ウィンドウを設定する
+ * 
+ * 受け取ったウィンドウの幅と高さ、低解像度レンダリングの幅と高さを設定する
+ */
 void Game::SetWindowsSize(int windowWidth, int windowHeight, int lowResWidth, int lowResHeight) {
+	// ウィンドウサイズを設定
 	_windowHeight = windowHeight;
 	_windowWidth = windowWidth;
+	// 低解像度レンダリングのサイズを設定
 	_lowResHeight = lowResHeight;
 	_lowResWidth = lowResWidth;
 }
 
+/**
+ * ウィンドウ名を設定する
+ *
+ * 受け取ったウィンドウ名を設定する
+ */
+
 void Game::SetWindowsName(const std::string& name) {
+	// ウィンドウ名を設定
 	_windowName = name;
 }
 
+/**
+ * ゲームの初期化
+ * 
+ * SDLの初期化、ウィンドウの初期化、TTFの初期化、
+ * システムコンポーネントの初期化、アセットマネージャーの初期化を行う
+ */
 bool Game::Initialize() {
-	if (SDL_Init(SDL_INIT_VIDEO) == 0) {
+	
+	// SDLの初期化
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMEPAD) == 0) {
 		SDL_Log("Failed to intialized SDL : %s", SDL_GetError());
 		return false;
 	}
-
+	// TTFの初期化
 	if (!TTF_Init()) {
 		SDL_Log("Failed to intialized TTF : %s", SDL_GetError());
 		return false;
 	}
 
-	_renderer = new Renderer(this);
+	// ウィンドウ、レンダラーの初期化
+	_renderer = std::make_unique<Renderer>(*this);
 
-	int wWidth = _windowWidth ? _windowWidth : 960;
-	int wHeigth = _windowHeight ? _windowHeight : 540;
-	int lWidth = _lowResWidth ? _lowResWidth : 480;
-	int lHeigth = _lowResHeight ? _lowResHeight : 270;
-	std::string name = _windowName.empty() ? _windowName : "Game";
+	int wWidth = _windowWidth ? _windowWidth : 960;		// ウィンドウの幅
+	int wHeigth = _windowHeight ? _windowHeight : 540;  // ウィンドウの高さ
+	int lWidth = _lowResWidth ? _lowResWidth : 480;		// 低解像度レンダリングの幅
+	int lHeigth = _lowResHeight ? _lowResHeight : 270;  // 低解像度レンダリングの高さ
 
-	if (!_renderer->Initialize(wWidth, wHeigth, lWidth, lHeigth, _windowName)) {
+	if (!_renderer->Initialize(
+		wWidth, wHeigth, lWidth, lHeigth, _windowName)) {
 		SDL_Log("Failed to intialized renderer");
-		delete _renderer;
-		_renderer = nullptr;
 		return false;
 	}
 
-	_audioSystem = new AudioSystem(this);
+	// オーディオシステムの初期化
+	_audioSystem = std::make_unique<AudioSystem>(*this);
+
 	if (!_audioSystem->Initialize()) {
 		SDL_Log("Failed to intialized audio system");
-		delete _audioSystem;
-		_audioSystem = nullptr;
 		return false;
 	}
 
-	_frame = new Frame();
-	_input = new Input();
-	_physWorld = new PhysWorld2D(this);
-	_textureManager = new AssetManager<Texture>();
-	_tileMapManager = new AssetManager<TileMap>();
-	_fontManager = new AssetManager<Font>();
-	_audioManager = new AssetManager<Audio>();
+	// ゲームパッドの初期化
+	_inputSystem = std::make_unique<InputSystem>(*this);
+	if (!_inputSystem->Initialize()) {
+		SDL_Log("Failed to intialized input system");
+		return false;
+	}
 
-	_frame->SetFixedDeltaTime(1.f / 60.f);
+	_inputAction = std::make_unique<InputAction>(*_inputSystem.get()); // 入力アクションの初期化
+	_frameSystem = std::make_unique<FrameSystem>();					  // フレームシステムの初期化	
+	_physWorld = std::make_unique<PhysWorld2D>(*this);				  // 物理システムの初期化		
+	_textureManager = std::make_unique<AssetManager<Texture>>();      // テクスチャマネージャの初期化
+	_tileMapManager = std::make_unique<AssetManager<TileMap>>();	  // タイルマップマネージャの初期化
+	_fontManager = std::make_unique<AssetManager<Font>>();		      // フォントマネージャの初期化
+
+	// フレームレートの設定
 
 	LoadScene();
 
 	return true;
 }
 
+/**
+ * ゲームの実行
+ *
+ * ゲームのメインループを実行する
+ */
 void Game::RunLoop() {
 	while (_isRunning) {
 		ProcessInput();
@@ -115,81 +138,126 @@ void Game::RunLoop() {
 	}
 }
 
+/**
+ * ゲームの終了
+ *
+ * ゲームの終了処理を行う
+ */
 void Game::Shutdown() {
 
 	UnloadData();
 	
-	_sceneManager->Shutdown();
-	delete _sceneManager;
-	_sceneManager = nullptr;
-
-	delete _physWorld;
-	_physWorld = nullptr;
-	if (_renderer) {
-		_renderer->Shutdown();
-		delete _renderer;
-		_renderer = nullptr;
-	}
 	SDL_Quit();
 }
 
-#pragma endregion
-
-#pragma region Private Functions
-
+/**
+ * 入力処理を行う
+ * 
+ * イベントのポーリングを行い、入力システムに処理を委譲する
+ * また、シーンマネージャ->シーン->ゲームオブジェクトの順に入力処理を行う
+ */
 void Game::ProcessInput() {
 
+	// 入力システムの事前更新
+	_inputSystem->PreUpdate();
+
+	// イベントのポーリング
 	SDL_Event event;
-	while (SDL_PollEvent(&event)) {
-		if (event.type == SDL_EVENT_QUIT) {
-			_isRunning = false;
-		}
+	switch (SDL_PollEvent(&event)) {
+	case SDL_EVENT_QUIT:
+		_isRunning = false;
+		break;
+	case SDL_EVENT_MOUSE_WHEEL:	    // マウスホイールイベント
+	case SDL_EVENT_GAMEPAD_ADDED:	// ゲームパッド接続イベント
+	case SDL_EVENT_GAMEPAD_REMOVED: // ゲームパッド切断イベント
+		_inputSystem->ProcessInput(event);
+		break;
+	default:
+		break;
 	}
 
-	_input->Update();
+	// 入力システムの更新
+	_inputSystem->Update();
 	
-	_sceneManager->ProcessInput(_input);
+	// シーンの入力処理
+	_sceneManager->ProcessInput(*_inputAction.get());
 
 }
 
+/// ====================================================================================================
+/// プライベート関数
+/// ====================================================================================================
+
+/**
+ * ゲームの更新処理
+ *
+ * フレームシステムの更新、物理更新、シーンの更新、オーディオシステムの更新を行う
+ */
 void Game::Update() {
-	_frame->Update();
 
-	PhysUpdate();
+	// フレームシステムの更新
+	_frameSystem->Update();
 
+
+	while (_frameSystem->ShouldRunFixedTimeStep())
+	{
+		FixedUpdate();
+	}
+
+	// シーンの更新
 	UpdateScene();
 
-	_audioSystem->Update(_frame->DeltaTime());
+	// オーディオシステムの更新
+	_audioSystem->Update(_frameSystem->DeltaTime());
+
+	//SDL_Log("FPS : %f", _frameSystem->Fps());
 }
 
-void Game::PhysUpdate() {
+/**
+ * 物理更新処理
+ *
+ * 固定フレームレートで物理更新を行う
+ * また、シーンマネージャ->シーン->ゲームオブジェクトの順に物理更新を行う
+ * 物理システムの更新を行う
+ */
+void Game::FixedUpdate() {
 
-	while (_frame->ShouldDoFixedUpdate()) {
-		float deltaTime = _frame->GetFixedDeltaTime();
-		
-		_sceneManager->PhysUpdate(deltaTime);
+	_sceneManager->FixedUpdate(_frameSystem->FixedDeltaTime());
 
-		_physWorld->Update(deltaTime);
-		_frame->ConsumeFixedDeltaTime();
-	}
+	_physWorld->FixedUpdate(_frameSystem->FixedDeltaTime());
 
 }
 
+/**
+ * シーンの更新処理
+ *
+ * シーンマネージャ->シーン->ゲームオブジェクトの順に更新処理を行う
+ */
 void Game::UpdateScene() {
-	_sceneManager->Update(_frame->DeltaTime());
+	_sceneManager->Update(_frameSystem->DeltaTime());
 }
 
 void Game::ProcessOutput() {
 
+	// SDL_Log("FPS : %f", _frameSystem->FPS());
+	// SDL_Log("GameTime : %f", _frameSystem->GameTime());
+	// SDL_Log("DeltaTime : %f", _frameSystem->DeltaTime());
+
 	_renderer->Render();
 }
 
+/**
+ * シーンを読み込む
+ * 
+ * 事前に初期シーンの設定があれば、そのシーンを読み込む
+ * 無ければ、MainSceneを読み込む
+ */
 void Game::LoadScene() {
-	_sceneManager = new SceneManager(this);
+	_sceneManager = std::make_unique<SceneManager>(*this);
 
 	// カスタム初期化関数があれば使用
 	if (_initialSceneSetup) {
-		_initialSceneSetup(_sceneManager);
+		_initialSceneSetup(*_sceneManager.get());
 	}
 	else {
 		// デフォルト初期化（従来の挙動）
@@ -200,8 +268,6 @@ void Game::LoadScene() {
 void Game::UnloadData() {
 
 	if (_renderer) {
-		_renderer->UnloadData();
+		//_renderer->UnloadData();
 	}
 }
-
-#pragma endregion

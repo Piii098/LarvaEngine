@@ -3,17 +3,18 @@
 
 class Text;
 class Player;
+class InputAction;
 
 namespace Example
 {
 
 	class PauseMenu : public UIScene {
 	public:
-		PauseMenu(MainScene* parent);
+		PauseMenu(MainScene& parent);
 		~PauseMenu() override;
 
 		void Initialize() override;
-		void InputUI(Input* input) override;
+		void InputUI(const InputAction& input) override;
 		//virtual void UpdateScene(float deltaTime) override ;
 
 	private:

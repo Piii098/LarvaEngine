@@ -24,7 +24,7 @@ struct AnimationClip {
 
 class AnimationComponent : public SpriteComponent {
 public:
-    AnimationComponent(GameObject* parent, int bufferLayer = 0, int updateOrder = 200);
+    AnimationComponent(GameObject& parentt, int bufferLayer = 0, int updateOrder = 200);
     ~AnimationComponent();
 
     void Update(float deltaTime) override;

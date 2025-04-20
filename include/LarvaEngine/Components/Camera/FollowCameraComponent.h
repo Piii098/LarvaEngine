@@ -3,11 +3,11 @@
 
 class FollowCameraComponent : public CameraComponent {
 public:
-    FollowCameraComponent(GameObject* parent, int updateLayer = 1000);
+    FollowCameraComponent(GameObject& parent, int updateLayer = 1000);
     ~FollowCameraComponent() override;
 
     void Update(float deltaTime) override;
-    void PhysUpdate(float deltaTime) override;
+    void FixedUpdate(float deltaTime) override;
 
     // オフセット関連
     void XOffset(float offset) { _xOffset = offset; }

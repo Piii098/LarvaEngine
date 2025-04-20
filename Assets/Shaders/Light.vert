@@ -4,7 +4,7 @@ uniform mat4 uWorldTransform;
 uniform mat4 uViewScreen;
 uniform mat4 uViewProj;
 
-layout(location = 0) in vec3 inPosition; // ’¸“_‚ÌÀ•W
+layout(location = 0) in vec3 inPosition; // é ‚ç‚¹ã®åº§æ¨™
 
 out vec2 fragPosition;
 
@@ -14,7 +14,7 @@ void main(){
 
 	vec4 screenPos = worldPos * uViewScreen;
 
-	gl_Position = uViewProj * screenPos; // Œ»İ“Ç‚İ‚İ’†‚Ì’¸“_‚Ìƒ[ƒ‹ƒhs—ñ‚ğì‚é
+	gl_Position = uViewProj * screenPos; // ç¾åœ¨èª­ã¿è¾¼ã¿ä¸­ã®é ‚ç‚¹ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—ã‚’ä½œã‚‹
 
 	fragPosition = worldPos.xy;
 }

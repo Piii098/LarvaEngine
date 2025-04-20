@@ -10,16 +10,15 @@
 #include "LarvaEngine/Core/Resources/TileMap.h"
 #include "LarvaEngine/Components/TileMapComponent.h"
 
-TileMapObject::TileMapObject(Scene* scene)
+TileMapObject::TileMapObject(Scene& scene)
     : GameObject(scene){
     Position(Vector2Int(0, -100));
-	_tileMapComp = new TileMapComponent(this);
-	_tileMapComp->SetTileMap("TileMap", "Tile", 2, 16);
+    TileMapComponent* tileMapComp = CreateComponent<TileMapComponent>();
 
-    _tileMapComp->RegisterTileInfo(0, true, Vector3(1, 1, 1), 0., GameObject::TAG::GROUND);
+    tileMapComp->RegisterTileInfo(0, true, Vector3(1, 1, 1), 0., GameObject::TAG::GROUND);
 
-	_tileMapComp->RegisterTileInfo(1, true, Vector3(1, 1, 1), 0., GameObject::TAG::GROUND );
-    _tileMapComp->CreateTiles();
+    tileMapComp->RegisterTileInfo(1, true, Vector3(1, 1, 1), 0., GameObject::TAG::GROUND );
+    tileMapComp->CreateTiles();
 }
 
 TileMapObject::~TileMapObject() {

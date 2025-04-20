@@ -4,8 +4,9 @@
 #include <SDL3/SDL.h>
 #include "LarvaEngine/Renderer/Shader.h"
 
-
-#pragma region コンストラクタ:デストラクタ
+//==============================================================================
+// コンストラクタ・デストラクタ
+//==============================================================================
 
 Shader::Shader()
 	: _shaderProgram(0)
@@ -18,29 +19,37 @@ Shader::~Shader() {
 
 }
 
-#pragma endregion
 
-#pragma region パブリック関数
+//==============================================================================
+// パブリック関数
+//==============================================================================
 
-bool Shader::Load(const std::string& vertName
-	, const std::string& fragName) {
 
-	/*シェーダーコンパイル*/
+// ===== ロード・アンロード =====//
 
+/**
+ * シェーダーファイルを読み込む
+ * 
+ * 二つのシェーダーファイルをメンバ関数を使って読み込み、コンパイルし
+ * シェーダープログラムを作成する
+ */
+bool Shader::Load(const std::string& vertName, const std::string& fragName) {
+
+	// シェーダーファイルを読み込み、コンパイル
 	if (!CompileShader(vertName, GL_VERTEX_SHADER, _vertexShader) ||
-		!CompileShader(fragName, GL_FRAGMENT_SHADER, _fragShader))
-	{
+		!CompileShader(fragName, GL_FRAGMENT_SHADER, _fragShader)){
 		return false;
 	}
 
-	/*シェーダープログラム作成*/
-
+	
+	// シェーダープログラムを作成
+	// 二つのシェーダーをアタッチし、リンクする
 	_shaderProgram = glCreateProgram();
 	glAttachShader(_shaderProgram, _vertexShader);
 	glAttachShader(_shaderProgram, _fragShader);
 	glLinkProgram(_shaderProgram);
 
-	if (!IsValidProgram()) {
+	if (!IsValidProgram()) { // シェーダープログラムが正常にリンクされているかチェック
 		return false;
 	}
 
@@ -48,16 +57,35 @@ bool Shader::Load(const std::string& vertName
 
 }
 
+/**
+ * シェーダーファイルをアンロードする
+ *
+ * シェーダープログラムを削除する
+ */
 void Shader::Unload() {
 	glDeleteProgram(_shaderProgram);
 	glDeleteShader(_vertexShader);
 	glDeleteShader(_fragShader);
 }
 
+
+// ===== アクティブ化 =====//
+
+/**
+ * シェーダープログラムをアクティブにする
+ */
 void Shader::SetActive() {
 	glUseProgram(_shaderProgram);
 }
 
+
+// ===== ユニフォーム =====//
+
+/**
+ * Matrix(行列)ユニフォームを設定する
+ * 
+ * プログラム内からユニフォームの位置を取得し、行列を設定する
+ */
 void Shader::SetMatrixUniform(const char* name, const Matrix4& matrix) {
 
 	GLuint loc = glGetUniformLocation(_shaderProgram, name); // 名前を探す
@@ -65,40 +93,58 @@ void Shader::SetMatrixUniform(const char* name, const Matrix4& matrix) {
 	glUniformMatrix4fv(loc, 1, GL_TRUE, matrix.GetAsFloatPtr()); //
 }
 
+/**
+ * Vector3ユニフォームを設定する
+ */
 void Shader::SetVector3Uniform(const char* name, const Vector3& vec) {
 	GLuint loc = glGetUniformLocation(_shaderProgram, name);
 	glUniform3f(loc, vec.x, vec.y, vec.z);
 }
 
+/**
+ * Vector2ユニフォームを設定する
+ */
 void Shader::SetVector2Uniform(const char* name, const Vector2& vec) {
 	GLuint loc = glGetUniformLocation(_shaderProgram, name);
 	glUniform2f(loc, vec.x, vec.y);
 }
+
+/**
+ * Vector2ユニフォームを設定する
+ */
 void Shader::SetVector2Uniform(const char* name, const Vector2Int& vec) {
 	Vector2 vecFlaot = Vector2::ToFloat(vec);
 	GLuint loc = glGetUniformLocation(_shaderProgram, name);
 	glUniform2f(loc, vecFlaot.x, vecFlaot.y);
 }
 
+/**
+ * Floatユニフォームを設定する
+ */
 void Shader::SetFloatUniform(const char* name, float value) {
 	GLuint loc = glGetUniformLocation(_shaderProgram, name);
 	glUniform1f(loc, value);
 }
+
+/**
+ * Int (bool) ユニフォームを設定する
+ */
 void Shader::SetIntUniform(const char* name, int value) {
 	GLuint loc = glGetUniformLocation(_shaderProgram, name);
 	glUniform1i(loc, value);
 }
-void Shader::SetBoolUniform(const char* name, bool flag) {
-	GLuint loc = glGetUniformLocation(_shaderProgram, name);
-	glUniform1i(loc, static_cast<int>(flag));
-}
 
 
-#pragma endregion
+//==============================================================================
+// プライベート関数
+//==============================================================================
 
-
-#pragma region プライベート関数
-
+/**
+ * シェーダーファイルを読み込み、コンパイルする
+ * 
+ * std::ifstreamを使ってファイルを開き、テキストを読み込む
+ * ファイルが開けたら、シェーダータイプを指定し、コンパイルする
+ */
 bool Shader::CompileShader(const std::string& fileName
 	, GLuint shaderType, GLuint& outShader) {
 
@@ -131,6 +177,11 @@ bool Shader::CompileShader(const std::string& fileName
 	return true;
 }
 
+/**
+ * シェーダーがコンパイルされたかどうかを判定する
+ * 
+ * シェーダーのコンパイル状態を問い合わせ、エラーメッセージを出力する
+ */
 bool Shader::IsCompiled(GLuint shader) {
 
 	GLint status;
@@ -149,6 +200,11 @@ bool Shader::IsCompiled(GLuint shader) {
 	return true;
 }
 
+/**
+ * シェーダーが有効かどうかを判定する
+ *
+ * シェーダープログラムのリンク状態を問い合わせ、エラーメッセージを出力する
+ */
 bool Shader::IsValidProgram() {
 
 	GLint status;
@@ -167,5 +223,3 @@ bool Shader::IsValidProgram() {
 
 	return true;
 }
-
-#pragma endregion

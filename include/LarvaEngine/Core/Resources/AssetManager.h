@@ -7,17 +7,32 @@
 使用方法
 このクラスはアセットの管理を行います。アセットをロード、取得、アンロードする機能を提供します。
 */
+
+/// @brief アセットマネージャークラス
+/// アセットの管理を行う
+/// ロード、アンロード、取得を行う
+/// テンプレートでアセットクラスを指定する
+/// @tparam T Load関数とUnload関数を持つアセットクラス
 template <typename T>
 class AssetManager {
 public:
+
+	// ===== コンストラクタ・デストラクタ ===== //
+    
     AssetManager() = default; // コンストラクタ
 
-    // デストラクタでリソースを解放
     ~AssetManager() {
         UnloadAll(); // 全アセットをアンロード
     }
 
-    // アセットをロード
+
+	// ===== ロード・アンロード ===== //
+
+	/// @brief アセットのロード
+	/// アセットをロードする
+	/// @param assetName 登録するアセット名
+	/// @param fileName ファイル名
+	/// @return ロード成功ならtrue
     bool Load(const std::string& assetName, const std::string& fileName) { // アセット名とファイル名を受け取る
         // 既に存在するか確認
         auto iter = _assets.find(assetName);
@@ -32,7 +47,7 @@ public:
         // ロード処理
         if (asset->Load(fileName)) { // ファイルからアセットをロード
             // ロード成功
-            _assets.emplace(assetName, asset); // アセットをマップに追加
+            _assets.emplace(assetName, std::move(asset)); // アセットをマップに追加
             return true; // 成功
         }
         else {
@@ -43,34 +58,41 @@ public:
         }
     }
 
-    // アセットの取得
+	/// @brief アセットの参照を取得
+	/// アセットの参照を返し、存在しない場合はダミーを返す
+    /// @param assetName 
+    /// @return 
     T* Get(const std::string& assetName) const { // アセット名を受け取る
-        auto iter = _assets.find(assetName);
-        if (iter != _assets.end()) {
-            return iter->second; // アセットを返す
-        }
-        return nullptr; // 存在しない場合はnullptrを返す
+
+		auto iter =  _assets.find(assetName); // アセットを検索
+		if (iter != _assets.end()) {
+			return iter->second.get(); // アセットのポインタを返す
+		}
+		else {
+			return nullptr; // 存在しない場合はnullptrを返す
+		}
     }
 
-    // 特定のアセットのアンロード
+	/// @brief アセットのアンロード
+    /// 
+	/// @param assetName アンロードするアセット名
     void Unload(const std::string& assetName) { // アセット名を受け取る
         auto iter = _assets.find(assetName);
         if (iter != _assets.end()) {
-            delete iter->second; // メモリを解放
+			iter->secomd.reset(); // メモリを解放
             _assets.erase(iter); // マップから削除
         }
     }
 
-    // 全アセットのアンロード
+	/// @brief 全アセットのアンロード
     void UnloadAll() { // 全アセットをアンロード
-        for (auto& [name, asset] : _assets) {
-            if (asset) {
-                delete asset; // メモリを解放
-            }
-        }
-        _assets.clear(); // マップをクリア
+		for (auto& asset : _assets) {
+            asset.second.reset(); // メモリを解放
+		}
+		_assets.clear(); // マップをクリア
     }
 
 protected:
-    std::unordered_map<std::string, T*> _assets; // アセットを格納するマップ
+
+    std::unordered_map<std::string, std::unique_ptr<T>> _assets; // アセットを格納するマップ
 };

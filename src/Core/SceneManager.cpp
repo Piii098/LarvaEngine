@@ -1,86 +1,128 @@
 ﻿#include "LarvaEngine/Core/SceneManager.h" 
 #include "LarvaEngine/Core/Game.h" 
-#include "LarvaEngine/Examples/Game/Test/TestScene.h"
-#include "LarvaEngine/Examples/Game/Title/TitleScene.h"
 #include "LarvaEngine/Core/Scene.h" 
-#include "LarvaEngine/Core/Events/Input.h"
 #include "LarvaEngine/Core/Resources/AssetManager.h"
 
-#pragma region コンストラクタ:デストラクタ
+//==============================================================================
+// コンストラクタ・デストラクタ
+//==============================================================================
 
-SceneManager::SceneManager(Game* game)
+SceneManager::SceneManager(Game& game)
     : _game(game) {
 }
 
 SceneManager::~SceneManager() {
-
+	Shutdown();
 }
 
-#pragma endregion
 
-#pragma region パブリック関数
+//==============================================================================
+// パブリック関数
+//==============================================================================
 
+/**
+ * シーンの初期化
+ * 
+ * データをロードし、基底クラスMainSceneで初期化する
+ */
 void SceneManager::Initialize() {
 	LoadData();
 
-	_currentMainScene = new MainScene(this);
+	_currentMainScene = std::make_unique<MainScene>(*this);
+
 	_currentMainScene->Initialize();
 }
 
-void SceneManager::ProcessInput(Input* input) {
+
+// ===== ループ処理 ===== //
+
+/**
+ * 入力処理を行う
+ * 
+ * 現在のメインシーンの入力処理を行う
+ */
+void SceneManager::ProcessInput(const InputAction& input) {
 	_currentMainScene->ProcessInput(input);
 }
 
-void SceneManager::Update(float deltaTime) {
+/**
+ * 更新処理を行う
+ *
+ * 現在のメインシーンの更新処理を行う
+ */
+void SceneManager::Update(const float deltaTime) {
 	_currentMainScene->Update(deltaTime);
 }
 
-void SceneManager::PhysUpdate(float deltaTime) {
-	_currentMainScene->PhysUpdate(deltaTime);
+/**
+ * 物理更新処理を行う
+ *
+ * 現在のメインシーンの物理更新処理を行う
+ */
+void SceneManager::FixedUpdate(const float deltaTime) {
+	_currentMainScene->FixedUpdate(deltaTime);
 }
 
+/**
+ * 出力処理を行う
+ *
+ * 現在のメインシーンの出力処理を行う
+ */
 void SceneManager::Output() {
-	_currentMainScene->Output();
+	//_currentMainScene->Output();
 }   
 
+/**
+ * シーンの切り替え
+ *
+ * 現在のメインシーンを破棄し、新しいシーンを生成する
+ */
 void SceneManager::Shutdown() {
-	//DestroyScene();
+	
 }
 
+
+// ===== シーン関連 ===== //
+
+/**
+ * シーンの破壊
+ *
+ * 現在のメインシーンを破棄する
+ */
 void SceneManager::DestroyScene() {
-	
-	if (_currentMainScene != nullptr) {
-		_currentMainScene->Shutdown();
-		delete _currentMainScene;
-		_currentMainScene = nullptr;
+
+}
+
+/**
+ * シーンのリロード
+ *
+ * 現在のメインシーンを破棄し、再度初期化する
+ */
+void SceneManager::ReloadMainScene() {
+	if (_currentMainScene) {
+		// 現在のシーンを破棄
+		_currentMainScene.reset();
+
+		// 新しいシーンを生成
+		_currentMainScene = std::make_unique<MainScene>(*this);
+		_currentMainScene->Initialize();
 	}
 }
 
-AssetManager<Texture>* SceneManager::GetTextureManager() {
-	return _game->GetTextureManager();
-}
+//==============================================================================
+// プライベート関数
+//==============================================================================
 
-AssetManager<TileMap>* SceneManager::GetTileMapManager() {
-	return _game->GetTileMapManager();
-}
-
-AssetManager<Font>* SceneManager::GetFontManager() {
-	return _game->GetFontManager();
-}
-
-AssetManager<Audio>* SceneManager::GetAudioManager() {
-	return _game->GetAudioManager();
-}
-
-#pragma endregion
-
-#pragma region プライベート関数
-
+/**
+ * データのロード
+ *
+ * ゲームクラスのアセットマネージャーを使用してデータをロードする
+ * ゲーム全体で使用するデータをロードする
+ */
 void SceneManager::LoadData() {
 
-	_game->GetFontManager()->Load("DelaSuko", "Assets/Fonts/MOBO-Bold.otf");
+	_game.GetFontManager().Load("DelaSuko", "Assets/Fonts/MOBO-Bold.otf");
 
 }
 
 
-#pragma endregion

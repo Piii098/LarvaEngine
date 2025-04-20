@@ -419,7 +419,7 @@ public:
 		y = static_cast<int>(y / length);
 	}
 
-	static Vector2Int ToInterger(const Vector2& vec);
+	static Vector2Int ToInteger(const Vector2& vec);
 
 	// Normalize the provided vector
 	static Vector2Int Normalize(const Vector2Int& vec)
@@ -440,7 +440,7 @@ public:
 	{
 		Vector2 tempA = Vector2::ToFloat(a);
 		Vector2 tempB = Vector2::ToFloat(b);
-		return Vector2Int::ToInterger(Vector2::Lerp(tempA, tempB, f));
+		return Vector2Int::ToInteger(Vector2::Lerp(tempA, tempB, f));
 	}
 
 	static const Vector2Int Zero;

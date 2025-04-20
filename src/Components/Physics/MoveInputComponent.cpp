@@ -1,16 +1,15 @@
 ﻿#include "LarvaEngine/Components/Physics/MoveInputComponent.h"
 #include "LarvaEngine/Components/Physics/RigidbodyComponent.h"
 #include "LarvaEngine/Core/GameObject.h"
-#include "LarvaEngine/Core/Events/Input.h"
 #include "LarvaEngine/Core/Component.h"
 #include "LarvaEngine/Physics/PhysWorld2D.h"
 #include "LarvaEngine/Core/Scene.h"
 #include "LarvaEngine/Core/SceneManager.h"
 #include "LarvaEngine/Core/Game.h"
+#include "LarvaEngine/Input/InputAction.h"
 
-MoveInputComponent::MoveInputComponent(GameObject* parent, RigidbodyComponent* rigidbodyComp, int updateLayer)
+MoveInputComponent::MoveInputComponent(GameObject& parent, int updateLayer)
 	: Component(parent, updateLayer)
-	, _rigidbodyComp(rigidbodyComp)
 	, _moveSpeed(0.f)
 	, _moveSpeedX(0.f)
 	, _moveSpeedY(0.f)
@@ -20,6 +19,7 @@ MoveInputComponent::MoveInputComponent(GameObject* parent, RigidbodyComponent* r
 	, _maxHorizontalForce(0.f)
 	, _maxVerticalVelocity(0.f)
 	, _maxHorizontalVelocity(0.f){
+	//SDL_Log("MoveInputComponent::MoveInputComponent\n");
 	
 }
 
@@ -30,53 +30,42 @@ MoveInputComponent::~MoveInputComponent() {
 
 #pragma region パブリック関数
 
-void MoveInputComponent::ProcessInput(Input* input) {
+void MoveInputComponent::ProcessInput(const InputAction& input) {
 	_direction = Vector2::Zero;
 
-	if (input->IsInput(InputMap::INPUT_DRIGHT)) {
+	if (input.IsKey(SDL_SCANCODE_RIGHT)) {
+		//SDL_Log("RIGHT KEY PRESSED\n");
 		_direction.x += 1;
 	}
-	if (input->IsInput(InputMap::INPUT_DLEFT)) {
+	if (input.IsKey(SDL_SCANCODE_LEFT)) {
+		//SDL_Log("LEFT KEY PRESSED\n");
 		_direction.x -= 1;
 	}
-	if (input->IsInput(InputMap::INPUT_DUP)) {
+	if (input.IsKey(SDL_SCANCODE_UP)) {
 		_direction.y += 1;
 	}
-	if (input->IsInput(InputMap::INPUT_DDOWN)) {
+	if (input.IsKey(SDL_SCANCODE_DOWN)) {
 		_direction.y -= 1;
 	}
 
-	PhysWorld2D* phys = _parent->GetScene()->GetManager()->GetGame()->GetPhysWorld();
-	PhysWorld2D::CollisionInfo outColl;
-
-	_parent->ComputeWorldTransform();
-
-	// プレイヤーの少し下から地面方向へレイを飛ばす
-	Vector2Int rayStart = _parent->Position() + Vector2Int(0.f, -1.0f);  // プレイヤーの足元あたり
-	LineSegment2D ray(rayStart, rayStart + Vector2Int(0.f, -15));
-	if (phys->SegmentCast(ray, outColl, _parent)) {
-		if (input->IsInputDown(InputMap::INPUT_DUP) && outColl._object->Tag() == GameObject::TAG::GROUND) {
-			_isJumping = true;
-		}
-	}
+	if (input.IsKeyDown(SDL_SCANCODE_SPACE) && _isJumping == false) {
+		_isJumping = true;
+	} 
 }
 
-void MoveInputComponent::PhysUpdate(float deltaTime){
-	Vector2 currentVelocity = _rigidbodyComp->Velocity();
+void MoveInputComponent::FixedUpdate(float deltaTime){
+	Vector2 force = Vector2::Zero;
 
-	Vector2 desiredVelocity(static_cast<float>(_direction.x) * (_moveSpeed + _moveSpeedX), static_cast<float>(_direction.y) * (_moveSpeed + _moveSpeedY));
-	Vector2 velocityChange = desiredVelocity - currentVelocity;
-
-	// 質量を考慮して力を計算
-	float mass = _rigidbodyComp->Mass(); // 新たに質量を取得する必要があります
-	Vector2 force = velocityChange * mass / deltaTime;
+	force += _direction * 100000 * deltaTime;
 
 	if (_isJumping) {
-		force.y += _jumpForce;
+		force.y += 100000;
 		_isJumping = false;
 	}
 
-	_rigidbodyComp->AddForce(force);
+	//SDL_Log("Force(%f, %f)\n", force.x, force.y);
+	RigidbodyComponent* rigidbodyComp = _parent.GetComponent<RigidbodyComponent>();
+	rigidbodyComp->AddForce(force);
 	_direction = Vector2::Zero;
 }
 

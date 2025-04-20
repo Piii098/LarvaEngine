@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Examples\Game\2DScroll\PlaySubScene.cpp" />
+    <ClCompile Include="src\Examples\Game\2DScroll\GameMainScene.cpp" />
     <ClCompile Include="src\Audio\AudioSystem.cpp" />
     <ClCompile Include="src\Audio\SoundEvent.cpp" />
     <ClCompile Include="src\Components\AI\AICompoennt.cpp" />
@@ -34,10 +36,15 @@
     <ClCompile Include="src\Components\Physics\BoxComponent2D.cpp" />
     <ClCompile Include="src\Components\Physics\MoveInputComponent.cpp" />
     <ClCompile Include="src\Components\Physics\RigidbodyComponent.cpp" />
-    <ClCompile Include="src\Components\TileMapComponent.cpp" />
     <ClCompile Include="src\Core\Component.cpp" />
-    <ClCompile Include="src\Core\Events\Input.cpp" />
-    <ClCompile Include="src\Core\Frame.cpp" />
+    <ClCompile Include="src\Examples\Game\2DScroll\Player.cpp" />
+    <ClCompile Include="src\GameObjects\Camera.cpp" />
+    <ClCompile Include="src\GameObjects\UI\Button.cpp" />
+    <ClCompile Include="src\GameObjects\UI\DataText.cpp" />
+    <ClCompile Include="src\GameObjects\UI\Text.cpp" />
+    <ClCompile Include="src\Input\InputAction.cpp" />
+    <ClCompile Include="src\Input\InputSystem.cpp" />
+    <ClCompile Include="src\Core\FrameSystem.cpp" />
     <ClCompile Include="src\Core\Game.cpp" />
     <ClCompile Include="src\Core\GameObject.cpp" />
     <ClCompile Include="src\Core\Main.cpp" />
@@ -50,26 +57,11 @@
     <ClCompile Include="src\Core\SubScene.cpp" />
     <ClCompile Include="src\Core\UIScene.cpp" />
     <ClCompile Include="src\Core\Utilities\Math.cpp" />
-    <ClCompile Include="src\GameObjects\Background.cpp" />
-    <ClCompile Include="src\GameObjects\Camera.cpp" />
-    <ClCompile Include="src\GameObjects\Particle.cpp" />
-    <ClCompile Include="src\GameObjects\Player.cpp" />
-    <ClCompile Include="src\GameObjects\TileMapObject.cpp" />
-    <ClCompile Include="src\GameObjects\UI\Button.cpp" />
-    <ClCompile Include="src\GameObjects\UI\DataText.cpp" />
-    <ClCompile Include="src\GameObjects\UI\Text.cpp" />
     <ClCompile Include="src\Physics\Collision2D.cpp" />
     <ClCompile Include="src\Physics\PhysWorld2D.cpp" />
     <ClCompile Include="src\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Renderer\Shader.cpp" />
     <ClCompile Include="src\Renderer\VertexArray.cpp" />
-    <ClCompile Include="src\Examples\Game\Test\PlaySubScene.cpp" />
-    <ClCompile Include="src\Examples\Game\Test\TestScene.cpp" />
-    <ClCompile Include="src\Examples\Game\Title\PlaySubScene.cpp" />
-    <ClCompile Include="src\Examples\Game\Title\TitleScene.cpp" />
-    <ClCompile Include="src\Examples\Game\Test\HUD.cpp" />
-    <ClCompile Include="src\Examples\Game\Test\PauseMenu.cpp" />
-    <ClCompile Include="src\Examples\Game\Title\TitleUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\LarvaEngine\Audio\AudioSystem.h" />
@@ -87,10 +79,17 @@
     <ClInclude Include="include\LarvaEngine\Components\Physics\BoxComponent2D.h" />
     <ClInclude Include="include\LarvaEngine\Components\Physics\MoveInputComponent.h" />
     <ClInclude Include="include\LarvaEngine\Components\Physics\RigidbodyComponent.h" />
-    <ClInclude Include="include\LarvaEngine\Components\TileMapComponent.h" />
     <ClInclude Include="include\LarvaEngine\Core\Component.h" />
-    <ClInclude Include="include\LarvaEngine\Core\Events\Input.h" />
-    <ClInclude Include="include\LarvaEngine\Core\Frame.h" />
+    <ClInclude Include="include\LarvaEngine\Examples\Game\2DScroll\Player.h" />
+    <ClInclude Include="include\LarvaEngine\Examples\Game\2DScroll\PlaySubScene.h" />
+    <ClInclude Include="include\LarvaEngine\GameObjects\Camera.h" />
+    <ClInclude Include="include\LarvaEngine\GameObjects\UI\Button.h" />
+    <ClInclude Include="include\LarvaEngine\GameObjects\UI\DataText.h" />
+    <ClInclude Include="include\LarvaEngine\GameObjects\UI\Text.h" />
+    <ClInclude Include="include\LarvaEngine\Input\InputAction.h" />
+    <ClInclude Include="include\LarvaEngine\Input\InputCode.h" />
+    <ClInclude Include="include\LarvaEngine\Input\InputSystem.h" />
+    <ClInclude Include="include\LarvaEngine\Core\FrameSystem.h" />
     <ClInclude Include="include\LarvaEngine\Core\Game.h" />
     <ClInclude Include="include\LarvaEngine\Core\GameObject.h" />
     <ClInclude Include="include\LarvaEngine\Core\MainScene.h" />
@@ -104,26 +103,12 @@
     <ClInclude Include="include\LarvaEngine\Core\UIScene.h" />
     <ClInclude Include="include\LarvaEngine\Core\Utilities\DataTypes.h" />
     <ClInclude Include="include\LarvaEngine\Core\Utilities\Math.h" />
-    <ClInclude Include="include\LarvaEngine\GameObjects\Background.h" />
-    <ClInclude Include="include\LarvaEngine\GameObjects\Camera.h" />
-    <ClInclude Include="include\LarvaEngine\GameObjects\Particle.h" />
-    <ClInclude Include="include\LarvaEngine\GameObjects\Player.h" />
-    <ClInclude Include="include\LarvaEngine\GameObjects\TileMapObject.h" />
-    <ClInclude Include="include\LarvaEngine\GameObjects\UI\Button.h" />
-    <ClInclude Include="include\LarvaEngine\GameObjects\UI\DataText.h" />
-    <ClInclude Include="include\LarvaEngine\GameObjects\UI\Text.h" />
     <ClInclude Include="include\LarvaEngine\Physics\Collision2D.h" />
     <ClInclude Include="include\LarvaEngine\Physics\PhysWorld2D.h" />
     <ClInclude Include="include\LarvaEngine\Renderer\Renderer.h" />
     <ClInclude Include="include\LarvaEngine\Renderer\Shader.h" />
     <ClInclude Include="include\LarvaEngine\Renderer\VertexArray.h" />
-    <ClInclude Include="include\LarvaEngine\Examples\Game\Test\PlaySubScene.h" />
-    <ClInclude Include="include\LarvaEngine\Examples\Game\Test\TestScene.h" />
-    <ClInclude Include="include\LarvaEngine\Examples\Game\Title\PlaySubScene.h" />
-    <ClInclude Include="include\LarvaEngine\Examples\Game\Title\TitleScene.h" />
-    <ClInclude Include="include\LarvaEngine\Examples\Game\Test\HUD.h" />
-    <ClInclude Include="include\LarvaEngine\Examples\Game\Test\PauseMenu.h" />
-    <ClInclude Include="include\LarvaEngine\Examples\Game\Title\TItleUI.h" />
+    <ClInclude Include="include\LarvaEngine\Examples\Game\2DScroll\GameMainScene.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -247,7 +232,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\include ;D:\SDL3-3.2.4\include;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\studio\inc;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\include;$(ProjectDir)\SDL\include;$(ProjectDir)\FMOD SoundSystem\FMOD Studio API Windows\api\studio\inc;$(ProjectDir)\FMOD SoundSystem\FMOD Studio API Windows\api\core\inc</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(Filename).obj</ObjectFileName>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalOptions>/source-charset:utf-8 /execution-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
@@ -256,7 +241,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\SDL3-3.2.4\lib\x64;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\core\lib\x64;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\studio\lib\x64</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)\SDL\lib\x64;$(ProjectDir)\FMOD SoundSystem\FMOD Studio API Windows\api\core\lib\x64;$(ProjectDir)\FMOD SoundSystem\FMOD Studio API Windows\api\studio\lib\x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL3_test.lib;SDL3.lib;SDL3_ttf.lib;fmodstudio_vc.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
@@ -272,7 +257,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\include ;D:\SDL3-3.2.4\include;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\studio\inc;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\include;$(ProjectDir)\SDL\include;$(ProjectDir)\FMOD SoundSystem\FMOD Studio API Windows\api\studio\inc;$(ProjectDir)\FMOD SoundSystem\FMOD Studio API Windows\api\core\inc</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(Filename).obj</ObjectFileName>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalOptions>/source-charset:utf-8 /execution-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
@@ -282,7 +267,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\SDL3-3.2.4\lib\x64;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\core\lib\x64;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\studio\lib\x64</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)\SDL\lib\x64;$(ProjectDir)\FMOD SoundSystem\FMOD Studio API Windows\api\core\lib\x64;$(ProjectDir)\FMOD SoundSystem\FMOD Studio API Windows\api\studio\lib\x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL3_test.lib;SDL3.lib;SDL3_ttf.lib;fmodstudio_vc.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>

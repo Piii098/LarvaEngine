@@ -69,7 +69,7 @@ Vector2 Vector2::ToFloat(const Vector2Int& vec)
 
 Vector2 Vector2::SmoothDamp(const Vector2& current, const Vector2& target, Vector2& currentVelocity,
 	float smoothTime, float maxSpeed,
-	float deltaTime)
+	const float deltaTime)
 {
 	Vector2 result;
 	result.x = Math::SmoothDamp(current.x, target.x, currentVelocity.x, smoothTime, maxSpeed, deltaTime);
@@ -77,7 +77,7 @@ Vector2 Vector2::SmoothDamp(const Vector2& current, const Vector2& target, Vecto
 	return result;
 }
 
-Vector2Int Vector2Int::ToInterger(const Vector2& vec)
+Vector2Int Vector2Int::ToInteger(const Vector2& vec)
 {
 	Vector2Int temp;
 	temp.x = round(vec.x);

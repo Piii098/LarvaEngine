@@ -1,11 +1,15 @@
-﻿#include "LarvaEngine/Physics/Collision2D.h"
-#include <vector>
+﻿#include <vector>
 #include <algorithm>
+#include "LarvaEngine/Physics/Collision2D.h"
 
-#pragma region 線分
+// ===== LineSegment2D ===== //
+
 LineSegment2D::LineSegment2D(const Vector2Int& start, const Vector2Int& end)
     : _start(start), _end(end) {}
 
+/**
+ * 
+ */
 Vector2 LineSegment2D::PointOnSegment(float t) const {
     return Vector2::ToFloat(_start) + t * Vector2::ToFloat(_end - _start);
 }
@@ -42,10 +46,6 @@ float LineSegment2D::MinDistSq(const LineSegment2D& s1, const LineSegment2D& s2)
     return minDistSq;
 }
 
-#pragma endregion
-
-#pragma region 円
-
 Circle::Circle(const Vector2Int& center, float radius)
     : _center(center), _radius(radius) {}
 
@@ -53,9 +53,6 @@ bool Circle::Contains(const Vector2Int& point) const {
     return (point - _center).LengthSq() <= (_radius * _radius);
 }
 
-#pragma endregion
-
-#pragma region AABB2D(軸並行バウンディングボックス)
 
 AABB2D::AABB2D(const Vector2Int& min, const Vector2Int& max)
     : _min(min), _max(max) {}
@@ -92,24 +89,18 @@ Vector2Int AABB2D::Center() const {
     return Vector2Int((_min.x + _max.x) / 2, (_min.y + _max.y) / 2);
 }
 
-#pragma endregion
-
-#pragma region カプセル
 
 Capsule2D::Capsule2D(const Vector2Int& start, const Vector2Int& end, float radius)
     : _segment(start, end), _radius(radius) {}
 
 Vector2Int Capsule2D::PointOnSegment(float t) const {
-    return Vector2Int::ToInterger(_segment.PointOnSegment(t));
+    return Vector2Int::ToInteger(_segment.PointOnSegment(t));
 }
 
 bool Capsule2D::Contains(const Vector2Int& point) const {
     return _segment.MinDistSq(point) <= (_radius * _radius);
 }
 
-#pragma endregion
-
-#pragma region 交差判定
 
 bool Intersect(const Circle& a, const Circle& b) {
     float distSq = (a._center - b._center).LengthSq();
@@ -130,7 +121,6 @@ bool Intersect(const Circle& c, const AABB2D& box) {
     return box.MinDistSq(c._center) <= (c._radius * c._radius);
 }
 
-// 2D交差判定の補助関数
 bool TestSidePlane(float start, float end, float negd, const Vector2Int& norm,
     std::vector<std::pair<float, Vector2Int>>& out) {
     float denom = end - start;
@@ -150,7 +140,6 @@ bool TestSidePlane(float start, float end, float negd, const Vector2Int& norm,
     }
 }
 
-//  **2D LineSegmentとAABBの交差判定関数**
 bool Intersect(const LineSegment2D& l, const AABB2D& b, float& outT, Vector2Int& outNorm) {
     std::vector<std::pair<float, Vector2Int>> tValues;
 
@@ -170,7 +159,7 @@ bool Intersect(const LineSegment2D& l, const AABB2D& b, float& outT, Vector2Int&
     // 各交差点がAABB内にあるかをテスト
     for (auto& t : tValues) {
         Vector2 point = l.PointOnSegment(t.first);
-        if (b.Contains(Vector2Int::ToInterger(point))) {
+        if (b.Contains(Vector2Int::ToInteger(point))) {
             outT = t.first;
             outNorm = t.second;
             return true;
@@ -178,4 +167,3 @@ bool Intersect(const LineSegment2D& l, const AABB2D& b, float& outT, Vector2Int&
     }
     return false; // 交差なし
 }
-#pragma endregion

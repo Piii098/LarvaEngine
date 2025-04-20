@@ -1,7 +1,7 @@
 ﻿#include "LarvaEngine/Examples/Game/Test/HUD.h"
 #include "LarvaEngine/GameObjects/UI/DataText.h"
 
-Example::HUD::HUD(MainScene* parent)
+Example::HUD::HUD(MainScene& parent)
 	: UIScene(parent) {
 }
 
@@ -9,14 +9,19 @@ Example::HUD::~HUD() {
 }
 
 void Example::HUD::LoadData() {
-	_dataText = new DataText(this, "DelaSuko", Vector3::fromIntRGB(73, 69, 68), 50);
+	
+	DataText& dataTex = CreateGameObject<DataText>("DelaSuko", Vector3::fromIntRGB(73, 69, 68), 50);
+	dataTex.SetData("Player.Position.X");
+	dataTex.SetLabel("プレイヤー X");
+	dataTex.Position(Vector2Int(-450, 170));
+	dataTex.SetAlignLeft();
 
-	_dataText->SetData("Player.Position.X");
-	_dataText->SetLabel("プレイヤー X");
-	_dataText->Position(Vector2Int(-450, 170));
-	_dataText->SetAlignLeft();
+	dataTex.SetData("mouse.pos.X");
+	dataTex.SetLabel("mouse.pos.X");
+	dataTex.Position(Vector2Int(-450, 200));
+	dataTex.SetAlignLeft();
 
-	_text = new Text(this, "DelaSuko", Color::White, 50, "HUD");
-	_text->Position(Vector2Int(-450, -170));
-	_text->SetAlignLeft();
+	Text text = CreateGameObject<Text>("DelaSuko", Color::White, 50, "HUD");
+	text.Position(Vector2Int(-450, -170));
+	text.SetAlignLeft();
 }

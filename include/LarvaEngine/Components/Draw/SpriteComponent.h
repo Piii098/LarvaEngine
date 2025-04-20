@@ -1,7 +1,6 @@
 ﻿#pragma once
 
 #include "LarvaEngine/Core/Component.h"
-#include "LarvaEngine/Core/Resources/Texture.h"
 #include "LarvaEngine/Core/Utilities/Math.h"
 #include <string>
 #include <unordered_map>
@@ -20,11 +19,11 @@ public:
 		Right   // 右揃え
 	};
 
-	SpriteComponent(GameObject* parent, int bufferLayer, int drawLayer = 50);
+	SpriteComponent(GameObject& parent, int bufferLayer, int drawLayer = 50);
 
 	virtual ~SpriteComponent();
 
-	virtual void Render(Shader* shader);
+	virtual void Render(Shader& shader) const;
 	void SetTexture(const std::string& textureName);
 
 
@@ -55,7 +54,7 @@ public:
 
 protected:
 
-	AssetManager<Texture>* _textureManager;
+	AssetManager<Texture>& _textureManager;
 
 	Texture* _texture;
 	int _texWidth;

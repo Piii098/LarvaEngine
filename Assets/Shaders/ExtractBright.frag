@@ -6,7 +6,7 @@ layout (location = 1) out vec4 BrightColor;
 in vec2 TexCoords;
 uniform sampler2D frameTexture;
 
-// Žb’è“I‚ÈHSV•ÏŠ·‚É—p‚¢‚éŠÖ”
+// æš«å®šçš„ãªHSVå¤‰æ›ã«ç”¨ã„ã‚‹é–¢æ•°
 vec3 rgbToHsv(vec3 c) {
     float maxC = max(c.r, max(c.g, c.b));
     float minC = min(c.r, min(c.g, c.b));
@@ -33,7 +33,7 @@ vec3 rgbToHsv(vec3 c) {
     return vec3(h, s, v);
 }
 
-// è‡’l
+// é–¾å€¤
 uniform float threshold = 0.7;
 
 void main()
@@ -41,10 +41,10 @@ void main()
     vec4 texColor = texture(frameTexture, TexCoords);
     FragColor = vec4(texColor.rgb, 1.0);
 
-    // RGB ¨ HSV ‚É•ÏŠ·
+    // RGB â†’ HSV ã«å¤‰æ›
     vec3 hsv = rgbToHsv(texColor.rgb);
 
-    // Value ‚ª threshold ‚ð’´‚¦‚½‚ç’Šo
+    // Value ãŒ threshold ã‚’è¶…ãˆãŸã‚‰æŠ½å‡º
     if (hsv.z > threshold) {
         BrightColor = vec4(texColor.rgb, 1.0);
     } else {

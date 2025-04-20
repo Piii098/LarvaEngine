@@ -3,24 +3,21 @@
 #include "LarvaEngine/Components/Camera/CameraComponent.h"
 #include "LarvaEngine/Core/Game.h"
 #include "LarvaEngine/GameObjects/Player.h"
-#include "LarvaEngine/Core/Events/Input.h"
+#include "LarvaEngine/Input/InputAction.h"
 
 #pragma region コンストラクタ:デストラクタ
 
-Camera::Camera(Scene* scene)
-	: GameObject(scene){
-	Position(Vector2Int(800, 500));
-	_camera = new FollowCameraComponent(this);
-	//_camera->Target(GetGame()->GetPlayer()->Position());
+Camera::Camera(Scene& scene)
+	: GameObject(scene)
+	, _cameraComp(&CreateComponent<CameraComponent>()){
+	Position(Vector2Int(0, 0));
 	_zoom = 2.f;
-	_camera->Zoom(_zoom);
-	_camera->YOffset(35.f);
-	_camera->AttenRate(4);
+	_cameraComp->Zoom(_zoom);
+	
 }
 
 Camera::~Camera() {
-	delete _camera;
-	_camera = nullptr;
+
 }
 
 #pragma endregion
@@ -28,30 +25,30 @@ Camera::~Camera() {
 
 #pragma region パブリック関数
 
-void Camera::InputObject(Input* input) {
-	if (input->IsInputDown(InputMap::INPUT_BUP)) {
+void Camera::InputObject(const InputAction& input) {
+	if (input.IsKeyDown(SDL_SCANCODE_UP)) {
 		_zoom += 1;
 	}
-	if (input->IsInputDown(InputMap::INPUT_BDOWN)) {
+	if (input.IsKeyDown(SDL_SCANCODE_DOWN)) {
 		_zoom -= 1;
 	}
-	_camera->Zoom(_zoom);
+	_cameraComp->Zoom(_zoom);
 }
 
 void Camera::UpdateObject(float deltaTime) {
-	_camera->Target(_target->Position());
+
 }
 
 Matrix4 Camera::GetViewMatrix() const {
-	return _camera->GetViewMatrix();
+	return _cameraComp->GetViewMatrix();
 }
 
 float Camera::Zoom() const {
-	return _camera->Zoom();
+	return _cameraComp->Zoom();
 }
 
 Vector2 Camera::SubPixelOffset() const {
-	return _camera->SubPixelOffset();
+	return _cameraComp->SubPixelOffset();
 }
 
 #pragma endregion

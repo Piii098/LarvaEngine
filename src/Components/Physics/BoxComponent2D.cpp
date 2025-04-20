@@ -8,19 +8,19 @@
 
 #pragma region コンストラクタ:デストラクタ
 
-BoxComponent2D::BoxComponent2D(GameObject* parent, bool isCollision, bool isDynamic, int updateLayer)
+BoxComponent2D::BoxComponent2D(GameObject& parent, bool isCollision, bool isDynamic, int updateLayer)
 	: Component(parent)
 	, _objectBox(Vector2Int::Zero, Vector2Int::Zero)
 	, _worldBox(Vector2Int::Zero, Vector2Int::Zero)
 	, _isCollision(isCollision)
 	, _isDynamic(isDynamic){
 
-	_parent->GetScene()->GetManager()->GetGame()->GetPhysWorld()->AddBoxComp(this);
+	_parent.GetScene().GetManager().GetGame().GetPhysWorld().AddBoxComponent(this);
 
 }
 
 BoxComponent2D::~BoxComponent2D() {
-	_parent->GetScene()->GetManager()->GetGame()->GetPhysWorld()->RemoveBoxComp(this);
+	_parent.GetScene().GetManager().GetGame().GetPhysWorld().RemoveBoxComponent(this);
 }
 
 #pragma endregion
@@ -31,11 +31,11 @@ void BoxComponent2D::OnUpdateWorldTransform() {
 
 	_worldBox = _objectBox;
 
-	_worldBox._min *= _parent->Scale();
-	_worldBox._max *= _parent->Scale();
+	_worldBox._min *= _parent.Scale();
+	_worldBox._max *= _parent.Scale();
 	
-	_worldBox._min += _parent->Position();
-	_worldBox._max += _parent->Position();
+	_worldBox._min += _parent.Position();
+	_worldBox._max += _parent.Position();
 
 }
 

@@ -21,7 +21,7 @@ class Game;
 
 class AudioSystem {
 public:
-	AudioSystem(Game* game);
+	AudioSystem(Game& game);
 	~AudioSystem();
 
 	bool Initialize();
@@ -49,7 +49,7 @@ private:
 
 	static unsigned int s_nextID;
 
-	Game* _game;
+	Game& _game;
 	FMOD::Studio::System* _studioSystem;
 	FMOD::System* _coreSystem;
 	std::unordered_map<std::string, FMOD::Studio::Bank*> _banks;

@@ -8,7 +8,7 @@ class LightComponent;
 
 class Particle : public GameObject {
 public:
-	Particle(class Scene* scene, int bufferLayer = 10);
+	Particle(class Scene& scene, int bufferLayer = 10);
 	~Particle();
 
 	void SetTexture(const std::string& name);

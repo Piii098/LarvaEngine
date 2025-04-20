@@ -6,11 +6,12 @@
 class SoundEvent;
 template<typename T>
 class AssetManager;
-class Audio;
+
+class GameObject;
 
 class AudioComponent : public Component {
 public:
-	AudioComponent(class GameObject* parent, int updateOrder = 200);
+	AudioComponent(GameObject& parent, int updateOrder = 200);
 	~AudioComponent();
 
 	void Update(float deltaTime) override;	
@@ -19,8 +20,6 @@ public:
 	SoundEvent PlayEvent(const std::string& name);
 	void StopAllEvents();
 private:
-
-	AssetManager<Audio>* _audioManager;
 
 	std::vector<SoundEvent> _events2D;
 	std::vector<SoundEvent> _events3D;

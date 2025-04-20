@@ -2,17 +2,16 @@
 #include "LarvaEngine/Core/Component.h"
 #include "LarvaEngine/Core/Utilities/Math.h"
 
-class Input;
 class RigidbodyComponent;
 
 class MoveInputComponent: public Component {
 public:
 
-	MoveInputComponent(GameObject* parent, RigidbodyComponent* rigidbodyComp, int updateLayer = 100);
+	MoveInputComponent(GameObject& parent, int updateLayer = 100);
 	~MoveInputComponent() override;
 
-	void ProcessInput(Input* input) override;
-	void PhysUpdate(float deltaTime) override;
+	void ProcessInput(const InputAction& input) override;
+	void FixedUpdate(float deltaTime) override;
 
 
 	/*ゲッターセッター*/
@@ -30,7 +29,6 @@ public:
 	void MaxVerticalVelocity(float maxVerticalVelocity) { _maxVerticalVelocity = maxVerticalVelocity; };
 private:
 
-	RigidbodyComponent* _rigidbodyComp;
 
 	float _maxVerticalForce;
 	float _maxHorizontalForce;

@@ -36,7 +36,8 @@ struct TileInfo {
 
 class Tile : public GameObject {
 public:
-    Tile(Scene* scene, int tileId, const Vector2Int& position, const std::string& tileSetName);
+    Tile(GameObject* parent, int tileId, const Vector2Int& position, const std::string& tileSetName);
+    Tile(Scene& parent, int tileId, const Vector2Int& position, const std::string& tileSetName);
     ~Tile() override;
 
 
@@ -65,7 +66,7 @@ private:
 class TileMapComponent : public Component {
 public:
 
-    TileMapComponent(GameObject* parent, int drawLayer = 75);
+    TileMapComponent(GameObject& parent, int drawLayer = 75);
     ~TileMapComponent();
 
     void SetTileMap(const std::string& tileMapName, const std::string& tileSetName, int tileSetSize, int tileSize = 32); //ファイルでデータ読み込み
@@ -76,8 +77,8 @@ public:
     /*ゲッターセッター*/
 
 private:
-    AssetManager<TileMap>* _tileMapManager;
-    AssetManager<Texture>* _textureManager;
+    AssetManager<TileMap>& _tileMapManager;
+    AssetManager<Texture>& _textureManager;
     Texture* _tileSet;
     std::string _tileSetName;
 	int _tileSetSize;

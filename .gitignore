@@ -1,34 +1,79 @@
-# Prerequisites
-*.d
+# ビルド出力
+bin/
+obj/
+[Bb]uild/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# Visual Studio Code workspace
+.vscode/
 
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
-
+# Visual Studio 2019/2022
 .vs/
+.vscode/
+.vscode-test/
+.vscode-test-explorer/
+
+# ユーザー固有の設定ファイル
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# ビルド結果
+*.log
+*.tlog
+*.pdb
+*.idb
+*.ipch
+*.aps
+*.ncb
+*.sdf
+*.opendb
+*.vcxproj.user
+*.vcxproj.filters
+*.opensdf
+*.unsuccessfulbuild
+
+# Test結果
+TestResults/
+*.trx
+*.userprefs
+
+# パッケージ
+*.nuget/
+*.nupkg
+*.snupkg
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/packages/
+packages/
+packages.config
+
+# その他
+*.tmp
+*.temp
+*.cache
+*.rsuser
+*.rsbo
+*.rs
+*.rscache
+*.rscode
+*.rslog
+*.rsreport
+*.scc
+
+# Publish
+publish/
+
+FMOD SoundSystem/
+SDL/

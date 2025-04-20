@@ -1,107 +1,176 @@
-﻿#include "LarvaEngine/Core/MainScene.h"
+﻿#include <algorithm>
 #include "LarvaEngine/Core/UIScene.h"
-#include <algorithm>
+#include "LarvaEngine/Core/MainScene.h"
 #include "LarvaEngine/Components/Draw/SpriteComponent.h"
 
-#pragma region コンストラクタデストラクタ
+//==============================================================================
+// コンストラクタ・デストラクタ
+//==============================================================================
 
-MainScene::MainScene(SceneManager* manager)
+MainScene::MainScene(SceneManager& manager)
 	: Scene(manager) {
 }
 
 MainScene::~MainScene() {
+	Shutdown();
 }
 
-#pragma endregion
+//==============================================================================
+// パブリック関数
+//==============================================================================
 
-#pragma region パブリック関数
 
+// ===== 初期設定 ===== //
+
+/**
+ * シーンの初期化
+ *
+ * データをロードし、基底クラスMainSceneで初期化する
+ */
 void MainScene::Initialize() {
 	LoadData();
 }
 
-void MainScene::InputScene(Input* input) {
+
+// ===== ループ処理 ===== //
+
+/**
+ * 入力処理を行う
+ *
+ * アクティブ状態のサブシーン、UIシーンの入力処理を行う
+ * 
+ * 余地：UIシーンの一番上のみ入力処理を行う
+ */
+void MainScene::InputScene(const InputAction& input) {
+
+	if (_state == STATE::INACTIVE || _state == STATE::PAUSE) return; // メインシーンが非アクティブ状態の場合は処理しない
+
 	if (_currentSubScene != nullptr) {
-		_currentSubScene->InputScene(input);
+			_currentSubScene->InputScene(input);
 	}
 
 	for (auto& ui : _uiScenes) {
-		if (ui->GetState() == Scene::STATE::ACTIVE) {
-			ui->ProcessInput(input);
-		}
+		ui->ProcessInput(input);
 	}
 }
 
-void MainScene::UpdateScene(float deltaTime) {
+
+/**
+ * 更新処理を行う
+ *
+ * アクティブ状態のサブシーン、UIシーンの更新処理を行う
+ * クローズ状態のUIシーンを削除する
+ */
+void MainScene::UpdateScene(const float deltaTime) {
+	
+	if (_state == STATE::INACTIVE || _state == STATE::PAUSE) return;// メインシーンが非アクティブ状態の場合は処理しない
+	
+	// サブシーンの更新処理
 	if (_currentSubScene != nullptr) {
 		_currentSubScene->UpdateScene(deltaTime);
 	}
 
+	// UIシーンの更新処理
 	for (auto& ui : _uiScenes) {
-		if (ui->GetState() == Scene::STATE::ACTIVE) {
+		if (ui->State() == Scene::STATE::ACTIVE) {
 			ui->Update(deltaTime);
 		}
 	}
 
-	for (auto ui : _uiScenes) {
-		if (ui->GetState() == Scene::STATE::CLOSE) {
-			delete ui;
-			ui = nullptr;
+	// UIシーンの削除処理
+	for (auto& ui : _uiScenes) {
+		if (ui->State() == Scene::STATE::CLOSE) { // クローズ状態のUIシーンを削除
+			ui.reset();
 		}
 	}
 
 }
 
-void MainScene::Render(Shader* shader, int bufferLayer) {
+/**
+ * 描写処理を行う
+ *
+ * アクティブ状態のサブシーン、UIシーンの物理更新処理を行う
+ * Rendererクラスで呼び出され低解像度レンダリングの処理を行う
+ * bufferLayerが一致するスプライトの描写処理を行う
+ */
+void MainScene::Render(Shader& shader, int bufferLayer) {
 
-	if (_state == STATE::ACTIVE) {
+	if (_state == STATE::INACTIVE ) return; // メインシーンが非アクティブ状態の場合は処理しない
+	
+	for (auto& spri : _sprites) {
 
-		for (auto& spri : _sprites) {
-
-			if (spri->GetState() == Component::STATE::ACTIVE && spri->GetParent()->State() == GameObject::STATE::ACTIVE) {
-				if (spri->GetBufferLayer() == bufferLayer) {
-					spri->Render(shader);
-				}
+		// スプライトがアクティブかつ親オブジェクトがアクティブの場合描写
+		if (spri->State() == Component::STATE::ACTIVE && spri->GetParent().State() == GameObject::STATE::ACTIVE) {
+			if (spri->GetBufferLayer() == bufferLayer) { // 描写レイヤーが一致する場合のみ描写
+				spri->Render(shader);
 			}
-
 		}
 
 	}
 
 }
 
-void MainScene::RenderUIs(Shader* shader) {
+/**
+ * UIの描写処理を行う
+ *
+ * アクティブ状態のUIシーンの描写処理を行う
+ * Rendererクラスで呼び出され実ウィンドウサイズでの描写処理を行う
+ */
+void MainScene::RenderUIs(Shader& shader) {
+
+	if (_state == STATE::INACTIVE) return; // メインシーンが非アクティブ状態の場合は処理しない
+
 	for (auto& ui : _uiScenes) {
 		ui->Render(shader);
 	}
 }
 
-void MainScene::AddUIScene(UIScene* uiScene) {
-	_uiScenes.emplace_back(uiScene);
-}
 
+// ===== シーン管理 ===== //
+
+/**
+ * UIシーンを削除する
+ *
+ * 渡されたUIシーンを_uiScenesから削除する
+ */
 void MainScene::RemoveUIScene(UIScene* uiScene) {
-	auto iter = std::find(_uiScenes.begin(), _uiScenes.end(), uiScene);
+	auto iter = std::find_if(_uiScenes.begin(), _uiScenes.end(), 
+		[uiScene](const std::unique_ptr<UIScene>& ui) {
+		return ui.get() == uiScene;
+		});
+
 	if (iter != _uiScenes.end()) {
-		std::iter_swap(iter, _uiScenes.end() - 1);
-		_uiScenes.pop_back();
+		_uiScenes.erase(iter);
 	}
 }
 
 
+// ===== データ管理 ===== //
 
-void MainScene::Shutdown() {
-}
-
+/**
+ * データを設定する
+ *
+ * キーと値をペアでデータを設定する
+ */
 void MainScene::SetData(const std::string& key, GameTypes::DataValue value) {
-	
 	_data[key] = value;
 }
 
-void MainScene::SetGetter(const std::string& key, std::function<GameTypes::DataValue()> getter) {
-	_getter[key] = getter;
+/**
+ * データを更新する
+ *
+ * キーと値をペアでデータを更新する
+ */
+void MainScene::SetDataUpdate(const std::string& key, std::function<GameTypes::DataValue()> update) {
+	_dataUpdate[key] = update;
 }
 
+/**
+ * データを取得する
+ *
+ * キーを指定してデータを取得する
+ * データが存在しない場合はstd::monostateを返す
+ */
 GameTypes::DataValue MainScene::GetData(const std::string& key) {
 	// まずデータが存在するか確認
 	auto iterData = _data.find(key);
@@ -110,8 +179,8 @@ GameTypes::DataValue MainScene::GetData(const std::string& key) {
 	}
 
 	// ゲッターがあるか確認
-	auto iterGetter = _getter.find(key);
-	if (iterGetter != _getter.end()) {
+	auto iterGetter = _dataUpdate.find(key);
+	if (iterGetter != _dataUpdate.end()) {
 
 		// ゲッターが存在する場合は現在値を取得して比較
 		auto currentValue = iterGetter->second();
@@ -127,4 +196,19 @@ GameTypes::DataValue MainScene::GetData(const std::string& key) {
 	return iterData->second;
 }
 
-#pragma endregion
+
+//==============================================================================
+// プロテクティッド関数
+//==============================================================================
+
+// ===== 終了処理 ===== //
+
+/**
+ * シャットダウン処理
+ *
+ * UnloadData()を呼び出す
+ * 特別なシャットダウン処理が必要な場合はオーバーライドする
+ */
+void MainScene::Shutdown() {
+	UnloadData();
+}

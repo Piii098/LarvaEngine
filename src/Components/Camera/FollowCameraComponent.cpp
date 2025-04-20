@@ -1,6 +1,5 @@
 ﻿#include "LarvaEngine/Components/Camera/FollowCameraComponent.h"
 #include "LarvaEngine/Core/GameObject.h"
-#include "LarvaEngine/Core/Frame.h"
 
 #pragma region シングルトン関連
 
@@ -9,7 +8,7 @@
 
 #pragma region コンストラクタ・デストラクタ
 
-FollowCameraComponent::FollowCameraComponent(GameObject* parent, int updateLayer)
+FollowCameraComponent::FollowCameraComponent(GameObject& parent, int updateLayer)
     : CameraComponent(parent, updateLayer)
     , _xOffset(0.0f)
     , _yOffset(0.0f)
@@ -31,9 +30,9 @@ void FollowCameraComponent::Update(float deltaTime) {
  
 }
 
-void FollowCameraComponent::PhysUpdate(float deltaTime) {
+void FollowCameraComponent::FixedUpdate(float deltaTime) {
 	if (_internalPosition == Vector2::Zero) {
-		_internalPosition = _parent->PositionToFloat();
+		_internalPosition = _parent.PositionToFloat();
 		return;
 	}
     // 前回の位置を保存
@@ -49,7 +48,7 @@ void FollowCameraComponent::PhysUpdate(float deltaTime) {
         deltaTime);
 
     // GameObject の位置を更新
-    _parent->Position(_internalPosition);
+    _parent.Position(_internalPosition);
 }
 
 #pragma endregion

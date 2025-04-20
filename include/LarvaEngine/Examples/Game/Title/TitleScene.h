@@ -4,7 +4,7 @@
 namespace ExampleTitle {
 	class TitleScene : public MainScene {
 	public:
-		TitleScene(SceneManager* manager);
+		TitleScene(SceneManager& manager);
 		~TitleScene() override;
 
 

@@ -7,7 +7,7 @@
 
 #pragma region コンストラクタデストラクタ
 
-ExampleTitle::TitleUI::TitleUI(MainScene* scene)
+ExampleTitle::TitleUI::TitleUI(MainScene& scene)
 	: UIScene(scene) {
 }
 
@@ -24,22 +24,13 @@ ExampleTitle::TitleUI::~TitleUI() {
 
 #pragma region プライベート関数
 
+void ExampleTitle::TitleUI::UpdateScene(float deltaTime) {
+
+	SDL_Log("SelectButton : %d", _button->GetSelectedButton());
+
+}
+
 void ExampleTitle::TitleUI::LoadData() {
-	_button = new Button(this);
-	_button->CreateButtonData();
-	_button->SetText(0, "Start", "DelaSuko", 50, Color::White);
-	_button->SetOnClick(0, [this]() {
-		_scene->GetManager()->ChangeScene<Example::TestScene>();
-	});
-	_button->CreateButtonData();
-	_button->SetText(1, "Quite", "DelaSuko", 50, Color::White);
-	_button->SetOnClick(1, [this]() {
-		_scene->GetManager()->ChangeScene<Example::TestScene>();
-		});
-
-	_button->SetOffset(Vector2(50,-50));
-
-	_button->Position(Vector2Int(-300, -100));
 	
 }
 
