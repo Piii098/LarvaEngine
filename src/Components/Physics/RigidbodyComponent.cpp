@@ -35,9 +35,11 @@ void RigidbodyComponent::Update(float deltaTime) {
 
 void RigidbodyComponent::FixedUpdate(float deltaTime) {
 
-    const float GRAVITY_CONSTANT = 100000.0f;
+    if (_isGravity) {
+        const float GRAVITY_CONSTANT = 100000.0f;
 
-    AddForce(Vector2(0, -GRAVITY_CONSTANT * deltaTime));
+        AddForce(Vector2(0, -GRAVITY_CONSTANT * deltaTime));
+    }
 }
 
 void RigidbodyComponent::CalculateVelocity(float deltaTime) {

@@ -40,7 +40,6 @@ public:
     // ===== コンストラクタ・デストラクタ =====　//
 
     GameObject(Scene& scene);
-    GameObject(GameObject* parent);
 
     virtual ~GameObject();
 
@@ -107,24 +106,11 @@ public:
         return nullptr;
     }
 
-
-    // ===== 子オブジェクト関連 ===== //
-
-    /// @brief 子オブジェクトの追加
-    /// 子オブジェクトを追加する
-    /// @param childObject 追加する子オブジェクト
-    void AddChild(GameObject* childObject);
-
-    /// @brief 子オブジェクトの削除
-    /// 子オブジェクトを削除する
-    /// @param childObject 削除する子オブジェクト
-    void RemoveChild(GameObject* childObject);
-
 	bool IsEqual(const GameObject& object) const { return this == &object; } ///< 自分と同じオブジェクトかどうかを判定する
 
     // ===== ゲッターセッター ===== //
 
-    void SetParent(GameObject* parent) { _parent = parent; }
+
     void Position(const Vector2& position) { _position = Vector2Int::ToInteger(position); _recomputeWorldTransform = true; }
     void Position(const Vector2Int& position) { _position = position; _recomputeWorldTransform = true; }
     void Scale(float scale) { _scale = scale; _recomputeWorldTransform = true; }
@@ -144,8 +130,6 @@ public:
     
     Scene& GetScene() { return _scene; }
     MainScene& GetMainScene();
-    GameObject* GetParent() { return _parent; }
-    std::vector<GameObject*> GetChildren() { return _childrenObjects; }
 
 private:
 
@@ -198,10 +182,6 @@ private:
     // 状態関連
     STATE _state;                               ///< オブジェクトの状態
     TAG _tag;                                   ///< オブジェクトのタグ
-
-    // 階層関連
-    GameObject* _parent;                        ///< 親オブジェクト
-    std::vector<GameObject*> _childrenObjects;  ///< 子オブジェクトリスト
 
     // コンポーネント
     std::vector <std::unique_ptr<Component>> _components;        ///< コンポーネントリスト

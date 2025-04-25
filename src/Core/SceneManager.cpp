@@ -51,6 +51,12 @@ void SceneManager::ProcessInput(const InputAction& input) {
  * 現在のメインシーンの更新処理を行う
  */
 void SceneManager::Update(const float deltaTime) {
+	if (_pendingSceneChange) {
+		auto sceneChange = _pendingSceneChange;
+		_pendingSceneChange = nullptr;
+		sceneChange();
+	}
+
 	_currentMainScene->Update(deltaTime);
 }
 
@@ -121,7 +127,7 @@ void SceneManager::ReloadMainScene() {
  */
 void SceneManager::LoadData() {
 
-	_game.GetFontManager().Load("DelaSuko", "Assets/Fonts/MOBO-Bold.otf");
+	_game.GetFontManager().Load("MOBO", "Assets/Fonts/MOBO-Bold.otf");
 
 }
 

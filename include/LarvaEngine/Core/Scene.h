@@ -67,6 +67,7 @@ public:
 
 	// ===== ゲームオブジェクト管理 ===== //
 
+
 	/// @brief ゲームオブジェクトの生成
 	/// ゲームオブジェクトを生成し、配列に追加する
 	/// @tparam T 生成するゲームオブジェクトのクラス
@@ -82,26 +83,6 @@ public:
 		else {
 			_objects.emplace_back(std::move(object));
 		}
-		return objRef;
-    }
-
-	/// @brief 子オブジェクトの生成
-	/// 親オブジェクトに子オブジェクトを生成し、配列に追加する
-	/// @tparam T 生成するゲームオブジェクトのクラス
-	/// @param parent 親オブジェクト
-	/// @param args ゲームオブジェクトのコンストラクタに渡す引数 (第一引数のシーンの参照は自動で渡される)
-	/// @return 生成したゲームオブジェクトのポインタ
-    template <typename T, typename... Args>
-    T& CreateChildObject(GameObject* parent, Args&&... args) {
-		std::unique_ptr<T> object = std::make_unique<T>(parent, std::forward<Args>(args)...);
-		T& objRef = *object;
-		if (_isUpdating) {
-			_pendingObjects.emplace_back(std::move(object));
-		}
-		else {
-			_objects.emplace_back(std::move(object));
-		}
-		// parent->AddChild(&objRef);
 		return objRef;
     }
 

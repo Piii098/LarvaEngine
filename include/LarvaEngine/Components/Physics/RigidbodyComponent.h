@@ -28,7 +28,7 @@ public:
     void IsGravity(bool frag) { _isGravity = frag; };
     float Mass() { return _mass; };
     const Vector2& Velocity() const { return _velocity; };
-
+	void Drag(float drag) { _drag = drag; };
     Vector2 InternalPosition() const { return _internalPosition; };
     void InternalPosition(Vector2 internalPosition) { _internalPosition = internalPosition; };
 

@@ -23,23 +23,7 @@ GameObject::GameObject(Scene& scene)
 	, _scale(1.0f)
 	, _rotation(0.0f)
 	, _recomputeWorldTransform(true){
-	SetParent(nullptr);
-}
-
-/**
- * コンストラクタ
- * 
- * 親オブジェクトを持つ(子オブジェクト)
- */
-GameObject::GameObject(GameObject* parent)
-	: _state(STATE::ACTIVE)
-	, _scene(parent->GetScene())
-	, _tag(TAG::NONE)
-	, _position(Vector2Int::Zero)
-	, _scale(1.0f)
-	, _rotation(0.0f)
-	, _recomputeWorldTransform(true) {
-	SetParent(parent);
+	//SetParent(nullptr);
 }
 
 /**
@@ -48,8 +32,7 @@ GameObject::GameObject(GameObject* parent)
  * 親オブジェクトから自身を削除する
  */
 GameObject::~GameObject() {
-	SetParent(nullptr);
-	_scene.RemoveObject(this);
+	//_scene.RemoveObject(this);
 }
 
 
@@ -131,36 +114,6 @@ void GameObject::RemoveComponent(Component* component) {
 		_components.erase(comp);
 	}
 	*/
-}
-
-// ====== 子オブジェクト関連 ===== //
-
-/**
- * コンポーネントの取得
- * 
- * 指定した型のコンポーネントを取得する
- */
-void GameObject::AddChild(GameObject* object) {
-
-	_childrenObjects.emplace_back(object);
-    
-}
-
-/**
- * 子オブジェクトの削除
- * 
- * 子オブジェクトを検索し削除する
- */
-void GameObject::RemoveChild(GameObject* object) {
-	// 検索
-    auto iter = std::find(_childrenObjects.begin(), _childrenObjects.end(), object);
-
-	// 削除
-    if (iter != _childrenObjects.end()) {
-        std::iter_swap(iter, _childrenObjects.end() - 1);
-		_childrenObjects.pop_back();
-    }
-
 }
 
 // ====== ワールド変換行列関連 ===== //

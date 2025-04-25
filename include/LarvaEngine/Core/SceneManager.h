@@ -64,13 +64,21 @@ public:
 
 	// ====== シーン関連 ====== //
 
+
+	// SceneManager.h の改良版
+	template <typename T, typename... Args>
+	void RequestSceneChange(Args&& ...args) {
+		_pendingSceneChange = [this, args...]() {
+			this->ChangeScene<T>(std::forward<Args>(args)...);
+			};
+	}
+
 	/// @brief シーンの切り替え
 	/// 現在のメインシーンを破棄し、新しいシーンを生成する
 	/// @tparam T 切り替えるシーンクラス(MainSceneを継承したクラス)
 	/// @param args シーンの初期化に必要な引数( 第一引数のシーンマネージャーの参照は自動で設定される )
 	template <typename T, typename... Args>
 	T* ChangeScene(Args&& ...args) {
-		_currentMainScene->State(MainScene::STATE::CLOSE); // 現在のシーンをCLOSEにする
 		// 新しいシーンを作成
 		std::unique_ptr<T> newScene = std::make_unique<T>(*this, std::forward<Args>(args)...);
 
@@ -81,8 +89,8 @@ public:
 		_currentMainScene.reset();
 		_currentMainScene = std::move(newScene);
 
-		// 適切な型にキャストして返す
 		return static_cast<T*>(_currentMainScene.get());
+	
 	}
 
 	/// @brief シーンの破棄
@@ -119,6 +127,8 @@ private:
 	/// シーンの破棄処理を行う
 	/// リソースを解放する
 	void Shutdown();
+
+	std::function<void()> _pendingSceneChange;	///< シーン変更のリクエスト
 
 
 	Game& _game;									///< ゲームクラス

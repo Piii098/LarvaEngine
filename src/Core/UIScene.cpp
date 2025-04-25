@@ -25,7 +25,7 @@ UIScene::UIScene(MainScene& parent)
  * 親のメインシーンから自身を削除する
  */
 UIScene::~UIScene() {
-	_parent.RemoveUIScene(this);
+	//_parent.RemoveUIScene(this);
 }
 
 //==============================================================================

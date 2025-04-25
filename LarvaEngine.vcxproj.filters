@@ -71,6 +71,9 @@
     <Filter Include="Examples\Game\2DScroll">
       <UniqueIdentifier>{645404c5-1759-4009-aab7-709b06d6ac9a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\UI">
+      <UniqueIdentifier>{85c6121b-ac2f-4708-9fb2-7af1b56fe862}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Components\AI\AICompoennt.cpp">
@@ -148,9 +151,6 @@
     <ClCompile Include="src\Core\SceneManager.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\Core\Main.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="src\Core\Game.cpp">
       <Filter>Core</Filter>
     </ClCompile>
@@ -193,13 +193,25 @@
     <ClCompile Include="src\GameObjects\UI\Button.cpp">
       <Filter>GameObjects\UI</Filter>
     </ClCompile>
-    <ClCompile Include="src\Examples\Game\2DScroll\GameMainScene.cpp">
+    <ClCompile Include="Examples\Game\2DScroll\GameMainScene.cpp">
       <Filter>Examples\Game\2DScroll</Filter>
     </ClCompile>
-    <ClCompile Include="src\Examples\Game\2DScroll\Player.cpp">
+    <ClCompile Include="Examples\Game\2DScroll\Player.cpp">
       <Filter>Examples\Game\2DScroll</Filter>
     </ClCompile>
-    <ClCompile Include="src\Examples\Game\2DScroll\PlaySubScene.cpp">
+    <ClCompile Include="Examples\Game\2DScroll\PlaySubScene.cpp">
+      <Filter>Examples\Game\2DScroll</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\Main.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\UI\ButtonComponent.cpp">
+      <Filter>Components\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\Game\2DScroll\TItleMainScene.cpp">
+      <Filter>Examples\Game\2DScroll</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\Game\2DScroll\TitleUIScene.cpp">
       <Filter>Examples\Game\2DScroll</Filter>
     </ClCompile>
   </ItemGroup>
@@ -330,13 +342,22 @@
     <ClInclude Include="include\LarvaEngine\GameObjects\UI\Button.h">
       <Filter>GameObjects\UI</Filter>
     </ClInclude>
-    <ClInclude Include="include\LarvaEngine\Examples\Game\2DScroll\GameMainScene.h">
+    <ClInclude Include="Examples\Game\2DScroll\PlaySubScene.h">
       <Filter>Examples\Game\2DScroll</Filter>
     </ClInclude>
-    <ClInclude Include="include\LarvaEngine\Examples\Game\2DScroll\Player.h">
+    <ClInclude Include="Examples\Game\2DScroll\GameMainScene.h">
       <Filter>Examples\Game\2DScroll</Filter>
     </ClInclude>
-    <ClInclude Include="include\LarvaEngine\Examples\Game\2DScroll\PlaySubScene.h">
+    <ClInclude Include="Examples\Game\2DScroll\Player.h">
+      <Filter>Examples\Game\2DScroll</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Components\UI\ButtonComponent.h">
+      <Filter>Components\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Game\2DScroll\TitleMainScene.h">
+      <Filter>Examples\Game\2DScroll</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Game\2DScroll\TitleUIScene.h">
       <Filter>Examples\Game\2DScroll</Filter>
     </ClInclude>
   </ItemGroup>

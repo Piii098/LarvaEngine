@@ -119,20 +119,6 @@ void Scene::Output() {
  * デストラクタで呼ばれることを想定
  */
 void Scene::RemoveObject(GameObject* object) {
-	// 親オブジェクトから解除
-	if (object->GetParent()) {
-		object->GetParent()->RemoveChild(object);
-	}
-
-	// 子オブジェクトを削除（コピーして安全に処理）
-	std::vector<GameObject*> childrenCopy = object->GetChildren();
-	for (auto child : childrenCopy) {
-		// 階層関係を解除
-		object->RemoveChild(child);
-
-		// 子オブジェクトも破棄
-		DestroyObject(child);
-	}
 
 
 }
