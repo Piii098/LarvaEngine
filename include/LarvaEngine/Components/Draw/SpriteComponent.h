@@ -9,6 +9,7 @@ class Shader;
 template<typename T>
 class AssetManager;
 class Texture;
+class AABB2D;
 
 class SpriteComponent : public Component {
 public:
@@ -25,9 +26,13 @@ public:
 
 	virtual void Render(Shader& shader) const;
 	void SetTexture(const std::string& textureName);
+	void SetTexture(Texture* texture) { _texture = texture; }
 
 
 	/*アクセサ*/
+
+	void GetAABB(AABB2D& outAABB) const;
+	AABB2D GetAABB() const;
 
 	int TexWidth() const { return _texWidth; };
 	int TexHeight() const { return _texHeight; };
@@ -51,6 +56,7 @@ public:
 	void SetHorizontalAlign(HorizontalAlign align) { _horizontalAlign = align; };
 
 	int BufferLayer() const { return _bufferLayer; };
+
 
 protected:
 

@@ -3,6 +3,7 @@
 #include <SDL3/SDL_scancode.h>
 #include <SDL3/SDL_gamepad.h>
 #include <memory>
+#include <unordered_map>
 #include "LarvaEngine/Core/Utilities/Math.h"
 #include "LarvaEngine/Core/Utilities/DataTypes.h"
 
@@ -32,6 +33,8 @@ public:
 	/// @param key キーコード
 	/// @return キーの状態
 	BUTTON_STATE GetKeyState(SDL_Scancode key) const;
+
+	bool IsAllKey() const;
 	
 	/// @brief キーの状態を更新する
 	/// @param key キーコード
@@ -61,6 +64,7 @@ public:
 	/// @return ボタンの状態
 	BUTTON_STATE GetButtonState(GameTypes::SDL_MouseButton button) const;
 
+	//bool IsAllButton() const;
 
 	bool IsRealtive() const { return _isRelative; }
 	void IsRelative(bool flag) { _isRelative = flag; }
@@ -87,6 +91,8 @@ public:
 	/// @param button ボタン
 	/// @return ボタンの状態
 	BUTTON_STATE GetButtonState(SDL_GamepadButton button) const;
+
+	bool IsAllButton() const;
 
 	bool GetIsConnected() const { return _isConnected; }
 
@@ -115,6 +121,18 @@ struct InputState {
 	GamepadState gamepad;
 };
 
+struct AxisMapping {
+	GameTypes::InputCode positive;
+	GameTypes::InputCode negative;
+	float value; ///< 入力の値
+	float sensitivity;
+	float gravity;
+	float deadZone;
+	bool snap;
+
+	AxisMapping() : positive(GameTypes::InputCode()), negative(GameTypes::InputCode()), sensitivity(10.0f), gravity(10.0f), deadZone(0.0f), snap(false), value(0.f) {}
+};
+
 /// @brief 入力システム
 /// キーボード、マウス、ゲームパッドの入力を管理、更新する
 class InputSystem {
@@ -126,11 +144,14 @@ public:
 
 	bool Initialize();
 	void ProcessInput(SDL_Event& event);
-	void Update();
+	void Update(float deltaTime);
 	void Shutdown();
 	void PreUpdate();
 
+	void SetAxisMapping(const std::string& name, GameTypes::InputCode negative, GameTypes::InputCode positive);
+
 	void SetRelativeMouseMode(bool flag);
+	float GetAxis(const std::string& name) const;
 
 	const InputState& GetState() const { return _state; }
 	SDL_Window* GetWindow() const { return _window; }
@@ -139,10 +160,14 @@ private:
 	void GamepadUpdate();
 	void MouseUpdate();
 
+	void AxisUpdate(float deltaTime);
+
 
 	float Filter1D(int input);
 	Vector2 Filter2D(int inputX, int inputY);
 
+
+	std::unordered_map<std::string, AxisMapping> _axisMap;	///< アクションマップ
 	Game& _game;
     SDL_Window* _window;
 	InputState _state; // 入力状態

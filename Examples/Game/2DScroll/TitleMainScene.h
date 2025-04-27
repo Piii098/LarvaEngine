@@ -10,10 +10,10 @@ namespace Example2DScroll
 		TitleMainScene(SceneManager& manager);
 		~TitleMainScene() override;
 
-		void LoadData() override;
-
 	private:
 
+		void LoadData() override;
+		void LoadObjects() override;
 	};
 
 }

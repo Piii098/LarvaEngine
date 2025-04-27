@@ -8,6 +8,7 @@
 #include "LarvaEngine/Core/Resources/Texture.h"
 #include "LarvaEngine/Core/Scene.h"
 #include "LarvaEngine/Core/SceneManager.h"
+#include "LarvaEngine/Physics/Collision2D.h"
 
 #pragma region コンストラクタ:デストラクタ
 
@@ -102,4 +103,18 @@ void SpriteComponent::SetTexture(const std::string& textureName) {
     else {
         SDL_Log("Failed to load texture: %s", textureName.c_str());
     }
+}
+
+void SpriteComponent::GetAABB(AABB2D& outAABB) const {
+    int halfWidth = static_cast<int>(_texWidth * _texScale.x / 2);
+    int halfHeight = static_cast<int>(_texHeight * _texScale.y / 2);
+
+    outAABB._min = Vector2Int(- halfWidth,- halfHeight);
+    outAABB._max = Vector2Int(halfWidth, halfHeight);
+}
+
+AABB2D SpriteComponent::GetAABB() const {
+	AABB2D outAABB(Vector2Int::Zero, Vector2Int::Zero);
+	GetAABB(outAABB);
+	return outAABB;
 }

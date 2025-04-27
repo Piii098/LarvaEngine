@@ -74,6 +74,9 @@
     <Filter Include="Components\UI">
       <UniqueIdentifier>{85c6121b-ac2f-4708-9fb2-7af1b56fe862}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{94a5604f-654f-4958-8065-146265c71a32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Components\AI\AICompoennt.cpp">
@@ -213,6 +216,15 @@
     </ClCompile>
     <ClCompile Include="Examples\Game\2DScroll\TitleUIScene.cpp">
       <Filter>Examples\Game\2DScroll</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\Game\2DScroll\AnimatedButton.cpp">
+      <Filter>Examples\Game\2DScroll</Filter>
+    </ClCompile>
+    <ClCompile Include="include\LarvaEngine\Core\Utilities\Easing.h">
+      <Filter>Core\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObjects\UI\ButtonGroup.cpp">
+      <Filter>GameObjects\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -360,5 +372,52 @@
     <ClInclude Include="Examples\Game\2DScroll\TitleUIScene.h">
       <Filter>Examples\Game\2DScroll</Filter>
     </ClInclude>
+    <ClInclude Include="Examples\Game\2DScroll\AnimatedButton.h">
+      <Filter>Examples\Game\2DScroll</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\GameObjects\UI\ButtonGroup.h">
+      <Filter>GameObjects\UI</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Shaders\Bloom.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\Blur.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\Combine.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\Combine.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\ExtractBright.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\FinalBloom.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\FrameBuffer.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\FrameBuffer.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\Light.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\Light.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\Sprite.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\Sprite.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\Upscale.frag">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

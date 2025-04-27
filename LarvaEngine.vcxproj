@@ -19,11 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Examples\Game\2DScroll\AnimatedButton.cpp" />
     <ClCompile Include="Examples\Game\2DScroll\GameMainScene.cpp" />
     <ClCompile Include="Examples\Game\2DScroll\Player.cpp" />
     <ClCompile Include="Examples\Game\2DScroll\PlaySubScene.cpp" />
     <ClCompile Include="Examples\Game\2DScroll\TItleMainScene.cpp" />
     <ClCompile Include="Examples\Game\2DScroll\TitleUIScene.cpp" />
+    <ClCompile Include="include\LarvaEngine\Core\Utilities\Easing.h" />
     <ClCompile Include="src\Components\UI\ButtonComponent.cpp" />
     <ClCompile Include="src\Audio\AudioSystem.cpp" />
     <ClCompile Include="src\Audio\SoundEvent.cpp" />
@@ -43,6 +45,7 @@
     <ClCompile Include="src\Core\Component.cpp" />
     <ClCompile Include="src\GameObjects\Camera.cpp" />
     <ClCompile Include="src\GameObjects\UI\Button.cpp" />
+    <ClCompile Include="src\GameObjects\UI\ButtonGroup.cpp" />
     <ClCompile Include="src\GameObjects\UI\DataText.cpp" />
     <ClCompile Include="src\GameObjects\UI\Text.cpp" />
     <ClCompile Include="src\Input\InputAction.cpp" />
@@ -67,6 +70,7 @@
     <ClCompile Include="src\Renderer\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Examples\Game\2DScroll\AnimatedButton.h" />
     <ClInclude Include="Examples\Game\2DScroll\GameMainScene.h" />
     <ClInclude Include="Examples\Game\2DScroll\Player.h" />
     <ClInclude Include="Examples\Game\2DScroll\PlaySubScene.h" />
@@ -91,6 +95,7 @@
     <ClInclude Include="include\LarvaEngine\Core\Component.h" />
     <ClInclude Include="include\LarvaEngine\GameObjects\Camera.h" />
     <ClInclude Include="include\LarvaEngine\GameObjects\UI\Button.h" />
+    <ClInclude Include="include\LarvaEngine\GameObjects\UI\ButtonGroup.h" />
     <ClInclude Include="include\LarvaEngine\GameObjects\UI\DataText.h" />
     <ClInclude Include="include\LarvaEngine\GameObjects\UI\Text.h" />
     <ClInclude Include="include\LarvaEngine\Input\InputAction.h" />
@@ -115,6 +120,21 @@
     <ClInclude Include="include\LarvaEngine\Renderer\Renderer.h" />
     <ClInclude Include="include\LarvaEngine\Renderer\Shader.h" />
     <ClInclude Include="include\LarvaEngine\Renderer\VertexArray.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Shaders\Bloom.vert" />
+    <None Include="Assets\Shaders\Blur.frag" />
+    <None Include="Assets\Shaders\Combine.frag" />
+    <None Include="Assets\Shaders\Combine.vert" />
+    <None Include="Assets\Shaders\ExtractBright.frag" />
+    <None Include="Assets\Shaders\FinalBloom.frag" />
+    <None Include="Assets\Shaders\FrameBuffer.frag" />
+    <None Include="Assets\Shaders\FrameBuffer.vert" />
+    <None Include="Assets\Shaders\Light.frag" />
+    <None Include="Assets\Shaders\Light.vert" />
+    <None Include="Assets\Shaders\Sprite.frag" />
+    <None Include="Assets\Shaders\Sprite.vert" />
+    <None Include="Assets\Shaders\Upscale.frag" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

@@ -14,12 +14,9 @@ MoveInputComponent::MoveInputComponent(GameObject& parent, int updateLayer)
 	, _moveSpeedX(0.f)
 	, _moveSpeedY(0.f)
 	, _jumpForce(0.f)
-	, _isJumping(false)
-	, _maxVerticalForce(0.f)
-	, _maxHorizontalForce(0.f)
-	, _maxVerticalVelocity(0.f)
-	, _maxHorizontalVelocity(0.f){
+	, _isJumping(false){
 	//SDL_Log("MoveInputComponent::MoveInputComponent\n");
+	_rigidbodyComp = _parent.GetComponent<RigidbodyComponent>();
 	
 }
 
@@ -32,41 +29,46 @@ MoveInputComponent::~MoveInputComponent() {
 
 void MoveInputComponent::ProcessInput(const InputAction& input) {
 	_direction = Vector2::Zero;
+	_inputActive = false;
 
-	if (input.IsKey(SDL_SCANCODE_RIGHT)) {
-		//SDL_Log("RIGHT KEY PRESSED\n");
-		_direction.x += 1;
+	float horizontal = input.GetActionValue("Horizontal");
+	float vertical = -input.GetActionValue("Vertical");
+
+	if (horizontal != 0.f) {
+		_direction.x = horizontal;
+		_inputActive = true;
 	}
-	if (input.IsKey(SDL_SCANCODE_LEFT)) {
-		//SDL_Log("LEFT KEY PRESSED\n");
-		_direction.x -= 1;
-	}
-	if (input.IsKey(SDL_SCANCODE_UP)) {
-		_direction.y += 1;
-	}
-	if (input.IsKey(SDL_SCANCODE_DOWN)) {
-		_direction.y -= 1;
+	if (vertical != 0.f) {
+		_direction.y = vertical;
+		_inputActive = true;
 	}
 
-	if (input.IsKeyDown(SDL_SCANCODE_SPACE) && _isJumping == false) {
-		_isJumping = true;
-	} 
+	// 入力がある場合のみ正規化する
+	if(_inputActive) {
+		_direction.Normalize();
+	}
+
+
 }
 
+void MoveInputComponent::Update(float deltaTime) {
+
+}
+
+
 void MoveInputComponent::FixedUpdate(float deltaTime){
-	Vector2 force = Vector2::Zero;
 
-	force += _direction * 100000 * deltaTime;
-
-	if (_isJumping) {
-		force.y += 100000;
-		_isJumping = false;
-	}
-
-	//SDL_Log("Force(%f, %f)\n", force.x, force.y);
-	RigidbodyComponent* rigidbodyComp = _parent.GetComponent<RigidbodyComponent>();
-	rigidbodyComp->AddForce(force);
-	_direction = Vector2::Zero;
+	Vector2 newVelo = _direction * 10000 * deltaTime;
+	_rigidbodyComp->Velocity(newVelo);
+	
+	/*
+	SDL_Log("dir: %f, %f", _direction.x, _direction.y);
+	Vector2 newPos = _parent.PositionToFloat();
+	SDL_Log("newPos: %f, %f", newPos.x, newPos.y);
+	newPos += _direction * 100 * deltaTime;
+	SDL_Log("newPos: %f, %f", newPos.x, newPos.y);
+	_parent.Position(newPos);
+	*/
 }
 
 #pragma endregion

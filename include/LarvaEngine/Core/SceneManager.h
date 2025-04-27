@@ -64,6 +64,7 @@ public:
 
 	// ====== シーン関連 ====== //
 
+	void RelaodScene();
 
 	// SceneManager.h の改良版
 	template <typename T, typename... Args>

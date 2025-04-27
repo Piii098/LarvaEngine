@@ -1,4 +1,5 @@
 ﻿#include <SDL3/SDL.h>
+#include <algorithm>
 #include "LarvaEngine/Input/InputAction.h"
 #include "LarvaEngine/Input/InputSystem.h"
 #include "LarvaEngine/Core/Game.h"
@@ -22,17 +23,87 @@ InputAction::~InputAction()
 
 #pragma region パブリックメソッド
 
+
 void InputAction::MapAction(const std::string& name, GameTypes::InputCode code, int playerIndex) {
-	// 実装を追加
+	_actionMap[name].push_back(code);
 }
 
 bool InputAction::IsAction(const std::string& name, int player) const {
-	// 実装を追加
+	auto iter = _actionMap.find(name);
+	if (iter == _actionMap.end()) {
+		return false;
+	}
+
+	const std::vector<GameTypes::InputCode>& codes = iter->second;
+
+	// キーボード入力のチェック
+	for (const auto& code : codes) {
+		if (std::holds_alternative<SDL_Scancode>(code) &&
+			IsKey(std::get<SDL_Scancode>(code))) {
+			return true;
+		}
+	}
+
+	// マウス入力のチェック
+	for (const auto& code : codes) {
+		if (std::holds_alternative<GameTypes::SDL_MouseButton>(code) &&
+			IsMouseButton(std::get<GameTypes::SDL_MouseButton>(code))) {
+			return true;
+		}
+	}
+
+	// ゲームパッド入力のチェック
+	for (const auto& code : codes) {
+		if (std::holds_alternative<SDL_GamepadButton>(code) &&
+			IsGamepadButton(std::get<SDL_GamepadButton>(code))) {
+			return true;
+		}
+	}
+
 	return false;
 }
 
-bool InputAction::IsActionDown(const std::string& name, int player) const {
-	// 実装を追加
+void InputAction::MapActionAxis(const std::string& name, GameTypes::InputCode negative, GameTypes::InputCode positive) {
+	_inputSystem.SetAxisMapping(name, negative, positive);
+	_axisMap[name].push_back(name);
+}
+
+void InputAction::MapActionAxis(const std::string& name, SDL_GamepadAxis axis) {
+	_axisMap[name].push_back(axis);
+}
+
+bool InputAction::IsActionDown(const std::string& name, int player) const {	
+	auto iter = _actionMap.find(name);
+	if (iter == _actionMap.end()) {
+		return false;
+	}
+
+	const std::vector<GameTypes::InputCode>& codes = iter->second;
+
+	// キーボード入力のチェック
+	for (const auto& code : codes) {
+		if (std::holds_alternative<SDL_Scancode>(code) &&
+			IsKeyDown(std::get<SDL_Scancode>(code))) {
+			return true;
+		}
+	}
+
+	// マウス入力のチェック
+	for (const auto& code : codes) {
+		if (std::holds_alternative<GameTypes::SDL_MouseButton>(code) &&
+			IsMouseButtonDown(std::get<GameTypes::SDL_MouseButton>(code))) {
+			return true;
+		}
+	}
+
+	// ゲームパッド入力のチェック
+	for (const auto& code : codes) {
+		if (std::holds_alternative<SDL_GamepadButton>(code) &&
+			IsGamepadButtonDown(std::get<SDL_GamepadButton>(code))) {
+			return true;
+		}
+	}
+
 	return false;
 }
 
@@ -42,8 +113,28 @@ bool InputAction::IsActionUp(const std::string& name, int player) const {
 }
 
 float InputAction::GetActionValue(const std::string& name, int player) const {
-	// 実装を追加
-	return 0.0f;
+	auto iter = _axisMap.find(name);
+	if (iter == _axisMap.end()) {
+		return 0.0f;
+	}
+	
+	const std::vector<GameTypes::AxisCode>& codes = iter->second;
+
+	float value = 0.0f;
+
+	for (const auto& code : codes) {
+		if (std::holds_alternative<std::string>(code)) {
+			value = Math::Abs(value) > Math::Abs(_inputSystem.GetAxis(std::get<std::string>(code))) ? value : _inputSystem.GetAxis(std::get<std::string>(code));
+		}
+	}
+
+	for (const auto& code : codes) {
+		if (std::holds_alternative<SDL_GamepadAxis>(code)) {
+			value = Math::Abs(value) > Math::Abs(GetGamepadAxis(std::get<SDL_GamepadAxis>(code))) ? value : GetGamepadAxis(std::get<SDL_GamepadAxis>(code));
+		}
+	}
+
+	return value;
 }
 
 Vector2 InputAction::GetActionVector(const std::string& name, int player) const {
@@ -64,6 +155,10 @@ bool InputAction::IsKeyUp(SDL_Scancode key) const {
 bool InputAction::IsKey(SDL_Scancode key) const {
 	
 	return _inputSystem.GetState().keyboard.GetKeyState(key) == BUTTON_STATE::PRESS;
+}
+
+bool InputAction::IsAllKey() const {
+	return _inputSystem.GetState().keyboard.IsAllKey();
 }
 
 /* マウス入力 */
@@ -104,6 +199,10 @@ bool InputAction::IsGamepadButton(SDL_GamepadButton button) const {
 	
 	return _inputSystem.GetState().gamepad.GetButtonState(button) == BUTTON_STATE::PRESS;
 
+}
+
+bool InputAction::IsAllGamepadButton() const {
+	return _inputSystem.GetState().gamepad.IsAllButton();
 }
 
 float InputAction::GetGamepadAxis(SDL_GamepadAxis axis) const {

@@ -8,9 +8,8 @@
 // コンストラクタ・デストラクタ
 //==============================================================================
 
-Font::Font() 
-    : _isOutline(false){
-	_texture = nullptr;
+Font::Font() {
+
 }
 
 Font::~Font() {
@@ -65,17 +64,50 @@ void Font::Unload() {
 
 // ===== テキスト描画 ===== //
 
+
 /**
  * テキストを描画する
  *
  * SDL_ttfを使用してテキストを描画し、SDL_SurfaceをOpenGL用のテクスチャクラスに変換し返す
  * RenderText_Blendedを使用してテキストを描画
  */
-Texture* Font::RenderText(const std::string& text, const Vector3& color, int pointSize) {
+Texture* Font::RenderTextCached(const std::string& text, const Vector3& color, int pointSize) {
 
-	if (_texture == nullptr) {
-		_texture = std::make_unique<Texture>();
-	}
+    std::string cacheKey = text + "_" +
+        std::to_string(color.x) + "_" +
+        std::to_string(color.y) + "_" +
+        std::to_string(color.z) + "_" +
+        std::to_string(pointSize);
+
+    auto iter = _textureCache.find(cacheKey);
+    if (iter != _textureCache.end()) {
+        return iter->second.get(); // キャッシュから取得
+    }
+
+    std::unique_ptr<Texture> newTexture = RenderText(text, color, pointSize);
+    if (newTexture) {
+		_textureCache[cacheKey] = std::move(newTexture); // キャッシュに追加
+    }
+    return _textureCache[cacheKey].get();
+
+}
+
+/**
+ * テクスチャキャッシュをクリアする
+ *
+ * テクスチャキャッシュをクリアする
+ */
+void Font::ClearTextureCache() {
+	_textureCache.clear();
+}
+
+/**
+ * テキストを描画する
+ *
+ * SDL_ttfを使用してテキストを描画し、SDL_SurfaceをOpenGL用のテクスチャクラスに変換し返す
+ * RenderText_Blendedを使用してテキストを描画
+ */
+std::unique_ptr<Texture> Font::RenderText(const std::string& text, const Vector3& color, int pointSize) {
 
     // SDLカラーを正しく設定
     SDL_Color sdlColor{};
@@ -93,16 +125,18 @@ Texture* Font::RenderText(const std::string& text, const Vector3& color, int poi
         SDL_Surface* surf = TTF_RenderText_Blended(font, text.c_str(), 0, sdlColor);
    
         if (surf != nullptr) {
-           
-			_texture->CreateFromSurface(surf);
+            auto texture = std::make_unique<Texture>();
+            texture->CreateFromSurface(surf);
             SDL_DestroySurface(surf);
+
+            return std::move(texture); // 呼び出し元に所有権を渡す
         }
     }
     else {
         SDL_Log("Font size %d not found in font map", pointSize);
     }
 
-    return _texture.get();
+    return nullptr;
 }
 
 

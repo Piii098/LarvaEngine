@@ -11,6 +11,7 @@ public:
 	~MoveInputComponent() override;
 
 	void ProcessInput(const InputAction& input) override;
+	void Update(float deltaTime) override;
 	void FixedUpdate(float deltaTime) override;
 
 
@@ -23,23 +24,16 @@ public:
 
 	Vector2& Direction() { return _direction; };
 
-	void MaxHorizontalForce(float maxHorizontalForce) { _maxHorizontalForce = maxHorizontalForce; };
-	void MaxVerticalForce(float maxVerticalForce) { _maxVerticalForce = maxVerticalForce; };
-	void MaxHorizontalVelocity(float maxHorizontalVelocity) { _maxHorizontalVelocity = maxHorizontalVelocity; };
-	void MaxVerticalVelocity(float maxVerticalVelocity) { _maxVerticalVelocity = maxVerticalVelocity; };
 private:
-
-
-	float _maxVerticalForce;
-	float _maxHorizontalForce;
-	float _maxVerticalVelocity;
-	float _maxHorizontalVelocity;
 
 	float _moveSpeed;
 	float _moveSpeedX;
 	float _moveSpeedY;
 	float _jumpForce;
 	bool _isJumping;
+	bool _inputActive;
+
+	RigidbodyComponent* _rigidbodyComp;
 
 	Vector2 _direction;
 };

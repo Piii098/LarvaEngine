@@ -63,6 +63,8 @@ public:
     /// @param deltaTime フレーム間の時間
     void FixedUpdate(float deltaTime);
 
+    void Cleanup();
+
 
     // ====== ワールド変換行列関連 ===== //
 
@@ -125,7 +127,7 @@ public:
     const float Rotation() const { return _rotation; }
     const Matrix4& WorldTransform() const { return _worldTransform; }
     const Vector2Int& Position() const { return _position; }
-    const Vector2& PositionToFloat() const { return Vector2::ToFloat(_position); }
+    Vector2 PositionToFloat() { return Vector2::ToFloat(_position); }
     Vector2Int& Position()  { return _position; }
     
     Scene& GetScene() { return _scene; }

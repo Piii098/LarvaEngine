@@ -64,6 +64,13 @@ namespace Math
 		return Min(upper, Max(lower, value));
 	}
 
+	template<typename T>
+	inline int Sign(T value) {
+		if (value > static_cast<T>(0)) return 1;
+		if (value < static_cast<T>(0)) return -1;
+		return 0;
+	}
+
 	inline float Abs(float value)
 	{
 		return fabs(value);
@@ -261,9 +268,13 @@ public:
 	// Normalize this vector
 	void Normalize()
 	{
-		float length = Length();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-		x /= length;
-		y /= length;
+		float length = Length();  
+		// 閾値を使ってゼロに近い値をチェック
+		if (length > 0.0001f)  // イプシロン値を使用
+		{
+			x /= length;
+			y /= length;
+		}
 	}
 
 	static Vector2 ToFloat(const Vector2Int& vec);

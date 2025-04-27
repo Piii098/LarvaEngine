@@ -23,6 +23,8 @@ public:
 	Component(GameObject& parent, int updateLayer = 100);
 	virtual ~Component();
 
+	virtual void CleanUp() {};
+	
 	// ===== ループ処理 ===== //
 
 	/// @brief 入力処理

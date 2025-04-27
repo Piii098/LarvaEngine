@@ -14,6 +14,8 @@ Example2DScroll::TitleMainScene::~TitleMainScene() {
 
 void Example2DScroll::TitleMainScene::LoadData() {
 	_manager.GetGame().GetTextureManager().Load("Button", "Assets/Textures/Button.png");
+}
 
+void Example2DScroll::TitleMainScene::LoadObjects() {
 	CreateUIScene<TitleUIScene>();
 }

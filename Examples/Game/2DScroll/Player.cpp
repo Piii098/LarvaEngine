@@ -17,7 +17,7 @@ Example2DScroll::Player::Player(Scene& scene)
 
 	RigidbodyComponent& rigidbodyComp = CreateComponent<RigidbodyComponent>(true);
 	rigidbodyComp.Mass(5);
-	rigidbodyComp.Drag(0.5f);
+	//rigidbodyComp.Drag(10.f);
 	rigidbodyComp.IsGravity(false);
 
 	MoveInputComponent& moveInputComp = CreateComponent<MoveInputComponent>();

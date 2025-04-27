@@ -48,6 +48,10 @@ namespace GameTypes {
 		SDL_GAMEPAD_LEFT_STICK = 1,
 		SDL_GAMEPAD_RIGHT_STICK = 2
 	};
+
+    enum class SDL_GamepadStickButton {
+		
+    };
     
 	/// @brief マウスボタンのマスクを取得
 	/// マウスボタンのマスクを取得する
@@ -59,5 +63,5 @@ namespace GameTypes {
 	/// 入力アクションを使用する際に使用する
     using InputCode = std::variant<std::monostate, SDL_Scancode, SDL_GamepadButton, SDL_MouseButton>;
     
-
+	using AxisCode = std::variant<std::monostate, SDL_GamepadAxis, std::string>;
 }

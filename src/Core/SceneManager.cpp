@@ -2,6 +2,7 @@
 #include "LarvaEngine/Core/Game.h" 
 #include "LarvaEngine/Core/Scene.h" 
 #include "LarvaEngine/Core/Resources/AssetManager.h"
+#include "LarvaEngine/Input/InputAction.h"
 
 //==============================================================================
 // コンストラクタ・デストラクタ
@@ -42,6 +43,9 @@ void SceneManager::Initialize() {
  * 現在のメインシーンの入力処理を行う
  */
 void SceneManager::ProcessInput(const InputAction& input) {
+	if (input.IsKeyDown(SDL_SCANCODE_F1)) {
+		_currentMainScene->ReloadScene();
+	}
 	_currentMainScene->ProcessInput(input);
 }
 
@@ -90,6 +94,8 @@ void SceneManager::Shutdown() {
 
 // ===== シーン関連 ===== //
 
+
+
 /**
  * シーンの破壊
  *
@@ -128,6 +134,7 @@ void SceneManager::ReloadMainScene() {
 void SceneManager::LoadData() {
 
 	_game.GetFontManager().Load("MOBO", "Assets/Fonts/MOBO-Bold.otf");
+
 
 }
 

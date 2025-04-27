@@ -39,6 +39,12 @@ UIScene::~UIScene() {
  */
 void UIScene::Initialize() {
 	LoadData();
+	LoadObjects();
+}
+
+
+void UIScene::ReloadScene() {
+	Scene::ReloadScene();
 }
 
 /**

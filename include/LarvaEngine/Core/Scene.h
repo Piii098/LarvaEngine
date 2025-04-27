@@ -64,6 +64,7 @@ public:
 	/// @param deltaTime フレーム間の時間
     void Output();
 
+	virtual void ReloadScene();
 
 	// ===== ゲームオブジェクト管理 ===== //
 
@@ -116,10 +117,10 @@ public:
 	// ===== ゲッター・セッター =====//
 
     SceneManager& GetManager() { return _manager; }
-    Camera& GetCamera()  { return *_camera.get(); }
+    Camera& GetCamera()  { return *_camera; }
 	STATE State() const { return _state; }
 	const SceneManager& GetManager() const { return _manager; }
-	const Camera& GetCamera() const { return *_camera.get(); }
+	const Camera& GetCamera() const { return *_camera; }
 	const STATE State()  { return _state; }
 
 	void State(STATE state) { _state = state; }
@@ -131,6 +132,7 @@ protected:
 	/// @brief データの読み込み
 	/// シーンのデータの読み込みを行う (継承先で実装)
     virtual void LoadData() {}; // データの読み込み
+	virtual void LoadObjects() {}; // ゲームオブジェクトの読み込み
 
 	/// @brief データの解放
 	/// シーンのデータの解放を行う (継承先で実装)
@@ -174,7 +176,7 @@ protected:
 	// ===== スプライト ===== //
 	std::vector<SpriteComponent*> _sprites;	  ///< スプライトの配列
 
-	std::unique_ptr<Camera> _camera; ///< シーンのカメラ
+	Camera* _camera;				 ///< シーンのカメラ
 	SceneManager& _manager;			 ///< シーンマネージャー	
 	
 	STATE _state;					 ///< シーンの状態

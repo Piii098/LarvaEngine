@@ -106,6 +106,11 @@ void Scene::Output() {
 
 }
 
+void Scene::ReloadScene() {
+	_pendingObjects.clear();
+	_objects.clear();
+
+}
 
 // ====== オブジェクト関連 ====== //
 

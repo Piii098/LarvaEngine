@@ -10,29 +10,21 @@ Text::Text(Scene& scene, const std::string& fontName, const Vector3& color, int 
 }
 
 Text::~Text() {
-	if (_textComp) {
-		delete _textComp;
-		_textComp = nullptr;
-	}
+	
 }
 
 #pragma endregion
 
 #pragma region パブリック関数
 
-void Text::CreateOutline(const Vector3& color) {
-	if (_outlineComp) {
-		delete _outlineComp;
-		_outlineComp = nullptr;
-	}
-}
 
 void Text::CreateText(const std::string& fontName, const Vector3& color, int pointSize, const std::string& text) {
 	if (_textComp) {
 		_textComp->CreateTextTexture(text, color, pointSize);
 	}
 	else {
-		_textComp = new TextComponent(*this, 0, fontName);
+		CreateComponent<TextComponent>(10, fontName);
+		_textComp = GetComponent<TextComponent>();
 		_textComp->CreateTextTexture(text, color, pointSize);
 	}
 }

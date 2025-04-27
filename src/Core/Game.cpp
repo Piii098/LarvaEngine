@@ -119,7 +119,7 @@ bool Game::Initialize() {
 	_fontManager = std::make_unique<AssetManager<Font>>();		      // フォントマネージャの初期化
 
 	// フレームレートの設定
-
+	SetAction();
 	LoadScene();
 
 	return true;
@@ -163,21 +163,23 @@ void Game::ProcessInput() {
 
 	// イベントのポーリング
 	SDL_Event event;
-	switch (SDL_PollEvent(&event)) {
-	case SDL_EVENT_QUIT:
-		_isRunning = false;
-		break;
-	case SDL_EVENT_MOUSE_WHEEL:	    // マウスホイールイベント
-	case SDL_EVENT_GAMEPAD_ADDED:	// ゲームパッド接続イベント
-	case SDL_EVENT_GAMEPAD_REMOVED: // ゲームパッド切断イベント
-		_inputSystem->ProcessInput(event);
-		break;
-	default:
-		break;
+	while (SDL_PollEvent(&event)) {  // イベントキューにイベントがある限り処理を続ける
+		switch (event.type) {        // event.typeでイベントの種類を判別
+		case SDL_EVENT_QUIT:
+			_isRunning = false;
+			break;
+		case SDL_EVENT_MOUSE_WHEEL:     // マウスホイールイベント
+		case SDL_EVENT_GAMEPAD_ADDED:   // ゲームパッド接続イベント
+		case SDL_EVENT_GAMEPAD_REMOVED: // ゲームパッド切断イベント
+			_inputSystem->ProcessInput(event);
+			break;
+		default:
+			break;
+		}
 	}
 
 	// 入力システムの更新
-	_inputSystem->Update();
+	_inputSystem->Update(_frameSystem->DeltaTime());
 	
 	// シーンの入力処理
 	_sceneManager->ProcessInput(*_inputAction.get());
@@ -197,7 +199,6 @@ void Game::Update() {
 
 	// フレームシステムの更新
 	_frameSystem->Update();
-
 
 	while (_frameSystem->ShouldRunFixedTimeStep())
 	{
@@ -263,6 +264,27 @@ void Game::LoadScene() {
 		// デフォルト初期化（従来の挙動）
 		_sceneManager->Initialize();
 	}
+}
+
+void Game::SetAction(){
+
+	_inputAction->MapAction("Left", SDL_SCANCODE_LEFT);
+	_inputAction->MapAction("Right", SDL_SCANCODE_RIGHT);
+	_inputAction->MapAction("Up", SDL_SCANCODE_UP);
+	_inputAction->MapAction("Down", SDL_SCANCODE_DOWN);
+	_inputAction->MapAction("Select", SDL_SCANCODE_SPACE);
+
+	_inputAction->MapAction("Left", SDL_GAMEPAD_BUTTON_DPAD_LEFT);
+	_inputAction->MapAction("Right", SDL_GAMEPAD_BUTTON_DPAD_RIGHT);
+	_inputAction->MapAction("Up", SDL_GAMEPAD_BUTTON_DPAD_UP);
+	_inputAction->MapAction("Down", SDL_GAMEPAD_BUTTON_DPAD_DOWN);
+	_inputAction->MapAction("Select", SDL_GAMEPAD_BUTTON_SOUTH);
+
+	_inputAction->MapActionAxis("Horizontal", SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT);
+	_inputAction->MapActionAxis("Vertical", SDL_SCANCODE_UP, SDL_SCANCODE_DOWN);
+	
+	_inputAction->MapActionAxis("Horizontal", SDL_GAMEPAD_AXIS_LEFTX);
+	_inputAction->MapActionAxis("Vertical", SDL_GAMEPAD_AXIS_LEFTY);
 }
 
 void Game::UnloadData() {

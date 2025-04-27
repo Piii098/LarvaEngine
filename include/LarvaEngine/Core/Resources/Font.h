@@ -34,6 +34,12 @@ public:
 
 	// ===== テキスト描画 ===== //
 
+	Texture* RenderTextCached(const std::string& text, const Vector3& color = Color::White, int pointSize = 30);
+
+	void ClearTextureCache();
+
+private:
+
 	/// @brief テキストを描画する
 	/// テキストを描画し、テクスチャとして返す
 	/// 10,20,30,40,50,60,70,80,90,100のフォントサイズに対応
@@ -41,16 +47,11 @@ public:
 	/// @param color テキストの色
 	/// @param pointSize フォントサイズ
 	/// @return 描画したテキストのテクスチャ
-	Texture* RenderText(const std::string& text, const Vector3& color = Color::White, int pointSize = 30);
+	std::unique_ptr<Texture> RenderText(const std::string& text, const Vector3& color = Color::White, int pointSize = 30);
 
-	// ===== セッター ===== //
 
-	void IsOutline(bool isOutline) { _isOutline = isOutline; }
-
-private:
 	std::unordered_map<int, TTF_Font*> _textMap;	///< フォントマップ(フォントサイズとフォントデータ)
-	std::unique_ptr<Texture> _texture;				///< テキストのテクスチャ
-	bool _isOutline;
+	std::unordered_map<std::string, std::unique_ptr<Texture>>_textureCache;
 };
 
 // 余地: フォントのアウトラインを追加する

@@ -1,4 +1,5 @@
 ﻿#include <memory.h>
+#include <algorithm>
 #include "LarvaEngine/Input/InputSystem.h"
 #include <SDL3/SDL.h>
 #include "LarvaEngine/Core/Game.h"
@@ -21,6 +22,17 @@ BUTTON_STATE KeyboardState::GetKeyState(SDL_Scancode key) const {
 		return BUTTON_STATE::NONE;
 	}
 
+}
+
+bool KeyboardState::IsAllKey() const {
+
+	for (int i = 0; i < SDL_SCANCODE_COUNT; i++) {
+		if (_currentKeyState[i]) {
+			return true;
+		}
+	}
+
+	return false;
 }
 
 void KeyboardState::UpdateKeyState(SDL_Scancode key, bool isDown) {
@@ -71,6 +83,16 @@ BUTTON_STATE GamepadState::GetButtonState(SDL_GamepadButton button) const {
 	else {
 		return BUTTON_STATE::NONE;
 	}
+}
+
+bool GamepadState::IsAllButton() const {
+	for (int i = 0; i < SDL_GAMEPAD_BUTTON_COUNT; i++) {
+		if (_currentButtons[i]) {
+			return true;
+		}
+	}
+
+	return false;
 }
 
 float GamepadState::GetAxis(SDL_GamepadAxis axis) const {
@@ -216,7 +238,110 @@ void InputSystem::MouseUpdate() {// ヘルパー関数
 
 }
 
-void InputSystem::Update() {
+void InputSystem::AxisUpdate(float deltaTime) {
+	// 各軸のマッピングに対して値を更新
+	for (auto& pair : _axisMap) {
+		AxisMapping& mapping = pair.second;
+		float targetValue = 0.0f;
+
+		// positiveの入力がキーボードの場合
+		if (std::holds_alternative<SDL_Scancode>(mapping.positive)) {
+			SDL_Scancode key = std::get<SDL_Scancode>(mapping.positive);
+			if (_state.keyboard.GetKeyState(key) == BUTTON_STATE::PRESS ||
+				_state.keyboard.GetKeyState(key) == BUTTON_STATE::DOWN) {
+				targetValue += 1.0f;
+			}
+		}
+		// positiveの入力がゲームパッドボタンの場合
+		else if (std::holds_alternative<SDL_GamepadButton>(mapping.positive)) {
+			SDL_GamepadButton button = std::get<SDL_GamepadButton>(mapping.positive);
+			if (_state.gamepad.GetButtonState(button) == BUTTON_STATE::PRESS ||
+				_state.gamepad.GetButtonState(button) == BUTTON_STATE::DOWN) {
+				targetValue += 1.0f;
+			}
+		}
+		// positiveの入力がマウスボタンの場合
+		else if (std::holds_alternative<GameTypes::SDL_MouseButton>(mapping.positive)) {
+			GameTypes::SDL_MouseButton button = std::get<GameTypes::SDL_MouseButton>(mapping.positive);
+			if (_state.mouse.GetButtonState(button) == BUTTON_STATE::PRESS ||
+				_state.mouse.GetButtonState(button) == BUTTON_STATE::DOWN) {
+				targetValue += 1.0f;
+			}
+		}
+
+		// negativeも同様に処理
+		if (std::holds_alternative<SDL_Scancode>(mapping.negative)) {
+			SDL_Scancode key = std::get<SDL_Scancode>(mapping.negative);
+			if (_state.keyboard.GetKeyState(key) == BUTTON_STATE::PRESS ||
+				_state.keyboard.GetKeyState(key) == BUTTON_STATE::DOWN) {
+				targetValue -= 1.0f;
+			}
+		}
+		else if (std::holds_alternative<SDL_GamepadButton>(mapping.negative)) {
+			SDL_GamepadButton button = std::get<SDL_GamepadButton>(mapping.negative);
+			if (_state.gamepad.GetButtonState(button) == BUTTON_STATE::PRESS ||
+				_state.gamepad.GetButtonState(button) == BUTTON_STATE::DOWN) {
+				targetValue -= 1.0f;
+			}
+		}
+		else if (std::holds_alternative<GameTypes::SDL_MouseButton>(mapping.negative)) {
+			GameTypes::SDL_MouseButton button = std::get<GameTypes::SDL_MouseButton>(mapping.negative);
+			if (_state.mouse.GetButtonState(button) == BUTTON_STATE::PRESS ||
+				_state.mouse.GetButtonState(button) == BUTTON_STATE::DOWN) {
+				targetValue -= 1.0f;
+			}
+		}
+		
+		// 現在の値を更新（重力とsensitivityを考慮）
+		float currentValue = mapping.value;
+
+
+		// 入力がない場合は重力で0に戻す
+		if (targetValue == 0.0f) {
+			if (currentValue > 0.0f) {
+				currentValue -= mapping.gravity * deltaTime;
+				if (currentValue < 0.0f) currentValue = 0.0f;
+			}
+			else if (currentValue < 0.0f) {
+				currentValue += mapping.gravity * deltaTime;
+				if (currentValue > 0.0f) currentValue = 0.0f;
+			}
+		}
+		// 入力がある場合は感度に従って目標値に近づける
+		else {
+			if (mapping.snap && Math::Sign(currentValue) != Math::Sign(targetValue)) {
+				currentValue = 0.0f;
+			}
+
+			float delta = mapping.sensitivity * deltaTime;
+			if (currentValue < targetValue) {
+				currentValue += delta;
+				if (currentValue > targetValue) currentValue = targetValue;
+			}
+			else if (currentValue > targetValue) {
+				currentValue -= delta;
+				if (currentValue < targetValue) currentValue = targetValue;
+			}
+		}
+
+		// デッドゾーンを適用
+		if (Math::Abs(currentValue) < mapping.deadZone) {
+			currentValue = 0.0f;
+		}
+		
+		mapping.value = currentValue;
+	}
+}
+
+float InputSystem::GetAxis(const std::string& name) const {
+	auto it = _axisMap.find(name);
+	if (it != _axisMap.end()) {
+		return it->second.value;
+	}
+	return 0.0f; // デフォルト値を返す（必要に応じて変更）
+}
+
+void InputSystem::Update(float deltaTime) {
 
 	// キーボードの状態を更新
 	KeyboardUpdate();
@@ -227,10 +352,19 @@ void InputSystem::Update() {
 	// マウスの状態を更新
 	MouseUpdate();
 
+	AxisUpdate(deltaTime);
 }
 
 void InputSystem::Shutdown() {
 
+}
+
+void InputSystem::SetAxisMapping(const std::string& name, GameTypes::InputCode negative, GameTypes::InputCode positive) {
+	AxisMapping mapping;
+	mapping.positive = positive;
+	mapping.negative = negative;
+
+	_axisMap[name] = mapping;
 }
 
 void InputSystem::SetRelativeMouseMode(bool isRelative) {

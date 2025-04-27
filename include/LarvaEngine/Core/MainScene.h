@@ -68,6 +68,8 @@ public:
 	
 	// ===== シーン管理 ===== //
 
+	void ReloadScene() override;
+
 	/// @brief サブシーンの切り替え
 	/// 現在のサブシーンを破棄し、新しいサブシーンを生成する
 	/// @tparam T 新しいサブシーンクラス(SubSceneを継承したクラス)
@@ -139,6 +141,7 @@ protected:
 	/// @brief データの読み込み
 	/// ゲームの初期化時にデータを読み込む、実装は継承先で行う
     virtual void LoadData() override {}; 
+	virtual void LoadObjects() override {}; // ゲームオブジェクトの読み込み
 
 	/// @brief データの解放
 	/// ゲームの終了時にデータを解放する、実装は継承先で行う

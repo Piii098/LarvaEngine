@@ -1,5 +1,7 @@
 #include "Examples/Game/2DScroll/TitleUIScene.h"
+#include "Examples/Game/2DScroll/AnimatedButton.h"
 #include "LarvaEngine/GameObjects/UI/Button.h"
+#include "LarvaEngine/GameObjects/UI/Text.h"
 #include "Examples/Game/2DScroll/GameMainScene.h"
 #include "Examples/Game/2DScroll/TitleMainScene.h"
 #include "LarvaEngine/Core/SceneManager.h"
@@ -13,11 +15,31 @@ Example2DScroll::TitleUIScene::~TitleUIScene() {
 
 }
 
-void Example2DScroll::TitleUIScene::LoadData() {
-	Button& button = CreateGameObject<Button>("Button");
-	SDL_Log("Button Position: %f, %f", button.Position().x, button.Position().y);
-	button.SetOnClick([this]() {
+void Example2DScroll::TitleUIScene::InputUI(const InputAction& input) {
+	_buttonGroup.InputProcess(input);
+}
 
+void Example2DScroll::TitleUIScene::UpdateUI(float deltaTime) {
+	
+}
+
+void Example2DScroll::TitleUIScene::LoadObjects() {
+	Text& Logo = CreateGameObject<Text>("MOBO", Vector3(1, 1, 1), 100, "2D Scroll Sample");
+	Logo.Position(Vector2Int(0, 200));
+
+	AnimatedButton& start = CreateGameObject<AnimatedButton>("Button");
+	AnimatedButton& option = CreateGameObject<AnimatedButton>("Button");
+
+	start.AddToGroup(_buttonGroup);
+	option.AddToGroup(_buttonGroup);
+
+	start.SetText("Start", Vector3(0, 0, 0), 20);
+	
+	start.StartAnimation(Vector2Int(-1300, 0), Vector2Int(0, 0), 1.f);
+	option.SetText("Option", Vector3(0, 0, 0), 20);
+	option.StartAnimation(Vector2Int(-1300, -100), Vector2Int(0, -100), 1.f, 0.2);
+
+	start.SetOnClick([this]() {
 			_manager.GetGame().GetSceneManager().RequestSceneChange<Example2DScroll::GameMainScene>();
 		});
 }

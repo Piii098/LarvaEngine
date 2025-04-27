@@ -1,2 +1,2 @@
-C:\Users\amary\source\repos\Piii098\LarvaEngine\bin\x64\Debug\glew32d.dll
-C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\LarvaEngine.vcxproj.CopyComplete
+D:\Github\LarvaEngine\bin\x64\Debug\glew32d.dll
+D:\Github\LarvaEngine\obj\x64\Debug\LarvaEng.1016FB74.Up2Date

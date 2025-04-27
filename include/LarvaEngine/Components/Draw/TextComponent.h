@@ -13,7 +13,7 @@ public:
 	TextComponent(GameObject& parent,int bufferLayer, std::string fontName);
 	~TextComponent() override;
 
-	void CreateTextTexture(std::string text, Vector3 color, int pointSize, bool isOutline = false);
+	void CreateTextTexture(std::string text, Vector3 color, int pointSize);
 	//void Render(Shader& shader) override;
 
 	std::string GetText() const { return _text; };
@@ -27,7 +27,7 @@ private:
 	int _pointSize;
 	Font* _font;
 	Vector3 _textColor;
-	Texture* _textTexture;    // テキストのテクスチャ(参照する用) いらないかも
+
 };
 
 // 備考: テクスチャ自体はFontクラスで管理しているため、TextComponentはテクスチャのポインタを持つだけでよい

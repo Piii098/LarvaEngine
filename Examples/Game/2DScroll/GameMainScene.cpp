@@ -22,7 +22,10 @@ void Example2DScroll::GameMainScene::LoadData() {
 
 	_manager.GetGame().GetTextureManager().Load("Player", "Assets/Textures/16Player.png");
 
-	
+}
+
+void Example2DScroll::GameMainScene::LoadObjects() {
+
 	_player = &CreateGameObject<Player>();
 	_camera = &CreateGameObject<Camera>();
 

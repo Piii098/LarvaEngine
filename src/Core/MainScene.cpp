@@ -1,4 +1,5 @@
 ﻿#include <algorithm>
+#include <SDL3/SDL.h>
 #include "LarvaEngine/Core/UIScene.h"
 #include "LarvaEngine/Core/MainScene.h"
 #include "LarvaEngine/Components/Draw/SpriteComponent.h"
@@ -29,6 +30,7 @@ MainScene::~MainScene() {
  */
 void MainScene::Initialize() {
 	LoadData();
+	LoadObjects();	// サブシーンのシャットダウン
 }
 
 
@@ -128,6 +130,21 @@ void MainScene::RenderUIs(Shader& shader) {
 
 // ===== シーン管理 ===== //
 
+
+void MainScene::ReloadScene() {
+	Scene::ReloadScene();
+
+	for (auto& ui : _uiScenes) {
+		ui->ReloadScene();
+	}
+
+	_uiScenes.clear();
+	_currentSubScene.reset();
+
+	LoadObjects();
+
+}
+
 /**
  * UIシーンを削除する
  *
@@ -211,4 +228,6 @@ GameTypes::DataValue MainScene::GetData(const std::string& key) {
  */
 void MainScene::Shutdown() {
 	UnloadData();
+	_uiScenes.clear();
+	_currentSubScene.reset();
 }

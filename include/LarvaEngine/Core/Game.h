@@ -125,6 +125,8 @@ private:
 	/// @brief レンダリング処理を行う
     void Render();
 
+    void SetAction();
+
     // ===== リソース管理 ===== //
 
 	/// @brief シーンを読み込む

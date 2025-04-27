@@ -30,7 +30,7 @@ RigidbodyComponent::~RigidbodyComponent() {
 
 // 更新処理で補間を適用
 void RigidbodyComponent::Update(float deltaTime) {
-	_internalPosition = _parent.PositionToFloat();  // 親オブジェクトの位置を取得
+
 }
 
 void RigidbodyComponent::FixedUpdate(float deltaTime) {
@@ -44,6 +44,8 @@ void RigidbodyComponent::FixedUpdate(float deltaTime) {
 
 void RigidbodyComponent::CalculateVelocity(float deltaTime) {
     if (_mass <= 0.f) return;
+
+    _internalPosition = _parent.PositionToFloat();  // 親オブジェクトの位置を取得
     
     Vector2 totalForce = _sumOfForces - (_velocity * _drag);
     Vector2 accele;
@@ -51,21 +53,17 @@ void RigidbodyComponent::CalculateVelocity(float deltaTime) {
     accele.y = totalForce.y / _mass;
 
     _velocity += accele * deltaTime;
-
+    
     _internalPosition += _velocity * deltaTime;
 
 	_sumOfForces = Vector2::Zero; // 力をリセット
      
-    // デバッグログ
-   // SDL_Log("PlayerVelocity(%.6f, %.6f)", _velocity.x, _velocity.y);
-   // SDL_Log("PlayerInternalPos(%.6f, %.6f)", _internalPosition.x, _internalPosition.y);
 
 }
 
 void RigidbodyComponent::UpdatePosition(float deltaTime) {
   
 	 _parent.Position(_internalPosition);
-	//SDL_Log("PlayerInternalPos(%.6f, %.6f)", _internalPosition.x, _internalPosition.y);
  
 }
 

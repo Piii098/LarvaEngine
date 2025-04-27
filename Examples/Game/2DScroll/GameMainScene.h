@@ -10,9 +10,9 @@ namespace Example2DScroll
 		GameMainScene(SceneManager& manager) ;
 		~GameMainScene() override;
 
-		void LoadData() override;
-
 	private:
+		void LoadData() override;
+		void LoadObjects() override;
 		Player* _player;
 
 	};

@@ -26,6 +26,7 @@ public:
 	/// 特別な初期化処理が必要な場合はオーバーライドする
 	virtual void Initialize() override;
 
+	void ReloadScene() override;
 
 	// ===== ループ処理 ===== //
 
@@ -61,6 +62,7 @@ protected:
 	/// @brief データの読み込み
 	/// 仮想関数、ゲームオブジェクトの生成、リソースの読み込みを行う
 	virtual void LoadData() override {};
+	virtual void LoadObjects() override {};	
 
 	MainScene& _parent;	///< メインシーン
 
