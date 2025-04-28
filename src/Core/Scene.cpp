@@ -1,5 +1,4 @@
-﻿#include "LarvaEngine/Core/Scene.h"
-#include <algorithm>
+﻿#include <algorithm>
 #include "LarvaEngine/Core/UIScene.h"
 #include "LarvaEngine/GameObjects/Camera.h"
 #include "LarvaEngine/Components/Draw/SpriteComponent.h"
@@ -100,6 +99,16 @@ void Scene::FixedUpdate(const float deltaTime) {
 		obj->FixedUpdate(deltaTime);
 	}
 
+}
+
+void Scene::LateUpdate(float deltaTime) {
+	if (_state != STATE::ACTIVE) return;
+
+	for (auto& obj : _objects) {
+		obj->LateUpdate(deltaTime);
+	}
+	
+	LateUpdateScene(deltaTime);
 }
 
 void Scene::Output() {

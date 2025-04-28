@@ -22,6 +22,6 @@ void Example2DScroll::PlaySubScene::Initialize() {
 
 void Example2DScroll::PlaySubScene::UpdateScene(float deltaTime) {
 	if (_player.Position().y < -100.0f) {
-		_parent.GetManager().ChangeScene<GameMainScene>();
+		_parent.GetManager().RequestSceneChange<GameMainScene>();
 	}
 }

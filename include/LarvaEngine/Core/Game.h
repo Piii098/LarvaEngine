@@ -119,6 +119,8 @@ private:
 	/// @brief シーンの更新処理を行う
     void UpdateScene();
 
+    void LateUpdate();
+
 	/// @brief 出力処理を行う
     void ProcessOutput();
 

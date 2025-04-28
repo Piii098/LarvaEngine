@@ -1,5 +1,6 @@
 ﻿#include "LarvaEngine/Components/Camera/FollowCameraComponent.h"
 #include "LarvaEngine/Core/GameObject.h"
+#include <SDL3/SDL.h>
 
 #pragma region シングルトン関連
 
@@ -30,7 +31,15 @@ void FollowCameraComponent::Update(float deltaTime) {
  
 }
 
-void FollowCameraComponent::FixedUpdate(float deltaTime) {
+void FollowCameraComponent::LateUpdate(float deltaTime) {
+	// ターゲットがnullptrの場合は何もしない
+    // SDL_Log("Late Camera");
+
+	if (_targeObject == nullptr) {
+		return;
+	}
+
+	// 初回の更新時は現在位置を設定
 	if (_internalPosition == Vector2::Zero) {
 		_internalPosition = _parent.PositionToFloat();
 		return;
@@ -39,7 +48,7 @@ void FollowCameraComponent::FixedUpdate(float deltaTime) {
     _prevInternalPosition = _internalPosition;
 
     // ターゲットにオフセットを加えた目標位置を計算
-    Vector2 targetPos(_target.x + _xOffset, _target.y + _yOffset);
+    Vector2 targetPos(_targeObject->Position().x + _xOffset, _targeObject->Position().y + _yOffset);
 
     // SmoothDampを使って滑らかに目標位置に近づける
     _internalPosition = Vector2::SmoothDamp(_internalPosition, targetPos, _currentVelocity,

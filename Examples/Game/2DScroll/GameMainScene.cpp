@@ -1,4 +1,5 @@
 #include "Examples/Game/2DScroll/GameMainScene.h"
+
 #include "Examples/Game/2DScroll/Player.h"
 #include "LarvaEngine/GameObjects/Camera.h"
 #include "LarvaEngine/Core/GameObject.h"
@@ -7,7 +8,8 @@
 #include "LarvaEngine/Core/Resources/AssetManager.h"
 #include "LarvaEngine/Core/Resources/Texture.h"
 #include "Examples/Game/2DScroll/PlaySubScene.h"
-
+#include "LarvaEngine/Components/Draw/SpriteComponent.h"
+#include "LarvaEngine/Components/Camera/FollowCameraComponent.h"
 
 Example2DScroll::GameMainScene::GameMainScene(SceneManager& manager)
 	: MainScene(manager){
@@ -26,9 +28,20 @@ void Example2DScroll::GameMainScene::LoadData() {
 
 void Example2DScroll::GameMainScene::LoadObjects() {
 
-	_player = &CreateGameObject<Player>();
+	Player& player = CreateGameObject<Player>();
+
+	GameObject& child = CreateChildObject<GameObject>(&player);
+	SpriteComponent& sprite = child.CreateComponent<SpriteComponent>(10);
+	sprite.SetTexture("Rectangle");
+	child.Scale(0.25f);
+	child.Position(Vector2Int(0, 20));
+
 	_camera = &CreateGameObject<Camera>();
 
-	ChangeSubScene<PlaySubScene>(*_player);
+	FollowCameraComponent& cameraComp = _camera->CreateComponent<FollowCameraComponent>();
+	cameraComp.SetTargetObject(&player);
+	_camera->SetCameraComponent(&cameraComp);
+
+	ChangeSubScene<PlaySubScene>(player);
 	_currentSubScene->Initialize();
 }

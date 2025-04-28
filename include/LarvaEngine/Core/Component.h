@@ -42,6 +42,8 @@ public:
 	/// /// @param deltaTime フレーム間の時間
 	virtual void FixedUpdate(float deltaTime) {};
 
+	virtual void LateUpdate(float deltaTime) {};
+
 	/// @brief ワールド変換行列の計算
 	/// コンポーネントのワールド変換行列を計算する
 	virtual void OnUpdateWorldTransform() {};

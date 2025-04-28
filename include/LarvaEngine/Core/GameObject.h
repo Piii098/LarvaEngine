@@ -41,6 +41,8 @@ public:
 
     GameObject(Scene& scene);
 
+    GameObject(GameObject* parent);
+
     virtual ~GameObject();
 
     // ===== ループ処理 ===== //
@@ -62,6 +64,8 @@ public:
     /// シーンより呼び出される 
     /// @param deltaTime フレーム間の時間
     void FixedUpdate(float deltaTime);
+
+    void LateUpdate(float deltaTime);
 
     void Cleanup();
 
@@ -108,10 +112,16 @@ public:
         return nullptr;
     }
 
-	bool IsEqual(const GameObject& object) const { return this == &object; } ///< 自分と同じオブジェクトかどうかを判定する
+    void DestroyComponent(Component* component);
+
+    void Destroy();
+    void AddChildObject(GameObject* child);
+	void RemoveChildObject(GameObject* child);
+	
+    bool IsEqual(const GameObject& object) const { return this == &object; } ///< 自分と同じオブジェクトかどうかを判定する
+
 
     // ===== ゲッターセッター ===== //
-
 
     void Position(const Vector2& position) { _position = Vector2Int::ToInteger(position); _recomputeWorldTransform = true; }
     void Position(const Vector2Int& position) { _position = position; _recomputeWorldTransform = true; }
@@ -119,6 +129,7 @@ public:
     void Rotation(float rotation) { _rotation = rotation; _recomputeWorldTransform = true; }
     void Tag(TAG tag) { _tag = tag; }
     void State(STATE state) { _state = state; }
+    void SetParent(GameObject* parent) { _parent = parent; };
 
     const Vector2& GetForward() const { return Vector2(Math::Cos(_rotation), Math::Sin(_rotation)); }
     const TAG Tag() const { return _tag; }
@@ -167,6 +178,10 @@ private:
 	/// @param deltaTime フレーム間の時間
     virtual void FixedUpdateObject(float deltaTime) {};
 
+    void LateUpdateConponents(float deltaTime);
+
+    virtual void LateUpdateObject(float deltaTime) {};
+
 
 	// ===== オブジェクト関連 ===== //
 
@@ -179,7 +194,8 @@ private:
 	// ===== メンバ変数 ===== //
     
     // シーン関連
-    Scene& _scene;                              ///< 所属するシーン       
+    Scene& _scene;                              ///< 所属するシーン
+	GameObject* _parent;                        ///< 親オブジェクト
 
     // 状態関連
     STATE _state;                               ///< オブジェクトの状態
@@ -187,6 +203,7 @@ private:
 
     // コンポーネント
     std::vector <std::unique_ptr<Component>> _components;        ///< コンポーネントリスト
+	std::vector <GameObject*> _children;          ///< 子オブジェクトリスト
 
     // トランスフォーム関連
     Matrix4 _worldTransform;                    ///< ワールド変換行列
@@ -195,3 +212,5 @@ private:
     float _scale;                               ///< スケール
     float _rotation;                            ///< 回転（ラジアン）
 };
+
+#include "LarvaEngine/Core/GameObject.inl"

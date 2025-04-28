@@ -59,12 +59,10 @@ void ButtonComponent::ProcessInput(const InputAction& input) {
 
     if (_isPressed && !wasPressed) {
         _state = BUTTON_STATE::PRESSED;
-        SDL_Log("mouse Pressed\n");
     }
 
 	if (_state == BUTTON_STATE::SELECTED && input.IsActionDown(_selectInputAction)) {
 		_state = BUTTON_STATE::PRESSED;
-        SDL_Log("key Pressed\n");
 	}
 
     if (_state == BUTTON_STATE::PRESSED) {

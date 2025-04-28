@@ -51,8 +51,8 @@ void MainScene::InputScene(const InputAction& input) {
 			_currentSubScene->InputScene(input);
 	}
 
-	for (auto& ui : _uiScenes) {
-		ui->ProcessInput(input);
+	if (!_uiScenes.empty()) {
+		_uiScenes.back()->ProcessInput(input);
 	}
 }
 
@@ -80,11 +80,16 @@ void MainScene::UpdateScene(const float deltaTime) {
 	}
 
 	// UIシーンの削除処理
-	for (auto& ui : _uiScenes) {
-		if (ui->State() == Scene::STATE::CLOSE) { // クローズ状態のUIシーンを削除
-			ui.reset();
-		}
-	}
+	_uiScenes.erase(
+		std::remove_if(
+			_uiScenes.begin(),
+			_uiScenes.end(),
+			[](const std::unique_ptr<UIScene>& ui) {
+				return ui->State() == Scene::STATE::CLOSE; // クローズ状態のUIシーンを削除
+			}
+		),
+		_uiScenes.end()
+	);
 
 }
 

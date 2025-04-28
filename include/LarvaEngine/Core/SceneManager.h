@@ -57,6 +57,8 @@ public:
 	/// @param deltaTime 補正されたフレーム間の時間
 	void FixedUpdate(float deltaTime);
 
+	void LateUpdate(float deltaTime);
+
 	/// @brief メインシーンの出力処理
 	/// 現在のメインシーンの出力処理行う
 	void Output();
@@ -126,7 +128,7 @@ private:
 
 	/// @brief シャットダウン処理
 	/// シーンの破棄処理を行う
-	/// リソースを解放する
+	/// リソースを解放する	
 	void Shutdown();
 
 	std::function<void()> _pendingSceneChange;	///< シーン変更のリクエスト

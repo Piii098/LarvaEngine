@@ -3,7 +3,6 @@
 #include <memory>
 #include "LarvaEngine/Core/GameObject.h"
 
-#include "LarvaEngine/Core/SubScene.h"
 
 // ===== 前方宣言 =====
 class SceneManager;
@@ -59,6 +58,8 @@ public:
 	/// @param deltaTime 補正されたフレーム間の時間
     void FixedUpdate(float deltaTime);
 
+	void LateUpdate(float deltaTime);
+
 	/// @brief 出力処理
 	/// ゲームオブジェクトの出力処理を行う
 	/// @param deltaTime フレーム間の時間
@@ -86,6 +87,19 @@ public:
 		}
 		return objRef;
     }
+
+	template <typename T, typename... Args>
+	T& CreateChildObject(GameObject* parent, Args&&... args) {
+		std::unique_ptr<T> object = std::make_unique<T>(parent, std::forward<Args>(args)...);
+		T& objRef = *object;
+		if (_isUpdating) {
+			_pendingObjects.emplace_back(std::move(object));
+		}
+		else {
+			_objects.emplace_back(std::move(object));
+		}
+		return objRef;
+	}
 
 	/// @brief ゲームオブジェクトの削除
 	/// シーンのゲームオブジェクトの配列からゲームオブジェクトを削除する
@@ -150,6 +164,8 @@ protected:
 	/// シーンの更新処理を行う　(継承先で実装)
 	/// @param deltaTime フレーム間の時間
     virtual void UpdateScene(float deltaTime) {};
+
+	virtual void LateUpdateScene(float deltaTime) {};
 
 	// ===== ゲームオブジェクト ===== //
 

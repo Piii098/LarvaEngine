@@ -6,6 +6,7 @@
 #include "Examples/Game/2DScroll/TitleMainScene.h"
 #include "LarvaEngine/Core/SceneManager.h"
 #include "LarvaEngine/Core/Game.h"
+#include "Examples/Game/2DScroll/OptionUIScene.h"
 
 Example2DScroll::TitleUIScene::TitleUIScene(MainScene& parent)
 	: UIScene(parent) {
@@ -41,5 +42,9 @@ void Example2DScroll::TitleUIScene::LoadObjects() {
 
 	start.SetOnClick([this]() {
 			_manager.GetGame().GetSceneManager().RequestSceneChange<Example2DScroll::GameMainScene>();
+		});
+
+	option.SetOnClick([this]() {
+			_parent.CreateUIScene<Example2DScroll::OptionUIScene>();
 		});
 }

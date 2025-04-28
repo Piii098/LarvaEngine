@@ -27,7 +27,7 @@ BUTTON_STATE KeyboardState::GetKeyState(SDL_Scancode key) const {
 bool KeyboardState::IsAllKey() const {
 
 	for (int i = 0; i < SDL_SCANCODE_COUNT; i++) {
-		if (_currentKeyState[i]) {
+		if (GetKeyState(static_cast<SDL_Scancode>(i)) == BUTTON_STATE::DOWN) {
 			return true;
 		}
 	}
@@ -87,7 +87,7 @@ BUTTON_STATE GamepadState::GetButtonState(SDL_GamepadButton button) const {
 
 bool GamepadState::IsAllButton() const {
 	for (int i = 0; i < SDL_GAMEPAD_BUTTON_COUNT; i++) {
-		if (_currentButtons[i]) {
+		if (GetButtonState(static_cast<SDL_GamepadButton>(i)) == BUTTON_STATE::DOWN) {
 			return true;
 		}
 	}

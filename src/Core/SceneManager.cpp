@@ -2,6 +2,7 @@
 #include "LarvaEngine/Core/Game.h" 
 #include "LarvaEngine/Core/Scene.h" 
 #include "LarvaEngine/Core/Resources/AssetManager.h"
+#include "LarvaEngine/Core/Resources/Texture.h"
 #include "LarvaEngine/Input/InputAction.h"
 
 //==============================================================================
@@ -73,6 +74,10 @@ void SceneManager::FixedUpdate(const float deltaTime) {
 	_currentMainScene->FixedUpdate(deltaTime);
 }
 
+void SceneManager::LateUpdate(float deltTime) {
+	_currentMainScene->LateUpdate(deltTime);
+}
+
 /**
  * 出力処理を行う
  *
@@ -135,6 +140,7 @@ void SceneManager::LoadData() {
 
 	_game.GetFontManager().Load("MOBO", "Assets/Fonts/MOBO-Bold.otf");
 
+	_game.GetTextureManager().Load("Rectangle", "Assets/Textures/Rectangle.png");
 
 }
 

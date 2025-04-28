@@ -7,7 +7,7 @@ public:
     ~FollowCameraComponent() override;
 
     void Update(float deltaTime) override;
-    void FixedUpdate(float deltaTime) override;
+    void LateUpdate(float deltaTime) override;
 
     // オフセット関連
     void XOffset(float offset) { _xOffset = offset; }
@@ -19,6 +19,8 @@ public:
     void AttenRate(float rate) { _attenRate = rate; }
     float GetAttenRate() const { return _attenRate; }
 
+	void SetTargetObject(GameObject* target) { _targeObject = target; }
+
     // 内部位置
     Vector2 GetPositionFloat() const { return _internalPosition; }
 
@@ -27,6 +29,7 @@ private:
     float _xOffset;       // X軸オフセット
     float _yOffset;       // Y軸オフセット
     float _attenRate;     // 追従の減衰率
+	GameObject* _targeObject; // 追従するターゲット
     Vector2 _internalPosition;  // 内部的な浮動小数点位置
     Vector2 _prevInternalPosition;
     Vector2 _position;

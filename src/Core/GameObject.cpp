@@ -23,7 +23,19 @@ GameObject::GameObject(Scene& scene)
 	, _scale(1.0f)
 	, _rotation(0.0f)
 	, _recomputeWorldTransform(true){
-	//SetParent(nullptr);
+	SetParent(nullptr);
+}
+
+GameObject::GameObject(GameObject* parent)
+	: _state(STATE::ACTIVE)
+	, _tag(TAG::NONE)
+	, _scene(parent->_scene)
+	, _position(Vector2Int::Zero)
+	, _scale(1.0f)
+	, _rotation(0.0f)
+	, _recomputeWorldTransform(true) {
+	parent->AddChildObject(this);
+	SetParent(parent);
 }
 
 /**
@@ -33,6 +45,7 @@ GameObject::GameObject(Scene& scene)
  */
 GameObject::~GameObject() {
 	//_scene.RemoveObject(this);
+
 }
 
 
@@ -102,6 +115,13 @@ void GameObject::FixedUpdate(const float deltaTime) {
 
 }
 
+void GameObject::LateUpdate(const float deltaTime) {
+	if (_state != STATE::ACTIVE) return;
+
+	LateUpdateConponents(deltaTime);
+	LateUpdateObject(deltaTime);
+}
+
 // ====== コンポーネント関連 ===== //
 
 /**
@@ -123,6 +143,38 @@ void GameObject::RemoveComponent(Component* component) {
 	*/
 }
 
+void GameObject::DestroyComponent(Component* component) {
+	auto iter = std::find_if(_components.begin(), _components.end(),
+		[component](const std::unique_ptr<Component>& comp) {
+			return comp.get() == component; // ポインタが一致するか
+		});
+	if (iter != _components.end()) {
+		_components.erase(iter);
+	}
+}
+
+void GameObject::AddChildObject(GameObject* child) {
+	_children.push_back(child);
+}
+
+void GameObject::RemoveChildObject(GameObject* child) {
+
+	auto iter = std::find(_children.begin(), _children.end(), child);
+	if (iter != _children.end()) {
+		_children.erase(iter);
+	}
+}
+
+void GameObject::Destroy() {
+	if (_parent != nullptr) {
+		_parent->RemoveChildObject(this);
+	}
+	for (auto& child : _children) {
+		child->Destroy();
+	}
+	_scene.DestroyObject(this);
+}
+
 // ====== ワールド変換行列関連 ===== //
 
 /**
@@ -138,9 +190,22 @@ void GameObject::ComputeWorldTransform() {
 		_worldTransform *= Matrix4::CreateRotationZ(_rotation);
 		_worldTransform *= Matrix4::CreateTranslation(Vector3(static_cast<float>(_position.x), static_cast<float>(_position.y), 0.0f));
 
+		// 親オブジェクトがある場合は、親のワールド変換行列を乗算
+		if (_parent != nullptr) {
+			_worldTransform *= _parent->WorldTransform();
+		}
+
 		// 子オブジェクトのワールド変換行列も再計算
 		for (auto& comp : _components) {
 			comp->OnUpdateWorldTransform();
+		}
+
+		// 子オブジェクトの変換行列も更新する
+		for (auto& child : _children) {
+			// 子オブジェクトに再計算フラグを立てる
+			child->_recomputeWorldTransform = true;
+			// 子オブジェクトの変換行列を再計算
+			child->ComputeWorldTransform();
 		}
 	}
 }
@@ -224,6 +289,20 @@ void GameObject::FixedUpdateComponents(const float deltaTime) {
 	for (auto& comp : _components) {
 		if (comp->State() == Component::STATE::ACTIVE) { // アクティブ状態のコンポーネントのみ更新
 			comp->FixedUpdate(deltaTime);
+		}
+	}
+}
+
+/**
+ * レイト更新処理
+ *
+ * コンポーネントのレイト更新処理を呼び出す
+ */
+void GameObject::LateUpdateConponents(const float deltaTime) {
+
+	for (auto& comp : _components) {
+		if (comp->State() == Component::STATE::ACTIVE) { // アクティブ状態のコンポーネントのみ更新
+			comp->LateUpdate(deltaTime);
 		}
 	}
 }

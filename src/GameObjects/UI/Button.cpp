@@ -27,6 +27,8 @@ void ButtonGroup::AddButton(ButtonComponent* button) {
 
 void ButtonGroup::InputProcess(const InputAction& input) {
 
+	if (_buttons.size() <= 0) return;
+
 	if (_inputState == INPUT_STATE::MOUSE) {
 		InputMouse(input);
 		if (input.IsAllKey() || input.IsAllGamepadButton()) {
@@ -62,6 +64,7 @@ void ButtonGroup::MoveFocus(const InputAction& input) {
 		_currentSelection = (_currentSelection + 1) % _buttons.size();
 	}
 	else if (input.IsActionDown("Up")) {
+
 		_currentSelection = (_currentSelection - 1 + _buttons.size()) % _buttons.size();
 	}
 

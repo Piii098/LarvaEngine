@@ -9,13 +9,13 @@ public:
 	Camera(Scene& scene);
 	~Camera() override;
 
-	void InputObject(const InputAction& input) override;
-	void UpdateObject(float deltaTime) override;
+	virtual void InputObject(const InputAction& input) override;
+	virtual void UpdateObject(float deltaTime) override;
 
 	Matrix4 GetViewMatrix() const;
 	float Zoom() const;
-	Vector2 SubPixelOffset() const;
 
+	void SetCameraComponent(CameraComponent* cameraComp);
 
 private:
 	CameraComponent* _cameraComp;

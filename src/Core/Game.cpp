@@ -211,6 +211,7 @@ void Game::Update() {
 	// オーディオシステムの更新
 	_audioSystem->Update(_frameSystem->DeltaTime());
 
+	LateUpdate();
 	//SDL_Log("FPS : %f", _frameSystem->Fps());
 }
 
@@ -227,6 +228,10 @@ void Game::FixedUpdate() {
 
 	_physWorld->FixedUpdate(_frameSystem->FixedDeltaTime());
 
+}
+
+void Game::LateUpdate() {
+	_sceneManager->LateUpdate(_frameSystem->FixedDeltaTime());
 }
 
 /**
