@@ -43,6 +43,7 @@ Matrix4 Camera::GetViewMatrix() const {
 	if (_cameraComp == nullptr) {
 		return Matrix4::Identity;
 	}
+
 	return _cameraComp->GetViewMatrix();
 }
 

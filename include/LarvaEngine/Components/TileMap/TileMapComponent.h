@@ -5,57 +5,54 @@
 #include "LarvaEngine/Core/Component.h"
 #include "LarvaEngine/Core/GameObject.h"
 
-class BoxComponent2D;
-template <typename T>
-class AssetManager;
 class TileMap;
-class Texture;
-class GameObject;
 class SpriteComponent;
-class DebugDrawComponent;
+class Texture;
+class Scene;
+class GameObject;
 
-// タイルデータを保持する構造体
-struct TileInfo {
-	
-    int id;                     // タイルID
-	GameObject::TAG tag;        // タグ
-    
-    bool isCollider;            // 衝突判定の有無
-    Vector3 lightColor;         // 発光色
-    float lightIntensity;                                                                                // 発光強度
-
-    TileInfo(int tileId = -1)
-        : id(tileId)
-		, tag(GameObject::TAG::NONE)
-        , isCollider(false)
-        , lightColor(1.0f, 1.0f, 1.0f)
-        , lightIntensity(0.0f) {}
-};
-
-class TileMapComponent : public Component {
+class Tile : public GameObject {
 public:
-
-    TileMapComponent(GameObject& parent, int drawLayer = 75);
-    ~TileMapComponent();
-
-    void SetTileMap(const std::string& tileMapName, const std::string& tileSetName, int tileSetSize, int tileSize = 32); //ファイルでデータ読み込み
-    void RegisterTileInfo(int tileId, bool isCollider, const Vector3& lightColor, float lightIntensity, GameObject::TAG objectTag);
-    void CreateTiles();
-	void DestroyTile(int tileId);
-
-    /*ゲッターセッター*/
+	Tile(GameObject& parent, int TileID)
+		: GameObject(parent), _tileID(TileID) {}
+	~Tile() override = default;
 
 private:
+    int _tileID;
 
-    AssetManager<TileMap>& _tileMapManager;
-    AssetManager<Texture>& _textureManager;
-    Texture* _tileSet;
-    std::string _tileSetName;
-	int _tileSetSize;
+};
+
+/// @brief タイルマップを描画・管理するコンポーネント
+class TileMapComponent : public Component {
+public:
+    /// @brief タイルマップコンポーネントのコンストラクタ
+    /// @param parent 親となるゲームオブジェクト
+    /// @param scene 所属するシーン
+    /// @param tileMap タイルマップデータ
+    /// @param tileWidth タイル1枚の幅（ピクセル）
+    /// @param tileHeight タイル1枚の高さ（ピクセル）
+    /// @param textureName タイルセット画像のテクスチャ名
+    TileMapComponent(GameObject& parent, int tileSize, const std::string& textureName);
+
+    virtual ~TileMapComponent();
+
+    /// @brief タイルマップデータを再設定
+    void SetTileMap(const std::string& tileMapName);
+
+    /// @brief タイルセットのテクスチャ名を取得
+    std::string TextureName() const { return _textureName; }
+
+private:
+    /// @brief タイル毎に子オブジェクト・スプライトを生成
+    void CreateTileObjects();
+
+    /// @brief すべての子タイルオブジェクトを削除
+    void DestroyTileObjects();
+
+    // タイルマップデータ
     TileMap* _tileMap;
-    int _mapWidth;
-    int _mapHeight;
     int _tileSize;
+    std::string _textureName;
 
-    std::vector<TileInfo> _tileInfos;
+    std::vector<Tile*> _tileObjects;
 };

@@ -203,6 +203,7 @@ void Game::Update() {
 	while (_frameSystem->ShouldRunFixedTimeStep())
 	{
 		FixedUpdate();
+		LateUpdate();
 	}
 
 	// シーンの更新
@@ -211,7 +212,6 @@ void Game::Update() {
 	// オーディオシステムの更新
 	_audioSystem->Update(_frameSystem->DeltaTime());
 
-	LateUpdate();
 	//SDL_Log("FPS : %f", _frameSystem->Fps());
 }
 

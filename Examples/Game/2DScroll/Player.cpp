@@ -21,7 +21,7 @@ Example2DScroll::Player::Player(Scene& scene)
 	rigidbodyComp.IsGravity(false);
 
 	MoveInputComponent& moveInputComp = CreateComponent<MoveInputComponent>();
-	moveInputComp.MoveSpeedY(80.f);
+	moveInputComp.MoveSpeedY(40.f);
 	moveInputComp.State(Component::STATE::INACTIVE);
 
 }

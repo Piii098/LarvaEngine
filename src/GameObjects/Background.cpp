@@ -9,16 +9,16 @@ Background::Background(Scene& scene)
 
 	Position(Vector2Int(0, 0));
 	Scale(1.f);
-	SpriteComponent* bg0 = CreateComponent<SpriteComponent>(1, 1);
-	bg0->SetTexture("Bg1");
-	SpriteComponent* bg1 = CreateComponent<SpriteComponent>(2, 1);
-	bg1->SetTexture("Bg2");
-	SpriteComponent* bg2 = CreateComponent<SpriteComponent>(3, 1);
-	bg2->SetTexture("Bg3");
-	SpriteComponent* bg3 = CreateComponent<SpriteComponent>(4, 1);
-	bg3->SetTexture("Bg4");
-	SpriteComponent* bg4 = CreateComponent<SpriteComponent>(14, 1);
-	bg4->SetTexture("Bg5");
+	SpriteComponent* bg1 = CreateComponent<SpriteComponent>(1, 1);
+	bg1->SetTexture("BG1");
+	SpriteComponent* bg2 = CreateComponent<SpriteComponent>(2, 1);
+	bg2->SetTexture("BG2");
+	SpriteComponent* bg3 = CreateComponent<SpriteComponent>(3, 1);
+	bg3->SetTexture("BG3");
+	SpriteComponent* bg4 = CreateComponent<SpriteComponent>(4, 1);
+	bg4->SetTexture("BG4");
+	SpriteComponent* bg5 = CreateComponent<SpriteComponent>(14, 1);
+	bg5->SetTexture("BG5");
 
 }
 

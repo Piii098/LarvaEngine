@@ -1,270 +1,46 @@
-﻿  GameMainScene.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Examples/Game/2DScroll/GameMainScene.cpp' をコンパイルしています)
-  
-  PlaySubScene.cpp
+﻿  TileMap.cpp
+C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x165 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x169 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x16a から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x16b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x16d から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x16e から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x16f から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x171 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x173 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x175 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x176 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x177 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x178 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
 C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(76,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Examples/Game/2DScroll/PlaySubScene.cpp' をコンパイルしています)
+  (ソース ファイル 'Examples/Game/2DScroll/TileMap.cpp' をコンパイルしています)
   
 C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(121,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Examples/Game/2DScroll/PlaySubScene.cpp' をコンパイルしています)
+  (ソース ファイル 'Examples/Game/2DScroll/TileMap.cpp' をコンパイルしています)
   
 C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Examples/Game/2DScroll/PlaySubScene.cpp' をコンパイルしています)
+  (ソース ファイル 'Examples/Game/2DScroll/TileMap.cpp' をコンパイルしています)
   
-  TItleMainScene.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Examples/Game/2DScroll/TItleMainScene.cpp' をコンパイルしています)
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,35): error C2661: 'TileMapComponent::TileMapComponent': 4 個の引数を伴うオーバーロードされた関数はありません。
+  (ソース ファイル 'Examples/Game/2DScroll/TileMap.cpp' をコンパイルしています)
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,35):
+  引数リスト '(GameObject, const char [10], _Ty, const char [14])' を一致させようとしているとき
+          with
+          [
+              _Ty=int
+          ]
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,35):
+  テンプレートインスタンス化コンテキスト (最初に最も古いもの) は
+  	C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(7,18):
+  	コンパイル対象の関数 テンプレート インスタンス化 'T &GameObject::CreateComponent<TileMapComponent,const char(&)[10],int,const char(&)[14]>(const char (&)[10],int &&,const char (&)[14])' のリファレンスを確認してください
+          with
+          [
+              T=TileMapComponent
+          ]
+  	C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\GameObject.h(95,31):
+  	コンパイル対象の関数 テンプレート インスタンス化 'std::unique_ptr<TileMapComponent,std::default_delete<TileMapComponent>> std::make_unique<TileMapComponent,GameObject&,const char(&)[10],_Ty,const char(&)[14],0>(GameObject &,const char (&)[10],_Ty &&,const char (&)[14])' のリファレンスを確認してください
+          with
+          [
+              _Ty=int
+          ]
   
-  TitleUIScene.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(76,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Examples/Game/2DScroll/TitleUIScene.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(121,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Examples/Game/2DScroll/TitleUIScene.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Examples/Game/2DScroll/TitleUIScene.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TitleUIScene.cpp(41,75): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-  AudioComponent.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Components/Audio/AudioComponent.cpp' をコンパイルしています)
-  
-  DebugDrawComponent.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(76,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Components/Draw/DebugDrawComponent.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(121,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Components/Draw/DebugDrawComponent.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Components/Draw/DebugDrawComponent.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Physics\Collision2D.h(70,8): warning C4099: 'AABB2D': タイプ名は最初 'class' として使われていましたが 'struct' として使われています。
-  (ソース ファイル 'src/Components/Draw/DebugDrawComponent.cpp' をコンパイルしています)
-  C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Physics\Collision2D.h(70,8):
-  'AABB2D' の宣言を確認してください
-  
-  SpriteComponent.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(76,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Components/Draw/SpriteComponent.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(121,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Components/Draw/SpriteComponent.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Components/Draw/SpriteComponent.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Physics\Collision2D.h(70,8): warning C4099: 'AABB2D': タイプ名は最初 'class' として使われていましたが 'struct' として使われています。
-  (ソース ファイル 'src/Components/Draw/SpriteComponent.cpp' をコンパイルしています)
-  C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Physics\Collision2D.h(70,8):
-  'AABB2D' の宣言を確認してください
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\Draw\SpriteComponent.cpp(18,16): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\Draw\SpriteComponent.cpp(19,17): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
-  TextComponent.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(76,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Components/Draw/TextComponent.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(121,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Components/Draw/TextComponent.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Components/Draw/TextComponent.cpp' をコンパイルしています)
-  
-  LightComponent.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(76,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Components/Light/LightComponent.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(121,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Components/Light/LightComponent.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Components/Light/LightComponent.cpp' をコンパイルしています)
-  
-  BoxComponent2D.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(76,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Components/Physics/BoxComponent2D.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(121,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Components/Physics/BoxComponent2D.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Components/Physics/BoxComponent2D.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\Physics\BoxComponent2D.cpp(34,33): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\Physics\BoxComponent2D.cpp(35,33): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-  MoveInputComponent.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(76,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Components/Physics/MoveInputComponent.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(121,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Components/Physics/MoveInputComponent.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Components/Physics/MoveInputComponent.cpp' をコンパイルしています)
-  
-  RigidbodyComponent.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(76,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Components/Physics/RigidbodyComponent.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(121,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Components/Physics/RigidbodyComponent.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Components/Physics/RigidbodyComponent.cpp' をコンパイルしています)
-  
-  Camera.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(76,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/GameObjects/Camera.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(121,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/GameObjects/Camera.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/GameObjects/Camera.cpp' をコンパイルしています)
-  
-  DataText.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(76,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/GameObjects/UI/DataText.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(121,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/GameObjects/UI/DataText.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/GameObjects/UI/DataText.cpp' をコンパイルしています)
-  
-  InputAction.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Input/InputAction.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Input\InputSystem.h(13,7): warning C4099: 'SDL_Window': タイプ名は最初 'struct' として使われていましたが 'class' として使われています。
-  (ソース ファイル 'src/Input/InputAction.cpp' をコンパイルしています)
-  C:\Users\amary\source\repos\Piii098\LarvaEngine\SDL\include\SDL3\SDL_video.h(173,16):
-  'SDL_Window' の宣言を確認してください
-  
-  InputSystem.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Input/InputSystem.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\SDL\include\SDL3\SDL_video.h(173,16): warning C4099: 'SDL_Window': タイプ名は最初 'class' として使われていましたが 'struct' として使われています。
-  (ソース ファイル 'src/Input/InputSystem.cpp' をコンパイルしています)
-  C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Input\InputSystem.h(13,7):
-  'SDL_Window' の宣言を確認してください
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Input\InputSystem.cpp(74,33): warning C4805: '==': 演算中の 'const Uint8' 型と 'bool' 型の混用は安全ではありません
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Input\InputSystem.cpp(77,75): warning C4805: '==': 演算中の 'const Uint8' 型と 'bool' 型の混用は安全ではありません
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Input\InputSystem.cpp(80,38): warning C4805: '==': 演算中の 'const Uint8' 型と 'bool' 型の混用は安全ではありません
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Input\InputSystem.cpp(80,74): warning C4805: '==': 演算中の 'const Uint8' 型と 'bool' 型の混用は安全ではありません
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Input\InputSystem.cpp(384,27): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Input\InputSystem.cpp(384,15): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
-  Game.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Core/Game.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Input\InputSystem.h(13,7): warning C4099: 'SDL_Window': タイプ名は最初 'struct' として使われていましたが 'class' として使われています。
-  (ソース ファイル 'src/Core/Game.cpp' をコンパイルしています)
-  C:\Users\amary\source\repos\Piii098\LarvaEngine\SDL\include\SDL3\SDL_video.h(173,16):
-  'SDL_Window' の宣言を確認してください
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Core\Game.cpp(94,28): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Core\Game.cpp(94,20): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Core\Game.cpp(94,11): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Core\Game.cpp(94,3): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  GameObject.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Core/GameObject.cpp' をコンパイルしています)
-  
-  Main.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Examples/Main.cpp' をコンパイルしています)
-  
-  MainScene.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(76,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Core/MainScene.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(121,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Core/MainScene.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Core/MainScene.cpp' をコンパイルしています)
-  
-  Scene.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(76,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Core/Scene.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(121,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Core/Scene.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Core/Scene.cpp' をコンパイルしています)
-  
-  SceneManager.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Core/SceneManager.cpp' をコンパイルしています)
-  
-  UIScene.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(76,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Core/UIScene.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(121,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Core/UIScene.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Core/UIScene.cpp' をコンパイルしています)
-  
-  PhysWorld2D.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Physics/PhysWorld2D.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Physics\PhysWorld2D.cpp(165,15): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Physics\PhysWorld2D.cpp(166,15): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Physics\PhysWorld2D.cpp(167,15): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Physics\PhysWorld2D.cpp(168,15): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
-  Renderer.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(76,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Renderer/Renderer.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(121,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Renderer/Renderer.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'src/Renderer/Renderer.cpp' をコンパイルしています)
-  
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(60,78): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(60,70): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(60,66): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(73,66): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(73,52): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(133,40): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(133,26): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(153,33): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(164,40): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(164,26): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(180,36): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(180,22): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(194,36): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(194,22): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(202,36): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(202,22): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(210,36): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(210,22): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(334,63): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(334,49): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(359,63): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(359,49): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(378,59): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(378,45): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(399,57): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(399,43): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(419,57): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(419,43): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(439,59): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(439,45): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(457,59): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(457,45): warning C4244: '引数': 'float' から 'GLsizei' への変換です。データが失われる可能性があります。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp(564,32): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
-  LarvaEngine.vcxproj -> C:\Users\amary\source\repos\Piii098\LarvaEngine\bin\x64\Debug\LarvaEngine.exe
-  'pwsh.exe' は、内部コマンドまたは外部コマンド、
-  操作可能なプログラムまたはバッチ ファイルとして認識されていません。

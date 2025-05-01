@@ -20,10 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Examples\Game\2DScroll\AnimatedButton.cpp" />
+    <ClCompile Include="Examples\Game\2DScroll\Background.cpp" />
     <ClCompile Include="Examples\Game\2DScroll\FollowCamera..cpp" />
     <ClCompile Include="Examples\Game\2DScroll\GameMainScene.cpp" />
+    <ClCompile Include="Examples\Game\2DScroll\MenuUIScene.cpp" />
     <ClCompile Include="Examples\Game\2DScroll\Player.cpp" />
     <ClCompile Include="Examples\Game\2DScroll\PlaySubScene.cpp" />
+    <ClCompile Include="Examples\Game\2DScroll\TileMap.cpp" />
     <ClCompile Include="Examples\Game\2DScroll\TItleMainScene.cpp" />
     <ClCompile Include="Examples\Game\2DScroll\TitleUIScene.cpp" />
     <ClCompile Include="include\LarvaEngine\Core\Utilities\Easing.h" />
@@ -74,11 +77,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Examples\Game\2DScroll\AnimatedButton.h" />
+    <ClInclude Include="Examples\Game\2DScroll\Background.h" />
     <ClInclude Include="Examples\Game\2DScroll\FollowCamera.h" />
     <ClInclude Include="Examples\Game\2DScroll\GameMainScene.h" />
+    <ClInclude Include="Examples\Game\2DScroll\MenuUIScene.h" />
     <ClInclude Include="Examples\Game\2DScroll\OptionUIScene.h" />
     <ClInclude Include="Examples\Game\2DScroll\Player.h" />
     <ClInclude Include="Examples\Game\2DScroll\PlaySubScene.h" />
+    <ClInclude Include="Examples\Game\2DScroll\TileMap.h" />
     <ClInclude Include="Examples\Game\2DScroll\TitleMainScene.h" />
     <ClInclude Include="Examples\Game\2DScroll\TitleUIScene.h" />
     <ClInclude Include="include\LarvaEngine\Audio\AudioSystem.h" />
@@ -141,7 +147,6 @@
     <None Include="Assets\Shaders\Sprite.frag" />
     <None Include="Assets\Shaders\Sprite.vert" />
     <None Include="Assets\Shaders\Upscale.frag" />
-    <None Include="include\LarvaEngine\Core\GameObject.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

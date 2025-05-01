@@ -77,6 +77,9 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{94a5604f-654f-4958-8065-146265c71a32}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\TileMap">
+      <UniqueIdentifier>{4e263ad0-f7dd-4548-b5ab-ffc1c7d319e8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Components\AI\AICompoennt.cpp">
@@ -225,6 +228,24 @@
     </ClCompile>
     <ClCompile Include="src\GameObjects\UI\ButtonGroup.cpp">
       <Filter>GameObjects\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\Game\2DScroll\OptionUIScene.cpp">
+      <Filter>Examples\Game\2DScroll</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\Game\2DScroll\FollowCamera..cpp">
+      <Filter>Examples\Game\2DScroll</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\TileMap\TileMapComponent.cpp">
+      <Filter>Components\TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\Game\2DScroll\Background.cpp">
+      <Filter>Examples\Game\2DScroll</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\Game\2DScroll\MenuUIScene.cpp">
+      <Filter>Examples\Game\2DScroll</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\Game\2DScroll\TileMap.cpp">
+      <Filter>Examples\Game\2DScroll</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -377,6 +398,24 @@
     </ClInclude>
     <ClInclude Include="include\LarvaEngine\GameObjects\UI\ButtonGroup.h">
       <Filter>GameObjects\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Game\2DScroll\OptionUIScene.h">
+      <Filter>Examples\Game\2DScroll</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Game\2DScroll\FollowCamera.h">
+      <Filter>Examples\Game\2DScroll</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Components\TileMap\TileMapComponent.h">
+      <Filter>Components\TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Game\2DScroll\Background.h">
+      <Filter>Examples\Game\2DScroll</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Game\2DScroll\MenuUIScene.h">
+      <Filter>Examples\Game\2DScroll</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Game\2DScroll\TileMap.h">
+      <Filter>Examples\Game\2DScroll</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

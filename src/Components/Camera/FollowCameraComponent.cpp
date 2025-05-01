@@ -33,17 +33,11 @@ void FollowCameraComponent::Update(float deltaTime) {
 
 void FollowCameraComponent::LateUpdate(float deltaTime) {
 	// ターゲットがnullptrの場合は何もしない
-    // SDL_Log("Late Camera");
 
 	if (_targeObject == nullptr) {
 		return;
 	}
 
-	// 初回の更新時は現在位置を設定
-	if (_internalPosition == Vector2::Zero) {
-		_internalPosition = _parent.PositionToFloat();
-		return;
-	}
     // 前回の位置を保存
     _prevInternalPosition = _internalPosition;
 
@@ -56,6 +50,7 @@ void FollowCameraComponent::LateUpdate(float deltaTime) {
         1000.0f, // maxSpeed - 最大移動速度
         deltaTime);
 
+	// SDL_Log("Internal Position: %f, %f", _internalPosition.x, _internalPosition.y);
     // GameObject の位置を更新
     _parent.Position(_internalPosition);
 }

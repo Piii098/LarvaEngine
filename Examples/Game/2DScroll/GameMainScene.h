@@ -11,6 +11,9 @@ namespace Example2DScroll
 		~GameMainScene() override;
 
 	private:
+
+		void UpdateScene(float deltaTime) override;
+
 		void LoadData() override;
 		void LoadObjects() override;
 		Player* _player;

@@ -114,13 +114,16 @@ bool Renderer::Initialize(float screenWidth, float screenHeight, float lowResWid
  */
 void Renderer::Render() {
 
-	// カメラのビュー行列を取得
-   Camera* camera = _game.GetSceneManager().GetCurrentMainScene().GetCamera();
+   // カメラのビュー行列を取得
+    Camera* camera = _game.GetSceneManager().GetCurrentMainScene().GetCamera();
     Matrix4 view = Matrix4::Identity;
 	Vector2Int cameraPos = Vector2Int::Zero;
     if (camera) { // カメラが存在する場合
+        //SDL_Log("cameraPos, %d,%d", _game.GetSceneManager().GetCurrentMainScene().GetCamera()->Position().x, _game.GetSceneManager().GetCurrentMainScene().GetCamera()->Position().y);
         view = camera->GetViewMatrix();
         cameraPos = camera->Position();
+
+		//SDL_Log("Rend CameraPos: %d, %d", cameraPos.x, cameraPos.y);
     }
 
 	// メインシーンを取得
