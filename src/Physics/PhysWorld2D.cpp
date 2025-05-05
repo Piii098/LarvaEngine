@@ -31,7 +31,7 @@ PhysWorld2D::PhysWorld2D(Game& game)
 bool PhysWorld2D::SegmentCast(const LineSegment2D& l, CollisionInfo& outColl, GameObject& ignoreObj) {
     bool collided = false;
     float closestT = std::numeric_limits<float>::infinity();
-    Vector2Int norm;
+    Vector2 norm;
 
     // 衝突判定のためのループ
     for (auto box : _boxComps) {
@@ -60,7 +60,7 @@ bool PhysWorld2D::SegmentCast(const LineSegment2D& l, CollisionInfo& outColl, Ga
  * Game::FixedUpdate()から呼びだされる
  */
 void PhysWorld2D::FixedUpdate(float deltaTime) {
-    // CollisionUpdate(deltaTime); // 衝突の更新
+    CollisionUpdate(deltaTime); // 衝突の更新
 
     for (auto& rigid : _rigidbodyComps) {
 		rigid->CalculateVelocity(deltaTime); // 速度の計算
@@ -134,7 +134,7 @@ void PhysWorld2D::CollisionUpdate(float deltaTime) {
             Vector2 nextPosA = currentPosA + velocityA * subDeltaTime; // 次の位置
 
             AABB2D nextBoxA = boxA->GetWorldBox();
-            nextBoxA.MoveCenterTo(Vector2Int::ToInteger(nextPosA)); // 次のボックスの位置を更新
+            nextBoxA.MoveCenterTo(nextPosA); // 次のボックスの位置を更新
 
             // 他のボックスとの衝突判定
             for (auto boxB : _boxComps) {
@@ -184,6 +184,7 @@ void PhysWorld2D::FixCollision(BoxComponent2D* boxA, Vector2& velocityA, Vector2
             velocityA.y = 0.f; // 速度をゼロに
         }
     }
+
 
     // ワールド変換の更新
     boxA->OnUpdateWorldTransform();

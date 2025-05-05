@@ -25,7 +25,8 @@ void Example2DScroll::OptionUIScene::LoadObjects()
 	SpriteComponent& spri = background.CreateComponent<SpriteComponent>(10);
 	spri.SetTexture("Rectangle");
 	background.Scale(3.f);
-	spri.TexScale(Vector2(1.8, 1));
+	spri.TexScale(Vector2(100, 100));
+	//spri.TexScale(Vector2(1.8, 1));
 
 	Button& back = CreateGameObject<Button>("Button");
 	SpriteComponent* spri2 = back.GetComponent<SpriteComponent>();

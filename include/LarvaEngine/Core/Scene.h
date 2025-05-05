@@ -131,10 +131,8 @@ public:
 	// ===== ゲッター・セッター =====//
 
     SceneManager& GetManager() { return _manager; }
-    Camera& GetCamera()  { return *_camera; }
 	STATE State() const { return _state; }
 	const SceneManager& GetManager() const { return _manager; }
-	const Camera& GetCamera() const { return *_camera; }
 	const STATE State()  { return _state; }
 
 	void State(STATE state) { _state = state; }
@@ -192,7 +190,6 @@ protected:
 	// ===== スプライト ===== //
 	std::vector<SpriteComponent*> _sprites;	  ///< スプライトの配列
 
-	Camera* _camera;				 ///< シーンのカメラ
 	SceneManager& _manager;			 ///< シーンマネージャー	
 	
 	STATE _state;					 ///< シーンの状態

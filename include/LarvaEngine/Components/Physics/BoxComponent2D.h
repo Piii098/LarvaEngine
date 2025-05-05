@@ -11,10 +11,12 @@ public:
 	void SetObjectBox(const AABB2D& model) { _objectBox = model; };
 	const AABB2D& GetWorldBox() const { return _worldBox; };
 
-	Vector2Int ObjectMax() const { return _objectBox._max; };
-	Vector2Int ObjectMin() const { return _objectBox._min; };
-	Vector2Int WorldMax() const { return _worldBox._max; };
-	Vector2Int WorldMin() const { return _worldBox._min; };
+	void DisplayBox(const Vector3& color = Color::Red) const;
+
+	Vector2 ObjectMax() const { return _objectBox._max; };
+	Vector2 ObjectMin() const { return _objectBox._min; };
+	Vector2 WorldMax() const { return _worldBox._max; };
+	Vector2 WorldMin() const { return _worldBox._min; };
 
 	bool IsCollision() const { return _isCollision; };
 	bool IsDynamic() const { return _isDynamic; };

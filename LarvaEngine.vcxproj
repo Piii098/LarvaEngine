@@ -23,9 +23,11 @@
     <ClCompile Include="Examples\Game\2DScroll\Background.cpp" />
     <ClCompile Include="Examples\Game\2DScroll\FollowCamera..cpp" />
     <ClCompile Include="Examples\Game\2DScroll\GameMainScene.cpp" />
+    <ClCompile Include="Examples\Game\2DScroll\HUDUIScene.cpp" />
     <ClCompile Include="Examples\Game\2DScroll\MenuUIScene.cpp" />
     <ClCompile Include="Examples\Game\2DScroll\Player.cpp" />
     <ClCompile Include="Examples\Game\2DScroll\PlaySubScene.cpp" />
+    <ClCompile Include="Examples\Game\2DScroll\TestMainScene.cpp" />
     <ClCompile Include="Examples\Game\2DScroll\TileMap.cpp" />
     <ClCompile Include="Examples\Game\2DScroll\TItleMainScene.cpp" />
     <ClCompile Include="Examples\Game\2DScroll\TitleUIScene.cpp" />
@@ -80,10 +82,12 @@
     <ClInclude Include="Examples\Game\2DScroll\Background.h" />
     <ClInclude Include="Examples\Game\2DScroll\FollowCamera.h" />
     <ClInclude Include="Examples\Game\2DScroll\GameMainScene.h" />
+    <ClInclude Include="Examples\Game\2DScroll\HUDUIScene.h" />
     <ClInclude Include="Examples\Game\2DScroll\MenuUIScene.h" />
     <ClInclude Include="Examples\Game\2DScroll\OptionUIScene.h" />
     <ClInclude Include="Examples\Game\2DScroll\Player.h" />
     <ClInclude Include="Examples\Game\2DScroll\PlaySubScene.h" />
+    <ClInclude Include="Examples\Game\2DScroll\TestMainScene.h" />
     <ClInclude Include="Examples\Game\2DScroll\TileMap.h" />
     <ClInclude Include="Examples\Game\2DScroll\TitleMainScene.h" />
     <ClInclude Include="Examples\Game\2DScroll\TitleUIScene.h" />

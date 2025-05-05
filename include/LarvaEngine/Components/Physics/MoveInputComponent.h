@@ -22,7 +22,7 @@ public:
 	void MoveSpeedY(float moveSpeed) { _moveSpeedY = moveSpeed; };
 	void JumpForce(float jumpForce) { _jumpForce = jumpForce; };
 
-	Vector2& Direction() { return _direction; };
+	float& Direction() { return _direction; };
 
 private:
 
@@ -34,6 +34,6 @@ private:
 	bool _inputActive;
 
 	RigidbodyComponent* _rigidbodyComp;
-
-	Vector2 _direction;
+	bool _isJump;
+	float _direction;
 };

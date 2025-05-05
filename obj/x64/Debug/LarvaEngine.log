@@ -1,46 +1,24 @@
-﻿  TileMap.cpp
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x165 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x169 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x16a から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x16b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x16d から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x16e から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x16f から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x171 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x173 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x175 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x176 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x177 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(1,1): warning C4828: オフセット 0x178 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(76,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Examples/Game/2DScroll/TileMap.cpp' をコンパイルしています)
+﻿  SpriteComponent.cpp
+D:\Github\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(76,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'src/Components/Draw/SpriteComponent.cpp' をコンパイルしています)
   
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(121,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Examples/Game/2DScroll/TileMap.cpp' をコンパイルしています)
+D:\Github\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(121,15): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'src/Components/Draw/SpriteComponent.cpp' をコンパイルしています)
   
-C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Examples/Game/2DScroll/TileMap.cpp' をコンパイルしています)
+D:\Github\LarvaEngine\include\LarvaEngine\Core\Utilities\Math.h(422,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'src/Components/Draw/SpriteComponent.cpp' をコンパイルしています)
   
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,35): error C2661: 'TileMapComponent::TileMapComponent': 4 個の引数を伴うオーバーロードされた関数はありません。
-  (ソース ファイル 'Examples/Game/2DScroll/TileMap.cpp' をコンパイルしています)
-  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,35):
-  引数リスト '(GameObject, const char [10], _Ty, const char [14])' を一致させようとしているとき
-          with
-          [
-              _Ty=int
-          ]
-  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,35):
-  テンプレートインスタンス化コンテキスト (最初に最も古いもの) は
-  	C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp(7,18):
-  	コンパイル対象の関数 テンプレート インスタンス化 'T &GameObject::CreateComponent<TileMapComponent,const char(&)[10],int,const char(&)[14]>(const char (&)[10],int &&,const char (&)[14])' のリファレンスを確認してください
-          with
-          [
-              T=TileMapComponent
-          ]
-  	C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\GameObject.h(95,31):
-  	コンパイル対象の関数 テンプレート インスタンス化 'std::unique_ptr<TileMapComponent,std::default_delete<TileMapComponent>> std::make_unique<TileMapComponent,GameObject&,const char(&)[10],_Ty,const char(&)[14],0>(GameObject &,const char (&)[10],_Ty &&,const char (&)[14])' のリファレンスを確認してください
-          with
-          [
-              _Ty=int
-          ]
+D:\Github\LarvaEngine\include\LarvaEngine\Physics\Collision2D.h(70,8): warning C4099: 'AABB2D': タイプ名は最初 'class' として使われていましたが 'struct' として使われています。
+  (ソース ファイル 'src/Components/Draw/SpriteComponent.cpp' をコンパイルしています)
+  D:\Github\LarvaEngine\include\LarvaEngine\Physics\Collision2D.h(70,8):
+  'AABB2D' の宣言を確認してください
   
+D:\Github\LarvaEngine\src\Components\Draw\SpriteComponent.cpp(18,16): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Github\LarvaEngine\src\Components\Draw\SpriteComponent.cpp(19,17): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Github\LarvaEngine\src\Components\Draw\SpriteComponent.cpp(132,40): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\Github\LarvaEngine\src\Components\Draw\SpriteComponent.cpp(132,28): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\Github\LarvaEngine\src\Components\Draw\SpriteComponent.cpp(133,39): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\Github\LarvaEngine\src\Components\Draw\SpriteComponent.cpp(133,28): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  LarvaEngine.vcxproj -> D:\Github\LarvaEngine\bin\x64\Debug\LarvaEngine.exe
+  'pwsh.exe' は、内部コマンドまたは外部コマンド、
+  操作可能なプログラムまたはバッチ ファイルとして認識されていません。

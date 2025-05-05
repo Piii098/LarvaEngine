@@ -3,6 +3,7 @@
 #include "LarvaEngine/Core/Game.h"
 #include "LarvaEngine/Physics/PhysWorld2D.h"
 #include "LarvaEngine/Renderer/Renderer.h"
+#include "LarvaEngine/Components/Draw/SpriteComponent.h"
 #include "LarvaEngine/Core/Scene.h"
 #include "LarvaEngine/Core/SceneManager.h"
 
@@ -10,8 +11,8 @@
 
 BoxComponent2D::BoxComponent2D(GameObject& parent, bool isCollision, bool isDynamic, int updateLayer)
 	: Component(parent)
-	, _objectBox(Vector2Int::Zero, Vector2Int::Zero)
-	, _worldBox(Vector2Int::Zero, Vector2Int::Zero)
+	, _objectBox(Vector2::Zero, Vector2::Zero)
+	, _worldBox(Vector2::Zero, Vector2::Zero)
 	, _isCollision(isCollision)
 	, _isDynamic(isDynamic){
 
@@ -27,16 +28,28 @@ BoxComponent2D::~BoxComponent2D() {
 
 #pragma region パブリック関数
 
+void BoxComponent2D::DisplayBox(const Vector3& color) const {
+
+	auto& spriComp = _parent.CreateComponent<SpriteComponent>(10);
+	spriComp.SetTexture("Rectangle");
+	Vector2 size = Vector2(_objectBox._max * 2);
+	spriComp.TexScale(size);
+	spriComp.Alpha(0.5f);
+	spriComp.Color(color);
+
+}
+
 void BoxComponent2D::OnUpdateWorldTransform() {
+	const Matrix4& worldTransform = _parent.WorldTransform();
 
-	_worldBox = _objectBox;
+	Vector3 objectMin = Vector3(_objectBox._min.x, _objectBox._min.y, 0);
+	Vector3 objectMax = Vector3(_objectBox._max.x, _objectBox._max.y, 0);
 
-	_worldBox._min *= _parent.Scale();
-	_worldBox._max *= _parent.Scale();
-	
-	_worldBox._min += _parent.Position();
-	_worldBox._max += _parent.Position();
+	objectMin = Vector3::Transform(objectMin, worldTransform);
+	objectMax = Vector3::Transform(objectMax, worldTransform);
 
+	_worldBox._min = Vector2(objectMin.x, objectMin.y);
+	_worldBox._max = Vector2(objectMax.x, objectMax.y);
 }
 
 

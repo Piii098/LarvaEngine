@@ -4,22 +4,22 @@
 
 // ===== LineSegment2D ===== //
 
-LineSegment2D::LineSegment2D(const Vector2Int& start, const Vector2Int& end)
+LineSegment2D::LineSegment2D(const Vector2& start, const Vector2& end)
     : _start(start), _end(end) {}
 
 /**
  * 
  */
 Vector2 LineSegment2D::PointOnSegment(float t) const {
-    return Vector2::ToFloat(_start) + t * Vector2::ToFloat(_end - _start);
+    return Vector2(_start) + t * Vector2(_end - _start);
 }
 
-float LineSegment2D::MinDistSq(const Vector2Int& point) const {
-    Vector2Int ab = _end - _start;
-    Vector2Int ap = point - _start;
+float LineSegment2D::MinDistSq(const Vector2& point) const {
+    Vector2 ab = _end - _start;
+    Vector2 ap = point - _start;
     float proj = static_cast<float>(ap.Dot(ap, ab)) / ab.LengthSq();
     proj = Math::Clamp(proj, 0.0f, 1.0f);
-    return (Vector2::ToFloat(point) - PointOnSegment(proj)).LengthSq();
+    return (Vector2(point) - PointOnSegment(proj)).LengthSq();
 }
 
 float LineSegment2D::MinDistSq(const LineSegment2D& s) const {
@@ -46,58 +46,58 @@ float LineSegment2D::MinDistSq(const LineSegment2D& s1, const LineSegment2D& s2)
     return minDistSq;
 }
 
-Circle::Circle(const Vector2Int& center, float radius)
+Circle::Circle(const Vector2& center, float radius)
     : _center(center), _radius(radius) {}
 
-bool Circle::Contains(const Vector2Int& point) const {
+bool Circle::Contains(const Vector2& point) const {
     return (point - _center).LengthSq() <= (_radius * _radius);
 }
 
 
-AABB2D::AABB2D(const Vector2Int& min, const Vector2Int& max)
+AABB2D::AABB2D(const Vector2& min, const Vector2& max)
     : _min(min), _max(max) {}
 
-void AABB2D::UpdateMinMax(const Vector2Int& point) {
+void AABB2D::UpdateMinMax(const Vector2& point) {
     _min.x = Math::Min(_min.x, point.x);
     _min.y = Math::Min(_min.y, point.y);
     _max.x = Math::Max(_max.x, point.x);
     _max.y = Math::Max(_max.y, point.y);
 }
 
-bool AABB2D::Contains(const Vector2Int& point) const {
+bool AABB2D::Contains(const Vector2& point) const {
     return (point.x >= _min.x && point.x <= _max.x &&
         point.y >= _min.y && point.y <= _max.y);
 }
 
-float AABB2D::MinDistSq(const Vector2Int& point) const {
-    int dx = Math::Max(_min.x - point.x, 0);
+float AABB2D::MinDistSq(const Vector2& point) const {
+    float dx = Math::Max(_min.x - point.x, 0.f);
     dx = Math::Max(dx, point.x - _max.x);
-    int dy = Math::Max(_min.y - point.y, 0);
+    float dy = Math::Max(_min.y - point.y, 0.f);
     dy = Math::Max(dy, point.y - _max.y);
     return static_cast<float>(dx * dx + dy * dy);
 }
 
-void AABB2D::MoveCenterTo(const Vector2Int& targetPoint) {
-    Vector2Int currentCenter = Center();
-    Vector2Int offset = targetPoint - currentCenter;
+void AABB2D::MoveCenterTo(const Vector2& targetPoint) {
+    Vector2 currentCenter = Center();
+    Vector2 offset = targetPoint - currentCenter;
 
     _min += offset;
     _max += offset;
 }
 
-Vector2Int AABB2D::Center() const {
-    return Vector2Int((_min.x + _max.x) / 2, (_min.y + _max.y) / 2);
+Vector2 AABB2D::Center() const {
+    return Vector2((_min.x + _max.x) / 2, (_min.y + _max.y) / 2);
 }
 
 
-Capsule2D::Capsule2D(const Vector2Int& start, const Vector2Int& end, float radius)
+Capsule2D::Capsule2D(const Vector2& start, const Vector2& end, float radius)
     : _segment(start, end), _radius(radius) {}
 
-Vector2Int Capsule2D::PointOnSegment(float t) const {
-    return Vector2Int::ToInteger(_segment.PointOnSegment(t));
+Vector2 Capsule2D::PointOnSegment(float t) const {
+    return Vector2(_segment.PointOnSegment(t));
 }
 
-bool Capsule2D::Contains(const Vector2Int& point) const {
+bool Capsule2D::Contains(const Vector2& point) const {
     return _segment.MinDistSq(point) <= (_radius * _radius);
 }
 
@@ -121,8 +121,8 @@ bool Intersect(const Circle& c, const AABB2D& box) {
     return box.MinDistSq(c._center) <= (c._radius * c._radius);
 }
 
-bool TestSidePlane(float start, float end, float negd, const Vector2Int& norm,
-    std::vector<std::pair<float, Vector2Int>>& out) {
+bool TestSidePlane(float start, float end, float negd, const Vector2& norm,
+    std::vector<std::pair<float, Vector2>>& out) {
     float denom = end - start;
     if (Math::NearZero(denom)) {
         return false;
@@ -140,16 +140,16 @@ bool TestSidePlane(float start, float end, float negd, const Vector2Int& norm,
     }
 }
 
-bool Intersect(const LineSegment2D& l, const AABB2D& b, float& outT, Vector2Int& outNorm) {
-    std::vector<std::pair<float, Vector2Int>> tValues;
+bool Intersect(const LineSegment2D& l, const AABB2D& b, float& outT, Vector2& outNorm) {
+    std::vector<std::pair<float, Vector2>> tValues;
 
     // X軸面との交差テスト
-    TestSidePlane(l._start.x, l._end.x, b._min.x, Vector2Int::NegUnitX, tValues);
-    TestSidePlane(l._start.x, l._end.x, b._max.x, Vector2Int::UnitX, tValues);
+    TestSidePlane(l._start.x, l._end.x, b._min.x, Vector2::NegUnitX, tValues);
+    TestSidePlane(l._start.x, l._end.x, b._max.x, Vector2::UnitX, tValues);
 
     // Y軸面との交差テスト
-    TestSidePlane(l._start.y, l._end.y, b._min.y, Vector2Int::NegUnitY, tValues);
-    TestSidePlane(l._start.y, l._end.y, b._max.y, Vector2Int::UnitY, tValues);
+    TestSidePlane(l._start.y, l._end.y, b._min.y, Vector2::NegUnitY, tValues);
+    TestSidePlane(l._start.y, l._end.y, b._max.y, Vector2::UnitY, tValues);
 
     // t値で昇順にソート
     std::sort(tValues.begin(), tValues.end(), [](const auto& a, const auto& b) {
@@ -159,7 +159,7 @@ bool Intersect(const LineSegment2D& l, const AABB2D& b, float& outT, Vector2Int&
     // 各交差点がAABB内にあるかをテスト
     for (auto& t : tValues) {
         Vector2 point = l.PointOnSegment(t.first);
-        if (b.Contains(Vector2Int::ToInteger(point))) {
+        if (b.Contains(Vector2(point))) {
             outT = t.first;
             outNorm = t.second;
             return true;

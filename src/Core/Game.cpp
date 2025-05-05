@@ -278,12 +278,16 @@ void Game::SetAction(){
 	_inputAction->MapAction("Up", SDL_SCANCODE_UP);
 	_inputAction->MapAction("Down", SDL_SCANCODE_DOWN);
 	_inputAction->MapAction("Select", SDL_SCANCODE_SPACE);
+	_inputAction->MapAction("Jump", SDL_SCANCODE_SPACE);
+	_inputAction->MapAction("Menu", SDL_SCANCODE_TAB);
 
 	_inputAction->MapAction("Left", SDL_GAMEPAD_BUTTON_DPAD_LEFT);
 	_inputAction->MapAction("Right", SDL_GAMEPAD_BUTTON_DPAD_RIGHT);
 	_inputAction->MapAction("Up", SDL_GAMEPAD_BUTTON_DPAD_UP);
 	_inputAction->MapAction("Down", SDL_GAMEPAD_BUTTON_DPAD_DOWN);
 	_inputAction->MapAction("Select", SDL_GAMEPAD_BUTTON_SOUTH);
+	_inputAction->MapAction("Jump", SDL_GAMEPAD_BUTTON_SOUTH);
+	_inputAction->MapAction("Menu", SDL_GAMEPAD_BUTTON_BACK);
 
 	_inputAction->MapActionAxis("Horizontal", SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT);
 	_inputAction->MapActionAxis("Vertical", SDL_SCANCODE_UP, SDL_SCANCODE_DOWN);

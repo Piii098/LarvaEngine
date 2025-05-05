@@ -9,6 +9,7 @@ out vec4 outColor;
 
 uniform sampler2D uTexture;
 uniform vec3 uColor = {1,1,1};
+uniform float uAlpha = 1.0;
 
 void main()
 {
@@ -18,6 +19,8 @@ void main()
 
     color = clamp(color, 0.0, 1.0);
 
-    outColor = vec4(color, texColor.a); // アルファは元のテクスチャから取得
+    float alpha = texColor.a * uAlpha;
+
+    outColor = vec4(color, alpha); // アルファは元のテクスチャから取得
 
 }

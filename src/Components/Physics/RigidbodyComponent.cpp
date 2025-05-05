@@ -16,6 +16,7 @@ RigidbodyComponent::RigidbodyComponent(GameObject& parent, int updateLayer)
     , _sumOfForces(Vector2::Zero)
     , _velocity(Vector2::Zero)
     , _isGravity(false)
+	, _onGround(false) // 地面に接触していない状態で初期化
     , _internalPosition(Vector2::Zero){  
     
     //_internalPosition = _parent->PositionToFloat();
@@ -35,10 +36,33 @@ void RigidbodyComponent::Update(float deltaTime) {
 
 void RigidbodyComponent::FixedUpdate(float deltaTime) {
 
-    if (_isGravity) {
-        const float GRAVITY_CONSTANT = 100000.0f;
+    // 毎フレームで初期化
+    _onGround = false;
 
-        AddForce(Vector2(0, -GRAVITY_CONSTANT * deltaTime));
+    // 地面との接触を確認する
+    LineSegment2D ray(
+        _internalPosition + Vector2(0, -8),
+        _internalPosition + Vector2(0, -8) + Vector2(0, -0.5) // 下方向に短い線分を作成
+    );
+
+    // SDL_Log("raystart: %f, %f", ray._start.x, ray._start.y);
+    // SDL_Log("rayend: %f, %f", ray._end.x, ray._end.y);
+
+    CollisionInfo collInfo;
+    auto& physWorld = _parent.GetScene().GetManager().GetGame().GetPhysWorld();
+
+    if (physWorld.SegmentCast(ray, collInfo, _parent)) {
+        // 接触したオブジェクトがGROUNDタグを持つ場合
+        if (collInfo._object->Tag() == GameObject::TAG::GROUND) {
+            // SDL_Log("Ground");
+            _onGround = true; // 地面に接触しているとマーク
+        }
+    }
+
+    // 重力を適用
+    if (_isGravity && !_onGround) {
+        const float GRAVITY_CONSTANT = 4000.0f;
+        AddForce(Vector2(0, -GRAVITY_CONSTANT ));
     }
 }
 
@@ -46,7 +70,7 @@ void RigidbodyComponent::CalculateVelocity(float deltaTime) {
     if (_mass <= 0.f) return;
 
     _internalPosition = _parent.PositionToFloat();  // 親オブジェクトの位置を取得
-    
+
     Vector2 totalForce = _sumOfForces - (_velocity * _drag);
     Vector2 accele;
     accele.x = totalForce.x / _mass;
@@ -56,6 +80,8 @@ void RigidbodyComponent::CalculateVelocity(float deltaTime) {
     
     _internalPosition += _velocity * deltaTime;
 
+	//SDL_Log("Velocity: %f, %f", _velocity.x, _velocity.y);
+
 	_sumOfForces = Vector2::Zero; // 力をリセット
      
 
@@ -64,6 +90,7 @@ void RigidbodyComponent::CalculateVelocity(float deltaTime) {
 void RigidbodyComponent::UpdatePosition(float deltaTime) {
   
 	 _parent.Position(_internalPosition);
+     _internalPosition = _parent.PositionToFloat();  // 親オブジェクトの位置を取得
  
 }
 

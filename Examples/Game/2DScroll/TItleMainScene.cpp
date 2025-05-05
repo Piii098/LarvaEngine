@@ -4,6 +4,8 @@
 #include "LarvaEngine/Core/Resources/AssetManager.h"
 #include "LarvaEngine/Core/Resources/Texture.h"
 #include "Examples/Game/2DScroll/TitleUIScene.h"
+#include "Examples/Game/2DScroll/MenuUIScene.h"
+#include "LarvaEngine/GameObjects/Camera.h"
 
 Example2DScroll::TitleMainScene::TitleMainScene(SceneManager& manager)
 	: MainScene(manager) {
@@ -17,5 +19,6 @@ void Example2DScroll::TitleMainScene::LoadData() {
 }
 
 void Example2DScroll::TitleMainScene::LoadObjects() {
+	_camera = &CreateGameObject<Camera>();
 	CreateUIScene<TitleUIScene>();
 }

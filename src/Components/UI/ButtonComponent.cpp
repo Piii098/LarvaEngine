@@ -141,5 +141,5 @@ bool ButtonComponent::IsPointInButton(float x, float y) const {
 	Vector2 mousePos = ConvertMouseToUIScene(x, y);
 
 	// ボタンのAABBとマウス座標を比較
-	return box.Contains(Vector2Int::ToInteger(mousePos));
+	return box.Contains(Vector2(mousePos));
 }

@@ -247,6 +247,8 @@
     <ClCompile Include="Examples\Game\2DScroll\TileMap.cpp">
       <Filter>Examples\Game\2DScroll</Filter>
     </ClCompile>
+    <ClCompile Include="Examples\Game\2DScroll\TestMainScene.cpp" />
+    <ClCompile Include="Examples\Game\2DScroll\HUDUIScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\LarvaEngine\Components\AI\AICompoennt.h">
@@ -417,6 +419,8 @@
     <ClInclude Include="Examples\Game\2DScroll\TileMap.h">
       <Filter>Examples\Game\2DScroll</Filter>
     </ClInclude>
+    <ClInclude Include="Examples\Game\2DScroll\TestMainScene.h" />
+    <ClInclude Include="Examples\Game\2DScroll\HUDUIScene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\Bloom.vert">

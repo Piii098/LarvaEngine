@@ -103,6 +103,17 @@ public:
 		return uiSceneRef;
     }
 
+	template <typename T, typename... Args>
+	T* GetUIScene(Args&&... args) {
+		for (auto& ui : _uiScenes) {
+			if (T* t = dynamic_cast<T*>(ui.get())) { // unique_ptrから生ポインタを取得
+				return t;
+			}
+		}
+		return nullptr;
+
+	}
+
 	/// @brief UISceneの削除
 	/// UISceneを削除する
 	/// UISceneのデストラクタで呼ばれることを想定している

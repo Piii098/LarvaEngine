@@ -18,11 +18,16 @@ Example2DScroll::Player::Player(Scene& scene)
 	RigidbodyComponent& rigidbodyComp = CreateComponent<RigidbodyComponent>(true);
 	rigidbodyComp.Mass(5);
 	//rigidbodyComp.Drag(10.f);
-	rigidbodyComp.IsGravity(false);
+	rigidbodyComp.IsGravity(true);
 
 	MoveInputComponent& moveInputComp = CreateComponent<MoveInputComponent>();
 	moveInputComp.MoveSpeedY(40.f);
 	moveInputComp.State(Component::STATE::INACTIVE);
+
+	auto& boxComp = CreateComponent<BoxComponent2D>(true, true);
+	AABB2D box(Vector2(-8, -8), Vector2(8, 8));
+	boxComp.SetObjectBox(box);
+	//boxComp.DisplayBox();
 
 }
 
@@ -36,5 +41,5 @@ Example2DScroll::Player::~Player() {
 
 void Example2DScroll::Player::UpdateObject(float deltaTime) {
 	
-
+	//SDL_Log("Position: %d, %d", Position().x, Position().y);
 }

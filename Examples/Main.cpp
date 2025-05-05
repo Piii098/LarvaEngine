@@ -1,6 +1,8 @@
 ﻿#ifndef BUILD_AS_LIBRARY
 #include "LarvaEngine/Core/Game.h"
 #include "Examples/Game/2DScroll/TitleMainScene.h"
+#include "Examples/Game/2DScroll/TestMainScene.h"
+#include "Examples/Game/2DScroll/GameMainScene.h"
 
 int main(int argc, char* argv[]) {
 	

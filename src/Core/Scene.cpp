@@ -10,7 +10,6 @@
 
 Scene::Scene(SceneManager& manager)
 	: _manager(manager)
-	, _camera(nullptr)
 	, _state(STATE::ACTIVE)
 	, _isUpdating(false) {
 }
