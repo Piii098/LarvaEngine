@@ -4,6 +4,7 @@
 #include <memory>
 #include <SDL3/SDL.h>
 #include "LarvaEngine/Core/Utilities/Math.h" 
+#include "LarvaEngine/Renderer/Renderer.h"
 
 /// @brief アンビエントライト構造体
 /// カラーと強度を持ち各レイヤーに設定する
@@ -23,8 +24,7 @@ struct AmbientLight {
 };
 
 // ===== 前方宣言 ===== //
-class Game;
-class VertexArray;
+class VertexArray2D;
 class Shader;
 class Camera;
 class MainScene;
@@ -39,18 +39,13 @@ class LightComponent;
 /// アンビエントライトを設定することで各レイヤーに光を当てる
 /// ライトコンポーネントを追加することでライトを追加する
 /// メインシーンは低解像度レンダリング、UIシーンは実ウィンドウレンダリングでUIを重ねる形で描写する
-class Renderer {
+class Renderer2D : public Renderer {
 public:
 
 	// ===== コンストラクタ・デストラクタ =====//
-    Renderer(Game& game);
-    ~Renderer();
+	Renderer2D(Game& game);
+    ~Renderer2D() override;
 
-<<<<<<< HEAD
-=======
-	/// @brief �����_���[�̏�����
-	virtual bool Initialize(const std::string& windowName) = 0;
->>>>>>> 544a8b5 (2Dレンダラが出力不可、対処中)
 
 	// ===== 初期化処理 =====//
 
@@ -60,39 +55,23 @@ public:
 	/// @param screenHeight ウィンドウの高さ
 	/// @param lowResWidth 低解像度レンダリングの幅
 	/// @param lowResHeight 低解像度レンダリングの高さ
-    bool Initialize(float screenWidth, float screenHeight, float lowResWidth, float lowResHeight, const std::string& windowName);
-    
+    bool Initialize(const std::string& windowName) override;
 
 	/// @brief 描写処理
 	/// メインシーンとUIシーンを描写する
 	/// レイヤーごとの描写のち、ライトを描写する
 	/// ポストプロセスを行い、UIを描写する
-    void Render();
+    void Render() override;
 
 	
 	// ===== レイヤー関連 ===== //
 
-<<<<<<< HEAD
     /// @brief パララックス係数の設定 
 	/// 係数は0を中央レイヤーとし、1を最背面レイヤーとする
 	/// -は前面に、+は背面に移動する
     /// @param layer 指定レイヤー 
 	/// @param factor パララテックス係数
     void SetParallaxFactor(int layer, float factor);
-=======
-	void SetWindowSize(int width, int height) {
-		_windowWidth = width;
-		_windowHeight = height;
-	}
-
-	void SetLowResSize(int width, int height) {
-		_lowResWidth = width;
-		_lowResHeight = height;
-	}
-
-	virtual void AddLight(LightComponent* light) {};
-	virtual void RemoveLight(LightComponent* light) {};
->>>>>>> 544a8b5 (2Dレンダラが出力不可、対処中)
 
 	/// @brief パララックス係数の取得
 	/// @param layer 指定レイヤー
@@ -113,18 +92,10 @@ public:
 	/// @param factor アンビエントライト係数
 	void SetAmbientLightFactor(int layer, AmbientLight factor);
 
-<<<<<<< HEAD
 	/// @brief 全てのアンビエントライト係数の設定
 	/// 各レイヤーにアンビエントライトを設定する
 	/// @param factor アンビエントライト係数
 	void SetAllAmbientLightFactor(AmbientLight factor);
-=======
-	std::string _windowName;
-	int _windowWidth = -1;
-	int _windowHeight = -1;
-	int _lowResWidth = -1;
-	int _lowResHeight = -1;
->>>>>>> 544a8b5 (2Dレンダラが出力不可、対処中)
 
 	/// @brief アンビエントライト係数の取得
 	/// @param layer 指定レイヤー
@@ -134,17 +105,22 @@ public:
 	/// @brief ライトの追加
 	/// ライトコンポーネントを追加する
 	/// @param light ライトコンポーネント
-	void AddLight(LightComponent* light);
+	void AddLight(LightComponent* light) override;
 
 	/// @brief ライトの削除
 	/// ライトコンポーネントを削除する
 	/// @param light ライトコンポーネント
-	void RemoveLight(LightComponent* light);
+	void RemoveLight(LightComponent* light) override;
 
 	
 	// ===== ゲッター ===== //
 
 	SDL_Window* GetWindow() const { return _window; }
+
+	void SetLowResResolution(float width, float height) {
+		_lowResWidth = width;
+		_lowResHeight = height;
+	}
 
 private:
 
@@ -234,11 +210,8 @@ private:
 	std::vector<AmbientLight> _ambientLightFactors;	///< 各レイヤーのアンビエントライト係数
 	std::vector<LightComponent*> _lights;
 
-    // 基本的なレンダリングリソース
-	SDL_Window* _window;							///< ウィンドウ
-	SDL_GLContext _context;							///< OpenGLコンテキスト
-	std::unique_ptr<VertexArray> _frameVerts;			///< フレーム描写用頂点配列
-	std::unique_ptr<VertexArray> _spriteVerts;			///< スプライト描写用頂点配列
+	std::unique_ptr<VertexArray2D> _frameVerts;			///< フレーム描写用頂点配列
+	std::unique_ptr<VertexArray2D> _spriteVerts;			///< スプライト描写用頂点配列
 	std::unique_ptr<Shader> _frameShader;				///< フレーム描写用シェーダー
 	std::unique_ptr<Shader> _spriteShader;				///< スプライト描写用シェーダー
 	std::unique_ptr<Shader> _lightShader;				///< ライト描写用シェーダー
@@ -246,15 +219,6 @@ private:
 	std::unique_ptr<Shader> _extractBrightShader;		///< ブライトネス抽出用シェーダー
 	std::unique_ptr<Shader> _blurShader;				///< ブラー用シェーダー
 	std::unique_ptr<Shader> _finalBloomShader;			///< ブルームエフェクト用シェーダー
-
-    // ウィンドウ設定
-	float _screenWidth;							///< ウィンドウの幅
-	float _screenHeight;						///< ウィンドウの高さ	
-	float _lowResWidth;							///< 低解像度レンダリングの幅
-	float _lowResHeight;						///< 低解像度レンダリングの高さ	
-
-    // ゲームリソース
-	Game& _game;								///< ゲームクラス
 
 };
 

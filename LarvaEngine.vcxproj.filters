@@ -247,6 +247,103 @@
     <ClCompile Include="Examples\Game\2DScroll\TileMap.cpp">
       <Filter>Examples\Game\2DScroll</Filter>
     </ClCompile>
+<<<<<<< HEAD
+=======
+    <ClCompile Include="src\Renderer\2D\Renderer2D.cpp">
+      <Filter>Renderer\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\3D\Renderer3D.cpp">
+      <Filter>Renderer\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\3D\VertexArray3D.cpp">
+      <Filter>Renderer\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Resources\Model.cpp">
+      <Filter>Core\Resouces</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\Draw\ModelComponent.cpp">
+      <Filter>Components\Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\2D\Scroll\AnimatedButton.cpp">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\2D\Scroll\Background.cpp">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\Physics\Box2DComponent.cpp">
+      <Filter>Components\Phys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\Physics\Box3DComponent.cpp">
+      <Filter>Components\Phys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Physics\Collision3D.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\3D\Sample\Cube.cpp">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\2D\Scroll\GameMainScene.cpp">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\3D\FPS\GameMainScene.cpp">
+      <Filter>Examples\3D\FPS</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\2D\Scroll\HUDUIScene.cpp">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\2D\Scroll\MenuUIScene.cpp">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\2D\Scroll\OptionUIScene.cpp">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\3D\FPS\Player.cpp">
+      <Filter>Examples\3D\FPS</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\2D\Scroll\Player.cpp">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Physics\PhysWorld3D.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\3D\Sample\Player.cpp">
+      <Filter>Examples\3D\Sample</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\2D\Scroll\TItleMainScene.cpp">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\2D\Scroll\TitleUIScene.cpp">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\2D\Scroll\TileMap.cpp">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\2D\Scroll\TestMainScene.cpp">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\3D\Sample\Sample3DSubScene.cpp">
+      <Filter>Examples\3D\Sample</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\3D\Sample\SampleMainScene.cpp">
+      <Filter>Examples\3D\Sample</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\Physics\Rigidbody3DComponent.cpp">
+      <Filter>Components\Phys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\Physics\Rigidbody2DComponent.cpp">
+      <Filter>Components\Phys</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\2D\Scroll\PlaySubScene.cpp">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\3D\FPS\MoveComponent.cpp" />
+    <ClCompile Include="Examples\3D\FPS\FPSCameraComponent.cpp">
+      <Filter>Examples\3D\FPS</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\3D\FPS\HUDUIScene.cpp">
+      <Filter>Examples\3D\FPS</Filter>
+    </ClCompile>
+>>>>>>> 544a8b5 (2Dレンダラが出力不可、対処中)
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\LarvaEngine\Components\AI\AICompoennt.h">
@@ -414,8 +511,110 @@
     <ClInclude Include="Examples\Game\2DScroll\MenuUIScene.h">
       <Filter>Examples\Game\2DScroll</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Examples\Game\2DScroll\TileMap.h">
       <Filter>Examples\Game\2DScroll</Filter>
+=======
+    <ClInclude Include="include\LarvaEngine\Renderer\3D\VertexArray3D.h">
+      <Filter>Renderer\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Renderer\3D\Renderer3D.h">
+      <Filter>Renderer\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Renderer\3D\Mesh.h">
+      <Filter>Renderer\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Components\Draw\MeshComponent.h">
+      <Filter>Components\Draw</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Core\Resources\Model.h">
+      <Filter>Core\Resouces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Components\Draw\ModelComponent.h">
+      <Filter>Components\Draw</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\2D\Scroll\AnimatedButton.h">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\2D\Scroll\Background.h">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Components\Physics\Box2DComponent.h">
+      <Filter>Components\Phys</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Components\Physics\Box3DComponent.h">
+      <Filter>Components\Phys</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Physics\Collision3D.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\3D\Sample\Cube.h">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\2D\Scroll\GameMainScene.h">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\3D\FPS\GameMainScene.h">
+      <Filter>Examples\3D\FPS</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\2D\Scroll\HUDUIScene.h">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\2D\Scroll\MenuUIScene.h">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\2D\Scroll\OptionUIScene.h">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\3D\FPS\Player.h">
+      <Filter>Examples\3D\FPS</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\2D\Scroll\Player.h">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Physics\PhysWorld3D.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\3D\Sample\Player.h">
+      <Filter>Examples\3D\Sample</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\2D\Scroll\TitleUIScene.h">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\2D\Scroll\TitleMainScene.h">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\2D\Scroll\TileMap.h">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\2D\Scroll\TestMainScene.h">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\3D\Sample\Sample3DSubScene.h">
+      <Filter>Examples\3D\Sample</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\3D\Sample\SampleMainScene.h">
+      <Filter>Examples\3D\Sample</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Components\Physics\Rigidbody3DComponent.h">
+      <Filter>Components\Phys</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LarvaEngine\Components\Physics\Rigidbody2DComponent.h">
+      <Filter>Components\Phys</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\2D\Scroll\PlaySubScene.h">
+      <Filter>Examples\2D\Scroll</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\3D\FPS\MoveComponent.h" />
+    <ClInclude Include="include\LarvaEngine\Core\ThreadPool.h">
+      <Filter>Core</Filter>
+>>>>>>> 544a8b5 (2Dレンダラが出力不可、対処中)
+    </ClInclude>
+    <ClInclude Include="Examples\3D\FPS\FPSCameraComponent.h">
+      <Filter>Examples\3D\FPS</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\3D\FPS\HUDUIScene.h">
+      <Filter>Examples\3D\FPS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

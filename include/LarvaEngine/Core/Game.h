@@ -57,7 +57,7 @@ public:
     /// @param windowHeight ウィンドウの高さ
     /// @param lowResWidth 低解像度レンダリングの幅
     /// @param lowResHeight 低解像度レンダリングの高さ
-    void SetWindowsSize(int windowWidth, int windowHeight, int lowResWidth, int lowResHeight);
+    void SetWindowsSize(int windowWidth, int windowHeight, int lowResWidth = -1, int lowResHeight = -1);
 
 	/// @brief ウィンドウ名を設定する
 	/// @param name ウィンドウ名

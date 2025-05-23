@@ -3,7 +3,7 @@
 layout (location = 0) out vec4 FragColor;
 layout (location = 1) out vec4 BrightColor;
 
-in vec2 TexCoords;
+in vec2 fragTexCoord;
 uniform sampler2D frameTexture;
 
 // 暫定的なHSV変換に用いる関数
@@ -38,7 +38,7 @@ uniform float threshold = 0.7;
 
 void main()
 {
-    vec4 texColor = texture(frameTexture, TexCoords);
+    vec4 texColor = texture(frameTexture, fragTexCoord);
     FragColor = vec4(texColor.rgb, 1.0);
 
     // RGB → HSV に変換

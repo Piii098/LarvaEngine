@@ -11,6 +11,8 @@
 #include "LarvaEngine/Core/Scene.h"
 #include "LarvaEngine/Core/UIScene.h"
 #include "LarvaEngine/Components/Light/LightComponent.h"
+#include "LarvaEngine/Core/Resources/Texture.h"
+#include "LarvaEngine/Core/Resources/AssetManager.h"
 
 //==============================================================================
 // ƒRƒ“ƒXƒgƒ‰ƒNƒ^EƒfƒXƒgƒ‰ƒNƒ^
@@ -35,6 +37,7 @@ Renderer::~Renderer() {
  *
  * ƒVƒF[ƒ_[‚Ìƒ[ƒhAglew‚Ì‰Šú‰»AƒtƒŒ[ƒ€ƒoƒbƒtƒ@‚Ì‰Šú‰»‚ğs‚¤
  */
+<<<<<<< HEAD:src/Renderer/Renderer2D.cpp
 bool Renderer::Initialize(float screenWidth, float screenHeight, float lowResWidth, float lowResHeight, const std::string& windowName) {
     _screenWidth = screenWidth;
     _screenHeight = screenHeight;
@@ -42,6 +45,18 @@ bool Renderer::Initialize(float screenWidth, float screenHeight, float lowResWid
     _lowResHeight = lowResHeight;
 
 
+=======
+bool Renderer2D::Initialize(const std::string& windowName) {
+
+    _windowHeight = _windowHeight == -1 ? 720 : _windowHeight;
+    _windowWidth = _windowWidth == -1 ? 1280 : _windowWidth;
+
+    if (_lowResHeight == -1 || _lowResWidth == -1) {
+        _lowResHeight = _windowHeight;
+        _lowResWidth = _windowWidth;
+    }
+   
+>>>>>>> 544a8b5 (2Dãƒ¬ãƒ³ãƒ€ãƒ©ãŒå‡ºåŠ›ä¸å¯ã€å¯¾å‡¦ä¸­):src/Renderer/2D/Renderer2D.cpp
     _numLayers = 16;
 
     // ƒpƒ‰ƒ‰ƒbƒNƒXŒW”‚ğ‰Šú‰» (‚·‚×‚Ä0.0 = ’†‰›ƒŒƒCƒ„[‚Æ“¯‚¶“®‚«)
@@ -107,13 +122,21 @@ bool Renderer::Initialize(float screenWidth, float screenHeight, float lowResWid
 // ===== •`Êˆ— ===== //
 
 /**
+<<<<<<< HEAD:src/Renderer/Renderer2D.cpp
  * ƒQ[ƒ€‚Ì•`Êˆ—
  *
  * ’á‰ğ‘œ“xƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÅƒXƒvƒ‰ƒCƒgAƒ‰ƒCƒg‚Ì•`Ê
  * ->‡¬->ƒuƒ‹[ƒ€ƒGƒtƒFƒNƒg->UI‚Ì•`Ê->ÅIo—Í
+=======
+ * ã‚²ãƒ¼ãƒ ã®æå†™å‡¦ç†
+ *
+ * ä½è§£åƒåº¦ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã€ãƒ©ã‚¤ãƒˆã®æå†™
+ * ->åˆæˆ->ãƒ–ãƒ«ãƒ¼ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ->UIã®æå†™->æœ€çµ‚å‡ºåŠ›
+>>>>>>> 544a8b5 (2Dãƒ¬ãƒ³ãƒ€ãƒ©ãŒå‡ºåŠ›ä¸å¯ã€å¯¾å‡¦ä¸­):src/Renderer/2D/Renderer2D.cpp
  */
 void Renderer::Render() {
 
+<<<<<<< HEAD:src/Renderer/Renderer2D.cpp
     // ƒJƒƒ‰‚Ìƒrƒ…[s—ñ‚ğæ“¾
     Camera* camera = _game.GetSceneManager().GetCurrentMainScene().GetCamera();
     Matrix4 view = Matrix4::Identity;
@@ -127,11 +150,34 @@ void Renderer::Render() {
     MainScene& currentMainScene = _game.GetSceneManager().GetCurrentMainScene();
 
     // ƒXƒeƒbƒv1: ŠeƒŒƒCƒ„[‚²‚Æ‚ÉƒXƒvƒ‰ƒCƒg‚Æƒ‰ƒCƒg‚Ì’á‰ğ‘œ“xƒŒƒ“ƒ_ƒŠƒ“ƒO
+=======
+
+    // ã‚«ãƒ¡ãƒ©ã®ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã‚’å–å¾—
+    Camera* camera = _game.GetSceneManager().GetCurrentMainScene().GetCamera();
+    Matrix4 view = Matrix4::Identity;
+    Vector2Int cameraPos = Vector2Int::Zero;
+    if (camera) { // ã‚«ãƒ¡ãƒ©ãŒå­˜åœ¨ã™ã‚‹å ´åˆ
+        //SDL_Log("cameraPos, %d,%d", _game.GetSceneManager().GetCurrentMainScene().GetCamera()->Position().x, _game.GetSceneManager().GetCurrentMainScene().GetCamera()->Position().y);
+        view = camera->GetViewMatrix();
+        cameraPos = camera->Position2D();
+
+        //SDL_Log("Rend CameraPos: %d, %d", cameraPos.x, cameraPos.y);
+    }
+
+    // ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ãƒ³ã‚’å–å¾—
+    MainScene& currentMainScene = _game.GetSceneManager().GetCurrentMainScene();
+
+    // ã‚¹ãƒ†ãƒƒãƒ—1: å„ãƒ¬ã‚¤ãƒ¤ãƒ¼ã”ã¨ã«ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã¨ãƒ©ã‚¤ãƒˆã®ä½è§£åƒåº¦ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°
+>>>>>>> 544a8b5 (2Dãƒ¬ãƒ³ãƒ€ãƒ©ãŒå‡ºåŠ›ä¸å¯ã€å¯¾å‡¦ä¸­):src/Renderer/2D/Renderer2D.cpp
     for (int i = 0; i < _numLayers; i++) {
 
         glBindFramebuffer(GL_FRAMEBUFFER, _layerFBOs[i]);
         glViewport(0, 0, _lowResWidth, _lowResHeight);
+<<<<<<< HEAD:src/Renderer/Renderer2D.cpp
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+=======
+        glClearColor(0.2f, 0.0f, 0.0f, 1.0f);
+>>>>>>> 544a8b5 (2Dãƒ¬ãƒ³ãƒ€ãƒ©ãŒå‡ºåŠ›ä¸å¯ã€å¯¾å‡¦ä¸­):src/Renderer/2D/Renderer2D.cpp
         glClear(GL_COLOR_BUFFER_BIT);
 
         glEnable(GL_BLEND);
@@ -157,18 +203,30 @@ void Renderer::Render() {
             regionView = regionView * parallaxTranslation;
         }
 
+<<<<<<< HEAD:src/Renderer/Renderer2D.cpp
         // ƒƒCƒ“ƒV[ƒ“‚Ì•`‰æ
+=======
+        // ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ãƒ³ã®æç”»
+>>>>>>> 544a8b5 (2Dãƒ¬ãƒ³ãƒ€ãƒ©ãŒå‡ºåŠ›ä¸å¯ã€å¯¾å‡¦ä¸­):src/Renderer/2D/Renderer2D.cpp
         DrawMainScene(currentMainScene, regionView, i);
 
         glBindFramebuffer(GL_FRAMEBUFFER, _lightFBOs[i]);
         glViewport(0, 0, _lowResWidth, _lowResHeight);
+<<<<<<< HEAD:src/Renderer/Renderer2D.cpp
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);  // Š®‘S‚É“§–¾‚ÈƒoƒbƒNƒOƒ‰ƒEƒ“ƒh
+=======
+        glClearColor(0.2f, 0.0f, 0.0f, 1.0f);    // å®Œå…¨ã«é€æ˜ãªãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰
+>>>>>>> 544a8b5 (2Dãƒ¬ãƒ³ãƒ€ãƒ©ãŒå‡ºåŠ›ä¸å¯ã€å¯¾å‡¦ä¸­):src/Renderer/2D/Renderer2D.cpp
         glClear(GL_COLOR_BUFFER_BIT);
 
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
+<<<<<<< HEAD:src/Renderer/Renderer2D.cpp
         // ƒ‰ƒCƒg‚Ì•`‰æ
+=======
+        // ãƒ©ã‚¤ãƒˆã®æç”»
+>>>>>>> 544a8b5 (2Dãƒ¬ãƒ³ãƒ€ãƒ©ãŒå‡ºåŠ›ä¸å¯ã€å¯¾å‡¦ä¸­):src/Renderer/2D/Renderer2D.cpp
         DrawLight(regionView, i);
     }
 
@@ -178,7 +236,7 @@ void Renderer::Render() {
     // ƒXƒeƒbƒv2: ‡¬—pƒtƒŒ[ƒ€ƒoƒbƒtƒ@‚ÉƒŒƒCƒ„[‚ğ‡¬
     glBindFramebuffer(GL_FRAMEBUFFER, _combineLightFBO);
     glViewport(0, 0, _lowResWidth, _lowResHeight);
-    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+    glClearColor(0.2f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
     _combineShader->SetActive();
@@ -189,26 +247,42 @@ void Renderer::Render() {
         CombineLight(i);
     }
 
+<<<<<<< HEAD:src/Renderer/Renderer2D.cpp
     // ƒXƒeƒbƒv3: ƒuƒ‹[ƒ€ƒGƒtƒFƒNƒg
+=======
+    // ã‚¹ãƒ†ãƒƒãƒ—3: ãƒ–ãƒ«ãƒ¼ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+>>>>>>> 544a8b5 (2Dãƒ¬ãƒ³ãƒ€ãƒ©ãŒå‡ºåŠ›ä¸å¯ã€å¯¾å‡¦ä¸­):src/Renderer/2D/Renderer2D.cpp
     glBindFramebuffer(GL_FRAMEBUFFER, _extractBrightFBO);
     glViewport(0, 0, _lowResWidth, _lowResHeight);
-    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+    glClearColor(0.2f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
     PostProcess();
 
+<<<<<<< HEAD:src/Renderer/Renderer2D.cpp
     // ƒXƒeƒbƒv4: UI‚ğÀƒEƒBƒ“ƒhƒEƒTƒCƒY‚Å‡¬ 
     glBindFramebuffer(GL_FRAMEBUFFER, _finalFBO);
     glViewport(0, 0, _screenWidth, _screenHeight);
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+=======
+    // ã‚¹ãƒ†ãƒƒãƒ—4: UIã‚’å®Ÿã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã§åˆæˆ 
+    glBindFramebuffer(GL_FRAMEBUFFER, _finalFBO);
+    glViewport(0, 0, _windowWidth, _windowHeight);
+    glClearColor(0.2f, 0.0f, 0.0f, 1.0f);
+>>>>>>> 544a8b5 (2Dãƒ¬ãƒ³ãƒ€ãƒ©ãŒå‡ºåŠ›ä¸å¯ã€å¯¾å‡¦ä¸­):src/Renderer/2D/Renderer2D.cpp
     glClear(GL_COLOR_BUFFER_BIT);
 
     DrawAndCombineUI(currentMainScene);
 
     // ƒXƒeƒbƒv3: ÅIo—ÍiƒEƒBƒ“ƒhƒE‚É•`‰æj
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+<<<<<<< HEAD:src/Renderer/Renderer2D.cpp
     glViewport(0, 0, _screenWidth, _screenHeight);
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+=======
+    glViewport(0, 0, _windowWidth, _windowHeight);
+    glClearColor(0.2f, 0.0f, 0.0f, 1.0f);
+>>>>>>> 544a8b5 (2Dãƒ¬ãƒ³ãƒ€ãƒ©ãŒå‡ºåŠ›ä¸å¯ã€å¯¾å‡¦ä¸­):src/Renderer/2D/Renderer2D.cpp
     glClear(GL_COLOR_BUFFER_BIT);
 
     _frameShader->SetActive();
@@ -220,6 +294,46 @@ void Renderer::Render() {
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
     SwapWindow();
+
+
+
+    /*
+
+    Matrix4 view = Matrix4::Identity;
+
+    // ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ãƒ³ã‚’å–å¾—
+    MainScene& currentMainScene = _game.GetSceneManager().GetCurrentMainScene();
+    // ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã«æç”»ã™ã‚‹ã“ã¨ã‚’æ˜ç¢ºã«ã™ã‚‹
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glViewport(0, 0, _windowWidth, _windowHeight);
+    glClearColor(0.2f, 0.0f, 0.0f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+
+    _spriteShader->SetActive();
+    _spriteVerts->SetActive();
+
+    if (!_spriteVerts) {
+        SDL_Log("ERROR: _spriteVerts is null!");
+        return;
+    }
+
+    Matrix4 viewProj = Matrix4::CreateSimpleViewProj(_windowWidth, _windowHeight);
+
+    _spriteShader->SetMatrixUniform("uViewProj", view * viewProj);
+    _spriteShader->SetMatrixUniform("uWorldTransform", Matrix4::Identity);
+    _spriteShader->SetIntUniform("uTexture", 0);
+    Texture* sample = _game.GetTextureManager().Get("Sample");
+    sample->SetActive();
+
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+
+    SwapWindow();
+
+    */
 }
 
 // ===== ƒ‰ƒCƒgŠÖ˜A ===== //
@@ -764,6 +878,7 @@ void Renderer::CreateVerts() {
  *
  * ƒƒ‚ƒŠ‚Ì‰ğ•úAOpenGL‚ÌƒRƒ“ƒeƒLƒXƒg‚Ì”jŠü‚ğs‚¤
  */
+<<<<<<< HEAD:src/Renderer/Renderer2D.cpp
 void Renderer::Shutdown() {
 
     if (_frameShader) {
@@ -793,6 +908,9 @@ void Renderer::Shutdown() {
     if (_finalBloomShader) {
         _finalBloomShader->Unload();
     }
+=======
+void Renderer2D::Shutdown() {
+>>>>>>> 544a8b5 (2Dãƒ¬ãƒ³ãƒ€ãƒ©ãŒå‡ºåŠ›ä¸å¯ã€å¯¾å‡¦ä¸­):src/Renderer/2D/Renderer2D.cpp
 
     SDL_GL_DestroyContext(_context);
     SDL_DestroyWindow(_window);

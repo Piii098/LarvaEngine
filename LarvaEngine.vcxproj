@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClCompile Include="Examples\Game\2DScroll\AnimatedButton.cpp" />
     <ClCompile Include="Examples\Game\2DScroll\Background.cpp" />
     <ClCompile Include="Examples\Game\2DScroll\FollowCamera..cpp" />
@@ -29,6 +30,28 @@
     <ClCompile Include="Examples\Game\2DScroll\TileMap.cpp" />
     <ClCompile Include="Examples\Game\2DScroll\TItleMainScene.cpp" />
     <ClCompile Include="Examples\Game\2DScroll\TitleUIScene.cpp" />
+=======
+    <ClCompile Include="Examples\2D\Scroll\AnimatedButton.cpp" />
+    <ClCompile Include="Examples\2D\Scroll\Background.cpp" />
+    <ClCompile Include="Examples\2D\Scroll\GameMainScene.cpp" />
+    <ClCompile Include="Examples\2D\Scroll\HUDUIScene.cpp" />
+    <ClCompile Include="Examples\2D\Scroll\MenuUIScene.cpp" />
+    <ClCompile Include="Examples\2D\Scroll\Player.cpp" />
+    <ClCompile Include="Examples\2D\Scroll\PlaySubScene.cpp" />
+    <ClCompile Include="Examples\2D\Scroll\TestMainScene.cpp" />
+    <ClCompile Include="Examples\2D\Scroll\TileMap.cpp" />
+    <ClCompile Include="Examples\2D\Scroll\TItleMainScene.cpp" />
+    <ClCompile Include="Examples\2D\Scroll\TitleUIScene.cpp" />
+    <ClCompile Include="Examples\3D\FPS\FPSCameraComponent.cpp" />
+    <ClCompile Include="Examples\3D\FPS\GameMainScene.cpp" />
+    <ClCompile Include="Examples\3D\FPS\HUDUIScene.cpp" />
+    <ClCompile Include="Examples\3D\FPS\MoveComponent.cpp" />
+    <ClCompile Include="Examples\3D\FPS\Player.cpp" />
+    <ClCompile Include="Examples\3D\Sample\Cube.cpp" />
+    <ClCompile Include="Examples\3D\Sample\Player.cpp" />
+    <ClCompile Include="Examples\3D\Sample\Sample3DSubScene.cpp" />
+    <ClCompile Include="Examples\3D\Sample\SampleMainScene.cpp" />
+>>>>>>> 544a8b5 (2Dレンダラが出力不可、対処中)
     <ClCompile Include="include\LarvaEngine\Core\Utilities\Easing.h" />
     <ClCompile Include="Examples\Game\2DScroll\OptionUIScene.cpp" />
     <ClCompile Include="src\Components\TileMap\TileMapComponent.cpp" />
@@ -76,6 +99,7 @@
     <ClCompile Include="src\Renderer\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClInclude Include="Examples\Game\2DScroll\AnimatedButton.h" />
     <ClInclude Include="Examples\Game\2DScroll\Background.h" />
     <ClInclude Include="Examples\Game\2DScroll\FollowCamera.h" />
@@ -87,6 +111,29 @@
     <ClInclude Include="Examples\Game\2DScroll\TileMap.h" />
     <ClInclude Include="Examples\Game\2DScroll\TitleMainScene.h" />
     <ClInclude Include="Examples\Game\2DScroll\TitleUIScene.h" />
+=======
+    <ClInclude Include="Examples\2D\Scroll\AnimatedButton.h" />
+    <ClInclude Include="Examples\2D\Scroll\Background.h" />
+    <ClInclude Include="Examples\2D\Scroll\GameMainScene.h" />
+    <ClInclude Include="Examples\2D\Scroll\HUDUIScene.h" />
+    <ClInclude Include="Examples\2D\Scroll\MenuUIScene.h" />
+    <ClInclude Include="Examples\2D\Scroll\OptionUIScene.h" />
+    <ClInclude Include="Examples\2D\Scroll\Player.h" />
+    <ClInclude Include="Examples\2D\Scroll\PlaySubScene.h" />
+    <ClInclude Include="Examples\2D\Scroll\TestMainScene.h" />
+    <ClInclude Include="Examples\2D\Scroll\TileMap.h" />
+    <ClInclude Include="Examples\2D\Scroll\TitleMainScene.h" />
+    <ClInclude Include="Examples\2D\Scroll\TitleUIScene.h" />
+    <ClInclude Include="Examples\3D\FPS\FPSCameraComponent.h" />
+    <ClInclude Include="Examples\3D\FPS\GameMainScene.h" />
+    <ClInclude Include="Examples\3D\FPS\HUDUIScene.h" />
+    <ClInclude Include="Examples\3D\FPS\MoveComponent.h" />
+    <ClInclude Include="Examples\3D\FPS\Player.h" />
+    <ClInclude Include="Examples\3D\Sample\Cube.h" />
+    <ClInclude Include="Examples\3D\Sample\Player.h" />
+    <ClInclude Include="Examples\3D\Sample\Sample3DSubScene.h" />
+    <ClInclude Include="Examples\3D\Sample\SampleMainScene.h" />
+>>>>>>> 544a8b5 (2Dレンダラが出力不可、対処中)
     <ClInclude Include="include\LarvaEngine\Audio\AudioSystem.h" />
     <ClInclude Include="include\LarvaEngine\Audio\SoundEvent.h" />
     <ClInclude Include="include\LarvaEngine\Components\AI\AICompoennt.h" />

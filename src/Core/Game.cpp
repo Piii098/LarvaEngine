@@ -48,8 +48,8 @@ void Game::SetWindowsSize(int windowWidth, int windowHeight, int lowResWidth, in
 	_windowHeight = windowHeight;
 	_windowWidth = windowWidth;
 	// 低解像度レンダリングのサイズを設定
-	_lowResHeight = lowResHeight;
-	_lowResWidth = lowResWidth;
+	_lowResHeight = lowResHeight == -1 ? windowHeight : lowResHeight; // 低解像度レンダリングのサイズを設定
+	_lowResWidth = lowResWidth == -1 ? windowWidth : lowResWidth; // 低解像度レンダリングのサイズを設定
 }
 
 /**
@@ -85,13 +85,15 @@ bool Game::Initialize() {
 	// ウィンドウ、レンダラーの初期化
 	_renderer = std::make_unique<Renderer>(*this);
 
-	int wWidth = _windowWidth ? _windowWidth : 960;		// ウィンドウの幅
-	int wHeigth = _windowHeight ? _windowHeight : 540;  // ウィンドウの高さ
-	int lWidth = _lowResWidth ? _lowResWidth : 480;		// 低解像度レンダリングの幅
-	int lHeigth = _lowResHeight ? _lowResHeight : 270;  // 低解像度レンダリングの高さ
+	_renderer->SetLowResSize(_lowResWidth, _lowResHeight); // 低解像度レンダリングのサイズを設定
+	_renderer->SetWindowSize(_windowWidth, _windowHeight); // ウィンドウのサイズを設定
 
+<<<<<<< HEAD
 	if (!_renderer->Initialize(
 		wWidth, wHeigth, lWidth, lHeigth, _windowName)) {
+=======
+	if (!_renderer->Initialize(_windowName)) {
+>>>>>>> 544a8b5 (2Dレンダラが出力不可、対処中)
 		SDL_Log("Failed to intialized renderer");
 		return false;
 	}
@@ -113,10 +115,21 @@ bool Game::Initialize() {
 
 	_inputAction = std::make_unique<InputAction>(*_inputSystem.get()); // 入力アクションの初期化
 	_frameSystem = std::make_unique<FrameSystem>();					  // フレームシステムの初期化	
+<<<<<<< HEAD
 	_physWorld = std::make_unique<PhysWorld2D>(*this);				  // 物理システムの初期化		
 	_textureManager = std::make_unique<AssetManager<Texture>>();      // テクスチャマネージャの初期化
 	_tileMapManager = std::make_unique<AssetManager<TileMap>>();	  // タイルマップマネージャの初期化
 	_fontManager = std::make_unique<AssetManager<Font>>();		      // フォントマネージャの初期化
+=======
+	_textureManager = std::make_unique<AssetManager<Texture>>(*this);      // テクスチャマネージャの初期化
+	_tileMapManager = std::make_unique<AssetManager<TileMap>>(*this);	  // タイルマップマネージャの初期化
+	_fontManager = std::make_unique<AssetManager<Font>>(*this);		      // フォントマネージャの初期化
+	_meshManager = std::make_unique<AssetManager<Mesh>>(*this);	  // メッシュマネージャの初期化
+	_modelManager = std::make_unique<AssetManager<Model>>(*this);	  // モデルマネージャの初期化
+
+	GetTextureManager().Load("ToonRampTexture", "Assets/Shaders/toon.png");
+	GetTextureManager().Load("Sample", "Assets/Textures/bg_1.png");
+>>>>>>> 544a8b5 (2Dレンダラが出力不可、対処中)
 
 	// フレームレートの設定
 	SetAction();

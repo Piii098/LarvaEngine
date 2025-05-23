@@ -32,10 +32,12 @@ VertexArray::VertexArray(const float* verts, unsigned int numVerts
 
 	// 頂点配列の設定
 
-	// メッシュの頂点レイアウトを指定
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 5, 0); // サイズ、種類、フォーマットを指定
+<<<<<<< HEAD:src/Renderer/VertexArray.cpp
 	// テクスチャの頂点レイアウトを指定
+=======
+>>>>>>> 544a8b5 (2Dレンダラが出力不可、対処中):src/Renderer/2D/VertexArray2D.cpp
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 5, reinterpret_cast<void*>(sizeof(float) * 3));
 }

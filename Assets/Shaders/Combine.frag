@@ -1,6 +1,6 @@
 #version 330
 
-in vec2 TexCoords;
+in vec2 fragTexCoord;
 in vec2 fragPosition;
 
 out vec4 outColor;
@@ -12,11 +12,11 @@ uniform vec3 uAmbientColor;
 uniform float uAmbientIntensity;
 
 void main(){
-	vec4 spriteColor = texture(spriteTexture, TexCoords);
+	vec4 spriteColor = texture(spriteTexture, fragTexCoord);
 
 	vec3 spriteLightColor = spriteColor.rgb * uAmbientIntensity * uAmbientColor;
 
-	vec4 lightColor = texture(lightTexture, TexCoords);
+	vec4 lightColor = texture(lightTexture, fragTexCoord);
 
 	outColor = vec4(spriteLightColor + lightColor.rgb * lightColor.a, spriteColor.a);
 }

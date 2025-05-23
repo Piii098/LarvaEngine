@@ -3,7 +3,7 @@
 layout (location = 0) out vec4 FragColor;
 //layout (location = 1) out vec4 BrightColor;
 
-in vec2 TexCoords;
+in vec2 fragTexCoord;
 
 uniform sampler2D normalBuffer;
 uniform sampler2D brightBuffer;
