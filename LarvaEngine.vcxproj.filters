@@ -56,20 +56,8 @@
     <Filter Include="Examples">
       <UniqueIdentifier>{3fa076a7-70d1-479a-b839-0c15cbd36f20}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Examples\Game">
-      <UniqueIdentifier>{1443cf27-9d00-4afd-85bc-f8df029c0fcf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Examples\Game\Test">
-      <UniqueIdentifier>{5fee42c2-3924-4902-b7ef-1031512b805e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Examples\Game\Title">
-      <UniqueIdentifier>{8607734f-cc31-485e-9934-dc34686706aa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Input">
       <UniqueIdentifier>{d57b60fc-6e6c-429e-8cc5-59cedc18b6ba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Examples\Game\2DScroll">
-      <UniqueIdentifier>{645404c5-1759-4009-aab7-709b06d6ac9a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Components\UI">
       <UniqueIdentifier>{85c6121b-ac2f-4708-9fb2-7af1b56fe862}</UniqueIdentifier>
@@ -79,6 +67,33 @@
     </Filter>
     <Filter Include="Components\TileMap">
       <UniqueIdentifier>{4e263ad0-f7dd-4548-b5ab-ffc1c7d319e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\2D">
+      <UniqueIdentifier>{9b230a06-e339-4b9d-866e-e5f8fe0e6d14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\3D">
+      <UniqueIdentifier>{877e2e6a-87c9-4620-9a2d-b8abc990e8bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Examples\3D">
+      <UniqueIdentifier>{1b3a124d-94ca-49b8-b34b-4926823aa252}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Examples\2D">
+      <UniqueIdentifier>{1443cf27-9d00-4afd-85bc-f8df029c0fcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Examples\2D\Test">
+      <UniqueIdentifier>{5fee42c2-3924-4902-b7ef-1031512b805e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Examples\2D\Title">
+      <UniqueIdentifier>{8607734f-cc31-485e-9934-dc34686706aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Examples\2D\Scroll">
+      <UniqueIdentifier>{645404c5-1759-4009-aab7-709b06d6ac9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Examples\3D\Sample">
+      <UniqueIdentifier>{168e4546-ffaf-4535-946e-d96fd14d8f51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Examples\3D\FPS">
+      <UniqueIdentifier>{bfc1cef3-8b88-474d-9e58-d7a6c1d573b9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -99,9 +114,6 @@
     </ClCompile>
     <ClCompile Include="src\Components\Camera\CameraComponent.cpp">
       <Filter>Components\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\Physics\BoxComponent2D.cpp">
-      <Filter>Components\Phys</Filter>
     </ClCompile>
     <ClCompile Include="src\Audio\AudioSystem.cpp">
       <Filter>Audio</Filter>
@@ -133,9 +145,6 @@
     <ClCompile Include="src\Renderer\Shader.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Renderer\VertexArray.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="src\Core\SubScene.cpp">
       <Filter>Core</Filter>
     </ClCompile>
@@ -144,9 +153,6 @@
     </ClCompile>
     <ClCompile Include="src\Core\UIScene.cpp">
       <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\Physics\RigidbodyComponent.cpp">
-      <Filter>Components\Phys</Filter>
     </ClCompile>
     <ClCompile Include="src\Physics\Collision2D.cpp">
       <Filter>Physics</Filter>
@@ -199,29 +205,11 @@
     <ClCompile Include="src\GameObjects\UI\Button.cpp">
       <Filter>GameObjects\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Examples\Game\2DScroll\GameMainScene.cpp">
-      <Filter>Examples\Game\2DScroll</Filter>
-    </ClCompile>
-    <ClCompile Include="Examples\Game\2DScroll\Player.cpp">
-      <Filter>Examples\Game\2DScroll</Filter>
-    </ClCompile>
-    <ClCompile Include="Examples\Game\2DScroll\PlaySubScene.cpp">
-      <Filter>Examples\Game\2DScroll</Filter>
-    </ClCompile>
     <ClCompile Include="Examples\Main.cpp">
       <Filter>Examples</Filter>
     </ClCompile>
     <ClCompile Include="src\Components\UI\ButtonComponent.cpp">
       <Filter>Components\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Examples\Game\2DScroll\TItleMainScene.cpp">
-      <Filter>Examples\Game\2DScroll</Filter>
-    </ClCompile>
-    <ClCompile Include="Examples\Game\2DScroll\TitleUIScene.cpp">
-      <Filter>Examples\Game\2DScroll</Filter>
-    </ClCompile>
-    <ClCompile Include="Examples\Game\2DScroll\AnimatedButton.cpp">
-      <Filter>Examples\Game\2DScroll</Filter>
     </ClCompile>
     <ClCompile Include="include\LarvaEngine\Core\Utilities\Easing.h">
       <Filter>Core\Utilities</Filter>
@@ -229,26 +217,18 @@
     <ClCompile Include="src\GameObjects\UI\ButtonGroup.cpp">
       <Filter>GameObjects\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Examples\Game\2DScroll\OptionUIScene.cpp">
-      <Filter>Examples\Game\2DScroll</Filter>
-    </ClCompile>
-    <ClCompile Include="Examples\Game\2DScroll\FollowCamera..cpp">
-      <Filter>Examples\Game\2DScroll</Filter>
-    </ClCompile>
     <ClCompile Include="src\Components\TileMap\TileMapComponent.cpp">
       <Filter>Components\TileMap</Filter>
     </ClCompile>
-    <ClCompile Include="Examples\Game\2DScroll\Background.cpp">
-      <Filter>Examples\Game\2DScroll</Filter>
+    <ClCompile Include="src\Renderer\2D\VertexArray2D.cpp">
+      <Filter>Renderer\2D</Filter>
     </ClCompile>
-    <ClCompile Include="Examples\Game\2DScroll\MenuUIScene.cpp">
-      <Filter>Examples\Game\2DScroll</Filter>
+    <ClCompile Include="src\Renderer\3D\Mesh.cpp">
+      <Filter>Renderer\3D</Filter>
     </ClCompile>
-    <ClCompile Include="Examples\Game\2DScroll\TileMap.cpp">
-      <Filter>Examples\Game\2DScroll</Filter>
+    <ClCompile Include="src\Components\Draw\MeshComponent.cpp">
+      <Filter>Components\Draw</Filter>
     </ClCompile>
-<<<<<<< HEAD
-=======
     <ClCompile Include="src\Renderer\2D\Renderer2D.cpp">
       <Filter>Renderer\2D</Filter>
     </ClCompile>
@@ -343,7 +323,6 @@
     <ClCompile Include="Examples\3D\FPS\HUDUIScene.cpp">
       <Filter>Examples\3D\FPS</Filter>
     </ClCompile>
->>>>>>> 544a8b5 (2Dレンダラが出力不可、対処中)
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\LarvaEngine\Components\AI\AICompoennt.h">
@@ -363,9 +342,6 @@
     </ClInclude>
     <ClInclude Include="include\LarvaEngine\Components\Camera\CameraComponent.h">
       <Filter>Components\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LarvaEngine\Components\Physics\BoxComponent2D.h">
-      <Filter>Components\Phys</Filter>
     </ClInclude>
     <ClInclude Include="include\LarvaEngine\Core\Resources\AssetManager.h">
       <Filter>Core\Resouces</Filter>
@@ -403,9 +379,6 @@
     <ClInclude Include="include\LarvaEngine\Renderer\Shader.h">
       <Filter>Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="include\LarvaEngine\Renderer\VertexArray.h">
-      <Filter>Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="include\LarvaEngine\Core\SubScene.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -414,9 +387,6 @@
     </ClInclude>
     <ClInclude Include="include\LarvaEngine\Core\UIScene.h">
       <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LarvaEngine\Components\Physics\RigidbodyComponent.h">
-      <Filter>Components\Phys</Filter>
     </ClInclude>
     <ClInclude Include="include\LarvaEngine\Physics\Collision2D.h">
       <Filter>Physics</Filter>
@@ -472,49 +442,21 @@
     <ClInclude Include="include\LarvaEngine\GameObjects\UI\Button.h">
       <Filter>GameObjects\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Examples\Game\2DScroll\PlaySubScene.h">
-      <Filter>Examples\Game\2DScroll</Filter>
-    </ClInclude>
-    <ClInclude Include="Examples\Game\2DScroll\GameMainScene.h">
-      <Filter>Examples\Game\2DScroll</Filter>
-    </ClInclude>
-    <ClInclude Include="Examples\Game\2DScroll\Player.h">
-      <Filter>Examples\Game\2DScroll</Filter>
-    </ClInclude>
     <ClInclude Include="include\LarvaEngine\Components\UI\ButtonComponent.h">
       <Filter>Components\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Examples\Game\2DScroll\TitleMainScene.h">
-      <Filter>Examples\Game\2DScroll</Filter>
-    </ClInclude>
-    <ClInclude Include="Examples\Game\2DScroll\TitleUIScene.h">
-      <Filter>Examples\Game\2DScroll</Filter>
-    </ClInclude>
-    <ClInclude Include="Examples\Game\2DScroll\AnimatedButton.h">
-      <Filter>Examples\Game\2DScroll</Filter>
     </ClInclude>
     <ClInclude Include="include\LarvaEngine\GameObjects\UI\ButtonGroup.h">
       <Filter>GameObjects\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Examples\Game\2DScroll\OptionUIScene.h">
-      <Filter>Examples\Game\2DScroll</Filter>
-    </ClInclude>
-    <ClInclude Include="Examples\Game\2DScroll\FollowCamera.h">
-      <Filter>Examples\Game\2DScroll</Filter>
-    </ClInclude>
     <ClInclude Include="include\LarvaEngine\Components\TileMap\TileMapComponent.h">
       <Filter>Components\TileMap</Filter>
     </ClInclude>
-    <ClInclude Include="Examples\Game\2DScroll\Background.h">
-      <Filter>Examples\Game\2DScroll</Filter>
+    <ClInclude Include="include\LarvaEngine\Renderer\2D\Renderer2D.h">
+      <Filter>Renderer\2D</Filter>
     </ClInclude>
-    <ClInclude Include="Examples\Game\2DScroll\MenuUIScene.h">
-      <Filter>Examples\Game\2DScroll</Filter>
+    <ClInclude Include="include\LarvaEngine\Renderer\2D\VertexArray2D.h">
+      <Filter>Renderer\2D</Filter>
     </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="Examples\Game\2DScroll\TileMap.h">
-      <Filter>Examples\Game\2DScroll</Filter>
-=======
     <ClInclude Include="include\LarvaEngine\Renderer\3D\VertexArray3D.h">
       <Filter>Renderer\3D</Filter>
     </ClInclude>
@@ -608,7 +550,6 @@
     <ClInclude Include="Examples\3D\FPS\MoveComponent.h" />
     <ClInclude Include="include\LarvaEngine\Core\ThreadPool.h">
       <Filter>Core</Filter>
->>>>>>> 544a8b5 (2Dレンダラが出力不可、対処中)
     </ClInclude>
     <ClInclude Include="Examples\3D\FPS\FPSCameraComponent.h">
       <Filter>Examples\3D\FPS</Filter>
@@ -655,6 +596,37 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="Assets\Shaders\Upscale.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\BasicMesh.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\BasicMesh.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\Phong.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\Phong.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\Toon.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\Outline.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\Toon.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\Shadow.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\Shadow.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\Outline.frag" />
+    <None Include="Assets\Shaders\DoF.frag">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

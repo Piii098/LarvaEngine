@@ -10,7 +10,6 @@
 
 Scene::Scene(SceneManager& manager)
 	: _manager(manager)
-	, _camera(nullptr)
 	, _state(STATE::ACTIVE)
 	, _isUpdating(false) {
 }
@@ -203,6 +202,28 @@ void Scene::RemoveSprite(SpriteComponent* sprite) {
 	auto iter = std::find(_sprites.begin(), _sprites.end(), sprite);
 	if (iter != _sprites.end()) {
 		_sprites.erase(iter);
+	}
+}
+
+void Scene::AddMesh(MeshComponent* mesh) {
+	_meshes.emplace_back(mesh);
+}
+
+void Scene::RemoveMesh(MeshComponent* mesh) {
+	auto iter = std::find(_meshes.begin(), _meshes.end(), mesh);
+	if (iter != _meshes.end()) {
+		_meshes.erase(iter);
+	}
+}
+
+void Scene::AddModel(ModelComponent* model) {
+	_models.emplace_back(model);
+}
+
+void Scene::RemoveModel(ModelComponent* model) {
+	auto iter = std::find(_models.begin(), _models.end(), model);
+	if (iter != _models.end()) {
+		_models.erase(iter);
 	}
 }
 

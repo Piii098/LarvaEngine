@@ -11,8 +11,10 @@ class UIScreen;
 class Shader;
 class UIScene;
 class SpriteComponent;
+class MeshComponent;
 class InputSystem;
 class InputAction;
+class ModelComponent;
 
 
 /// @brief シーンクラス
@@ -127,14 +129,32 @@ public:
 	/// @param sprite 削除するスプライト
 	void RemoveSprite(SpriteComponent* sprite);
 
+	/// @brief メッシュの追加
+	/// シーンのメッシュの配列にメッシュを追加する
+	/// @param mesh 追加するメッシュ
+	void AddMesh(MeshComponent* mesh);
+
+	/// @brief メッシュの削除
+	/// シーンのメッシュの配列からメッシュを削除する
+	/// @param mesh 削除するメッシュ
+	void RemoveMesh(MeshComponent* mesh);
+
+	/// @brief モデルの追加
+	/// シーンのモデルの配列にモデルを追加する
+	/// @param model 追加するモデル
+	void AddModel(ModelComponent* model);
+
+	/// @brief モデルの削除
+	/// シーンのモデルの配列からモデルを削除する
+	/// @param model 削除するモデル
+	void RemoveModel(ModelComponent* model);
+
 
 	// ===== ゲッター・セッター =====//
 
     SceneManager& GetManager() { return _manager; }
-    Camera& GetCamera()  { return *_camera; }
 	STATE State() const { return _state; }
 	const SceneManager& GetManager() const { return _manager; }
-	const Camera& GetCamera() const { return *_camera; }
 	const STATE State()  { return _state; }
 
 	void State(STATE state) { _state = state; }
@@ -191,8 +211,9 @@ protected:
 
 	// ===== スプライト ===== //
 	std::vector<SpriteComponent*> _sprites;	  ///< スプライトの配列
+	std::vector<MeshComponent*> _meshes;	  ///< メッシュの配列
+	std::vector<ModelComponent*> _models;	  ///< モデルの配列
 
-	Camera* _camera;				 ///< シーンのカメラ
 	SceneManager& _manager;			 ///< シーンマネージャー	
 	
 	STATE _state;					 ///< シーンの状態

@@ -8,7 +8,8 @@
 // コンストラクタ・デストラクタ
 //==============================================================================
 
-Font::Font() {
+Font::Font(Game& game)
+    : _game(game) {
 
 }
 
@@ -125,7 +126,7 @@ std::unique_ptr<Texture> Font::RenderText(const std::string& text, const Vector3
         SDL_Surface* surf = TTF_RenderText_Blended(font, text.c_str(), 0, sdlColor);
    
         if (surf != nullptr) {
-            auto texture = std::make_unique<Texture>();
+            auto texture = std::make_unique<Texture>(_game);
             texture->CreateFromSurface(surf);
             SDL_DestroySurface(surf);
 

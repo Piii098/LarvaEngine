@@ -7,9 +7,11 @@
 TileMapクラスは、タイルマップの読み込み、アンロード、タイルの取得、設定を行うためのクラスです。
 */
 
+class Game;
+
 class TileMap {
 public:
-	TileMap(); // コンストラクタ
+	TileMap(Game& game); // コンストラクタ
 	~TileMap(); // デストラクタ
 
 	// 指定されたファイル名からタイルマップを読み込む
@@ -37,6 +39,9 @@ public:
 	void SetTileID(int x, int y, int tileID);
 
 private:
+
+	Game& _game; // ゲームクラスへの参照
+
 	int _width; // マップの幅
 	int _height; // マップの高さ
 

@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\AnimatedButton.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\Examples\Game\2DScroll\AnimatedButton.obj
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\Background.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\Examples\Game\2DScroll\Background.obj
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\FollowCamera..cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\Examples\Game\2DScroll\FollowCamera..obj
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\GameMainScene.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\Examples\Game\2DScroll\GameMainScene.obj
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\MenuUIScene.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\Examples\Game\2DScroll\MenuUIScene.obj
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\Player.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\Examples\Game\2DScroll\Player.obj
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\PlaySubScene.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\Examples\Game\2DScroll\PlaySubScene.obj
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TileMap.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\Examples\Game\2DScroll\TileMap.obj
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TItleMainScene.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\Examples\Game\2DScroll\TItleMainScene.obj
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\TitleUIScene.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\Examples\Game\2DScroll\TitleUIScene.obj
-=======
 C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\2D\Scroll\AnimatedButton.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\Examples\2D\Scroll\AnimatedButton.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\2D\Scroll\Background.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\Examples\2D\Scroll\Background.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\2D\Scroll\GameMainScene.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\Examples\2D\Scroll\GameMainScene.obj
@@ -30,9 +18,14 @@ C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\3D\Sample\Cube.cpp;C:\U
 C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\3D\Sample\Player.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\Examples\3D\Sample\Player.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\3D\Sample\Sample3DSubScene.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\Examples\3D\Sample\Sample3DSubScene.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\3D\Sample\SampleMainScene.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\Examples\3D\Sample\SampleMainScene.obj
->>>>>>> 544a8b5 (2Dレンダラが出力不可、対処中)
 C:\Users\amary\source\repos\Piii098\LarvaEngine\include\LarvaEngine\Core\Utilities\Easing.h;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\include\LarvaEngine\Core\Utilities\Easing.obj
-C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\Game\2DScroll\OptionUIScene.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\Examples\Game\2DScroll\OptionUIScene.obj
+C:\Users\amary\source\repos\Piii098\LarvaEngine\Examples\2D\Scroll\OptionUIScene.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\Examples\2D\Scroll\OptionUIScene.obj
+C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\Draw\MeshComponent.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Components\Draw\MeshComponent.obj
+C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\Draw\ModelComponent.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Components\Draw\ModelComponent.obj
+C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\Physics\Box2DComponent.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Components\Physics\Box2DComponent.obj
+C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\Physics\Box3DComponent.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Components\Physics\Box3DComponent.obj
+C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\Physics\Rigidbody2DComponent.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Components\Physics\Rigidbody2DComponent.obj
+C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\Physics\Rigidbody3DComponent.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Components\Physics\Rigidbody3DComponent.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\TileMap\TileMapComponent.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Components\TileMap\TileMapComponent.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\UI\ButtonComponent.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Components\UI\ButtonComponent.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Audio\AudioSystem.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Audio\AudioSystem.obj
@@ -47,10 +40,9 @@ C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\Draw\DebugDrawCom
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\Draw\SpriteComponent.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Components\Draw\SpriteComponent.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\Draw\TextComponent.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Components\Draw\TextComponent.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\Light\LightComponent.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Components\Light\LightComponent.obj
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\Physics\BoxComponent2D.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Components\Physics\BoxComponent2D.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\Physics\MoveInputComponent.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Components\Physics\MoveInputComponent.obj
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Components\Physics\RigidbodyComponent.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Components\Physics\RigidbodyComponent.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Core\Component.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Core\Component.obj
+C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Core\Resources\Model.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Core\Resources\Model.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\GameObjects\Camera.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\GameObjects\Camera.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\GameObjects\UI\Button.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\GameObjects\UI\Button.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\GameObjects\UI\ButtonGroup.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\GameObjects\UI\ButtonGroup.obj
@@ -72,7 +64,13 @@ C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Core\SubScene.cpp;C:\Users\a
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Core\UIScene.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Core\UIScene.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Core\Utilities\Math.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Core\Utilities\Math.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Physics\Collision2D.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Physics\Collision2D.obj
+C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Physics\Collision3D.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Physics\Collision3D.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Physics\PhysWorld2D.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Physics\PhysWorld2D.obj
+C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Physics\PhysWorld3D.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Physics\PhysWorld3D.obj
+C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\2D\Renderer2D.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Renderer\2D\Renderer2D.obj
+C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\3D\Mesh.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Renderer\3D\Mesh.obj
+C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\3D\Renderer3D.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Renderer\3D\Renderer3D.obj
+C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\3D\VertexArray3D.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Renderer\3D\VertexArray3D.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Renderer.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Renderer\Renderer.obj
 C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\Shader.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Renderer\Shader.obj
-C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\VertexArray.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Renderer\VertexArray.obj
+C:\Users\amary\source\repos\Piii098\LarvaEngine\src\Renderer\2D\VertexArray2D.cpp;C:\Users\amary\source\repos\Piii098\LarvaEngine\obj\x64\Debug\src\Renderer\2D\VertexArray2D.obj

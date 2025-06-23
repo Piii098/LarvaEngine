@@ -29,7 +29,7 @@ private:
 	float _lightIntensity;
 	Vector2 _lightScale;
 
-	Vector2 _lightOffset;
+	Vector3 _lightOffset;
 
 	int _bufferLayer;
 	float _lightRange;

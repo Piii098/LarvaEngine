@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -19,18 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <ClCompile Include="Examples\Game\2DScroll\AnimatedButton.cpp" />
-    <ClCompile Include="Examples\Game\2DScroll\Background.cpp" />
-    <ClCompile Include="Examples\Game\2DScroll\FollowCamera..cpp" />
-    <ClCompile Include="Examples\Game\2DScroll\GameMainScene.cpp" />
-    <ClCompile Include="Examples\Game\2DScroll\MenuUIScene.cpp" />
-    <ClCompile Include="Examples\Game\2DScroll\Player.cpp" />
-    <ClCompile Include="Examples\Game\2DScroll\PlaySubScene.cpp" />
-    <ClCompile Include="Examples\Game\2DScroll\TileMap.cpp" />
-    <ClCompile Include="Examples\Game\2DScroll\TItleMainScene.cpp" />
-    <ClCompile Include="Examples\Game\2DScroll\TitleUIScene.cpp" />
-=======
     <ClCompile Include="Examples\2D\Scroll\AnimatedButton.cpp" />
     <ClCompile Include="Examples\2D\Scroll\Background.cpp" />
     <ClCompile Include="Examples\2D\Scroll\GameMainScene.cpp" />
@@ -51,9 +39,14 @@
     <ClCompile Include="Examples\3D\Sample\Player.cpp" />
     <ClCompile Include="Examples\3D\Sample\Sample3DSubScene.cpp" />
     <ClCompile Include="Examples\3D\Sample\SampleMainScene.cpp" />
->>>>>>> 544a8b5 (2Dレンダラが出力不可、対処中)
     <ClCompile Include="include\LarvaEngine\Core\Utilities\Easing.h" />
-    <ClCompile Include="Examples\Game\2DScroll\OptionUIScene.cpp" />
+    <ClCompile Include="Examples\2D\Scroll\OptionUIScene.cpp" />
+    <ClCompile Include="src\Components\Draw\MeshComponent.cpp" />
+    <ClCompile Include="src\Components\Draw\ModelComponent.cpp" />
+    <ClCompile Include="src\Components\Physics\Box2DComponent.cpp" />
+    <ClCompile Include="src\Components\Physics\Box3DComponent.cpp" />
+    <ClCompile Include="src\Components\Physics\Rigidbody2DComponent.cpp" />
+    <ClCompile Include="src\Components\Physics\Rigidbody3DComponent.cpp" />
     <ClCompile Include="src\Components\TileMap\TileMapComponent.cpp" />
     <ClCompile Include="src\Components\UI\ButtonComponent.cpp" />
     <ClCompile Include="src\Audio\AudioSystem.cpp" />
@@ -68,10 +61,9 @@
     <ClCompile Include="src\Components\Draw\SpriteComponent.cpp" />
     <ClCompile Include="src\Components\Draw\TextComponent.cpp" />
     <ClCompile Include="src\Components\Light\LightComponent.cpp" />
-    <ClCompile Include="src\Components\Physics\BoxComponent2D.cpp" />
     <ClCompile Include="src\Components\Physics\MoveInputComponent.cpp" />
-    <ClCompile Include="src\Components\Physics\RigidbodyComponent.cpp" />
     <ClCompile Include="src\Core\Component.cpp" />
+    <ClCompile Include="src\Core\Resources\Model.cpp" />
     <ClCompile Include="src\GameObjects\Camera.cpp" />
     <ClCompile Include="src\GameObjects\UI\Button.cpp" />
     <ClCompile Include="src\GameObjects\UI\ButtonGroup.cpp" />
@@ -93,25 +85,18 @@
     <ClCompile Include="src\Core\UIScene.cpp" />
     <ClCompile Include="src\Core\Utilities\Math.cpp" />
     <ClCompile Include="src\Physics\Collision2D.cpp" />
+    <ClCompile Include="src\Physics\Collision3D.cpp" />
     <ClCompile Include="src\Physics\PhysWorld2D.cpp" />
+    <ClCompile Include="src\Physics\PhysWorld3D.cpp" />
+    <ClCompile Include="src\Renderer\2D\Renderer2D.cpp" />
+    <ClCompile Include="src\Renderer\3D\Mesh.cpp" />
+    <ClCompile Include="src\Renderer\3D\Renderer3D.cpp" />
+    <ClCompile Include="src\Renderer\3D\VertexArray3D.cpp" />
     <ClCompile Include="src\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Renderer\Shader.cpp" />
-    <ClCompile Include="src\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\Renderer\2D\VertexArray2D.cpp" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <ClInclude Include="Examples\Game\2DScroll\AnimatedButton.h" />
-    <ClInclude Include="Examples\Game\2DScroll\Background.h" />
-    <ClInclude Include="Examples\Game\2DScroll\FollowCamera.h" />
-    <ClInclude Include="Examples\Game\2DScroll\GameMainScene.h" />
-    <ClInclude Include="Examples\Game\2DScroll\MenuUIScene.h" />
-    <ClInclude Include="Examples\Game\2DScroll\OptionUIScene.h" />
-    <ClInclude Include="Examples\Game\2DScroll\Player.h" />
-    <ClInclude Include="Examples\Game\2DScroll\PlaySubScene.h" />
-    <ClInclude Include="Examples\Game\2DScroll\TileMap.h" />
-    <ClInclude Include="Examples\Game\2DScroll\TitleMainScene.h" />
-    <ClInclude Include="Examples\Game\2DScroll\TitleUIScene.h" />
-=======
     <ClInclude Include="Examples\2D\Scroll\AnimatedButton.h" />
     <ClInclude Include="Examples\2D\Scroll\Background.h" />
     <ClInclude Include="Examples\2D\Scroll\GameMainScene.h" />
@@ -133,7 +118,6 @@
     <ClInclude Include="Examples\3D\Sample\Player.h" />
     <ClInclude Include="Examples\3D\Sample\Sample3DSubScene.h" />
     <ClInclude Include="Examples\3D\Sample\SampleMainScene.h" />
->>>>>>> 544a8b5 (2Dレンダラが出力不可、対処中)
     <ClInclude Include="include\LarvaEngine\Audio\AudioSystem.h" />
     <ClInclude Include="include\LarvaEngine\Audio\SoundEvent.h" />
     <ClInclude Include="include\LarvaEngine\Components\AI\AICompoennt.h" />
@@ -143,15 +127,21 @@
     <ClInclude Include="include\LarvaEngine\Components\Camera\FollowCameraComponent.h" />
     <ClInclude Include="include\LarvaEngine\Components\Draw\AnimationComponent.h" />
     <ClInclude Include="include\LarvaEngine\Components\Draw\DebugDrawComponent.h" />
+    <ClInclude Include="include\LarvaEngine\Components\Draw\MeshComponent.h" />
+    <ClInclude Include="include\LarvaEngine\Components\Draw\ModelComponent.h" />
     <ClInclude Include="include\LarvaEngine\Components\Draw\SpriteComponent.h" />
     <ClInclude Include="include\LarvaEngine\Components\Draw\TextComponent.h" />
     <ClInclude Include="include\LarvaEngine\Components\Light\LightComponent.h" />
-    <ClInclude Include="include\LarvaEngine\Components\Physics\BoxComponent2D.h" />
+    <ClInclude Include="include\LarvaEngine\Components\Physics\Box2DComponent.h" />
+    <ClInclude Include="include\LarvaEngine\Components\Physics\Box3DComponent.h" />
     <ClInclude Include="include\LarvaEngine\Components\Physics\MoveInputComponent.h" />
-    <ClInclude Include="include\LarvaEngine\Components\Physics\RigidbodyComponent.h" />
+    <ClInclude Include="include\LarvaEngine\Components\Physics\Rigidbody2DComponent.h" />
+    <ClInclude Include="include\LarvaEngine\Components\Physics\Rigidbody3DComponent.h" />
     <ClInclude Include="include\LarvaEngine\Components\TileMap\TileMapComponent.h" />
     <ClInclude Include="include\LarvaEngine\Components\UI\ButtonComponent.h" />
     <ClInclude Include="include\LarvaEngine\Core\Component.h" />
+    <ClInclude Include="include\LarvaEngine\Core\Resources\Model.h" />
+    <ClInclude Include="include\LarvaEngine\Core\ThreadPool.h" />
     <ClInclude Include="include\LarvaEngine\GameObjects\Camera.h" />
     <ClInclude Include="include\LarvaEngine\GameObjects\UI\Button.h" />
     <ClInclude Include="include\LarvaEngine\GameObjects\UI\ButtonGroup.h" />
@@ -175,24 +165,41 @@
     <ClInclude Include="include\LarvaEngine\Core\Utilities\DataTypes.h" />
     <ClInclude Include="include\LarvaEngine\Core\Utilities\Math.h" />
     <ClInclude Include="include\LarvaEngine\Physics\Collision2D.h" />
+    <ClInclude Include="include\LarvaEngine\Physics\Collision3D.h" />
     <ClInclude Include="include\LarvaEngine\Physics\PhysWorld2D.h" />
-    <ClInclude Include="include\LarvaEngine\Renderer\Renderer.h" />
+    <ClInclude Include="include\LarvaEngine\Physics\PhysWorld3D.h" />
+    <ClInclude Include="include\LarvaEngine\Renderer\3D\Renderer3D.h" />
+    <ClInclude Include="include\LarvaEngine\Renderer\3D\VertexArray3D.h" />
+    <ClInclude Include="include\LarvaEngine\Renderer\3D\Mesh.h" />
+    <ClInclude Include="include\LarvaEngine\Renderer\2D\Renderer2D.h" />
     <ClInclude Include="include\LarvaEngine\Renderer\Shader.h" />
-    <ClInclude Include="include\LarvaEngine\Renderer\VertexArray.h" />
+    <ClInclude Include="include\LarvaEngine\Renderer\2D\VertexArray2D.h" />
+    <ClInclude Include="include\LarvaEngine\Renderer\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Shaders\BasicMesh.frag" />
+    <None Include="Assets\Shaders\BasicMesh.vert" />
     <None Include="Assets\Shaders\Bloom.vert" />
     <None Include="Assets\Shaders\Blur.frag" />
     <None Include="Assets\Shaders\Combine.frag" />
     <None Include="Assets\Shaders\Combine.vert" />
+    <None Include="Assets\Shaders\DoF.frag" />
     <None Include="Assets\Shaders\ExtractBright.frag" />
     <None Include="Assets\Shaders\FinalBloom.frag" />
     <None Include="Assets\Shaders\FrameBuffer.frag" />
     <None Include="Assets\Shaders\FrameBuffer.vert" />
     <None Include="Assets\Shaders\Light.frag" />
     <None Include="Assets\Shaders\Light.vert" />
+    <None Include="Assets\Shaders\Outline.frag" />
+    <None Include="Assets\Shaders\Outline.vert" />
+    <None Include="Assets\Shaders\Phong.frag" />
+    <None Include="Assets\Shaders\Phong.vert" />
+    <None Include="Assets\Shaders\Shadow.frag" />
+    <None Include="Assets\Shaders\Shadow.vert" />
     <None Include="Assets\Shaders\Sprite.frag" />
     <None Include="Assets\Shaders\Sprite.vert" />
+    <None Include="Assets\Shaders\Toon.frag" />
+    <None Include="Assets\Shaders\Toon.vert" />
     <None Include="Assets\Shaders\Upscale.frag" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -267,7 +274,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);#define _SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING;#define _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir);D:\SDL3-3.2.4\include;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\studio\inc;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(Filename).obj</ObjectFileName>
@@ -291,7 +298,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions);#define _SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING;#define _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir);D:\SDL3-3.2.4\include;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\studio\inc;D:\FMOD SoundSyStem\FMOD Studio API Windows\api\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(Filename).obj</ObjectFileName>
@@ -315,9 +322,9 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\include;$(ProjectDir)\SDL\include;$(ProjectDir)\FMOD SoundSystem\FMOD Studio API Windows\api\studio\inc;$(ProjectDir)\FMOD SoundSystem\FMOD Studio API Windows\api\core\inc;$(ProjectDir)\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\include;$(ProjectDir)\SDL\include;$(ProjectDir)\FMOD SoundSystem\FMOD Studio API Windows\api\studio\inc;$(ProjectDir)\FMOD SoundSystem\FMOD Studio API Windows\api\core\inc;$(ProjectDir)\;$(ProjectDir)\rapidjson-1.1.0\include</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(Filename).obj</ObjectFileName>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalOptions>/source-charset:utf-8 /execution-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
@@ -340,9 +347,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);#define _SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING;#define _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\include;$(ProjectDir)\SDL\include;$(ProjectDir)\FMOD SoundSystem\FMOD Studio API Windows\api\studio\inc;$(ProjectDir)\FMOD SoundSystem\FMOD Studio API Windows\api\core\inc;$(ProjectDir)\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\include;$(ProjectDir)\SDL\include;$(ProjectDir)\FMOD SoundSystem\FMOD Studio API Windows\api\studio\inc;$(ProjectDir)\FMOD SoundSystem\FMOD Studio API Windows\api\core\inc;$(ProjectDir)\;$(ProjectDir)\rapidjson-1.1.0\include</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(Filename).obj</ObjectFileName>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalOptions>/source-charset:utf-8 /execution-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>

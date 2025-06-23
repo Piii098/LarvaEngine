@@ -19,9 +19,9 @@ GameObject::GameObject(Scene& scene)
 	: _state(STATE::ACTIVE)
 	, _tag(TAG::NONE)
 	, _scene(scene)
-	, _position(Vector2Int::Zero)
+	, _position(Vector3::Zero)
 	, _scale(1.0f)
-	, _rotation(0.0f)
+	, _rotation(Quaternion::Identity)
 	, _recomputeWorldTransform(true){
 	SetParent(nullptr);
 }
@@ -30,9 +30,9 @@ GameObject::GameObject(GameObject* parent)
 	: _state(STATE::ACTIVE)
 	, _tag(TAG::NONE)
 	, _scene(parent->_scene)
-	, _position(Vector2Int::Zero)
+	, _position(Vector3::Zero)
 	, _scale(1.0f)
-	, _rotation(0.0f)
+	, _rotation(Quaternion::Identity)
 	, _recomputeWorldTransform(true) {
 	parent->AddChildObject(this);
 	SetParent(parent);
@@ -182,25 +182,25 @@ void GameObject::Destroy() {
  * 位置、スケール、回転からワールド変換行列を計算する
  */
 void GameObject::ComputeWorldTransform() {
-
 	if (_recomputeWorldTransform) { // 再計算フラグが立っている場合のみ計算
 		_recomputeWorldTransform = false;
 
+		// 自身のワールド変換行列を計算
 		_worldTransform = Matrix4::CreateScale(_scale);
-		_worldTransform *= Matrix4::CreateRotationZ(_rotation);
-		_worldTransform *= Matrix4::CreateTranslation(Vector3(static_cast<float>(_position.x), static_cast<float>(_position.y), 0.0f));
+		_worldTransform *= Matrix4::CreateFromQuaternion(_rotation);
+		_worldTransform *= Matrix4::CreateTranslation(_position);
 
-		// 親オブジェクトがある場合は、親のワールド変換行列を乗算
+		// 親オブジェクトがある場合は親のワールド変換行列を乗算
 		if (_parent != nullptr) {
 			_worldTransform *= _parent->WorldTransform();
 		}
 
-		// 子オブジェクトのワールド変換行列も再計算
+		// すべてのコンポーネントのワールド変換行列を更新
 		for (auto& comp : _components) {
 			comp->OnUpdateWorldTransform();
 		}
 
-		// 子オブジェクトの変換行列も更新する
+		// 子オブジェクトのワールド変換行列も再計算
 		for (auto& child : _children) {
 			// 子オブジェクトに再計算フラグを立てる
 			child->_recomputeWorldTransform = true;

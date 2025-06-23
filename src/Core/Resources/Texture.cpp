@@ -7,8 +7,9 @@
 // コンストラクタ・デストラクタ
 //==============================================================================
 
-Texture::Texture()
-	: _textureID(0)
+Texture::Texture(Game& game)
+    : _game(game)
+    , _textureID(0)
 	, _width(0)
 	, _height(0){
 
@@ -32,33 +33,39 @@ Texture::~Texture() {
  * SOILを使用し、OpenGLへテクスチャを転送しTextureIDを保持する
  */
 bool Texture::Load(const std::string& fileName) {
-	
-	int channels = 0;
-	unsigned char* image = SOIL_load_image(fileName.c_str(), &_width, &_height, &channels, SOIL_LOAD_AUTO);
+    int channels = 0;
+    unsigned char* image = SOIL_load_image(fileName.c_str(), &_width, &_height, &channels, SOIL_LOAD_AUTO);
 
-	if (image == nullptr) {
-		SDL_Log("SOIL failed to load image %s : %s", fileName.c_str(), SOIL_last_result());
-		return false;
-	}
+    if (image == nullptr) {
+        SDL_Log("SOIL failed to load image %s : %s", fileName.c_str(), SOIL_last_result());
+        return false;
+    }
 
-	int format = GL_RGB;
-	if (channels == 4) {
-		format = GL_RGBA;
-	}
+    int format = GL_RGB;
+    if (channels == 4) {
+        format = GL_RGBA;
+    }
 
-	glGenTextures(1, &_textureID);
-	glBindTexture(GL_TEXTURE_2D, _textureID);
+    glGenTextures(1, &_textureID);
+    glBindTexture(GL_TEXTURE_2D, _textureID);
 
-	glTexImage2D(GL_TEXTURE_2D, 0, format, _width, _height, 0, format, GL_UNSIGNED_BYTE, image);
+    glTexImage2D(GL_TEXTURE_2D, 0, format, _width, _height, 0, format, GL_UNSIGNED_BYTE, image);
 
-	SOIL_free_image_data(image);
+    // ミップマップ生成
+    glGenerateMipmap(GL_TEXTURE_2D);
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    // フィルタリング設定
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-	return true;
+    // ラップモード設定
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+    SOIL_free_image_data(image);
+
+    return true;
 }
-
 /**
  * テクスチャをアンロードする
  * 
@@ -147,5 +154,10 @@ void Texture::CreateFromSurface(SDL_Surface* surface) {
  */
 void Texture::SetActive() {
 	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, _textureID);
+}
+
+void Texture::SetActive(int textureUnit) {
+	glActiveTexture(GL_TEXTURE0 + textureUnit);
 	glBindTexture(GL_TEXTURE_2D, _textureID);
 }

@@ -4,7 +4,6 @@
 #include "LarvaEngine/Renderer/Shader.h"
 #include "LarvaEngine/Core/GameObject.h"
 #include "LarvaEngine/Core/Game.h"
-#include "LarvaEngine/Renderer/Renderer.h"
 #include "LarvaEngine/Core/Scene.h"
 #include "LarvaEngine/Core/SceneManager.h"
 #include "LarvaEngine/Core/Resources/AssetManager.h"

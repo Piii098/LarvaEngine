@@ -9,18 +9,25 @@
 #include "LarvaEngine/Core/GameObject.h"
 #include "LarvaEngine/Core/Resources/Font.h"
 #include "LarvaEngine/Core/SceneManager.h"
+#include "LarvaEngine/Core/ThreadPool.h"
+
 
 // ===== 前方宣言 =====
 class FrameSystem;
 class SpriteComponent;
-class BoxComponent2D;
+class Box2DComponent;
+class Mesh;
+class Model;
 class GameObject;
 class SceneManager;
 class TileMap;
 class Texture;
 class Player;
 class PhysWorld2D;
+class PhysWorld3D;
 class Renderer;
+class Renderer2D;
+
 template <typename T>
 class AssetManager;
 class TileMapObject;
@@ -36,6 +43,11 @@ class InputAction;
 /// 
 class Game {
 public:
+
+	enum class RENDERER_MODE {
+		MODE_2D,
+		MODE_3D,
+	};
 
     Game();
     ~Game();
@@ -74,20 +86,25 @@ public:
 	/// @brief シャットダウン処理を行う
 	void Shutdown();        
 
+	ThreadPool& GetThreadPool() { return ThreadPool::GetInstance(); }
 
     // ===== ゲッターメソッド ===== //
+
+	void RendererMode(RENDERER_MODE mode) { _rendererMode = mode; }
 
 	// システムコンポーネント
 
     FrameSystem& GetFrameSystem() { return *_frameSystem.get(); }
-	PhysWorld2D& GetPhysWorld()  { return *_physWorld.get(); }
+	PhysWorld2D& GetPhysWorld2D() { return *_physWorld2D.get(); }
+	PhysWorld3D& GetPhysWorld3D() { return *_physWorld3D.get(); }
     Renderer& GetRenderer()  { return *_renderer.get(); }
     AudioSystem& GetAudioSystem()  { return *_audioSystem.get(); }
     InputSystem& GetInputSystem()  { return *_inputSystem.get(); }
     InputAction& GetInputAction()  { return *_inputAction.get(); }
     SceneManager& GetSceneManager() { return *_sceneManager.get(); }
     const FrameSystem& GetFrameSystem() const { return *_frameSystem.get(); }
-	const PhysWorld2D& GetPhysWorld() const { return *_physWorld.get(); }
+	const PhysWorld2D& GetPhysWorld2D() const { return *_physWorld2D.get(); }
+	const PhysWorld3D& GetPhysWorld3D() const { return *_physWorld3D.get(); }
 	const Renderer& GetRenderer() const { return *_renderer.get(); }
 	const AudioSystem& GetAudioSystem() const { return *_audioSystem.get(); }
 	const InputSystem& GetInputSystem() const { return *_inputSystem.get(); }
@@ -99,9 +116,12 @@ public:
     AssetManager<Texture>& GetTextureManager() { return *_textureManager.get(); }
     AssetManager<TileMap>& GetTileMapManager() { return *_tileMapManager.get(); }
     AssetManager<Font>& GetFontManager() { return *_fontManager.get(); }
+	AssetManager<Mesh>& GetMeshManager() { return *_meshManager.get(); }
+	AssetManager<Model>& GetModelManager() { return *_modelManager.get(); }
 	const AssetManager<Texture>& GetTextureManager() const { return *_textureManager.get(); }
 	const AssetManager<TileMap>& GetTileMapManager() const { return *_tileMapManager.get(); }
 	const AssetManager<Font>& GetFontManager() const { return *_fontManager.get(); }
+	const AssetManager<Mesh>& GetMeshManager() const { return *_meshManager.get(); }
 
 private:
 
@@ -151,7 +171,8 @@ private:
 	std::unique_ptr<InputSystem> _inputSystem;              ///< 入力システム 
 	std::unique_ptr<InputAction> _inputAction;              ///< 入力アクション
 	std::unique_ptr<SceneManager> _sceneManager;            ///< シーンマネージャ
-	std::unique_ptr<PhysWorld2D> _physWorld;			    ///< 物理世界   
+	std::unique_ptr<PhysWorld2D> _physWorld2D;			    ///< 物理世界   
+	std::unique_ptr<PhysWorld3D> _physWorld3D;			    ///< 物理世界
 	std::unique_ptr<AudioSystem> _audioSystem;				///< オーディオシステム
 	std::unique_ptr<Renderer> _renderer;                    ///< レンダラー
 
@@ -159,11 +180,18 @@ private:
 
 	bool _isRunning;	                                    ///< ゲームが実行中かどうか
 	std::function<void(SceneManager&)> _initialSceneSetup;  ///< 初期のシーンセットアップ
+	RENDERER_MODE _rendererMode;                            ///< レンダラーのモード
+
+	bool _useMultithreading;
+
+	std::vector<std::function<void()>> _asyncTasks;
 
     // ===== アセットマネージャー ===== //
 
     std::unique_ptr<AssetManager<Texture>> _textureManager; ///<テクスチャ 
 	std::unique_ptr<AssetManager<TileMap>> _tileMapManager; ///<タイルマップ
 	std::unique_ptr<AssetManager<Font>> _fontManager;		///<フォント
+	std::unique_ptr<AssetManager<Mesh>> _meshManager;		///<メッシュ
+	std::unique_ptr<AssetManager<Model>> _modelManager;		///<モデル
 
 };

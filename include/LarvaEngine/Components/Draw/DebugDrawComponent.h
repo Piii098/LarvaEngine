@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "LarvaEngine/Components/Draw/SpriteComponent.h"
 
-class BoxComponent2D;
+class Box2DComponent;
 
 /*
 	ボックス状のスプライトを表示する
@@ -10,14 +10,14 @@ class BoxComponent2D;
 class DebugDrawComponent : public SpriteComponent {
 public:
 
-	DebugDrawComponent(GameObject& parent, BoxComponent2D* boxComp);
+	DebugDrawComponent(GameObject& parent, Box2DComponent* boxComp);
 	~DebugDrawComponent() override;
 
 	void SetBox(const Vector2& position, const Vector2& size, const Vector3& color);
 	void DrawBox(const Vector2& position, const Vector2& size, const Vector3& color);
 
 private:
-	BoxComponent2D* _boxComp;
+	Box2DComponent* _boxComp;
 
 	int _boxHeight;
 	int _boxwidth;

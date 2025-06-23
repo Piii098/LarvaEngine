@@ -7,6 +7,7 @@
 
 // ===== 前方宣言 ===== //
 class Texture;
+class Game;
 
 /// @brief フォントクラス(アセット)
 /// TTFフォントを読み込み、テキストを描画する
@@ -17,7 +18,7 @@ public:
 
 	// ===== コンストラクタ・デストラクタ ===== //
 
-	Font();
+	Font(Game& game);
 	~Font();
 
 	// ===== ロード・アンロード ===== //
@@ -49,6 +50,7 @@ private:
 	/// @return 描画したテキストのテクスチャ
 	std::unique_ptr<Texture> RenderText(const std::string& text, const Vector3& color = Color::White, int pointSize = 30);
 
+	Game& _game;	
 
 	std::unordered_map<int, TTF_Font*> _textMap;	///< フォントマップ(フォントサイズとフォントデータ)
 	std::unordered_map<std::string, std::unique_ptr<Texture>>_textureCache;

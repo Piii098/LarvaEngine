@@ -123,24 +123,28 @@ public:
 
     // ===== ゲッターセッター ===== //
 
-    void Position(const Vector2& position) { _position = Vector2Int::ToInteger(position); _recomputeWorldTransform = true; }
-    void Position(const Vector2Int& position) { _position = position; _recomputeWorldTransform = true; }
+    void Position(const Vector3& position) { _position = position; _recomputeWorldTransform = true; }
+	void Position(float x, float y, float z) { _position = Vector3(x, y, z); _recomputeWorldTransform = true; }
+	void Position(const Vector2& position) { _position = Vector3(round(position.x), round(position.y), 0); _recomputeWorldTransform = true; }
+	void Position(const Vector2Int& position) { _position = Vector3(static_cast<float>(position.x), static_cast<float>(position.y), 0); _recomputeWorldTransform = true; }
     void Scale(float scale) { _scale = scale; _recomputeWorldTransform = true; }
-    void Rotation(float rotation) { _rotation = rotation; _recomputeWorldTransform = true; }
+    void Rotation(Quaternion rotation) { _rotation = rotation; _recomputeWorldTransform = true; }
     void Tag(TAG tag) { _tag = tag; }
     void State(STATE state) { _state = state; }
     void SetParent(GameObject* parent) { _parent = parent; };
 
-    const Vector2& GetForward() const { return Vector2(Math::Cos(_rotation), Math::Sin(_rotation)); }
+	const Vector3& GetForward() const { return Vector3::Transform(Vector3::UnitZ, _rotation); } ///< 前方ベクトルを取得する
     const TAG Tag() const { return _tag; }
     const STATE State() const { return _state; }
     const float Scale() const { return _scale; }
-    const float Rotation() const { return _rotation; }
+    const Quaternion Rotation() const { return _rotation; }
     const Matrix4& WorldTransform() const { return _worldTransform; }
-    const Vector2Int& Position() const { return _position; }
-    Vector2 PositionToFloat() { return Vector2::ToFloat(_position); }
-    Vector2Int& Position()  { return _position; }
-    
+    const Vector3& Position() const { return _position; }
+    const Vector3& Position()  { return _position; }
+	const Vector2Int& Position2D() { return Vector2(_position.x, _position.y); }
+	const Vector3& GetRight() const { return Vector3::Transform(Vector3::UnitX, _rotation); } ///< 右方向ベクトルを取得する
+	const Vector3& GetForward() { return Vector3::Transform(Vector3::UnitY, _rotation); } ///< 前方ベクトルを取得する
+
     Scene& GetScene() { return _scene; }
     MainScene& GetMainScene();
 
@@ -208,9 +212,10 @@ private:
     // トランスフォーム関連
     Matrix4 _worldTransform;                    ///< ワールド変換行列
     bool _recomputeWorldTransform;              ///< 変換行列の再計算フラグ
-    Vector2Int _position;                       ///< 位置（整数）
+    Vector3 _position;                       ///< 位置（整数）
+	Quaternion _rotation;                     ///< 回転
     float _scale;                               ///< スケール
-    float _rotation;                            ///< 回転（ラジアン）
+ 
 };
 
 #include "LarvaEngine/Core/GameObject.inl"

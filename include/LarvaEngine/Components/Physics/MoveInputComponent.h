@@ -2,7 +2,7 @@
 #include "LarvaEngine/Core/Component.h"
 #include "LarvaEngine/Core/Utilities/Math.h"
 
-class RigidbodyComponent;
+class Rigidbody2DComponent;
 
 class MoveInputComponent: public Component {
 public:
@@ -22,7 +22,7 @@ public:
 	void MoveSpeedY(float moveSpeed) { _moveSpeedY = moveSpeed; };
 	void JumpForce(float jumpForce) { _jumpForce = jumpForce; };
 
-	Vector2& Direction() { return _direction; };
+	float& Direction() { return _direction; };
 
 private:
 
@@ -33,7 +33,7 @@ private:
 	bool _isJumping;
 	bool _inputActive;
 
-	RigidbodyComponent* _rigidbodyComp;
-
-	Vector2 _direction;
+	Rigidbody2DComponent* _rigidbodyComp;
+	bool _isJump;
+	float _direction;
 };

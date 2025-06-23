@@ -44,6 +44,8 @@ public:
 	/// @param matrix Matrix4(行列)
 	void SetMatrixUniform(const char* name, const Matrix4& matrix);
 	
+	void SetVector4Uniform(const char* name, const Vector4& vector);
+
 	/// @brief Vector3ユニフォームを設定する
 	/// @param name ユニフォーム名
 	/// @param vector Vector3

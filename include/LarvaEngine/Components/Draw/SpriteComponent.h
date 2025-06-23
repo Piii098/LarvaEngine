@@ -20,6 +20,12 @@ public:
 		Right   // 右揃え
 	};
 
+	enum class VerticalAlign {
+		Top,    // 上揃え
+		Middle, // 中央揃え（デフォルト）
+		Bottom  // 下揃え
+	};
+
 	SpriteComponent(GameObject& parent, int bufferLayer, int drawLayer = 50);
 
 	virtual ~SpriteComponent();
@@ -50,10 +56,13 @@ public:
 
 	void Color(const Vector3& color) { _color = color; }
 
+	void Alpha(float alpha) { _alpha = alpha; };
+
 	void FlipX(bool flag) { _flipX = flag; };
 	void FlipY(bool flag) { _flipY = flag; };
 
 	void SetHorizontalAlign(HorizontalAlign align) { _horizontalAlign = align; };
+	void SetVerticalAlign(VerticalAlign align) { _verticalAlign = align; };
 
 	int BufferLayer() const { return _bufferLayer; };
 
@@ -76,9 +85,12 @@ protected:
 	Vector3 _selfLightColor;
 	float _selfLightIntensity;
 
+	float _alpha;
+
 	int _drawLayer; //描写順序、昇順に描写する
 
 	HorizontalAlign _horizontalAlign;
+	VerticalAlign _verticalAlign;
 
 	bool _flipX;
 	bool _flipY;

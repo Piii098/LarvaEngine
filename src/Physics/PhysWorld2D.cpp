@@ -1,10 +1,9 @@
 ﻿#include <algorithm>
 #include "LarvaEngine/Physics/PhysWorld2D.h"
-#include "LarvaEngine/Components/Physics/BoxComponent2D.h"
+#include "LarvaEngine/Components/Physics/Box2DComponent.h"
 #include "LarvaEngine/Core/Game.h"
-#include "LarvaEngine/Renderer/Renderer.h"
 #include "LarvaEngine/Core/GameObject.h"
-#include "LarvaEngine/Components/Physics/RigidbodyComponent.h"
+#include "LarvaEngine/Components/Physics/Rigidbody2DComponent.h"
 
 
 //============================================================
@@ -31,7 +30,7 @@ PhysWorld2D::PhysWorld2D(Game& game)
 bool PhysWorld2D::SegmentCast(const LineSegment2D& l, CollisionInfo& outColl, GameObject& ignoreObj) {
     bool collided = false;
     float closestT = std::numeric_limits<float>::infinity();
-    Vector2Int norm;
+    Vector2 norm;
 
     // 衝突判定のためのループ
     for (auto box : _boxComps) {
@@ -60,7 +59,7 @@ bool PhysWorld2D::SegmentCast(const LineSegment2D& l, CollisionInfo& outColl, Ga
  * Game::FixedUpdate()から呼びだされる
  */
 void PhysWorld2D::FixedUpdate(float deltaTime) {
-    // CollisionUpdate(deltaTime); // 衝突の更新
+    CollisionUpdate(deltaTime); // 衝突の更新
 
     for (auto& rigid : _rigidbodyComps) {
 		rigid->CalculateVelocity(deltaTime); // 速度の計算
@@ -71,14 +70,14 @@ void PhysWorld2D::FixedUpdate(float deltaTime) {
 /**
  * ボックスコンポーネントを追加
  */
-void PhysWorld2D::AddBoxComponent(BoxComponent2D* obj) {
+void PhysWorld2D::AddBoxComponent(Box2DComponent* obj) {
     _boxComps.push_back(obj); // ボックスコンポーネントを追加
 }
 
 /**
  * ボックスコンポーネントを削除
  */
-void PhysWorld2D::RemoveBoxComponent(BoxComponent2D* box) {
+void PhysWorld2D::RemoveBoxComponent(Box2DComponent* box) {
     auto iter = std::find(_boxComps.begin(), _boxComps.end(), box);
     if (iter != _boxComps.end()) {
         std::iter_swap(iter, _boxComps.end() - 1); // 最後の要素とスワップ
@@ -89,14 +88,14 @@ void PhysWorld2D::RemoveBoxComponent(BoxComponent2D* box) {
 /**
  * リジットボディコンポーネントを追加
  */
-void PhysWorld2D::AddRigidbodyComponent(RigidbodyComponent* obj) {
+void PhysWorld2D::AddRigidbodyComponent(Rigidbody2DComponent* obj) {
 	_rigidbodyComps.push_back(obj); // リジットボディコンポーネントを追加
 }
 
 /**
  * リジットボディコンポーネントを削除
  */
-void PhysWorld2D::RemoveRigidbodyComponent(RigidbodyComponent* obj) {
+void PhysWorld2D::RemoveRigidbodyComponent(Rigidbody2DComponent* obj) {
 	auto iter = std::find(_rigidbodyComps.begin(), _rigidbodyComps.end(), obj);
 	if (iter != _rigidbodyComps.end()) {
 		std::iter_swap(iter, _rigidbodyComps.end() - 1); // 最後の要素とスワップ
@@ -124,7 +123,7 @@ void PhysWorld2D::CollisionUpdate(float deltaTime) {
 
     for (int i = 0; i < subSteps; ++i) {
         for (auto boxA : _boxComps) {
-            auto rigidA = boxA->GetParent().GetComponent<RigidbodyComponent>();
+            auto rigidA = boxA->GetParent().GetComponent<Rigidbody2DComponent>();
             if (rigidA == nullptr || !boxA->IsCollision() || !boxA->IsDynamic()) {
                 continue; // 衝突判定が無効な場合はスキップ
             }
@@ -134,7 +133,7 @@ void PhysWorld2D::CollisionUpdate(float deltaTime) {
             Vector2 nextPosA = currentPosA + velocityA * subDeltaTime; // 次の位置
 
             AABB2D nextBoxA = boxA->GetWorldBox();
-            nextBoxA.MoveCenterTo(Vector2Int::ToInteger(nextPosA)); // 次のボックスの位置を更新
+            nextBoxA.MoveCenterTo(nextPosA); // 次のボックスの位置を更新
 
             // 他のボックスとの衝突判定
             for (auto boxB : _boxComps) {
@@ -157,7 +156,7 @@ void PhysWorld2D::CollisionUpdate(float deltaTime) {
  * 衝突したボックスコンポーネントを修正する
  *
  */
-void PhysWorld2D::FixCollision(BoxComponent2D* boxA, Vector2& velocityA, Vector2& nextPosA, AABB2D& nextBoxA, BoxComponent2D* boxB) {
+void PhysWorld2D::FixCollision(Box2DComponent* boxA, Vector2& velocityA, Vector2& nextPosA, AABB2D& nextBoxA, Box2DComponent* boxB) {
     AABB2D dynBox = nextBoxA; // 動的ボックス
     AABB2D staBox = boxB->GetWorldBox(); // 静的ボックス
 
@@ -184,6 +183,7 @@ void PhysWorld2D::FixCollision(BoxComponent2D* boxA, Vector2& velocityA, Vector2
             velocityA.y = 0.f; // 速度をゼロに
         }
     }
+
 
     // ワールド変換の更新
     boxA->OnUpdateWorldTransform();

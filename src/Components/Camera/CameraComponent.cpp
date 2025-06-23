@@ -27,13 +27,13 @@ void CameraComponent::ProcessInput(const InputAction& input) {
 }
 
 void CameraComponent::Update(float deltaTime) {
-
+    Matrix4 translation = Matrix4::CreateTranslation(Vector3(-_parent.Position().x, -_parent.Position().y, 0.0f));
+    Matrix4 scale = Matrix4::CreateScale(1 * _zoom, 1 * _zoom, 1 * _zoom);
+	_viewMatrix = translation * scale;
 }
 
 Matrix4 CameraComponent::GetViewMatrix() const{
-    Matrix4 translation = Matrix4::CreateTranslation(Vector3(-_parent.Position().x, -_parent.Position().y, 0.0f));
-    Matrix4 scale = Matrix4::CreateScale(1 * _zoom, 1 * _zoom, 1 * _zoom);
-    return translation * scale;
+    return _viewMatrix;
 }
 
 

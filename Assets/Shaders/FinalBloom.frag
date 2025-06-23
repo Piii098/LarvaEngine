@@ -1,7 +1,7 @@
 #version 330 core
 out vec4 FragColor;
   
-in vec2 TexCoords;
+in vec2 fragTexCoord;
 
 uniform sampler2D scene;
 uniform sampler2D bloomBlur;
@@ -14,8 +14,8 @@ void main()
     if(uIsBloom){
         
         const float gamma = 1.1;
-        vec3 hdrColor = texture(scene, TexCoords).rgb;      
-        vec3 bloomColor = texture(bloomBlur, TexCoords).rgb;
+        vec3 hdrColor = texture(scene, fragTexCoord).rgb;      
+        vec3 bloomColor = texture(bloomBlur, fragTexCoord).rgb;
         hdrColor += bloomColor; 
  
         vec3 result = vec3(1.0) - exp(-hdrColor * exposure);
@@ -24,7 +24,7 @@ void main()
         FragColor = vec4(result, 1.0);
     }else{
         
-        FragColor = texture(scene, TexCoords);
+        FragColor = texture(scene, fragTexCoord);
     
     }
 }  

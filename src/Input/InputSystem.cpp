@@ -1,9 +1,9 @@
 ﻿#include <memory.h>
 #include <algorithm>
 #include "LarvaEngine/Input/InputSystem.h"
+#include "LarvaEngine/Renderer/Renderer.h"
 #include <SDL3/SDL.h>
 #include "LarvaEngine/Core/Game.h"
-#include "LarvaEngine/Renderer/Renderer.h"
 
 #pragma region KeyboardState
 
@@ -194,7 +194,7 @@ void InputSystem::PreUpdate() {
 	// マウスの状態をコピー
 	_state.mouse._previousButtons = _state.mouse._currentButtons;
 	_state.mouse._wheel = Vector2::Zero; // ホイールの値をリセット
-	_state.mouse._isRelative = false; // マウスの相対モードをリセット
+	//_state.mouse._isRelative = false; // マウスの相対モードをリセット
 
 	// コントローラの状態をコピー
 	memcpy(_state.gamepad._previousButtons, _state.gamepad._currentButtons, SDL_GAMEPAD_BUTTON_COUNT);

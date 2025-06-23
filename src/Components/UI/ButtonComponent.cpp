@@ -3,7 +3,7 @@
 #include "LarvaEngine/Input/InputAction.h"
 #include "LarvaEngine/Components/Draw/SpriteComponent.h"
 #include "LarvaEngine/Components/Draw/TextComponent.h"
-#include "LarvaEngine/Components/Physics/BoxComponent2D.h"
+#include "LarvaEngine/Components/Physics/Box2DComponent.h"
 #include "LarvaEngine/Physics/Collision2D.h"
 #include <SDL3/SDL.h>
 
@@ -23,7 +23,7 @@ ButtonComponent::ButtonComponent(GameObject& parent, int updateLayer)
 {
     // SpriteComponentとTextComponentを取得
     _spriteComponent = _parent.GetComponent<SpriteComponent>();
-	_boxComponent = _parent.GetComponent<BoxComponent2D>();
+	_boxComponent = _parent.GetComponent<Box2DComponent>();
 	AABB2D myBox = _spriteComponent->GetAABB();
 	_boxComponent->SetObjectBox(myBox);
     _textComponent = _parent.GetComponent<TextComponent>();
@@ -141,5 +141,5 @@ bool ButtonComponent::IsPointInButton(float x, float y) const {
 	Vector2 mousePos = ConvertMouseToUIScene(x, y);
 
 	// ボタンのAABBとマウス座標を比較
-	return box.Contains(Vector2Int::ToInteger(mousePos));
+	return box.Contains(Vector2(mousePos));
 }

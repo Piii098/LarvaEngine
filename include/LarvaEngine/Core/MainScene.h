@@ -56,7 +56,11 @@ public:
 	/// Rendererで呼び出され低解像度レンダリングの処理を行う
 	/// @param shader シェーダー
 	/// @param bufferLayer 描写レイヤー
-    void Render(Shader& shader, int bufferLayer);
+    void RenderSprite(Shader& shader, int bufferLayer);
+
+	void RenderMesh(Shader& shader);
+
+	void RenderModel(Shader& shader);
 
 	/// @brief UIの描写処理
 	/// アクティブ状態のUIシーンの描写処理を行う
@@ -102,6 +106,17 @@ public:
 		_uiScenes.push_back(std::move(uiScene));
 		return uiSceneRef;
     }
+
+	template <typename T, typename... Args>
+	T* GetUIScene(Args&&... args) {
+		for (auto& ui : _uiScenes) {
+			if (T* t = dynamic_cast<T*>(ui.get())) { // unique_ptrから生ポインタを取得
+				return t;
+			}
+		}
+		return nullptr;
+
+	}
 
 	/// @brief UISceneの削除
 	/// UISceneを削除する

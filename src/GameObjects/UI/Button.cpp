@@ -2,7 +2,7 @@
 #include "LarvaEngine/GameObjects/UI/Button.h"
 #include "LarvaEngine/Components/Draw/SpriteComponent.h"
 #include "LarvaEngine/Components/Draw/TextComponent.h"
-#include "LarvaEngine/Components/Physics/BoxComponent2D.h"
+#include "LarvaEngine/Components/Physics/Box2DComponent.h"
 #include "LarvaEngine/Components/UI/ButtonComponent.h"
 #include "LarvaEngine/Input/InputAction.h"
 
@@ -111,7 +111,7 @@ Button::Button(Scene& scene, const std::string& spriteName)
 	SpriteComponent& spri = CreateComponent<SpriteComponent>(10);
 	spri.SetTexture(spriteName);
 	TextComponent& text = CreateComponent<TextComponent>(10, "MOBO");
-	BoxComponent2D& box = CreateComponent<BoxComponent2D>(false, false);
+	Box2DComponent& box = CreateComponent<Box2DComponent>(false, false);
 
 	ButtonComponent& button = CreateComponent<ButtonComponent>();
 

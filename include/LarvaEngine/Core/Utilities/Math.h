@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------
-// From Game Programming in C++ by Sanjay Madhav
+// From Game Progra_ming in C++ by Sanjay Madhav
 // Copyright (C) 2017 Sanjay Madhav. All rights reserved.
 // 
 // Released under the BSD License
@@ -127,7 +127,7 @@ namespace Math
 	inline float SmoothDamp(float current, float target, float& currentVelocity, float smoothTime,
 		float maxSpeed = std::numeric_limits<float>::max(), float deltaTime = 1.0f / 60.0f)
 	{
-		// Based on Game Programming Gems 4 Chapter 1.10
+		// Based on Game Progra_ming Gems 4 Chapter 1.10
 		smoothTime = Max(0.0001f, smoothTime);
 		float omega = 2.0f / smoothTime;
 
@@ -173,6 +173,13 @@ public:
 		:x(0.0f)
 		,y(0.0f)
 	{}
+
+	Vector2(const Vector2& vec)
+		:x(vec.x)
+		, y(vec.y)
+	{}
+
+	Vector2(const Vector2Int& vec);
 
 	explicit Vector2(float inX, float inY)
 		:x(inX)
@@ -229,6 +236,8 @@ public:
 		return a.x == b.x && a.x == b.y;
 	}
 
+	Vector2& operator=(const Vector2Int& vec);
+
 	// Scalar *=
 	Vector2& operator*=(float scalar)
 	{
@@ -276,8 +285,6 @@ public:
 			y /= length;
 		}
 	}
-
-	static Vector2 ToFloat(const Vector2Int& vec);
 
 	// Normalize the provided vector
 	static Vector2 Normalize(const Vector2& vec)
@@ -338,6 +345,11 @@ public:
 		, y(0)
 	{}
 
+	Vector2Int(const Vector2& vec)
+		:x(round(vec.x))
+		, y(round(vec.y))
+	{}
+
 	explicit Vector2Int(int inX, int inY)
 		:x(inX)
 		, y(inY)
@@ -384,6 +396,13 @@ public:
 	friend Vector2Int operator/(const Vector2Int& vec, int scalar)
 	{
 		return Vector2Int(vec.x / scalar, vec.y / scalar);
+	}
+
+	Vector2Int& operator=(const Vector2& vec)
+	{
+		x = static_cast<int>(vec.x);
+		y = static_cast<int>(vec.y);
+		return *this;
 	}
 
 	// Scalar *=
@@ -444,14 +463,6 @@ public:
 	static int Dot(const Vector2Int& a, const Vector2Int& b)
 	{
 		return (a.x * b.x + a.y * b.y);
-	}
-
-	// Lerp from A to B by f
-	static Vector2Int Lerp(const Vector2Int& a, const Vector2Int& b, float f)
-	{
-		Vector2 tempA = Vector2::ToFloat(a);
-		Vector2 tempB = Vector2::ToFloat(b);
-		return Vector2Int::ToInteger(Vector2::Lerp(tempA, tempB, f));
 	}
 
 	static const Vector2Int Zero;
@@ -528,6 +539,14 @@ public:
 	friend Vector3 operator*(float scalar, const Vector3& vec)
 	{
 		return Vector3(vec.x * scalar, vec.y * scalar, vec.z * scalar);
+	}
+
+	Vector3& operator=(const Vector2& vec)
+	{
+		x = vec.x;
+		y = vec.y;
+		z = 0.0f; // zを0に設定
+		return *this;
 	}
 
 	// Scalar *=
@@ -630,6 +649,109 @@ public:
 	static const Vector3 NegUnitZ;
 	static const Vector3 Infinity;
 	static const Vector3 NegInfinity;
+};
+
+
+// 4D Vector
+class Vector4
+{
+public:
+    float x;
+    float y;
+    float z;
+    float w;
+
+    Vector4()
+        : x(0.0f), y(0.0f), z(0.0f), w(0.0f)
+    {}
+
+    explicit Vector4(float inX, float inY, float inZ, float inW)
+        : x(inX), y(inY), z(inZ), w(inW)
+    {}
+
+    // Set all four components in one line
+    void Set(float inX, float inY, float inZ, float inW)
+    {
+        x = inX;
+        y = inY;
+        z = inZ;
+        w = inW;
+    }
+
+    // Vector addition (a + b)
+    friend Vector4 operator+(const Vector4& a, const Vector4& b)
+    {
+        return Vector4(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+    }
+
+    // Vector subtraction (a - b)
+    friend Vector4 operator-(const Vector4& a, const Vector4& b)
+    {
+        return Vector4(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+    }
+
+    // Scalar multiplication
+    friend Vector4 operator*(const Vector4& vec, float scalar)
+    {
+        return Vector4(vec.x * scalar, vec.y * scalar, vec.z * scalar, vec.w * scalar);
+    }
+
+    // Scalar multiplication
+    friend Vector4 operator*(float scalar, const Vector4& vec)
+    {
+        return Vector4(vec.x * scalar, vec.y * scalar, vec.z * scalar, vec.w * scalar);
+    }
+
+    // Scalar division
+    friend Vector4 operator/(const Vector4& vec, float scalar)
+    {
+        return Vector4(vec.x / scalar, vec.y / scalar, vec.z / scalar, vec.w / scalar);
+    }
+
+    // Length squared of vector
+    float LengthSq() const
+    {
+        return (x * x + y * y + z * z + w * w);
+    }
+
+    // Length of vector
+    float Length() const
+    {
+        return Math::Sqrt(LengthSq());
+    }
+
+    // Normalize this vector
+    void Normalize()
+    {
+        float length = Length();
+        if (length > 0.0001f) // Epsilon check
+        {
+            x /= length;
+            y /= length;
+            z /= length;
+            w /= length;
+        }
+    }
+
+    // Normalize the provided vector
+    static Vector4 Normalize(const Vector4& vec)
+    {
+        Vector4 temp = vec;
+        temp.Normalize();
+        return temp;
+    }
+
+    // Dot product between two vectors (a dot b)
+    static float Dot(const Vector4& a, const Vector4& b)
+    {
+        return (a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w);
+    }
+
+    static const Vector4 Zero;
+    static const Vector4 UnitX;
+    static const Vector4 UnitY;
+    static const Vector4 UnitZ;
+    static const Vector4 UnitW;
 };
 
 // 3x3 Matrix
@@ -765,6 +887,7 @@ public:
 
 	static const Matrix3 Identity;
 };
+
 
 // 4x4 Matrix
 class Matrix4
@@ -1073,6 +1196,19 @@ public:
 			{ 0.0f, 0.0f, 1.0f, 1.0f }
 		};
 		return Matrix4(temp);
+	}
+
+	void Transpose()
+	{
+		float temp[4][4];
+		for (int i = 0; i < 4; ++i)
+		{
+			for (int j = 0; j < 4; ++j)
+			{
+				temp[i][j] = mat[j][i];
+			}
+		}
+		memcpy(mat, temp, 16 * sizeof(float));
 	}
 	
 	static const Matrix4 Identity;

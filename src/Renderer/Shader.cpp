@@ -94,6 +94,14 @@ void Shader::SetMatrixUniform(const char* name, const Matrix4& matrix) {
 }
 
 /**
+ * Vector4ユニフォームを設定する
+ */
+void Shader::SetVector4Uniform(const char* name, const Vector4& vec) {
+	GLuint loc = glGetUniformLocation(_shaderProgram, name);
+	glUniform4f(loc, vec.x, vec.y, vec.z, vec.w);
+}
+
+/**
  * Vector3ユニフォームを設定する
  */
 void Shader::SetVector3Uniform(const char* name, const Vector3& vec) {
@@ -113,7 +121,7 @@ void Shader::SetVector2Uniform(const char* name, const Vector2& vec) {
  * Vector2ユニフォームを設定する
  */
 void Shader::SetVector2Uniform(const char* name, const Vector2Int& vec) {
-	Vector2 vecFlaot = Vector2::ToFloat(vec);
+	Vector2 vecFlaot = vec;
 	GLuint loc = glGetUniformLocation(_shaderProgram, name);
 	glUniform2f(loc, vecFlaot.x, vecFlaot.y);
 }

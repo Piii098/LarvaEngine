@@ -7,8 +7,16 @@
 // ===== 前方宣言 ===== //
 class Game;
 class GameObject;
-class BoxComponent2D;
-class RigidbodyComponent;
+class Box2DComponent;
+class Rigidbody2DComponent;
+
+// 衝突情報
+struct CollisionInfo {
+	Vector2 _point;         ///< 衝突点
+	Vector2 _normal;     ///< 衝突法線
+	Box2DComponent* _box;   ///< 衝突したボックスコンポーネント
+	GameObject* _object;    ///< 衝突したオブジェクト
+};
 
 /// @brief 2Dの物理世界クラス
 ///
@@ -17,13 +25,6 @@ class RigidbodyComponent;
 /// 衝突判定、衝突修正を行う
 class PhysWorld2D {
 public:
-	// 衝突情報
-    struct CollisionInfo {
-		Vector2 _point;         ///< 衝突点
-		Vector2Int _normal;     ///< 衝突法線
-		BoxComponent2D* _box;   ///< 衝突したボックスコンポーネント
-		GameObject* _object;    ///< 衝突したオブジェクト
-    };
 
 
 	// ===== コンストラクタ =====//
@@ -53,19 +54,19 @@ public:
 
 	/// @brief ボックスコンポーネントを追加
 	/// @param obj ボックスコンポーネント
-	void AddBoxComponent(BoxComponent2D* obj); // 静的ボックスコンポーネントを追加
+	void AddBoxComponent(Box2DComponent* obj); // 静的ボックスコンポーネントを追加
     
 	/// @brief ボックスコンポーネントを削除
 	/// @param obj ボックスコンポーネント
-	void RemoveBoxComponent(BoxComponent2D* obj); // 静的ボックスコンポーネントを削除
+	void RemoveBoxComponent(Box2DComponent* obj); // 静的ボックスコンポーネントを削除
 
 	/// @brief リジットボディコンポーネントを追加
 	/// @param obj リジットボディコンポーネント
-	void AddRigidbodyComponent(RigidbodyComponent* obj); // 動的リジッドボディコンポーネントを追加
+	void AddRigidbodyComponent(Rigidbody2DComponent* obj); // 動的リジッドボディコンポーネントを追加
 	
 	/// @brief リジットボディコンポーネントを追加
 	/// @param obj リジットボディコンポーネント
-	void RemoveRigidbodyComponent(RigidbodyComponent* obj); // 動的リジッドボディコンポーネントを削除
+	void RemoveRigidbodyComponent(Rigidbody2DComponent* obj); // 動的リジッドボディコンポーネントを削除
 
 private:
 
@@ -82,10 +83,10 @@ private:
 	/// @param velocityA 移動速度A
 	/// @param nextPositionA 次の位置A
 	/// @param nextBoxA 次のボックスA
-    void FixCollision(BoxComponent2D* boxA, Vector2& velocityA, Vector2& nextPositionA, AABB2D& nextBoxA, BoxComponent2D* boxB);
+    void FixCollision(Box2DComponent* boxA, Vector2& velocityA, Vector2& nextPositionA, AABB2D& nextBoxA, Box2DComponent* boxB);
 
 	Game& game;								///< ゲームクラス
 	const float CCD_STEP_SIZE = 0.01f; 		///< CCDのステップサイズ
-	std::vector<BoxComponent2D*> _boxComps; ///< ボックスコンポーネントの配列
-	std::vector<RigidbodyComponent*> _rigidbodyComps; ///< リジッドボディコンポーネントの配列
+	std::vector<Box2DComponent*> _boxComps; ///< ボックスコンポーネントの配列
+	std::vector<Rigidbody2DComponent*> _rigidbodyComps; ///< リジッドボディコンポーネントの配列
 };

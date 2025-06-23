@@ -4,8 +4,9 @@
 
 #pragma region コンストラクタ:デストラクタ
 
-TileMap::TileMap()
-    : _width(0)
+TileMap::TileMap(Game& game)
+	: _game(game)
+    , _width(0)
     , _height(0) {
     // デフォルトのタイル情報を初期化
 }

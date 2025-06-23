@@ -5,11 +5,11 @@
 #include "LarvaEngine/Core/Game.h"
 #include "LarvaEngine/Renderer/Shader.h"
 #include "LarvaEngine/Core/Resources/Texture.h"
-#include "LarvaEngine/Components/Physics/BoxComponent2D.h"
+#include "LarvaEngine/Components/Physics/Box2DComponent.h"
 
 #pragma region コンストラクタ:デストラクタ
 
-DebugDrawComponent::DebugDrawComponent(GameObject& parent, BoxComponent2D* boxComp)
+DebugDrawComponent::DebugDrawComponent(GameObject& parent, Box2DComponent* boxComp)
 	: SpriteComponent(parent, 16)
 	, _boxComp(boxComp){
     SetTexture("RedBox");

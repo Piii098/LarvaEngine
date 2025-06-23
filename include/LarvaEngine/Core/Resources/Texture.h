@@ -5,6 +5,7 @@
 // ===== 前方宣言 ===== //
 struct SDL_Surface;
 
+class Game;
 
 /// @brief テクスチャクラス(アセット)
 /// SOILを使用してテクスチャを読み込み、textureIDを保持する
@@ -14,7 +15,8 @@ public:
 
 	// ===== コンストラクタ・デストラクタ ===== //
 
-	Texture();
+	Texture(Game& game);
+
 	~Texture();
 
 	// ===== ロード・アンロード ===== //
@@ -28,6 +30,8 @@ public:
 	/// @brief テクスチャをアンロードする
 	/// テクスチャIDを削除する
 	void Unload();
+
+	void TextureID(unsigned int id) { _textureID = id; };
 	
 	/// @brief SDL_Surfaceからテクスチャを作成する
 	/// 
@@ -38,12 +42,16 @@ public:
 	/// テクスチャIDをバインドする
 	void SetActive();
 
+	void SetActive(int textureUnit);
+
 	// ===== ゲッター ===== //
 
 	int Width() const { return _width; };
 	int Height() const { return _height; };
 
 private:
+
+	Game& _game;	///< ゲームクラスへの参照
 
 	unsigned int _textureID;	///< テクスチャID
 	int _width;				    ///< 幅

@@ -19,7 +19,7 @@ public:
 
 	// ===== コンストラクタ・デストラクタ ===== //
     
-    AssetManager() = default; // コンストラクタ
+    AssetManager(Game& game) : _game(game) { }
 
     ~AssetManager() {
         UnloadAll(); // 全アセットをアンロード
@@ -42,7 +42,7 @@ public:
         }
 
         // 新しいインスタンスを作成
-        T* asset = new T();
+        T* asset = new T(_game);
 
         // ロード処理
         if (asset->Load(fileName)) { // ファイルからアセットをロード
@@ -93,6 +93,8 @@ public:
     }
 
 protected:
+
+	Game& _game; // ゲームクラスへの参照
 
     std::unordered_map<std::string, std::unique_ptr<T>> _assets; // アセットを格納するマップ
 };

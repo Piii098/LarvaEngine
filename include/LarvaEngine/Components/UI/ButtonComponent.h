@@ -7,7 +7,7 @@
 
 class SpriteComponent;
 class TextComponent;
-class BoxComponent2D;
+class Box2DComponent;
 class InputAction;
 
 class ButtonComponent : public Component {
@@ -63,7 +63,7 @@ private:
 
     SpriteComponent* _spriteComponent;
     TextComponent* _textComponent;
-	BoxComponent2D* _boxComponent;
+	Box2DComponent* _boxComponent;
 
     Vector3 _normalColor;
     Vector3 _pressedColor;

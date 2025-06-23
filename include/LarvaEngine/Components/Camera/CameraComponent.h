@@ -9,7 +9,7 @@ public:
 	~CameraComponent() override;
 
 	void ProcessInput(const InputAction& input) override;
-	void Update(float deltaTime) override;
+	virtual void Update(float deltaTime) override;
 
 	void Zoom(float zoom) { _zoom = zoom; };
 	float Zoom() const { return  _zoom; };
@@ -23,4 +23,5 @@ protected:
 	Vector2Int _target;
 	float _zoom;
 	Vector2 _subPixelOffset; // サブピクセルオフセット保持用
+	Matrix4 _viewMatrix; // ビュー行列
 };

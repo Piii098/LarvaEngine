@@ -15,7 +15,7 @@ LightComponent::LightComponent(GameObject& parent, int bufferLayer, int updateLa
     , _lightIntensity(1.f)
     , _lightScale(Vector2(1.f, 1.f))
     , _lightRange(50)
-    , _lightOffset(Vector2::Zero){
+    , _lightOffset(Vector3::Zero){
 	SetBufferLayer(bufferLayer);
 	GetParent().GetScene().GetManager().GetGame().GetRenderer().AddLight(this);
 }
@@ -40,8 +40,9 @@ void LightComponent::RenderLight(Shader& shader) {
     // ワールド変換マトリックスの計算
     Matrix4 world = scaleMat * translationMat * _parent.WorldTransform();
 
+    //Vecttor2 
     // 2D化したライト中心をシェーダへ送る（計算体系に合わせて調整）
-    shader.SetVector2Uniform("uLightCenter", _parent.Position() + Vector2Int::ToInteger(_lightOffset));
+    //shader.SetVector2Uniform("uLightCenter", _parent.Position() + _lightOffset);
 	shader.SetMatrixUniform("uWorldTransform", world);
     shader.SetVector3Uniform("uLightColor", _lightColor);
 

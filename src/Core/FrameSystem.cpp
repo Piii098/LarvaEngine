@@ -9,6 +9,8 @@ FrameSystem::FrameSystem()
     : _gameTime(0.f)
 	, _deltaTime(0.f)
 	, _fps(0.f)
+	, _fpsTimer(0.f)
+	, _frameCount(0)
     , _fixedDeltaTime(1.f / 60.f)
 	, _accumulator(0.f)
 	, _lastTick(SDL_GetTicksNS()){
@@ -40,8 +42,24 @@ void FrameSystem::Update() {
     // アキュムレータに時間を追加
     _accumulator += _deltaTime;
 
-    // FPSの更新（移動平均）
-    _fps = 0.9f * _fps + 0.1f * (1.f / _deltaTime);
+    // フレーム数をカウント
+    _frameCount++;
+
+    // FPS計測用タイマーを更新
+    _fpsTimer += _deltaTime;
+    if (_fpsTimer >= 1.0f) {
+        // FPSを更新
+        _fps = static_cast<float>(_frameCount) / _fpsTimer;
+
+        // カウントとタイマーをリセット
+        _frameCount = 0;
+        _fpsTimer = 0.f;
+
+        // デバッグ用ログ（任意）
+        SDL_Log("FPS: %d", _fps);
+    }
+
+
 	//SDL_Log("FPS: %f", _fps);
     // ゲーム時間の更新
     _gameTime += _deltaTime;

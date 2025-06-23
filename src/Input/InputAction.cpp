@@ -3,9 +3,6 @@
 #include "LarvaEngine/Input/InputAction.h"
 #include "LarvaEngine/Input/InputSystem.h"
 #include "LarvaEngine/Core/Game.h"
-#include "LarvaEngine/Renderer/Renderer.h"
-
-
 #pragma region コンストラクタ・デストラクタ
 
 InputAction::InputAction(InputSystem& inputSystem)
@@ -180,7 +177,7 @@ const Vector2& InputAction::GetMousePosition() const {
 	return _inputSystem.GetState().mouse.GetPosition();
 }
 
-void InputAction::SetRelativeMouseMode(bool isRelative) {
+void InputAction::SetRelativeMouseMode(bool isRelative) const {
 	SDL_SetWindowRelativeMouseMode(_inputSystem.GetWindow(), isRelative);
 	_inputSystem.SetRelativeMouseMode(isRelative);
 }

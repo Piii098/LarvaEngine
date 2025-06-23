@@ -1,12 +1,17 @@
-﻿
-#include <SDL3_ttf/SDL_ttf.h>
+﻿#include <SDL3_ttf/SDL_ttf.h>
 #include "LarvaEngine/Core/Game.h"
 #include "LarvaEngine/Core/FrameSystem.h"
 #include "LarvaEngine/Renderer/Renderer.h"
+#include "LarvaEngine/Renderer/2D/Renderer2D.h"
+#include "LarvaEngine/Renderer/3D/Renderer3D.h"
 #include "LarvaEngine/Physics/PhysWorld2D.h"
+#include "LarvaEngine/Physics/PhysWorld3D.h"
 #include "LarvaEngine/Core/Resources/AssetManager.h"
 #include "LarvaEngine/Core/Resources/Texture.h"
 #include "LarvaEngine/Core/Resources/TileMap.h"
+#include "LarvaEngine/Core/Resources/Font.h"
+#include "LarvaEngine/Renderer/3D/Mesh.h"
+#include "LarvaEngine/Core/Resources/Model.h"
 #include "LarvaEngine/GameObjects/TileMapObject.h"
 #include "LarvaEngine/Core/SceneManager.h"
 #include "LarvaEngine/Audio/AudioSystem.h"
@@ -21,13 +26,16 @@ Game::Game()
 	: _renderer(nullptr)
 	, _isRunning(true)
 	, _frameSystem(nullptr)
-	, _physWorld(nullptr)
+	, _physWorld2D(nullptr)
+	, _physWorld3D(nullptr)
 	, _textureManager(nullptr) 
 	, _tileMapManager(nullptr)
 	, _windowHeight(0)
 	, _windowWidth(0)
 	, _lowResHeight(0)
-	, _lowResWidth(0) {
+	, _lowResWidth(0)
+	, _useMultithreading(false)
+	, _rendererMode(RENDERER_MODE::MODE_2D){
 }
 
 Game::~Game() {
@@ -83,17 +91,25 @@ bool Game::Initialize() {
 	}
 
 	// ウィンドウ、レンダラーの初期化
-	_renderer = std::make_unique<Renderer>(*this);
+	switch(_rendererMode) {
+	case RENDERER_MODE::MODE_2D:
+		_renderer = std::make_unique<Renderer2D>(*this);
+		_physWorld2D = std::make_unique<PhysWorld2D>(*this); // 物理システムの初期化
+		break;
+	case RENDERER_MODE::MODE_3D:
+		_renderer = std::make_unique<Renderer3D>(*this);
+		_physWorld3D = std::make_unique<PhysWorld3D>(*this); // 物理システムの初期化
+		break;
+	default:
+		SDL_Log("Invalid renderer mode");
+		return false;
+		break;
+	}
 
 	_renderer->SetLowResSize(_lowResWidth, _lowResHeight); // 低解像度レンダリングのサイズを設定
 	_renderer->SetWindowSize(_windowWidth, _windowHeight); // ウィンドウのサイズを設定
 
-<<<<<<< HEAD
-	if (!_renderer->Initialize(
-		wWidth, wHeigth, lWidth, lHeigth, _windowName)) {
-=======
 	if (!_renderer->Initialize(_windowName)) {
->>>>>>> 544a8b5 (2Dレンダラが出力不可、対処中)
 		SDL_Log("Failed to intialized renderer");
 		return false;
 	}
@@ -113,14 +129,13 @@ bool Game::Initialize() {
 		return false;
 	}
 
+	if (_useMultithreading) {
+		ThreadPool::GetInstance().Initialize(); // スレッドプールの初期化
+		SDL_Log("Thread pool initialized with %zu worker threads", ThreadPool::GetInstance().GetThreadCount());
+	}
+
 	_inputAction = std::make_unique<InputAction>(*_inputSystem.get()); // 入力アクションの初期化
 	_frameSystem = std::make_unique<FrameSystem>();					  // フレームシステムの初期化	
-<<<<<<< HEAD
-	_physWorld = std::make_unique<PhysWorld2D>(*this);				  // 物理システムの初期化		
-	_textureManager = std::make_unique<AssetManager<Texture>>();      // テクスチャマネージャの初期化
-	_tileMapManager = std::make_unique<AssetManager<TileMap>>();	  // タイルマップマネージャの初期化
-	_fontManager = std::make_unique<AssetManager<Font>>();		      // フォントマネージャの初期化
-=======
 	_textureManager = std::make_unique<AssetManager<Texture>>(*this);      // テクスチャマネージャの初期化
 	_tileMapManager = std::make_unique<AssetManager<TileMap>>(*this);	  // タイルマップマネージャの初期化
 	_fontManager = std::make_unique<AssetManager<Font>>(*this);		      // フォントマネージャの初期化
@@ -129,7 +144,6 @@ bool Game::Initialize() {
 
 	GetTextureManager().Load("ToonRampTexture", "Assets/Shaders/toon.png");
 	GetTextureManager().Load("Sample", "Assets/Textures/bg_1.png");
->>>>>>> 544a8b5 (2Dレンダラが出力不可、対処中)
 
 	// フレームレートの設定
 	SetAction();
@@ -239,8 +253,13 @@ void Game::FixedUpdate() {
 
 	_sceneManager->FixedUpdate(_frameSystem->FixedDeltaTime());
 
-	_physWorld->FixedUpdate(_frameSystem->FixedDeltaTime());
-
+	if (_rendererMode == RENDERER_MODE::MODE_2D){
+		_physWorld2D->FixedUpdate(_frameSystem->FixedDeltaTime());
+	}
+	else if (_rendererMode == RENDERER_MODE::MODE_3D)
+	{
+		_physWorld3D->FixedUpdate(_frameSystem->FixedDeltaTime());
+	}
 }
 
 void Game::LateUpdate() {
@@ -286,20 +305,24 @@ void Game::LoadScene() {
 
 void Game::SetAction(){
 
-	_inputAction->MapAction("Left", SDL_SCANCODE_LEFT);
-	_inputAction->MapAction("Right", SDL_SCANCODE_RIGHT);
-	_inputAction->MapAction("Up", SDL_SCANCODE_UP);
-	_inputAction->MapAction("Down", SDL_SCANCODE_DOWN);
+	_inputAction->MapAction("Left", SDL_SCANCODE_A);
+	_inputAction->MapAction("Right", SDL_SCANCODE_D);
+	_inputAction->MapAction("Up", SDL_SCANCODE_W);
+	_inputAction->MapAction("Down", SDL_SCANCODE_S);
 	_inputAction->MapAction("Select", SDL_SCANCODE_SPACE);
+	_inputAction->MapAction("Jump", SDL_SCANCODE_SPACE);
+	_inputAction->MapAction("Menu", SDL_SCANCODE_TAB);
 
 	_inputAction->MapAction("Left", SDL_GAMEPAD_BUTTON_DPAD_LEFT);
 	_inputAction->MapAction("Right", SDL_GAMEPAD_BUTTON_DPAD_RIGHT);
 	_inputAction->MapAction("Up", SDL_GAMEPAD_BUTTON_DPAD_UP);
 	_inputAction->MapAction("Down", SDL_GAMEPAD_BUTTON_DPAD_DOWN);
 	_inputAction->MapAction("Select", SDL_GAMEPAD_BUTTON_SOUTH);
+	_inputAction->MapAction("Jump", SDL_GAMEPAD_BUTTON_SOUTH);
+	_inputAction->MapAction("Menu", SDL_GAMEPAD_BUTTON_BACK);
 
-	_inputAction->MapActionAxis("Horizontal", SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT);
-	_inputAction->MapActionAxis("Vertical", SDL_SCANCODE_UP, SDL_SCANCODE_DOWN);
+	_inputAction->MapActionAxis("Horizontal", SDL_SCANCODE_A, SDL_SCANCODE_D);
+	_inputAction->MapActionAxis("Vertical", SDL_SCANCODE_S, SDL_SCANCODE_W);
 	
 	_inputAction->MapActionAxis("Horizontal", SDL_GAMEPAD_AXIS_LEFTX);
 	_inputAction->MapActionAxis("Vertical", SDL_GAMEPAD_AXIS_LEFTY);

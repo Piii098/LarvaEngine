@@ -9,16 +9,21 @@ class TileMap;
 class SpriteComponent;
 class Texture;
 class Scene;
-class GameObject;
 
 class Tile : public GameObject {
 public:
-	Tile(GameObject& parent, int TileID)
-		: GameObject(parent), _tileID(TileID) {}
-	~Tile() override = default;
+	Tile(GameObject* parent,int x, int y, int TileID)
+		: GameObject(parent), _x(x), _y(y), _tileID(TileID) {}
+    ~Tile() override {}
+
+	int TileID() const { return _tileID; }
+	int X() const { return _x; }
+	int Y() const { return _y; }
 
 private:
     int _tileID;
+	int _x;
+	int _y;
 
 };
 
@@ -39,6 +44,11 @@ public:
     /// @brief タイルマップデータを再設定
     void SetTileMap(const std::string& tileMapName);
 
+    void SetCollision(int x, int y, bool isCollision);
+    void SetCollision(int tileID, bool isCollision);
+
+    const Vector2Int& GetTilePosition(int tileID) const;
+
     /// @brief タイルセットのテクスチャ名を取得
     std::string TextureName() const { return _textureName; }
 
@@ -53,6 +63,6 @@ private:
     TileMap* _tileMap;
     int _tileSize;
     std::string _textureName;
+	std::vector<Tile*> _tiles; // タイルオブジェクトのリスト
 
-    std::vector<Tile*> _tileObjects;
 };

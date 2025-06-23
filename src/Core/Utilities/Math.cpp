@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------
-// From Game Programming in C++ by Sanjay Madhav
+// From Game Progra_ming in C++ by Sanjay Madhav
 // Copyright (C) 2017 Sanjay Madhav. All rights reserved.
 // 
 // Released under the BSD License
@@ -50,6 +50,20 @@ const Matrix4 Matrix4::Identity(m4Ident);
 
 const Quaternion Quaternion::Identity(0.0f, 0.0f, 0.0f, 1.0f);
 
+Vector2::Vector2(const Vector2Int& vec)
+	: x(static_cast<float>(vec.x)), y(static_cast<float>(vec.y))
+{
+}
+
+
+Vector2& Vector2::operator=(const Vector2Int& vec)
+{
+	x = static_cast<float>(vec.x);
+	y = static_cast<float>(vec.y);
+
+	return *this;
+}
+
 Vector2 Vector2::Transform(const Vector2& vec, const Matrix3& mat, float w /*= 1.0f*/)
 {
 	Vector2 retVal;
@@ -57,14 +71,6 @@ Vector2 Vector2::Transform(const Vector2& vec, const Matrix3& mat, float w /*= 1
 	retVal.y = vec.x * mat.mat[0][1] + vec.y * mat.mat[1][1] + w * mat.mat[2][1];
 	//ignore w since we aren't returning a new value for it...
 	return retVal;
-}
-
-Vector2 Vector2::ToFloat(const Vector2Int& vec)
-{
-	Vector2 temp;
-	temp.x = static_cast<float>(vec.x);
-	temp.y = static_cast<float>(vec.y);
-	return temp;
 }
 
 Vector2 Vector2::SmoothDamp(const Vector2& current, const Vector2& target, Vector2& currentVelocity,
@@ -76,15 +82,6 @@ Vector2 Vector2::SmoothDamp(const Vector2& current, const Vector2& target, Vecto
 	result.y = Math::SmoothDamp(current.y, target.y, currentVelocity.y, smoothTime, maxSpeed, deltaTime);
 	return result;
 }
-
-Vector2Int Vector2Int::ToInteger(const Vector2& vec)
-{
-	Vector2Int temp;
-	temp.x = round(vec.x);
-	temp.y = round(vec.y);
-	return temp;
-}
-
 
 Vector3 Vector3::Transform(const Vector3& vec, const Matrix4& mat, float w /*= 1.0f*/)
 {

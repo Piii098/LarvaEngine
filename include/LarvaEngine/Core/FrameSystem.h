@@ -35,7 +35,9 @@ private:
 	float _deltaTime;	///< 前フレームからの経過時間
 	float _gameTime;    ///< ゲーム時間
 	Uint64 _lastTick;	///< 前回のフレーム時間
-	float _fps;		    ///< フレームレート
+	int _fps;		    ///< フレームレート
+	float _fpsTimer;
+	int _frameCount;	///< フレームレートのカウント
 	float _accumulator;	///< フレーム時間の蓄積
 	float _fixedDeltaTime;	///< 固定フレーム時間
 };

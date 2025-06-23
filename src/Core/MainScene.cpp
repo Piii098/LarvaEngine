@@ -3,6 +3,8 @@
 #include "LarvaEngine/Core/UIScene.h"
 #include "LarvaEngine/Core/MainScene.h"
 #include "LarvaEngine/Components/Draw/SpriteComponent.h"
+#include "LarvaEngine/Components/Draw/MeshComponent.h"
+#include "LarvaEngine/Components/Draw/ModelComponent.h"
 
 //==============================================================================
 // コンストラクタ・デストラクタ
@@ -100,7 +102,7 @@ void MainScene::UpdateScene(const float deltaTime) {
  * Rendererクラスで呼び出され低解像度レンダリングの処理を行う
  * bufferLayerが一致するスプライトの描写処理を行う
  */
-void MainScene::Render(Shader& shader, int bufferLayer) {
+void MainScene::RenderSprite(Shader& shader, int bufferLayer) {
 
 	if (_state == STATE::INACTIVE ) return; // メインシーンが非アクティブ状態の場合は処理しない
 	
@@ -116,6 +118,24 @@ void MainScene::Render(Shader& shader, int bufferLayer) {
 	}
 
 }
+
+void MainScene::RenderMesh(Shader& shader) {
+
+	if (_state == STATE::INACTIVE) return; // メインシーンが非アクティブ状態の場合は処理しない
+
+	for (auto& mesh : _meshes) {
+		mesh->Render(shader);
+	}
+}
+
+void MainScene::RenderModel(Shader& shader) {
+
+	if (_state == STATE::INACTIVE) return; // メインシーンが非アクティブ状態の場合は処理しない
+
+	for (auto& model : _models) {
+		model->Render(shader);
+	}
+}	
 
 /**
  * UIの描写処理を行う
