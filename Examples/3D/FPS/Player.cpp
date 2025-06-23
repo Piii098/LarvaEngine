@@ -78,7 +78,7 @@ void Example3DFPS::Player::InputObject(const InputAction& input)
 
 void Example3DFPS::Player::FixedUpdateObject(float deltaTime)
 {
-	Vector2 newVec = _direction * 10000 * deltaTime;
+	Vector2 newVec = _direction * 40000 * deltaTime;
 
 	_rigidbodyComp->Move(newVec.x, newVec.y);
 	

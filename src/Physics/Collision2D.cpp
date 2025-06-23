@@ -1,4 +1,5 @@
-﻿#include <vector>
+﻿
+#include <vector>
 #include <algorithm>
 #include "LarvaEngine/Physics/Collision2D.h"
 

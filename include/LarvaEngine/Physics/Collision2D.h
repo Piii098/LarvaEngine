@@ -1,4 +1,5 @@
-﻿#pragma once
+﻿
+#pragma once
 #include "LarvaEngine/Core/Utilities/Math.h"
 #include <vector>
 

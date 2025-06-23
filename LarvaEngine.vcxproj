@@ -33,7 +33,6 @@
     <ClCompile Include="Examples\3D\FPS\FPSCameraComponent.cpp" />
     <ClCompile Include="Examples\3D\FPS\GameMainScene.cpp" />
     <ClCompile Include="Examples\3D\FPS\HUDUIScene.cpp" />
-    <ClCompile Include="Examples\3D\FPS\MoveComponent.cpp" />
     <ClCompile Include="Examples\3D\FPS\Player.cpp" />
     <ClCompile Include="Examples\3D\Sample\Cube.cpp" />
     <ClCompile Include="Examples\3D\Sample\Player.cpp" />
@@ -112,7 +111,6 @@
     <ClInclude Include="Examples\3D\FPS\FPSCameraComponent.h" />
     <ClInclude Include="Examples\3D\FPS\GameMainScene.h" />
     <ClInclude Include="Examples\3D\FPS\HUDUIScene.h" />
-    <ClInclude Include="Examples\3D\FPS\MoveComponent.h" />
     <ClInclude Include="Examples\3D\FPS\Player.h" />
     <ClInclude Include="Examples\3D\Sample\Cube.h" />
     <ClInclude Include="Examples\3D\Sample\Player.h" />
@@ -190,7 +188,6 @@
     <None Include="Assets\Shaders\FrameBuffer.vert" />
     <None Include="Assets\Shaders\Light.frag" />
     <None Include="Assets\Shaders\Light.vert" />
-    <None Include="Assets\Shaders\Outline.frag" />
     <None Include="Assets\Shaders\Outline.vert" />
     <None Include="Assets\Shaders\Phong.frag" />
     <None Include="Assets\Shaders\Phong.vert" />

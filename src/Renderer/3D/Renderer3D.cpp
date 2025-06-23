@@ -70,7 +70,7 @@ bool Renderer3D::Initialize(const std::string& windowName) {
 }
 
 void Renderer3D::Render() {
-	// Clear the screen
+	
 
 	glViewport(0, 0, 4096, 4096);
 	glBindFramebuffer(GL_FRAMEBUFFER, _depthFBO);
@@ -92,6 +92,8 @@ void Renderer3D::Render() {
 		_view = camera->GetViewMatrix();
 	}
 
+	// シャドウマップのレンダリング
+
 	Vector3 lightPos(-150.0f, 50.0f, 50.0f);
 
 	Matrix4 lightProjection = Matrix4::CreateOrtho(1000, 1000, -10.0f, 1000.0f);
@@ -106,7 +108,7 @@ void Renderer3D::Render() {
 	shadowMap->TextureID(_depthBuffer);
 	
 
-	// 通常レンダリング
+	// 1.通常レンダリング
 	glViewport(0, 0, _windowWidth, _windowHeight);
 	glBindFramebuffer(GL_FRAMEBUFFER, _colorFBO);
 	glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
@@ -133,9 +135,10 @@ void Renderer3D::Render() {
 	glCullFace(GL_FRONT);
 	currentMainScene.RenderModel(*_toonShader.get());
 
-	// 既存のブラー処理コードをそのまま再利用
+	// 2. ブラー処理のためのFBOへレンダリング
+
 	bool horizontal = true, first_iteration = true;
-	int amount = 5; // ぼかしの強さ（パラメータとして調整可能）
+	int amount = 5; 
 
 	_blurShader->SetActive();
 
@@ -153,13 +156,14 @@ void Renderer3D::Render() {
 	}
 
 	glDisable(GL_CULL_FACE);
-	// 4. 最終合成（被写界深度適用）
+
+
+	// 3. 最終合成（被写界深度適用）
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	// 深度テスト設定を明示的に行う
 	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LESS);  // 標準的な深度比較関数
+	glDepthFunc(GL_LESS); 
 	
 	_frameVerts->SetActive();
 	_dofShader->SetActive();
@@ -171,30 +175,21 @@ void Renderer3D::Render() {
 	_dofShader->SetIntUniform("depthTexture", 2);
 
 	// 被写界深度のパラメータ設定
-	_dofShader->SetFloatUniform("focusDistance", 0.005f); // フォーカス距離（調整可能）
-	_dofShader->SetFloatUniform("focusRange", 0.5f);    // フォーカス範囲（調整可能）
-	_dofShader->SetFloatUniform("maxBlur", 1.0f);       // 最大ぼかし量
+	_dofShader->SetFloatUniform("focusDistance", 0.00005f); 
+	_dofShader->SetFloatUniform("focusRange", 0.4f);    
+	_dofShader->SetFloatUniform("maxBlur", 1.0f);       
 	
-	_dofShader->SetFloatUniform("near", 10.f);    // フォーカス範囲（調整可能）
-	_dofShader->SetFloatUniform("far", 10000.f);       // 最大ぼかし量
+	_dofShader->SetFloatUniform("near", 10.f);   
+	_dofShader->SetFloatUniform("far", 10000.f);     
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, _colorBuffer);
 	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, _pingpongBuffers[!horizontal]); // 最終的なぼかし結果
+	glBindTexture(GL_TEXTURE_2D, _pingpongBuffers[!horizontal]); 
 	glActiveTexture(GL_TEXTURE2);
 	glBindTexture(GL_TEXTURE_2D, _colorDepthTexture);
 
 	glDrawElements(GL_TRIANGLES, _frameVerts->NumIndices(), GL_UNSIGNED_INT, nullptr);
-
-	/*
-	_frameVerts->SetActive();
-	_frameShader->SetActive();
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, _depthBuffer);
-	glDrawElements(GL_TRIANGLES, _frameVerts->NumIndices(), GL_UNSIGNED_INT, nullptr);
-	*/
-
 
 	_spriteVerts->SetActive();
 	_spriteShader->SetActive();
@@ -295,8 +290,7 @@ bool Renderer3D::LoadShaders() {
 	_basicShader->SetActive();
 
 	_basicShader->SetMatrixUniform("uViewProj", _view * _projection);
-
-	// ライト情報の設定（簡略化）
+	
 	_toonShader->SetVector3Uniform("uAmbientLight", Vector3(0.2f, 0.2f, 0.2f));
 	_toonShader->SetVector3Uniform("uDirectionalLight.direction", Vector3(0.0f, -0.7f, -0.7f));
 	_toonShader->SetVector3Uniform("uDirectionalLight.diffuseColor", Vector3(0.8f, 0.8f, 0.8f));

@@ -75,5 +75,11 @@ packages.config
 # Publish
 publish/
 
+# 実行時DLL
+*.dll
+
+Assets/Fonts/
+Assets/AudioBanks/
+
 FMOD SoundSystem/
 SDL/
