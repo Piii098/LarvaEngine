@@ -8,8 +8,8 @@
 int main(int argc, char* argv[]) {
 	
 	Game game;
-	game.RendererMode(Game::RENDERER_MODE::MODE_2D); // 2D or 3D
-	game.SetInitialScene<Example2DScroll::TitleMainScene>();
+	game.RendererMode(Game::RENDERER_MODE::MODE_3D); // 2D or 3D
+	game.SetInitialScene<Example3DFPS::GameMainScene>();
 	game.SetWindowsSize(1920, 1080);
 	game.SetWindowsName("sample");
 	bool success = game.Initialize();
