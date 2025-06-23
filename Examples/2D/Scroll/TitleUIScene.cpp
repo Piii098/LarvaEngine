@@ -36,9 +36,9 @@ void Example2DScroll::TitleUIScene::LoadObjects() {
 
 	start.SetText("Start", Vector3(0, 0, 0), 20);
 	
-	start.StartAnimation(Vector2Int(-1300, 0), Vector2Int(0, 0), 1.f);
+	start.StartAnimation(Vector2(-1300, 0), Vector2(0, 0), 1.f);
 	option.SetText("Option", Vector3(0, 0, 0), 20);
-	option.StartAnimation(Vector2Int(-1300, -100), Vector2Int(0, -100), 1.f, 0.2);
+	option.StartAnimation(Vector2(-1300, -100), Vector2(0, -100), 1.f, 0.2);
 
 	start.SetOnClick([this]() {
 			_manager.GetGame().GetSceneManager().RequestSceneChange<Example2DScroll::GameMainScene>();

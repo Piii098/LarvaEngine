@@ -3,8 +3,8 @@
 
 Example2DScroll::AnimatedButton::AnimatedButton(Scene& scene, const std::string& spriteName)
 	: Button(scene, spriteName)
-	, _startPos(Vector2Int::Zero)
-	, _endPos(Vector2Int::Zero)
+	, _startPos(Vector2::Zero)
+	, _endPos(Vector2::Zero)
 	, _duration(0.f)
 	, _progress(0.f)
 	, _isAnimating(false) {
@@ -31,8 +31,8 @@ void Example2DScroll::AnimatedButton::UpdateObject(float deltaTime) {
 
 	float easedProgress = Easing::EaseInOut(_progress);
 
-	Vector2Int newPos = Vector2::Lerp(_startPos, _endPos, easedProgress);
+	Vector2 newPos = Vector2::Lerp(_startPos, _endPos, easedProgress);
 
-	Position(Vector3(newPos.x, newPos.y, 0));
+	Position2D(Vector2(newPos.x, newPos.y));
 
 }

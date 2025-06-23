@@ -1,4 +1,4 @@
-#version 330
+﻿#version 330
 
 in vec2 fragTexCoord;
 in vec2 fragPosition;
@@ -18,5 +18,5 @@ void main(){
 
 	vec4 lightColor = texture(lightTexture, fragTexCoord);
 
-	outColor = vec4(spriteLightColor + lightColor.rgb * lightColor.a, spriteColor.a);
+	outColor = spriteColor;
 }

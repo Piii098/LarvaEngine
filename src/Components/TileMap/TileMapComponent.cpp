@@ -12,7 +12,7 @@
 TileMapComponent::TileMapComponent(GameObject& parent, int tileSize, const std::string& textureName)
     : Component(parent)
     , _tileSize(tileSize)
-    ,_textureName(textureName)
+    , _textureName(textureName)
 {
 
 }
@@ -30,26 +30,26 @@ void TileMapComponent::SetTileMap(const std::string& tileMapName) {
 }
 
 void TileMapComponent::SetCollision(int x, int y, bool isCollision) {
-	for (auto* obj : _tiles) {
+    for (auto* obj : _tiles) {
         if (obj->X() == x && obj->Y() == y) {
-			auto& boxComp = obj->CreateComponent<Box2DComponent>(isCollision, false);
-			AABB2D box(Vector2(-_tileSize / 2, -_tileSize / 2), Vector2(_tileSize / 2, _tileSize / 2));
-			boxComp.SetObjectBox(box);
+            auto& boxComp = obj->CreateComponent<Box2DComponent>(isCollision, false);
+            AABB2D box(Vector2(-_tileSize / 2, -_tileSize / 2), Vector2(_tileSize / 2, _tileSize / 2));
+            boxComp.SetObjectBox(box);
             boxComp.DisplayBox();
         }
-	}
+    }
 }
 
 void TileMapComponent::SetCollision(int tileID, bool isCollision) {
-	for (auto* obj : _tiles) {
-		if (obj->TileID() == tileID) {
+    for (auto* obj : _tiles) {
+        if (obj->TileID() == tileID) {
             auto& boxComp = obj->CreateComponent<Box2DComponent>(isCollision, false);
-            AABB2D box(Vector2(-_tileSize / 2, -_tileSize / 2), Vector2(_tileSize/2, _tileSize / 2));
+            AABB2D box(Vector2(-_tileSize / 2, -_tileSize / 2), Vector2(_tileSize / 2, _tileSize / 2));
             boxComp.SetObjectBox(box);
-			// boxComp.DisplayBox();
+            // boxComp.DisplayBox();
             obj->Tag(GameObject::TAG::GROUND);
-		}
-	}
+        }
+    }
 }
 
 
@@ -71,14 +71,14 @@ void TileMapComponent::CreateTileObjects() {
             float tx = tileID % sheetCols; // タイルシート内のX
             float ty = tileID / sheetCols; // タイルシート内のY
 
-			if (tx >= sheetCols || ty >= sheetRows) {
+            if (tx >= sheetCols || ty >= sheetRows) {
                 Vector2 pos = Vector2(x * _tileSize + _tileSize / 2, (height - 1 - y) * _tileSize + _tileSize / 2);
                 SDL_Log("Tile Position: %d, %d", pos.x, pos.y); // 確認用ログ
                 tileObj.Position(Vector3(pos.x, pos.y, 0));
                 _tiles.push_back(&tileObj);
-				continue; // タイルIDが範囲外の場合はスキップ
-			}
-			
+                continue; // タイルIDが範囲外の場合はスキップ
+            }
+
             // スプライトコンポーネントを付与
             auto& sprite = tileObj.CreateComponent<SpriteComponent>(10);
             sprite.SetTexture(_textureName);
@@ -94,25 +94,25 @@ void TileMapComponent::CreateTileObjects() {
 
             sprite.TexOffset(offset);
             sprite.TexScale(scale);
-			//sprite.Alpha(0.5f);
+            //sprite.Alpha(0.5f);
 
             Vector2 pos = Vector2(x * _tileSize + _tileSize / 2, (height - 1 - y) * _tileSize + _tileSize / 2);
-            tileObj.Position(pos);
-			_tiles.push_back(&tileObj);
+            tileObj.Position2D(pos);
+            _tiles.push_back(&tileObj);
         }
     }
 }
 
 void TileMapComponent::DestroyTileObjects() {
-   // for (auto* obj : _tileObjects) {
-        //GetParent().GetScene().DestroyObject(obj);
-    //}
-    //_tileObjects.clear();
+    // for (auto* obj : _tileObjects) {
+         //GetParent().GetScene().DestroyObject(obj);
+     //}
+     //_tileObjects.clear();
 }
 
 const Vector2& TileMapComponent::GetTilePosition(int tileID) const {
-	for (auto* obj : _tiles) {
-		if (obj->TileID() == tileID) {
+    for (auto* obj : _tiles) {
+        if (obj->TileID() == tileID) {
             _parent.ComputeWorldTransform();
             // 方法1: WorldTransformを直接使用する（推奨）
             const Matrix4& worldTransform = obj->WorldTransform();
@@ -120,8 +120,8 @@ const Vector2& TileMapComponent::GetTilePosition(int tileID) const {
             Vector3 originPoint = Vector3::Zero;
             Vector3 worldPos = Vector3::Transform(originPoint, worldTransform);
             return Vector2(static_cast<int>(worldPos.x), static_cast<int>(worldPos.y));
-		}
-	}
+        }
+    }
 
-	return Vector2(-1, -1); // タイルが見つからなかった場合
+    return Vector2(-1, -1); // タイルが見つからなかった場合
 }

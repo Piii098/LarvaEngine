@@ -118,15 +118,6 @@ void Shader::SetVector2Uniform(const char* name, const Vector2& vec) {
 }
 
 /**
- * Vector2ユニフォームを設定する
- */
-void Shader::SetVector2Uniform(const char* name, const Vector2Int& vec) {
-	Vector2 vecFlaot = vec;
-	GLuint loc = glGetUniformLocation(_shaderProgram, name);
-	glUniform2f(loc, vecFlaot.x, vecFlaot.y);
-}
-
-/**
  * Floatユニフォームを設定する
  */
 void Shader::SetFloatUniform(const char* name, float value) {

@@ -139,7 +139,6 @@
     <ClInclude Include="include\LarvaEngine\Components\UI\ButtonComponent.h" />
     <ClInclude Include="include\LarvaEngine\Core\Component.h" />
     <ClInclude Include="include\LarvaEngine\Core\Resources\Model.h" />
-    <ClInclude Include="include\LarvaEngine\Core\ThreadPool.h" />
     <ClInclude Include="include\LarvaEngine\GameObjects\Camera.h" />
     <ClInclude Include="include\LarvaEngine\GameObjects\UI\Button.h" />
     <ClInclude Include="include\LarvaEngine\GameObjects\UI\ButtonGroup.h" />

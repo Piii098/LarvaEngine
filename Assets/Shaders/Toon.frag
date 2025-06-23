@@ -1,4 +1,4 @@
-#version 330
+ï»¿#version 330
 
 in vec3 fragNormal;
 in vec3 fragWorldPos;
@@ -23,7 +23,7 @@ void main()
 	float closestDepth = texture(uShadowMap, shadowCoord.xy).r;
 	float currentDepth = shadowCoord.z;
 
-	// ƒVƒƒƒhƒEƒ}ƒbƒv‚ÌƒZƒbƒgƒAƒbƒv‚ÉüŒ`ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚ğ—LŒø‚É‚µAˆÈ‰º‚Ì‚æ‚¤‚ÈƒR[ƒh‚ğg—p
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—æ™‚ã«ç·šå½¢ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã‚’æœ‰åŠ¹ã«ã—ã€ä»¥ä¸‹ã®ã‚ˆã†ãªã‚³ãƒ¼ãƒ‰ã‚’ä½¿ç”¨
 	float shadow = 0.0;
 	float bias = 0.005;
 	vec2 texelSize = 1.0 / textureSize(uShadowMap, 0);
@@ -35,7 +35,7 @@ void main()
 			shadow += currentDepth - bias > pcfDepth ? 1.0 : 0.0;        
 		}    
 	}
-	shadow /= 25.0; // 5x5ƒJ[ƒlƒ‹‚Ì•½‹Ï
+	shadow /= 25.0; // 5x5ã‚«ãƒ¼ãƒãƒ«ã®å¹³å‡
 
 	vec4 texColor = texture(uTexture, fragTexCoord);
 	vec3 lightDir  = normalize(uLightDir);
@@ -44,9 +44,9 @@ void main()
 	vec4 smpColor = texture2D(uRampTexture, vec2(diffuse, 0.0));
 
 	if(shadow > 0.5){
-		 // •û–@2: ÂF‚É­‚µƒuƒŒƒ“ƒh‚·‚é
-		vec3 shadowTint = vec3(0.0, 0.0, 0.3); // ÂF‚ÌF’²
-		float blendFactor = 0.3; // ƒuƒŒƒ“ƒh‹­“x
+		 // æ–¹æ³•2: é’è‰²ã«å°‘ã—ãƒ–ãƒ¬ãƒ³ãƒ‰ã™ã‚‹
+		vec3 shadowTint = vec3(0.0, 0.0, 0.3); // é’è‰²ã®è‰²èª¿
+		float blendFactor = 0.3; // ãƒ–ãƒ¬ãƒ³ãƒ‰å¼·åº¦
 		smpColor.rgb = mix(smpColor.rgb * 0.5, shadowTint, blendFactor);
 	}
 

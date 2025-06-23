@@ -9,8 +9,6 @@
 #include "LarvaEngine/Core/GameObject.h"
 #include "LarvaEngine/Core/Resources/Font.h"
 #include "LarvaEngine/Core/SceneManager.h"
-#include "LarvaEngine/Core/ThreadPool.h"
-
 
 // ===== 前方宣言 =====
 class FrameSystem;
@@ -85,8 +83,6 @@ public:
 
 	/// @brief シャットダウン処理を行う
 	void Shutdown();        
-
-	ThreadPool& GetThreadPool() { return ThreadPool::GetInstance(); }
 
     // ===== ゲッターメソッド ===== //
 

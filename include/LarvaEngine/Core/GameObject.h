@@ -125,8 +125,8 @@ public:
 
     void Position(const Vector3& position) { _position = position; _recomputeWorldTransform = true; }
 	void Position(float x, float y, float z) { _position = Vector3(x, y, z); _recomputeWorldTransform = true; }
-	void Position(const Vector2& position) { _position = Vector3(round(position.x), round(position.y), 0); _recomputeWorldTransform = true; }
-	void Position(const Vector2Int& position) { _position = Vector3(static_cast<float>(position.x), static_cast<float>(position.y), 0); _recomputeWorldTransform = true; }
+    void Position2D(const Vector2& position) { _position = Vector3(position.x, Position().y, position.y); _recomputeWorldTransform = true; }
+    void Position2D(float x, float y) { _position = Vector3(x, Position().y, y); _recomputeWorldTransform = true; }
     void Scale(float scale) { _scale = scale; _recomputeWorldTransform = true; }
     void Rotation(Quaternion rotation) { _rotation = rotation; _recomputeWorldTransform = true; }
     void Tag(TAG tag) { _tag = tag; }
@@ -141,8 +141,8 @@ public:
     const Matrix4& WorldTransform() const { return _worldTransform; }
     const Vector3& Position() const { return _position; }
     const Vector3& Position()  { return _position; }
-	const Vector2Int& Position2D() { return Vector2(_position.x, _position.y); }
-	const Vector3& GetRight() const { return Vector3::Transform(Vector3::UnitX, _rotation); } ///< 右方向ベクトルを取得する
+    const Vector2& Position2D() { return Vector2(_position.x, _position.z); }
+    const Vector3& GetRight() const { return Vector3::Transform(Vector3::UnitX, _rotation); } ///< 右方向ベクトルを取得する
 	const Vector3& GetForward() { return Vector3::Transform(Vector3::UnitY, _rotation); } ///< 前方ベクトルを取得する
 
     Scene& GetScene() { return _scene; }
@@ -217,5 +217,3 @@ private:
     float _scale;                               ///< スケール
  
 };
-
-#include "LarvaEngine/Core/GameObject.inl"

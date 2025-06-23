@@ -22,8 +22,8 @@ namespace Example2DScroll {
 		void UpdateObject(float deltaTime) override;
 
 	private:
-		Vector2Int _startPos;
-		Vector2Int _endPos;
+		Vector2 _startPos;
+		Vector2 _endPos;
 		float _duration;
 		float _progress;
 		float _delay;

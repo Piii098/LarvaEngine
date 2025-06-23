@@ -41,5 +41,5 @@ Example2DScroll::Player::~Player() {
 
 void Example2DScroll::Player::UpdateObject(float deltaTime) {
 	
-	//SDL_Log("Position: %d, %d", Position().x, Position().y);
+	SDL_Log("Position: %f, %f", Position().x, Position().y);
 }

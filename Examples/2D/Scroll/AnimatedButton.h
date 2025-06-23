@@ -8,7 +8,7 @@ namespace Example2DScroll {
 		AnimatedButton(Scene& scene, const std::string& spriteName);
 		~AnimatedButton() override;
 
-		void StartAnimation(const Vector2Int& startPos, const Vector2Int& endPos, float duration, float delay = 0.f) {
+		void StartAnimation(const Vector2& startPos, const Vector2& endPos, float duration, float delay = 0.f) {
 			_startPos = startPos;
 			Position(Vector3(startPos.x, startPos.y,0));
 			_endPos = endPos;
@@ -22,8 +22,8 @@ namespace Example2DScroll {
 		void UpdateObject(float deltaTime) override;
 
 	private:
-		Vector2Int _startPos;
-		Vector2Int _endPos;
+		Vector2 _startPos;
+		Vector2 _endPos;
 		float _duration;
 		float _progress;
 		float _delay;

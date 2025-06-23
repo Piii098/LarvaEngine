@@ -10,7 +10,7 @@
 
 CameraComponent::CameraComponent(GameObject& parent, int updateLayer)
     :Component(parent, updateLayer)
-    , _target(Vector2Int::Zero)
+    , _target(Vector2::Zero)
     , _zoom(1.f){
 
 }
@@ -27,7 +27,7 @@ void CameraComponent::ProcessInput(const InputAction& input) {
 }
 
 void CameraComponent::Update(float deltaTime) {
-    Matrix4 translation = Matrix4::CreateTranslation(Vector3(-_parent.Position().x, -_parent.Position().y, 0.0f));
+    Matrix4 translation = Matrix4::CreateTranslation(Vector3(-_parent.Position().x, -_parent.Position().z, 0.0f));
     Matrix4 scale = Matrix4::CreateScale(1 * _zoom, 1 * _zoom, 1 * _zoom);
 	_viewMatrix = translation * scale;
 }

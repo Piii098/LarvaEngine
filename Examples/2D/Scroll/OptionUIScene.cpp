@@ -32,7 +32,7 @@ void Example2DScroll::OptionUIScene::LoadObjects()
 	SpriteComponent* spri2 = back.GetComponent<SpriteComponent>();
 	spri2->TexScale(Vector2(0.8, 1));
 	back.SetText("Back", Vector3(0, 0, 0), 20);
-	back.Position(Vector3(0, -200, 0));
+	back.Position2D(Vector2(0, -200));
 	back.SetOnClick([this]() {
 		_state = STATE::CLOSE;
 		});

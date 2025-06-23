@@ -34,6 +34,7 @@ void Example2DScroll::GameMainScene::InputScene(const InputAction& input) {
 void Example2DScroll::GameMainScene::UpdateScene(float deltaTime) {
 	MainScene::UpdateScene(deltaTime); // 親クラスの更新処理を呼び出す
 	
+	SDL_Log("Camera Position: %f, %f", _camera->Position().x, _camera->Position().y); // 確認用ログ
 	//SDL_Log("GameMainScene Camera Position: %d, %d", _camera->Position().x, _camera->Position().y); // 確認用ログ
 }
 
@@ -62,7 +63,7 @@ void Example2DScroll::GameMainScene::LoadObjects() {
 	sprite.TexScale(Vector2(16, 16));
 	child.Position(Vector3(0, 20, 0));
 	auto& tileMap = CreateGameObject<TileMap>();
-	tileMap.Position(Vector3(-100, -100, 0));
+	tileMap.Position2D(-100, -100);
 	tileMap.SetOnTile(64, &player);
 
 	CreateGameObject<Background>();

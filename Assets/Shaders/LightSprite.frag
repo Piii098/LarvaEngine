@@ -1,4 +1,4 @@
-#version 330 core
+﻿#version 330 core
 
 in vec2 fragTexCoord;
 in vec2 fragPosition;

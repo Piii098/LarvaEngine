@@ -1,4 +1,4 @@
-#version 330
+ï»¿#version 330
 
 layout(location = 0) in vec3 inPosition;
 layout(location = 1) in vec3 inNormal;
@@ -6,10 +6,10 @@ layout(location = 2) in vec2 inTexCoord;
 
 uniform mat4 uWorldTransform;
 uniform mat4 uViewProj;
-uniform mat4 uScaleMatrix; // ƒ‚ƒfƒ‹‚ğŠg‘å‚·‚é‚½‚ß‚Ìs—ñ
+uniform mat4 uScaleMatrix; // ãƒ¢ãƒ‡ãƒ«ã‚’æ‹¡å¤§ã™ã‚‹ãŸã‚ã®è¡Œåˆ—
 
 void main() {
-    // ’¸“_ˆÊ’u‚ğ­‚µŠg‘å
+    // é ‚ç‚¹ä½ç½®ã‚’å°‘ã—æ‹¡å¤§
     vec4 scaledPos = uScaleMatrix * vec4(inPosition, 1.0);
     gl_Position = uViewProj * uWorldTransform * scaledPos;
 }

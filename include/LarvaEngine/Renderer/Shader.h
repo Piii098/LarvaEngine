@@ -56,11 +56,6 @@ public:
 	/// @param vector Vector2
 	void SetVector2Uniform(const char* name, const Vector2& vector);
 
-	/// @brief Vector2ユニフォームを設定する
-	/// @param name ユニフォーム名
-	/// @param vector Vector2
-	void SetVector2Uniform(const char* name, const Vector2Int& vector);
-
 	/// @brief Floatユニフォームを設定する
 	/// @param name ユニフォーム名
 	/// @param value Float値

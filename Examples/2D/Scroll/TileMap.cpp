@@ -17,7 +17,7 @@ Example2DScroll::TileMap::~TileMap() {
 }
 
 void Example2DScroll::TileMap::SetOnTile(int tileID, GameObject* obj) {
-	Vector2Int pos = _tileMapComp->GetTilePosition(tileID);
-	obj->Position(Vector3(pos.x, pos.y, 0));
+	Vector2 pos = _tileMapComp->GetTilePosition(tileID);
+	obj->Position2D(Vector2(pos.x, pos.y));
 	SDL_Log("SetOnTile: %d, %d", pos.x, pos.y);
 }

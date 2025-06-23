@@ -12,18 +12,19 @@ class Scene;
 
 class Tile : public GameObject {
 public:
-	Tile(GameObject* parent,int x, int y, int TileID)
-		: GameObject(parent), _x(x), _y(y), _tileID(TileID) {}
+    Tile(GameObject* parent, int x, int y, int TileID)
+        : GameObject(parent), _x(x), _y(y), _tileID(TileID) {
+    }
     ~Tile() override {}
 
-	int TileID() const { return _tileID; }
-	int X() const { return _x; }
-	int Y() const { return _y; }
+    int TileID() const { return _tileID; }
+    int X() const { return _x; }
+    int Y() const { return _y; }
 
 private:
     int _tileID;
-	int _x;
-	int _y;
+    int _x;
+    int _y;
 
 };
 
@@ -63,6 +64,6 @@ private:
     TileMap* _tileMap;
     int _tileSize;
     std::string _textureName;
-	std::vector<Tile*> _tiles; // タイルオブジェクトのリスト
+    std::vector<Tile*> _tiles; // タイルオブジェクトのリスト
 
 };

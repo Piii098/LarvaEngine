@@ -35,8 +35,8 @@ void Example2DScroll::MenuUIScene::LoadObjects() {
 	option.SetText("Option", Vector3(0, 0, 0), 20);
 	back.SetText("Back", Vector3(0, 0, 0), 20);
 
-	option.StartAnimation(Vector2Int(-1300, -100), Vector2Int(-500, -100), 1.f);
-	back.StartAnimation(Vector2Int(-1300, -200), Vector2Int(-500, -200), 1.f, 0.2);
+	option.StartAnimation(Vector2(-1300, -100), Vector2(-500, -100), 1.f);
+	back.StartAnimation(Vector2(-1300, -200), Vector2(-500, -200), 1.f, 0.2);
 
 	option.SetOnClick([this]() {
 		

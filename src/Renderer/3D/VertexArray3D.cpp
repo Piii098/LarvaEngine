@@ -35,11 +35,11 @@ VertexArray3D::VertexArray3D(const float* verts, unsigned int numVerts, unsigned
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 8, 0); // サイズ、種類、フォーマットを指定
 	// メッシュの頂点レイアウトを指定
-	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 8, reinterpret_cast<void*>(sizeof(float) * 3)); // サイズ、種類、フォーマットを指定
-	// テクスチャの頂点レイアウトを指定
 	glEnableVertexAttribArray(2);
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 8, reinterpret_cast<void*>(sizeof(float) * 6));
+	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 8, reinterpret_cast<void*>(sizeof(float) * 3)); // サイズ、種類、フォーマットを指定
+	// テクスチャの頂点レイアウトを指定
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 8, reinterpret_cast<void*>(sizeof(float) * 6));
 }
 
 /**

@@ -89,7 +89,7 @@ void Rigidbody2DComponent::CalculateVelocity(float deltaTime) {
 
 void Rigidbody2DComponent::UpdatePosition(float deltaTime) {
   
-	 _parent.Position(_internalPosition);
+	 _parent.Position2D(_internalPosition);
      _internalPosition = Vector2(_parent.Position().x, _parent.Position().y);  // 親オブジェクトの位置を取得
  
 }

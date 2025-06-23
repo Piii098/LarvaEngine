@@ -7,7 +7,7 @@
 Example2DScroll::Background::Background(Scene& scene)
 	: GameObject(scene){
 
-	Position(Vector2Int(0, 0));
+	Position2D(Vector2(0, 0));
 	Scale(1.f);
 	SpriteComponent& bg1 = CreateComponent<SpriteComponent>(0, 1);
 	bg1.SetTexture("BG1");

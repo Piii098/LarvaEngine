@@ -12,7 +12,7 @@
 #include <limits>
 #include <corecrt_math.h>
 
-class Vector2Int;
+class Vector2;
 class Vector3;
 class Vector2;
 
@@ -95,7 +95,7 @@ namespace Math
 	{
 		return acosf(value);
 	}
-	
+
 	inline float Atan2(float y, float x)
 	{
 		return atan2f(y, x);
@@ -115,10 +115,10 @@ namespace Math
 	{
 		return sqrtf(value);
 	}
-	
+
 	inline float Fmod(float numer, float denom)
 	{
-		return fmod (numer, denom);
+		return fmod(numer, denom);
 	}
 
 	// 既存のMathクラス/名前空間に追加
@@ -171,20 +171,21 @@ public:
 
 	Vector2()
 		:x(0.0f)
-		,y(0.0f)
-	{}
+		, y(0.0f)
+	{
+	}
 
 	Vector2(const Vector2& vec)
 		:x(vec.x)
 		, y(vec.y)
-	{}
-
-	Vector2(const Vector2Int& vec);
+	{
+	}
 
 	explicit Vector2(float inX, float inY)
 		:x(inX)
-		,y(inY)
-	{}
+		, y(inY)
+	{
+	}
 
 	// Set both components in one line
 	void Set(float inX, float inY)
@@ -236,8 +237,6 @@ public:
 		return a.x == b.x && a.x == b.y;
 	}
 
-	Vector2& operator=(const Vector2Int& vec);
-
 	// Scalar *=
 	Vector2& operator*=(float scalar)
 	{
@@ -265,7 +264,7 @@ public:
 	// Length squared of vector
 	float LengthSq() const
 	{
-		return (x*x + y*y);
+		return (x * x + y * y);
 	}
 
 	// Length of vector
@@ -277,7 +276,7 @@ public:
 	// Normalize this vector
 	void Normalize()
 	{
-		float length = Length();  
+		float length = Length();
 		// 閾値を使ってゼロに近い値をチェック
 		if (length > 0.0001f)  // イプシロン値を使用
 		{
@@ -293,7 +292,7 @@ public:
 		temp.Normalize();
 		return temp;
 	}
-	                          
+
 	// Dot product bet ween two vectors (a dot b)
 	static float Dot(const Vector2& a, const Vector2& b)
 	{
@@ -301,18 +300,18 @@ public:
 	}
 
 
-    // Distance between two vectors
-    static float Distance(const Vector2& a, const Vector2& b)
-    {
-        return (a - b).Length();
-    }
+	// Distance between two vectors
+	static float Distance(const Vector2& a, const Vector2& b)
+	{
+		return (a - b).Length();
+	}
 
 	// Lerp from A to B by f
 	static Vector2 Lerp(const Vector2& a, const Vector2& b, float f)
 	{
 		return Vector2(a + f * (b - a));
 	}
-	
+
 	// Reflect V about (normalized) N
 	static Vector2 Reflect(const Vector2& v, const Vector2& n)
 	{
@@ -333,145 +332,6 @@ public:
 	static const Vector2 NegUnitY;
 };
 
-// 2D Integer Vector
-class Vector2Int
-{
-public:
-	int x;
-	int y;
-
-	Vector2Int()
-		:x(0)
-		, y(0)
-	{}
-
-	Vector2Int(const Vector2& vec)
-		:x(round(vec.x))
-		, y(round(vec.y))
-	{}
-
-	explicit Vector2Int(int inX, int inY)
-		:x(inX)
-		, y(inY)
-	{}
-
-	// Set both components in one line
-	void Set(int inX, int inY)
-	{
-		x = inX;
-		y = inY;
-	}
-
-	// Vector addition (a + b)
-	friend Vector2Int operator+(const Vector2Int& a, const Vector2Int& b)
-	{
-		return Vector2Int(a.x + b.x, a.y + b.y);
-	}
-
-	// Vector subtraction (a - b)
-	friend Vector2Int operator-(const Vector2Int& a, const Vector2Int& b)
-	{
-		return Vector2Int(a.x - b.x, a.y - b.y);
-	}
-
-	// Component-wise multiplication
-	friend Vector2Int operator*(const Vector2Int& a, const Vector2Int& b)
-	{
-		return Vector2Int(a.x * b.x, a.y * b.y);
-	}
-
-	// Scalar multiplication
-	friend Vector2Int operator*(const Vector2Int& vec, int scalar)
-	{
-		return Vector2Int(vec.x * scalar, vec.y * scalar);
-	}
-
-	// Scalar multiplication
-	friend Vector2Int operator*(int scalar, const Vector2Int& vec)
-	{
-		return Vector2Int(vec.x * scalar, vec.y * scalar);
-	}
-
-	// Scalar division
-	friend Vector2Int operator/(const Vector2Int& vec, int scalar)
-	{
-		return Vector2Int(vec.x / scalar, vec.y / scalar);
-	}
-
-	Vector2Int& operator=(const Vector2& vec)
-	{
-		x = static_cast<int>(vec.x);
-		y = static_cast<int>(vec.y);
-		return *this;
-	}
-
-	// Scalar *=
-	Vector2Int& operator*=(int scalar)
-	{
-		x *= scalar;
-		y *= scalar;
-		return *this;
-	}
-
-	// Vector +=
-	Vector2Int& operator+=(const Vector2Int& right)
-	{
-		x += right.x;
-		y += right.y;
-		return *this;
-	}
-
-	// Vector -=
-	Vector2Int& operator-=(const Vector2Int& right)
-	{
-		x -= right.x;
-		y -= right.y;
-		return *this;
-	}
-
-	// Length squared of vector
-	int LengthSq() const
-	{
-		return (x * x + y * y);
-	}
-
-	// Length of vector
-	float Length() const
-	{
-		return Math::Sqrt(LengthSq());
-	}
-
-	// Normalize this vector
-	void Normalize()
-	{
-		float length = Length();
-		x = static_cast<int>(x / length);
-		y = static_cast<int>(y / length);
-	}
-
-	static Vector2Int ToInteger(const Vector2& vec);
-
-	// Normalize the provided vector
-	static Vector2Int Normalize(const Vector2Int& vec)
-	{
-		Vector2Int temp = vec;
-		temp.Normalize();
-		return temp;
-	}
-
-	// Dot product between two vectors (a dot b)
-	static int Dot(const Vector2Int& a, const Vector2Int& b)
-	{
-		return (a.x * b.x + a.y * b.y);
-	}
-
-	static const Vector2Int Zero;
-	static const Vector2Int UnitX;
-	static const Vector2Int UnitY;
-	static const Vector2Int NegUnitX;
-	static const Vector2Int NegUnitY;
-};
-
 // 3D Vector
 class Vector3
 {
@@ -482,15 +342,17 @@ public:
 
 	Vector3()
 		:x(0.0f)
-		,y(0.0f)
-		,z(0.0f)
-	{}
+		, y(0.0f)
+		, z(0.0f)
+	{
+	}
 
 	explicit Vector3(float inX, float inY, float inZ)
 		:x(inX)
-		,y(inY)
-		,z(inZ)
-	{}
+		, y(inY)
+		, z(inZ)
+	{
+	}
 
 	// Cast to a const float pointer
 	const float* GetAsFloatPtr() const
@@ -579,7 +441,7 @@ public:
 	// Length squared of vector
 	float LengthSq() const
 	{
-		return (x*x + y*y + z*z);
+		return (x * x + y * y + z * z);
 	}
 
 	// Length of vector
@@ -626,7 +488,7 @@ public:
 	{
 		return Vector3(a + f * (b - a));
 	}
-	
+
 	// Reflect V about (normalized) N
 	static Vector3 Reflect(const Vector3& v, const Vector3& n)
 	{
@@ -651,107 +513,108 @@ public:
 	static const Vector3 NegInfinity;
 };
 
-
 // 4D Vector
 class Vector4
 {
 public:
-    float x;
-    float y;
-    float z;
-    float w;
+	float x;
+	float y;
+	float z;
+	float w;
 
-    Vector4()
-        : x(0.0f), y(0.0f), z(0.0f), w(0.0f)
-    {}
+	Vector4()
+		: x(0.0f), y(0.0f), z(0.0f), w(0.0f)
+	{
+	}
 
-    explicit Vector4(float inX, float inY, float inZ, float inW)
-        : x(inX), y(inY), z(inZ), w(inW)
-    {}
+	explicit Vector4(float inX, float inY, float inZ, float inW)
+		: x(inX), y(inY), z(inZ), w(inW)
+	{
+	}
 
-    // Set all four components in one line
-    void Set(float inX, float inY, float inZ, float inW)
-    {
-        x = inX;
-        y = inY;
-        z = inZ;
-        w = inW;
-    }
+	// Set all four components in one line
+	void Set(float inX, float inY, float inZ, float inW)
+	{
+		x = inX;
+		y = inY;
+		z = inZ;
+		w = inW;
+	}
 
-    // Vector addition (a + b)
-    friend Vector4 operator+(const Vector4& a, const Vector4& b)
-    {
-        return Vector4(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-    }
+	// Vector addition (a + b)
+	friend Vector4 operator+(const Vector4& a, const Vector4& b)
+	{
+		return Vector4(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+	}
 
-    // Vector subtraction (a - b)
-    friend Vector4 operator-(const Vector4& a, const Vector4& b)
-    {
-        return Vector4(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-    }
+	// Vector subtraction (a - b)
+	friend Vector4 operator-(const Vector4& a, const Vector4& b)
+	{
+		return Vector4(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+	}
 
-    // Scalar multiplication
-    friend Vector4 operator*(const Vector4& vec, float scalar)
-    {
-        return Vector4(vec.x * scalar, vec.y * scalar, vec.z * scalar, vec.w * scalar);
-    }
+	// Scalar multiplication
+	friend Vector4 operator*(const Vector4& vec, float scalar)
+	{
+		return Vector4(vec.x * scalar, vec.y * scalar, vec.z * scalar, vec.w * scalar);
+	}
 
-    // Scalar multiplication
-    friend Vector4 operator*(float scalar, const Vector4& vec)
-    {
-        return Vector4(vec.x * scalar, vec.y * scalar, vec.z * scalar, vec.w * scalar);
-    }
+	// Scalar multiplication
+	friend Vector4 operator*(float scalar, const Vector4& vec)
+	{
+		return Vector4(vec.x * scalar, vec.y * scalar, vec.z * scalar, vec.w * scalar);
+	}
 
-    // Scalar division
-    friend Vector4 operator/(const Vector4& vec, float scalar)
-    {
-        return Vector4(vec.x / scalar, vec.y / scalar, vec.z / scalar, vec.w / scalar);
-    }
+	// Scalar division
+	friend Vector4 operator/(const Vector4& vec, float scalar)
+	{
+		return Vector4(vec.x / scalar, vec.y / scalar, vec.z / scalar, vec.w / scalar);
+	}
 
-    // Length squared of vector
-    float LengthSq() const
-    {
-        return (x * x + y * y + z * z + w * w);
-    }
+	// Length squared of vector
+	float LengthSq() const
+	{
+		return (x * x + y * y + z * z + w * w);
+	}
 
-    // Length of vector
-    float Length() const
-    {
-        return Math::Sqrt(LengthSq());
-    }
+	// Length of vector
+	float Length() const
+	{
+		return Math::Sqrt(LengthSq());
+	}
 
-    // Normalize this vector
-    void Normalize()
-    {
-        float length = Length();
-        if (length > 0.0001f) // Epsilon check
-        {
-            x /= length;
-            y /= length;
-            z /= length;
-            w /= length;
-        }
-    }
+	// Normalize this vector
+	void Normalize()
+	{
+		float length = Length();
+		if (length > 0.0001f) // Epsilon check
+		{
+			x /= length;
+			y /= length;
+			z /= length;
+			w /= length;
+		}
+	}
 
-    // Normalize the provided vector
-    static Vector4 Normalize(const Vector4& vec)
-    {
-        Vector4 temp = vec;
-        temp.Normalize();
-        return temp;
-    }
+	// Normalize the provided vector
+	static Vector4 Normalize(const Vector4& vec)
+	{
+		Vector4 temp = vec;
+		temp.Normalize();
+		return temp;
+	}
 
-    // Dot product between two vectors (a dot b)
-    static float Dot(const Vector4& a, const Vector4& b)
-    {
-        return (a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w);
-    }
+	// Dot product between two vectors (a dot b)
+	static float Dot(const Vector4& a, const Vector4& b)
+	{
+		return (a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w);
+	}
 
-    static const Vector4 Zero;
-    static const Vector4 UnitX;
-    static const Vector4 UnitY;
-    static const Vector4 UnitZ;
-    static const Vector4 UnitW;
+	static const Vector4 Zero;
+	static const Vector4 UnitX;
+	static const Vector4 UnitY;
+	static const Vector4 UnitZ;
+	static const Vector4 UnitW;
 };
 
 // 3x3 Matrix
@@ -781,39 +644,39 @@ public:
 	{
 		Matrix3 retVal;
 		// row 0
-		retVal.mat[0][0] = 
+		retVal.mat[0][0] =
 			left.mat[0][0] * right.mat[0][0] +
 			left.mat[0][1] * right.mat[1][0] +
 			left.mat[0][2] * right.mat[2][0];
 
-		retVal.mat[0][1] = 
+		retVal.mat[0][1] =
 			left.mat[0][0] * right.mat[0][1] +
 			left.mat[0][1] * right.mat[1][1] +
 			left.mat[0][2] * right.mat[2][1];
 
-		retVal.mat[0][2] = 
+		retVal.mat[0][2] =
 			left.mat[0][0] * right.mat[0][2] +
 			left.mat[0][1] * right.mat[1][2] +
 			left.mat[0][2] * right.mat[2][2];
-		
+
 		// row 1
-		retVal.mat[1][0] = 
+		retVal.mat[1][0] =
 			left.mat[1][0] * right.mat[0][0] +
 			left.mat[1][1] * right.mat[1][0] +
 			left.mat[1][2] * right.mat[2][0];
 
-		retVal.mat[1][1] = 
+		retVal.mat[1][1] =
 			left.mat[1][0] * right.mat[0][1] +
 			left.mat[1][1] * right.mat[1][1] +
 			left.mat[1][2] * right.mat[2][1];
 
-		retVal.mat[1][2] = 
+		retVal.mat[1][2] =
 			left.mat[1][0] * right.mat[0][2] +
 			left.mat[1][1] * right.mat[1][2] +
 			left.mat[1][2] * right.mat[2][2];
-		
+
 		// row 2
-		retVal.mat[2][0] = 
+		retVal.mat[2][0] =
 			left.mat[2][0] * right.mat[0][0] +
 			left.mat[2][1] * right.mat[1][0] +
 			left.mat[2][2] * right.mat[2][0];
@@ -823,7 +686,7 @@ public:
 			left.mat[2][1] * right.mat[1][1] +
 			left.mat[2][2] * right.mat[2][1];
 
-		retVal.mat[2][2] = 
+		retVal.mat[2][2] =
 			left.mat[2][0] * right.mat[0][2] +
 			left.mat[2][1] * right.mat[1][2] +
 			left.mat[2][2] * right.mat[2][2];
@@ -916,105 +779,105 @@ public:
 	{
 		Matrix4 retVal;
 		// row 0
-		retVal.mat[0][0] = 
-			a.mat[0][0] * b.mat[0][0] + 
-			a.mat[0][1] * b.mat[1][0] + 
+		retVal.mat[0][0] =
+			a.mat[0][0] * b.mat[0][0] +
+			a.mat[0][1] * b.mat[1][0] +
 			a.mat[0][2] * b.mat[2][0] +
 			a.mat[0][3] * b.mat[3][0];
 
-		retVal.mat[0][1] = 
-			a.mat[0][0] * b.mat[0][1] + 
-			a.mat[0][1] * b.mat[1][1] + 
-			a.mat[0][2] * b.mat[2][1] + 
+		retVal.mat[0][1] =
+			a.mat[0][0] * b.mat[0][1] +
+			a.mat[0][1] * b.mat[1][1] +
+			a.mat[0][2] * b.mat[2][1] +
 			a.mat[0][3] * b.mat[3][1];
 
-		retVal.mat[0][2] = 
-			a.mat[0][0] * b.mat[0][2] + 
-			a.mat[0][1] * b.mat[1][2] + 
-			a.mat[0][2] * b.mat[2][2] + 
+		retVal.mat[0][2] =
+			a.mat[0][0] * b.mat[0][2] +
+			a.mat[0][1] * b.mat[1][2] +
+			a.mat[0][2] * b.mat[2][2] +
 			a.mat[0][3] * b.mat[3][2];
-		
-		retVal.mat[0][3] = 
-			a.mat[0][0] * b.mat[0][3] + 
-			a.mat[0][1] * b.mat[1][3] + 
-			a.mat[0][2] * b.mat[2][3] + 
+
+		retVal.mat[0][3] =
+			a.mat[0][0] * b.mat[0][3] +
+			a.mat[0][1] * b.mat[1][3] +
+			a.mat[0][2] * b.mat[2][3] +
 			a.mat[0][3] * b.mat[3][3];
 
 		// row 1
-		retVal.mat[1][0] = 
-			a.mat[1][0] * b.mat[0][0] + 
-			a.mat[1][1] * b.mat[1][0] + 
-			a.mat[1][2] * b.mat[2][0] + 
+		retVal.mat[1][0] =
+			a.mat[1][0] * b.mat[0][0] +
+			a.mat[1][1] * b.mat[1][0] +
+			a.mat[1][2] * b.mat[2][0] +
 			a.mat[1][3] * b.mat[3][0];
 
-		retVal.mat[1][1] = 
-			a.mat[1][0] * b.mat[0][1] + 
-			a.mat[1][1] * b.mat[1][1] + 
-			a.mat[1][2] * b.mat[2][1] + 
+		retVal.mat[1][1] =
+			a.mat[1][0] * b.mat[0][1] +
+			a.mat[1][1] * b.mat[1][1] +
+			a.mat[1][2] * b.mat[2][1] +
 			a.mat[1][3] * b.mat[3][1];
 
-		retVal.mat[1][2] = 
-			a.mat[1][0] * b.mat[0][2] + 
-			a.mat[1][1] * b.mat[1][2] + 
-			a.mat[1][2] * b.mat[2][2] + 
+		retVal.mat[1][2] =
+			a.mat[1][0] * b.mat[0][2] +
+			a.mat[1][1] * b.mat[1][2] +
+			a.mat[1][2] * b.mat[2][2] +
 			a.mat[1][3] * b.mat[3][2];
 
-		retVal.mat[1][3] = 
+		retVal.mat[1][3] =
 			a.mat[1][0] * b.mat[0][3] +
 			a.mat[1][1] * b.mat[1][3] +
 			a.mat[1][2] * b.mat[2][3] +
 			a.mat[1][3] * b.mat[3][3];
 
 		// row 2
-		retVal.mat[2][0] = 
+		retVal.mat[2][0] =
 			a.mat[2][0] * b.mat[0][0] +
 			a.mat[2][1] * b.mat[1][0] +
 			a.mat[2][2] * b.mat[2][0] +
 			a.mat[2][3] * b.mat[3][0];
 
-		retVal.mat[2][1] = 
-			a.mat[2][0] * b.mat[0][1] + 
-			a.mat[2][1] * b.mat[1][1] + 
-			a.mat[2][2] * b.mat[2][1] + 
+		retVal.mat[2][1] =
+			a.mat[2][0] * b.mat[0][1] +
+			a.mat[2][1] * b.mat[1][1] +
+			a.mat[2][2] * b.mat[2][1] +
 			a.mat[2][3] * b.mat[3][1];
 
-		retVal.mat[2][2] = 
+		retVal.mat[2][2] =
 			a.mat[2][0] * b.mat[0][2] +
-			a.mat[2][1] * b.mat[1][2] + 
-			a.mat[2][2] * b.mat[2][2] + 
+			a.mat[2][1] * b.mat[1][2] +
+			a.mat[2][2] * b.mat[2][2] +
 			a.mat[2][3] * b.mat[3][2];
 
-		retVal.mat[2][3] = 
-			a.mat[2][0] * b.mat[0][3] + 
-			a.mat[2][1] * b.mat[1][3] + 
-			a.mat[2][2] * b.mat[2][3] + 
+		retVal.mat[2][3] =
+			a.mat[2][0] * b.mat[0][3] +
+			a.mat[2][1] * b.mat[1][3] +
+			a.mat[2][2] * b.mat[2][3] +
 			a.mat[2][3] * b.mat[3][3];
 
 		// row 3
-		retVal.mat[3][0] = 
-			a.mat[3][0] * b.mat[0][0] + 
-			a.mat[3][1] * b.mat[1][0] + 
-			a.mat[3][2] * b.mat[2][0] + 
+		retVal.mat[3][0] =
+			a.mat[3][0] * b.mat[0][0] +
+			a.mat[3][1] * b.mat[1][0] +
+			a.mat[3][2] * b.mat[2][0] +
 			a.mat[3][3] * b.mat[3][0];
 
-		retVal.mat[3][1] = 
-			a.mat[3][0] * b.mat[0][1] + 
-			a.mat[3][1] * b.mat[1][1] + 
-			a.mat[3][2] * b.mat[2][1] + 
+		retVal.mat[3][1] =
+			a.mat[3][0] * b.mat[0][1] +
+			a.mat[3][1] * b.mat[1][1] +
+			a.mat[3][2] * b.mat[2][1] +
 			a.mat[3][3] * b.mat[3][1];
 
-		retVal.mat[3][2] = 
+		retVal.mat[3][2] =
 			a.mat[3][0] * b.mat[0][2] +
 			a.mat[3][1] * b.mat[1][2] +
 			a.mat[3][2] * b.mat[2][2] +
 			a.mat[3][3] * b.mat[3][2];
 
-		retVal.mat[3][3] = 
+		retVal.mat[3][3] =
 			a.mat[3][0] * b.mat[0][3] +
 			a.mat[3][1] * b.mat[1][3] +
 			a.mat[3][2] * b.mat[2][3] +
 			a.mat[3][3] * b.mat[3][3];
-		
+
 		return retVal;
 	}
 
@@ -1032,7 +895,7 @@ public:
 	{
 		return Vector3(mat[3][0], mat[3][1], mat[3][2]);
 	}
-	
+
 	// Get the X axis of the matrix (forward)
 	Vector3 GetXAxis() const
 	{
@@ -1190,8 +1053,8 @@ public:
 	{
 		float temp[4][4] =
 		{
-			{ 2.0f/width, 0.0f, 0.0f, 0.0f },
-			{ 0.0f, 2.0f/height, 0.0f, 0.0f },
+			{ 2.0f / width, 0.0f, 0.0f, 0.0f },
+			{ 0.0f, 2.0f / height, 0.0f, 0.0f },
 			{ 0.0f, 0.0f, 1.0f, 0.0f },
 			{ 0.0f, 0.0f, 1.0f, 1.0f }
 		};
@@ -1210,7 +1073,7 @@ public:
 		}
 		memcpy(mat, temp, 16 * sizeof(float));
 	}
-	
+
 	static const Matrix4 Identity;
 };
 
@@ -1265,7 +1128,7 @@ public:
 
 	float LengthSq() const
 	{
-		return (x*x + y*y + z*z + w*w);
+		return (x * x + y * y + z * z + w * w);
 	}
 
 	float Length() const

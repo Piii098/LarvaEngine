@@ -129,11 +129,6 @@ bool Game::Initialize() {
 		return false;
 	}
 
-	if (_useMultithreading) {
-		ThreadPool::GetInstance().Initialize(); // スレッドプールの初期化
-		SDL_Log("Thread pool initialized with %zu worker threads", ThreadPool::GetInstance().GetThreadCount());
-	}
-
 	_inputAction = std::make_unique<InputAction>(*_inputSystem.get()); // 入力アクションの初期化
 	_frameSystem = std::make_unique<FrameSystem>();					  // フレームシステムの初期化	
 	_textureManager = std::make_unique<AssetManager<Texture>>(*this);      // テクスチャマネージャの初期化

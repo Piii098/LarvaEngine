@@ -1,36 +1,36 @@
-#version 330 core
+ï»¿#version 330 core
 out vec4 FragColor;
 
 in vec2 fragTexCoord;
 
-uniform sampler2D sceneTexture;   // ƒVƒƒ[ƒv‚ÈŒ³‰æ‘œ
-uniform sampler2D blurTexture;    // ‚Ú‚©‚µ‚½‰æ‘œ
-uniform sampler2D depthTexture;   // [“xî•ñ
-uniform float focusDistance;      // ƒtƒH[ƒJƒX‹——£
-uniform float focusRange;         // ƒtƒH[ƒJƒX”ÍˆÍ
-uniform float maxBlur;            // Å‘å‚Ú‚©‚µ—Ê
-uniform float near;               // ƒjƒAƒNƒŠƒbƒsƒ“ƒOƒvƒŒ[ƒ“
-uniform float far;                // ƒtƒ@[ƒNƒŠƒbƒsƒ“ƒOƒvƒŒ[ƒ“
+uniform sampler2D sceneTexture;   // ã‚·ãƒ£ãƒ¼ãƒ—ãªå…ƒç”»åƒ
+uniform sampler2D blurTexture;    // ã¼ã‹ã—ãŸç”»åƒ
+uniform sampler2D depthTexture;   // æ·±åº¦æƒ…å ±
+uniform float focusDistance;      // ãƒ•ã‚©ãƒ¼ã‚«ã‚¹è·é›¢
+uniform float focusRange;         // ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ç¯„å›²
+uniform float maxBlur;            // æœ€å¤§ã¼ã‹ã—é‡
+uniform float near;               // ãƒ‹ã‚¢ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ãƒ—ãƒ¬ãƒ¼ãƒ³
+uniform float far;                // ãƒ•ã‚¡ãƒ¼ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ãƒ—ãƒ¬ãƒ¼ãƒ³
 
 void main() {
     float depth = texture(depthTexture, fragTexCoord).r;
     
-    // üŒ`‰»‚³‚ê‚½[“x’l‚ğŒvZ
+    // ç·šå½¢åŒ–ã•ã‚ŒãŸæ·±åº¦å€¤ã‚’è¨ˆç®—
     float linearDepth = (2.0 * near) / (far + near - depth * (far - near));
     
-    // ƒtƒH[ƒJƒX‹——£‚©‚ç‚Ì‹——£‚ÉŠî‚Ã‚­‚Ú‚©‚µŒW”
+    // ãƒ•ã‚©ãƒ¼ã‚«ã‚¹è·é›¢ã‹ã‚‰ã®è·é›¢ã«åŸºã¥ãã¼ã‹ã—ä¿‚æ•°
     float focus = abs(linearDepth - focusDistance) / focusRange;
     float blur = clamp(focus, 0.0, maxBlur);
     
-    // ƒVƒƒ[ƒv‚È‰æ‘œ‚Æ‚Ú‚©‚µ‚½‰æ‘œ‚ğ¬‡
+    // ã‚·ãƒ£ãƒ¼ãƒ—ãªç”»åƒã¨ã¼ã‹ã—ãŸç”»åƒã‚’æ··åˆ
     vec3 color = mix(
         texture(sceneTexture, fragTexCoord).rgb,
         texture(blurTexture, fragTexCoord).rgb,
         blur
     );
     
-    //ƒIƒvƒVƒ‡ƒ“FƒfƒoƒbƒO•\¦iƒtƒH[ƒJƒX”ÍˆÍ‚Ì‰Â‹‰»j
-    vec3 debugFocus = vec3(focus); // ƒtƒH[ƒJƒX‹——£‚©‚ç‚Ì‹——£‚ğ‹Šo‰»
-    FragColor = vec4(color, 1.0);  // ’Êí‚Ìo—Í
+    //ã‚ªãƒ—ã‚·ãƒ§ãƒ³ï¼šãƒ‡ãƒãƒƒã‚°è¡¨ç¤ºï¼ˆãƒ•ã‚©ãƒ¼ã‚«ã‚¹ç¯„å›²ã®å¯è¦–åŒ–ï¼‰
+    vec3 debugFocus = vec3(focus); // ãƒ•ã‚©ãƒ¼ã‚«ã‚¹è·é›¢ã‹ã‚‰ã®è·é›¢ã‚’è¦–è¦šåŒ–
+    FragColor = vec4(color, 1.0);  // é€šå¸¸ã®å‡ºåŠ›
     
 }

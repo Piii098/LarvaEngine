@@ -37,7 +37,7 @@ void Example2DScroll::PlaySubScene::Initialize() {
 }
 
 void Example2DScroll::PlaySubScene::UpdateScene(float deltaTime) {
-	if (_player.Position().y < -100.0f) {
+	if (_player.Position().z < -100.0f) {
 		_parent.GetManager().RequestSceneChange<GameMainScene>();
 	}
 }

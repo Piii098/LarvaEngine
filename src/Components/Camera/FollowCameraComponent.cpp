@@ -52,7 +52,7 @@ void FollowCameraComponent::LateUpdate(float deltaTime) {
 
 	// SDL_Log("Internal Position: %f, %f", _internalPosition.x, _internalPosition.y);
     // GameObject の位置を更新
-    _parent.Position(_internalPosition);
+    _parent.Position2D(_internalPosition);
 }
 
 #pragma endregion

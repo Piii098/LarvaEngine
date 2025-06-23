@@ -18,12 +18,12 @@
 // コンストラクタ・デストラクタ
 //==============================================================================
 
-Renderer2D::Renderer2D(Game& game) 
-	: Renderer(game){
+Renderer2D::Renderer2D(Game& game)
+    : Renderer(game) {
 }
 
 Renderer2D::~Renderer2D() {
-	Shutdown();
+    Shutdown();
 }
 
 //==============================================================================
@@ -34,7 +34,7 @@ Renderer2D::~Renderer2D() {
 
 /**
  * OpenGL、ウィンドウのの初期化を行う
- * 
+ *
  * シェーダーのロード、glewの初期化、フレームバッファの初期化を行う
  */
 bool Renderer2D::Initialize(const std::string& windowName) {
@@ -46,14 +46,14 @@ bool Renderer2D::Initialize(const std::string& windowName) {
         _lowResHeight = _windowHeight;
         _lowResWidth = _windowWidth;
     }
-   
+
     _numLayers = 16;
 
     // パララックス係数を初期化 (すべて0.0 = 中央レイヤーと同じ動き)
     _parallaxFactors.resize(_numLayers, 0.0f);
     // デフォルトでは中央のレイヤーを基準とする
     _centralLayer = 10;
-	SetParallaxFactor(0, 1.0f);
+    SetParallaxFactor(0, 1.0f);
     SetParallaxFactor(1, 0.95f);
     SetParallaxFactor(2, 0.9f);
     SetParallaxFactor(3, 0.85f);
@@ -62,7 +62,7 @@ bool Renderer2D::Initialize(const std::string& windowName) {
     SetParallaxFactor(14, -1.0f);
     SetParallaxFactor(15, 0.f);
 
-    _ambientLightFactors.resize(_numLayers, AmbientLight(Vector3(0.9,0.8,1), 0.6));
+    _ambientLightFactors.resize(_numLayers, AmbientLight(Vector3(0.9, 0.8, 1), 0.6));
 
     // OpenGL属性の設定
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
@@ -98,7 +98,7 @@ bool Renderer2D::Initialize(const std::string& windowName) {
         return false;
     }
 
-	// 頂点配列オブジェクトを作成
+    // 頂点配列オブジェクトを作成
     CreateVerts();
 
     if (!InitializeFrameBuffer()) {
@@ -114,8 +114,7 @@ bool Renderer2D::Initialize(const std::string& windowName) {
 /**
  * ゲームの描写処理
  *
- * 低解像度レンダリングでスプライト、ライトの描写
- * ->合成->ブルームエフェクト->UIの描写->最終出力
+ * 
  */
 void Renderer2D::Render() {
 
@@ -123,7 +122,7 @@ void Renderer2D::Render() {
     // カメラのビュー行列を取得
     Camera* camera = _game.GetSceneManager().GetCurrentMainScene().GetCamera();
     Matrix4 view = Matrix4::Identity;
-    Vector2Int cameraPos = Vector2Int::Zero;
+    Vector2 cameraPos = Vector2::Zero;
     if (camera) { // カメラが存在する場合
         //SDL_Log("cameraPos, %d,%d", _game.GetSceneManager().GetCurrentMainScene().GetCamera()->Position().x, _game.GetSceneManager().GetCurrentMainScene().GetCamera()->Position().y);
         view = camera->GetViewMatrix();
@@ -140,135 +139,39 @@ void Renderer2D::Render() {
 
         glBindFramebuffer(GL_FRAMEBUFFER, _layerFBOs[i]);
         glViewport(0, 0, _lowResWidth, _lowResHeight);
-        glClearColor(0.2f, 0.0f, 0.0f, 1.0f);
+        glClearColor(0, 0.0f, 0.0f, 0.f);
         glClear(GL_COLOR_BUFFER_BIT);
 
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        // レイヤーに対応するスプライトを描画
-        Matrix4 regionView = view;
-
-        // カメラ位置に基づいて視差オフセットを計算
-        if (camera) {
-            // パララックス係数に基づいてX軸とY軸のオフセットを計算
-            float parallaxFactor = _parallaxFactors[i];
-            Vector3 offset = Vector3::Zero;
-
-
-            // パララックス係数に応じてカメラ位置から視差オフセットを計算
-            // 係数が0なら中央レイヤー（オフセットなし）、1に近いほど遠い背景として動きが少なくなる
-            offset.x = cameraPos.x * parallaxFactor;
-            offset.y = cameraPos.y;
-
-            // オフセットを適用した新しいビュー行列を作成
-            Matrix4 parallaxTranslation = Matrix4::CreateTranslation(offset);
-            regionView = regionView * parallaxTranslation;
-        }
-
         // メインシーンの描画
-        DrawMainScene(currentMainScene, regionView, i);
+        DrawMainScene(currentMainScene, view, i);
 
-        glBindFramebuffer(GL_FRAMEBUFFER, _lightFBOs[i]);
-        glViewport(0, 0, _lowResWidth, _lowResHeight);
-        glClearColor(0.2f, 0.0f, 0.0f, 1.0f);    // 完全に透明なバックグラウンド
-        glClear(GL_COLOR_BUFFER_BIT);
-
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-
-        // ライトの描画
-        DrawLight(regionView, i);
     }
+
+    // 合成結果を画面に描画
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glViewport(0, 0, _windowWidth, _windowHeight);
+    glClearColor(0.f, 0.0f, 0.0f, 0.f);
+    glClear(GL_COLOR_BUFFER_BIT);
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    // ステップ2: 合成用フレームバッファにレイヤーを合成
-    glBindFramebuffer(GL_FRAMEBUFFER, _combineLightFBO);
-    glViewport(0, 0, _lowResWidth, _lowResHeight);
-    glClearColor(0.2f, 0.0f, 0.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    _combineShader->SetActive();
-    _frameVerts->SetActive();
-
-    // 各レイヤーを合成
     for (int i = 0; i < _numLayers; i++) {
-        CombineLight(i);
+
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, _layerBuffers[i]);
+        _frameShader->SetIntUniform("frameTexture", 0);
+
+        _frameVerts->SetActive();
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+
     }
-
-    // ステップ3: ブルームエフェクト
-    glBindFramebuffer(GL_FRAMEBUFFER, _extractBrightFBO);
-    glViewport(0, 0, _lowResWidth, _lowResHeight);
-    glClearColor(0.2f, 0.0f, 0.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    PostProcess();
-
-    // ステップ4: UIを実ウィンドウサイズで合成 
-    glBindFramebuffer(GL_FRAMEBUFFER, _finalFBO);
-    glViewport(0, 0, _windowWidth, _windowHeight);
-    glClearColor(0.2f, 0.0f, 0.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    DrawAndCombineUI(currentMainScene);
-
-    // ステップ3: 最終出力（ウィンドウに描画）
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    glViewport(0, 0, _windowWidth, _windowHeight);
-    glClearColor(0.2f, 0.0f, 0.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    _frameShader->SetActive();
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, _finalBuffer);
-    _frameShader->SetIntUniform("frameTexture", 0);
-
-    _frameVerts->SetActive();
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
     SwapWindow();
 
-
-
-    /*
-
-    Matrix4 view = Matrix4::Identity;
-
-    // メインシーンを取得
-    MainScene& currentMainScene = _game.GetSceneManager().GetCurrentMainScene();
-    // デフォルトフレームバッファに描画することを明確にする
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    glViewport(0, 0, _windowWidth, _windowHeight);
-    glClearColor(0.2f, 0.0f, 0.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-
-    _spriteShader->SetActive();
-    _spriteVerts->SetActive();
-
-    if (!_spriteVerts) {
-        SDL_Log("ERROR: _spriteVerts is null!");
-        return;
-    }
-
-    Matrix4 viewProj = Matrix4::CreateSimpleViewProj(_windowWidth, _windowHeight);
-
-    _spriteShader->SetMatrixUniform("uViewProj", view * viewProj);
-    _spriteShader->SetMatrixUniform("uWorldTransform", Matrix4::Identity);
-    _spriteShader->SetIntUniform("uTexture", 0);
-    Texture* sample = _game.GetTextureManager().Get("Sample");
-    sample->SetActive();
-
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
-
-    SwapWindow();
-
-    */
 }
 
 // ===== ライト関連 ===== //
@@ -325,7 +228,7 @@ void Renderer2D::RemoveLight(LightComponent* light) {
 
 /**
  * パララックス係数の設定
- * 
+ *
  * 係数は0を中央レイヤーとし、1を最背面レイヤーとする
  * -は前面に、+は背面に移動する
  */
@@ -339,7 +242,7 @@ void Renderer2D::SetParallaxFactor(int layer, float factor) {
  * パララックス係数の取得
  */
 float Renderer2D::GetParallaxFactor(int layer) const {
-    if (layer >= 0 && layer < _numLayers) { 
+    if (layer >= 0 && layer < _numLayers) {
         return _parallaxFactors[layer];
     }
     return 0.0f;
@@ -347,7 +250,7 @@ float Renderer2D::GetParallaxFactor(int layer) const {
 
 /**
  * 中央レイヤーの設定
- * 
+ *
  * パララックス係数の基準となるレイヤーを設定する
  */
 void Renderer2D::SetCentralLayer(int layer) {
@@ -369,7 +272,7 @@ void Renderer2D::SetCentralLayer(int layer) {
  */
 bool Renderer2D::InitializeFrameBuffer() {
 
-	// メインシーン用フレームバッファの作成
+    // メインシーン用フレームバッファの作成
     _layerFBOs.resize(_numLayers);
     _layerBuffers.resize(_numLayers);
 
@@ -393,11 +296,11 @@ bool Renderer2D::InitializeFrameBuffer() {
         }
     }
 
-	_lightFBOs.resize(_numLayers);
+    _lightFBOs.resize(_numLayers);
     _lightBuffers.resize(_numLayers);
 
 
-	// ライト用フレームバッファの作成
+    // ライト用フレームバッファの作成
     glGenFramebuffers(_numLayers, _lightFBOs.data());
     glGenTextures(_numLayers, _lightBuffers.data());
 
@@ -418,7 +321,7 @@ bool Renderer2D::InitializeFrameBuffer() {
         }
     }
 
-	// フレームとライトの合成用フレームバッファの作成
+    // フレームとライトの合成用フレームバッファの作成
     glGenFramebuffers(1, &_combineLightFBO);
     glBindFramebuffer(GL_FRAMEBUFFER, _combineLightFBO);
 
@@ -436,13 +339,13 @@ bool Renderer2D::InitializeFrameBuffer() {
         SDL_Log("Combine framebuffer is not complete!");
         return false;
     }
-    
-	// ブライトネス抽出用フレームバッファの作成
+
+    // ブライトネス抽出用フレームバッファの作成
     glGenFramebuffers(1, &_extractBrightFBO);
     glBindFramebuffer(GL_FRAMEBUFFER, _extractBrightFBO);
 
     glGenTextures(2, _extractBrightBuffers);
-    for (unsigned int i = 0; i < 2; i++){
+    for (unsigned int i = 0; i < 2; i++) {
         glBindTexture(GL_TEXTURE_2D, _extractBrightBuffers[i]);
         glTexImage2D(
             GL_TEXTURE_2D, 0, GL_RGBA16F, _lowResWidth, _lowResHeight, 0, GL_RGBA, GL_FLOAT, NULL
@@ -458,10 +361,10 @@ bool Renderer2D::InitializeFrameBuffer() {
     unsigned int attachments[2] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1 };
     glDrawBuffers(2, attachments);
 
-	// ブラー用のフレームバッファの作成
+    // ブラー用のフレームバッファの作成
     glGenFramebuffers(2, _pingpongFBO);
     glGenTextures(2, _pingpongBuffers);
-    for (unsigned int i = 0; i < 2; i++){
+    for (unsigned int i = 0; i < 2; i++) {
         glBindFramebuffer(GL_FRAMEBUFFER, _pingpongFBO[i]);
         glBindTexture(GL_TEXTURE_2D, _pingpongBuffers[i]);
         glTexImage2D(
@@ -472,14 +375,14 @@ bool Renderer2D::InitializeFrameBuffer() {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _pingpongBuffers[i], 0);
-        
+
         if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
             SDL_Log("Blur framebuffer is not complete!");
             return false;
         }
     }
 
-	// ブルームエフェクト用最終フレームバッファの作成
+    // ブルームエフェクト用最終フレームバッファの作成
     glGenFramebuffers(1, &_finalBloomFBO);
     glBindFramebuffer(GL_FRAMEBUFFER, _finalBloomFBO);
 
@@ -497,7 +400,7 @@ bool Renderer2D::InitializeFrameBuffer() {
         return false;
     }
 
-	// 最終描写用フレームバッファの作成
+    // 最終描写用フレームバッファの作成
     glGenFramebuffers(1, &_finalFBO);
     glBindFramebuffer(GL_FRAMEBUFFER, _finalFBO);
 
@@ -526,7 +429,7 @@ bool Renderer2D::InitializeFrameBuffer() {
 
 /**
  * メインシーンの描写処理
- * 
+ *
  * 低解像度レンダリング、カメラビュー、アンビエントライトの設定をし、
  * 現在のメインシーンを描写する
  */
@@ -536,19 +439,18 @@ void Renderer2D::DrawMainScene(MainScene& mainScene, Matrix4 view, int region) {
 
     Matrix4 viewProj = Matrix4::CreateSimpleViewProj(_lowResWidth, _lowResHeight);
 
-    _spriteShader->SetMatrixUniform("uViewProj", viewProj);
-    
-    _spriteShader->SetMatrixUniform("uViewCamera", view);
+    _spriteShader->SetMatrixUniform("uViewProj", view * viewProj);
 
-	_spriteShader->SetVector3Uniform("ambientLightColor", _ambientLightFactors[region].color);
-	_spriteShader->SetFloatUniform("ambientLightIntensity", _ambientLightFactors[region].intensity);
+
+    _spriteShader->SetVector3Uniform("ambientLightColor", _ambientLightFactors[region].color);
+    _spriteShader->SetFloatUniform("ambientLightIntensity", _ambientLightFactors[region].intensity);
 
     mainScene.RenderSprite(*_spriteShader.get(), region);
 }
 
 /**
  * ライトの描写処理
- * 
+ *
  * 低解像度レンダリング、カメラビューを設定し
  * ライトを描写する
  */
@@ -573,29 +475,31 @@ void Renderer2D::DrawLight(Matrix4 view, int region) {
  * レイヤーのスプライトとライトを合成する
  */
 void Renderer2D::CombineLight(int region) {
+
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, _layerBuffers[region]);
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, _lightBuffers[region]);
-    _combineShader->SetIntUniform("spriteTexture", 0);
+
+    _combineShader->SetIntUniform("colorTexture", 0);
     _combineShader->SetIntUniform("lightTexture", 1);
-    _combineShader->SetVector3Uniform("uAmbientColor", Vector3(1.f,1.f,1.f));
-	_combineShader->SetFloatUniform("uAmbientIntensity", 1.f);
+    _combineShader->SetVector3Uniform("uAmbientColor", Vector3(1.f, 1.f, 1.f));
+    _combineShader->SetFloatUniform("uAmbientIntensity", 1.f);
 
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 }
 
 /**
  * ポストプロセス処理
- * 
+ *
  * ブルームエフェクトを適用する
  */
 void Renderer2D::PostProcess() {
 
     glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	// ブライトネス抽出
+    // ブライトネス抽出
     _extractBrightShader->SetActive();
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, _combineLightBuffer);
@@ -604,7 +508,7 @@ void Renderer2D::PostProcess() {
     _frameVerts->SetActive();
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
-	// ブラー処理
+    // ブラー処理
     bool horizontal = true, first_iteration = true;
     int amount = 5;
 
@@ -624,7 +528,7 @@ void Renderer2D::PostProcess() {
             first_iteration = false;
     }
 
-	// ブルームエフェクト
+    // ブルームエフェクト
     glBindFramebuffer(GL_FRAMEBUFFER, _finalBloomFBO);
     _finalBloomShader->SetActive();
     glActiveTexture(GL_TEXTURE0);
@@ -652,7 +556,7 @@ void Renderer2D::DrawAndCombineUI(MainScene& mainScene) {
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, _finalBloomBuffer);
     _frameShader->SetIntUniform("frameTexture", 0);
-	_frameShader->SetFloatUniform("uAmbientFactor", 1.0f); 
+    _frameShader->SetFloatUniform("uAmbientFactor", 1.0f);
 
     _frameVerts->SetActive();
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
@@ -681,7 +585,7 @@ void Renderer2D::DrawUI(MainScene& mainScene) {
 
 /**
  * ウィンドウのスワップ
- * 
+ *
  * ダブルバッファリングを行う
  */
 void Renderer2D::SwapWindow() {
@@ -693,7 +597,7 @@ void Renderer2D::SwapWindow() {
 
 /**
  * シェーダーのロード
- * 
+ *
  * 各種シェーダーのユニフォーム変数の設定を行う
  */
 bool Renderer2D::LoadShaders() {
@@ -709,34 +613,34 @@ bool Renderer2D::LoadShaders() {
         return false;
     }
 
-	_lightShader = std::make_unique<Shader>();
+    _lightShader = std::make_unique<Shader>();
     if (!_lightShader->Load("Assets/Shaders/Light.vert", "Assets/Shaders/Light.frag")) {
-		SDL_Log("Failed to load Light shader");
-		return false;
+        SDL_Log("Failed to load Light shader");
+        return false;
     }
 
-	_combineShader = std::make_unique<Shader>();
+    _combineShader = std::make_unique<Shader>();
     if (!_combineShader->Load("Assets/Shaders/FrameBuffer.vert", "Assets/Shaders/Combine.frag")) {
-		SDL_Log("Failed to load Combine shader");
-		return false;
+        SDL_Log("Failed to load Combine shader");
+        return false;
     }
 
-	_extractBrightShader = std::make_unique<Shader>();
+    _extractBrightShader = std::make_unique<Shader>();
     if (!_extractBrightShader->Load("Assets/Shaders/FrameBuffer.vert", "Assets/Shaders/ExtractBright.frag")) {
-		SDL_Log("Failed to load ExtractBright shader");
-		return false;
+        SDL_Log("Failed to load ExtractBright shader");
+        return false;
     }
 
-	_blurShader = std::make_unique<Shader>();
+    _blurShader = std::make_unique<Shader>();
     if (!_blurShader->Load("Assets/Shaders/FrameBuffer.vert", "Assets/Shaders/Blur.frag")) {
-		SDL_Log("Failed to load Blur shader");
-		return false;
+        SDL_Log("Failed to load Blur shader");
+        return false;
     }
 
-	_finalBloomShader = std::make_unique<Shader>();
+    _finalBloomShader = std::make_unique<Shader>();
     if (!_finalBloomShader->Load("Assets/Shaders/FrameBuffer.vert", "Assets/Shaders/FinalBloom.frag")) {
-		SDL_Log("Failed to load FinalBloom shader");
-		return false;
+        SDL_Log("Failed to load FinalBloom shader");
+        return false;
     }
 
     // シェーダーの基本設定
@@ -746,40 +650,40 @@ bool Renderer2D::LoadShaders() {
     _spriteShader->SetMatrixUniform("uViewProj", viewProj);
 
     _lightShader->SetActive();
-	_lightShader->SetMatrixUniform("uViewProj", viewProj);
+    _lightShader->SetMatrixUniform("uViewProj", viewProj);
 
     _frameShader->SetActive();
     _frameShader->SetIntUniform("frameTexture", 0);
 
-	_combineShader->SetActive();
-	_combineShader->SetIntUniform("spriteTexture", 0);
-	_combineShader->SetIntUniform("lightTexture", 1);
+    _combineShader->SetActive();
+    _combineShader->SetIntUniform("colorTexture", 0);
+    _combineShader->SetIntUniform("lightTexture", 1);
 
-	_extractBrightShader->SetActive();
-	_extractBrightShader->SetIntUniform("frameTexture", 0);
+    _extractBrightShader->SetActive();
+    _extractBrightShader->SetIntUniform("frameTexture", 0);
 
-	_blurShader->SetActive();
-	_blurShader->SetIntUniform("image", 0);
+    _blurShader->SetActive();
+    _blurShader->SetIntUniform("uTexture", 0);
 
-	_finalBloomShader->SetActive();
-	_finalBloomShader->SetIntUniform("scene", 0);
-	_finalBloomShader->SetIntUniform("bloomBlur", 1);
+    _finalBloomShader->SetActive();
+    _finalBloomShader->SetIntUniform("scene", 0);
+    _finalBloomShader->SetIntUniform("bloomBlur", 1);
 
     return true;
 }
 
 /**
  * スプライト用の頂点配列を作成
- * 
+ *
  * スプライトの描写に使用する頂点配列を作成する
  */
 void Renderer2D::CreateVerts() {
     // スプライト用頂点配列
     float spriteVertices[] = {
-        -0.5f,  0.5f, 0.f,  0.f, 0.f, 
-         0.5f,  0.5f, 0.f,  1.f, 0.f, 
+        -0.5f,  0.5f, 0.f,  0.f, 0.f,
+         0.5f,  0.5f, 0.f,  1.f, 0.f,
          0.5f, -0.5f, 0.f,  1.f, 1.f,
-        -0.5f, -0.5f, 0.f,  0.f, 1.f 
+        -0.5f, -0.5f, 0.f,  0.f, 1.f
     };
 
     unsigned int spritIndices[] = {
@@ -791,18 +695,18 @@ void Renderer2D::CreateVerts() {
 
     // フレームバッファ用頂点配列
     float frameVertices[] = {
-        -1.0f,  1.0f, 0.0f,   0.0f, 1.0f,  
-         1.0f,  1.0f, 0.0f,   1.0f, 1.0f, 
-         1.0f, -1.0f, 0.0f,   1.0f, 0.0f,  
-        -1.0f, -1.0f, 0.0f,   0.0f, 0.0f 
+        -1.0f,  1.0f, 0.0f,   0.0f, 1.0f,
+         1.0f,  1.0f, 0.0f,   1.0f, 1.0f,
+         1.0f, -1.0f, 0.0f,   1.0f, 0.0f,
+        -1.0f, -1.0f, 0.0f,   0.0f, 0.0f
     };
 
     unsigned int frameIndices[] = {
-        0, 1, 2, 
-        0, 2, 3   
+        0, 1, 2,
+        0, 2, 3
     };
 
-	_frameVerts = std::make_unique<VertexArray2D>(frameVertices, 4, frameIndices, 6);
+    _frameVerts = std::make_unique<VertexArray2D>(frameVertices, 4, frameIndices, 6);
 }
 
 

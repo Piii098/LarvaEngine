@@ -1,8 +1,8 @@
-#version 330 core
+Ôªø#version 330 core
 
-layout(location = 0) in vec3 inPosition; // í∏ì_ÇÃç¿ïW
-layout(location = 1) in vec3 inNormal; // í∏ì_ÇÃñ@ê¸
-layout(location = 2) in vec2 inTexCoord;
+layout(location = 0) in vec3 inPosition; // È†ÇÁÇπ„ÅÆÂ∫ßÊ®ô
+layout(location = 1) in vec2 inTexCoord;
+layout(location = 2) in vec3 inNormal; // È†ÇÁÇπ„ÅÆÊ≥ïÁ∑ö
 
 uniform mat4 uWorldTransform;
 
@@ -10,6 +10,6 @@ out vec2 fragTexCoord;
 
 void main()
 {
-    gl_Position = vec4(inPosition, 1.0) * uWorldTransform;
+    gl_Position = vec4(inPosition, 1.0);
     fragTexCoord = inTexCoord;
 }

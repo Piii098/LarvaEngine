@@ -1,7 +1,7 @@
-#version 330
+﻿#version 330
 
 in vec2 fragTexCoord;
-in vec3 fragWorldPos;  // ���̖��O�ɍ��킹��
+in vec3 fragWorldPos;  // この名前に合わせる
 in vec3 fragNormal;
 
 layout (location = 0) out vec4 FragColor;
@@ -19,24 +19,24 @@ struct DirectionalLight{
 
 uniform vec3 uCameraPos;
 uniform vec3 uAmbientLight;
-uniform float uSpecularPower = 100.0;  // �f�t�H���g�l��ݒ�
+uniform float uSpecularPower = 100.0;  // デフォルト値を設定
 uniform DirectionalLight uDirectionalLight;
 
 void main()
 {
-    // �@���𐳋K��
+    // 法線を正規化
     vec3 N = normalize(fragNormal);
-    // ���C�g�̕����x�N�g���i���]�j
+    // ライトの方向ベクトル（反転）
     vec3 L = normalize(-uDirectionalLight.direction);
-    // �����x�N�g��
+    // 視線ベクトル
     vec3 V = normalize(uCameraPos - fragWorldPos);
-    // ���˃x�N�g��
+    // 反射ベクトル
     vec3 R = normalize(reflect(-L, N));
 
-    // �����������l�Ƃ��Đݒ�
+    // 環境光を初期値として設定
     vec3 Phong = uAmbientLight;
     
-    // �g�U���˂Ƌ��ʔ��˂̌v�Z
+    // 拡散反射と鏡面反射の計算
     float NdotL = dot(N, L);
     if(NdotL > 0){
         vec3 diffuse = uDirectionalLight.diffuseColor * NdotL;
@@ -44,13 +44,13 @@ void main()
         Phong += diffuse + specular;
     }
 
-    // �e�N�X�`���F�̎擾
+    // テクスチャ色の取得
     vec4 texColor = texture(uTexture, fragTexCoord);
     
-    // �ŏI�I�ȐF�̌v�Z�i�e�N�X�`�� * ���C�e�B���O * �J���[���f�B�t�@�C�A�j
+    // 最終的な色の計算（テクスチャ * ライティング * カラーモディファイア）
     vec3 finalColor = texColor.rgb * Phong * uColor;
     
-    // �o�̓J���[�̐ݒ�
+    // 出力カラーの設定
     FragColor = vec4(finalColor, texColor.a * uAlpha);
     
 }

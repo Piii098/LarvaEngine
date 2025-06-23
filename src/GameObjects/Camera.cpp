@@ -13,7 +13,7 @@ Camera::Camera(Scene& scene)
 	_zoom = 1.f;
 	CreateComponent<CameraComponent>();
 	_cameraComp = GetComponent<CameraComponent>();
-	Position(Vector2Int(0, 0));
+	Position(Vector3(0, 0, 0));
 }
 
 Camera::~Camera() {

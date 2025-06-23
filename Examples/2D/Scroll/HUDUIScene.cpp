@@ -24,7 +24,7 @@ void Example2DScroll::HUDUIScene::LoadObjects() {
 	auto& playerBar = CreateGameObject<GameObject>();
 	auto& spriteComp = playerBar.CreateComponent<SpriteComponent>(10);
 	_playerBarVec = Vector2(16, 200);
-	playerBar.Position(Vector3(-600, 200, 0));
+	playerBar.Position2D(Vector2(-600, 200));
 	spriteComp.SetTexture("Rectangle");
 	spriteComp.SetVerticalAlign(SpriteComponent::VerticalAlign::Bottom);
 	spriteComp.TexScale(_playerBarVec);
