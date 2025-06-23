@@ -18,6 +18,10 @@
 - fmod.dll
 - fmodstudio.dll
 - glew32.dll
+- zlibd1.dll
+- minizip.dll
+- pugixml.dll
+- poly2tri.dll
 
 ### 3. ビルド
 ```bash
@@ -25,21 +29,3 @@ git clone https://github.com/username/LarvaEngine.git
 cd LarvaEngine
 # 上記ライブラリをセットアップ後
 # Visual Studioでビルド
-```
-
-## ライセンス
-
-このプロジェクトは主にMITライセンスの下で公開されていますが、一部のコンポーネントは異なるライセンスを使用しています。
-
-### サードパーティライブラリ
-
-- **Math Library**: Sanjay Madhav氏の「Game Programming in C++」からのコード（BSD 3-Clause License）
-- 詳細は [THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md) を参照してください
-
-### 依存ライブラリ
-
-- **SDL3**: Zlib License
-- **FMOD**: 商用ライセンス（個人利用無料）
-- **GLEW**: Modified BSD License
-- **Assimp**: Modified BSD License
-- **RapidJSON**: MIT License
