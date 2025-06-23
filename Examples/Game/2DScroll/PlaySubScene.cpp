@@ -4,6 +4,8 @@
 #include "LarvaEngine/Core/SceneManager.h"
 #include "LarvaEngine/Core/MainScene.h"
 #include "Examples/Game/2DScroll/GameMainScene.h"
+#include "Examples/Game/2DScroll/MenuUIScene.h"
+#include "LarvaEngine/Input/InputAction.h"
 
 Example2DScroll::PlaySubScene::PlaySubScene(MainScene& mainScene, Player& player)
 	: SubScene(mainScene)
@@ -13,6 +15,20 @@ Example2DScroll::PlaySubScene::PlaySubScene(MainScene& mainScene, Player& player
 
 Example2DScroll::PlaySubScene::~PlaySubScene() {
 
+}
+
+void Example2DScroll::PlaySubScene::InputScene(const InputAction& input) {
+
+	if (input.IsActionDown("Menu") && !_isMenu) {
+		_parent.CreateUIScene<MenuUIScene>();
+		_player.GetComponent<MoveInputComponent>()->State(Component::STATE::INACTIVE);
+		_isMenu = true;
+	}
+	else if (input.IsActionDown("Menu") && _isMenu) {
+		_parent.GetUIScene<MenuUIScene>()->State(Scene::STATE::CLOSE);
+		_player.GetComponent<MoveInputComponent>()->State(Component::STATE::ACTIVE);
+		_isMenu = false;
+	}
 }
 
 void Example2DScroll::PlaySubScene::Initialize() {

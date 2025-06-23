@@ -26,6 +26,8 @@ public:
     void Mass(float mass) { _mass = mass; };
     void Velocity(Vector2 velocity) { _velocity = velocity; };
     void IsGravity(bool frag) { _isGravity = frag; };
+	bool IsGravity() const { return _isGravity; };
+	bool OnGround() const { return _onGround; }; // 地面に接触しているかどうか
     float Mass() { return _mass; };
     const Vector2& Velocity() const { return _velocity; };
 	void Drag(float drag) { _drag = drag; };
@@ -46,4 +48,5 @@ private:
     Vector2 _internalPosition;
 
     bool _isGravity;
+	bool _onGround; // 地面に接触しているかどうか
 };

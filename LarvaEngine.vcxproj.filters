@@ -323,6 +323,8 @@
     <ClCompile Include="Examples\3D\FPS\HUDUIScene.cpp">
       <Filter>Examples\3D\FPS</Filter>
     </ClCompile>
+    <ClCompile Include="Examples\Game\2DScroll\TestMainScene.cpp" />
+    <ClCompile Include="Examples\Game\2DScroll\HUDUIScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\LarvaEngine\Components\AI\AICompoennt.h">
@@ -557,6 +559,8 @@
     <ClInclude Include="Examples\3D\FPS\HUDUIScene.h">
       <Filter>Examples\3D\FPS</Filter>
     </ClInclude>
+    <ClInclude Include="Examples\Game\2DScroll\TestMainScene.h" />
+    <ClInclude Include="Examples\Game\2DScroll\HUDUIScene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\Bloom.vert">
