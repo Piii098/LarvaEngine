@@ -47,7 +47,7 @@ public:
     void SetCollision(int x, int y, bool isCollision);
     void SetCollision(int tileID, bool isCollision);
 
-    const Vector2Int& GetTilePosition(int tileID) const;
+    const Vector2& GetTilePosition(int tileID) const;
 
     /// @brief タイルセットのテクスチャ名を取得
     std::string TextureName() const { return _textureName; }

@@ -18,14 +18,6 @@ struct CollisionInfo {
 	GameObject* _object;    ///< 衝突したオブジェクト
 };
 
-// 衝突情報
-struct CollisionInfo {
-	Vector2 _point;         ///< 衝突点
-	Vector2 _normal;     ///< 衝突法線
-	BoxComponent2D* _box;   ///< 衝突したボックスコンポーネント
-	GameObject* _object;    ///< 衝突したオブジェクト
-};
-
 /// @brief 2Dの物理世界クラス
 ///
 /// 2Dの物理世界を管理する
