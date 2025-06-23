@@ -78,8 +78,16 @@ publish/
 # 実行時DLL
 *.dll
 
-Assets/Fonts/
+# 外部ライブラリ・削除済み項目
+rapidjson-1.1.0/
+
+# 著作権関連アセット
 Assets/AudioBanks/
+Assets/Fonts/
+
+# 一時ファイル
+bfg-*.jar
+files-to-remove.txt
 
 FMOD SoundSystem/
 SDL/
