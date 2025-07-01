@@ -97,12 +97,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Components\AI\AICompoennt.cpp">
-      <Filter>Components\AI</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\AI\AIState.cpp">
-      <Filter>Components\AI</Filter>
-    </ClCompile>
     <ClCompile Include="src\Components\Draw\AnimationComponent.cpp">
       <Filter>Components\Draw</Filter>
     </ClCompile>
@@ -128,9 +122,6 @@
       <Filter>Components\Draw</Filter>
     </ClCompile>
     <ClCompile Include="src\Components\Draw\TextComponent.cpp">
-      <Filter>Components\Draw</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\Draw\DebugDrawComponent.cpp">
       <Filter>Components\Draw</Filter>
     </ClCompile>
     <ClCompile Include="src\Core\GameObject.cpp">
@@ -316,23 +307,14 @@
     <ClCompile Include="Examples\2D\Scroll\PlaySubScene.cpp">
       <Filter>Examples\2D\Scroll</Filter>
     </ClCompile>
-    <ClCompile Include="Examples\3D\FPS\MoveComponent.cpp" />
     <ClCompile Include="Examples\3D\FPS\FPSCameraComponent.cpp">
       <Filter>Examples\3D\FPS</Filter>
     </ClCompile>
     <ClCompile Include="Examples\3D\FPS\HUDUIScene.cpp">
       <Filter>Examples\3D\FPS</Filter>
     </ClCompile>
-    <ClCompile Include="Examples\Game\2DScroll\TestMainScene.cpp" />
-    <ClCompile Include="Examples\Game\2DScroll\HUDUIScene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\LarvaEngine\Components\AI\AICompoennt.h">
-      <Filter>Components\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LarvaEngine\Components\AI\AIState.h">
-      <Filter>Components\AI</Filter>
-    </ClInclude>
     <ClInclude Include="include\LarvaEngine\Components\Draw\AnimationComponent.h">
       <Filter>Components\Draw</Filter>
     </ClInclude>
@@ -364,9 +346,6 @@
       <Filter>Components\Draw</Filter>
     </ClInclude>
     <ClInclude Include="include\LarvaEngine\Components\Draw\TextComponent.h">
-      <Filter>Components\Draw</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LarvaEngine\Components\Draw\DebugDrawComponent.h">
       <Filter>Components\Draw</Filter>
     </ClInclude>
     <ClInclude Include="include\LarvaEngine\Core\GameObject.h">
@@ -549,18 +528,12 @@
     <ClInclude Include="Examples\2D\Scroll\PlaySubScene.h">
       <Filter>Examples\2D\Scroll</Filter>
     </ClInclude>
-    <ClInclude Include="Examples\3D\FPS\MoveComponent.h" />
-    <ClInclude Include="include\LarvaEngine\Core\ThreadPool.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="Examples\3D\FPS\FPSCameraComponent.h">
       <Filter>Examples\3D\FPS</Filter>
     </ClInclude>
     <ClInclude Include="Examples\3D\FPS\HUDUIScene.h">
       <Filter>Examples\3D\FPS</Filter>
     </ClInclude>
-    <ClInclude Include="Examples\Game\2DScroll\TestMainScene.h" />
-    <ClInclude Include="Examples\Game\2DScroll\HUDUIScene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\Bloom.vert">
@@ -629,7 +602,6 @@
     <None Include="Assets\Shaders\Shadow.vert">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Assets\Shaders\Outline.frag" />
     <None Include="Assets\Shaders\DoF.frag">
       <Filter>Shaders</Filter>
     </None>

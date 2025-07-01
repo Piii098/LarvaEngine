@@ -50,13 +50,10 @@
     <ClCompile Include="src\Components\UI\ButtonComponent.cpp" />
     <ClCompile Include="src\Audio\AudioSystem.cpp" />
     <ClCompile Include="src\Audio\SoundEvent.cpp" />
-    <ClCompile Include="src\Components\AI\AICompoennt.cpp" />
-    <ClCompile Include="src\Components\AI\AIState.cpp" />
     <ClCompile Include="src\Components\Audio\AudioComponent.cpp" />
     <ClCompile Include="src\Components\Camera\CameraComponent.cpp" />
     <ClCompile Include="src\Components\Camera\FollowCameraComponent.cpp" />
     <ClCompile Include="src\Components\Draw\AnimationComponent.cpp" />
-    <ClCompile Include="src\Components\Draw\DebugDrawComponent.cpp" />
     <ClCompile Include="src\Components\Draw\SpriteComponent.cpp" />
     <ClCompile Include="src\Components\Draw\TextComponent.cpp" />
     <ClCompile Include="src\Components\Light\LightComponent.cpp" />
@@ -118,13 +115,10 @@
     <ClInclude Include="Examples\3D\Sample\SampleMainScene.h" />
     <ClInclude Include="include\LarvaEngine\Audio\AudioSystem.h" />
     <ClInclude Include="include\LarvaEngine\Audio\SoundEvent.h" />
-    <ClInclude Include="include\LarvaEngine\Components\AI\AICompoennt.h" />
-    <ClInclude Include="include\LarvaEngine\Components\AI\AIState.h" />
     <ClInclude Include="include\LarvaEngine\Components\Audio\AudioComponent.h" />
     <ClInclude Include="include\LarvaEngine\Components\Camera\CameraComponent.h" />
     <ClInclude Include="include\LarvaEngine\Components\Camera\FollowCameraComponent.h" />
     <ClInclude Include="include\LarvaEngine\Components\Draw\AnimationComponent.h" />
-    <ClInclude Include="include\LarvaEngine\Components\Draw\DebugDrawComponent.h" />
     <ClInclude Include="include\LarvaEngine\Components\Draw\MeshComponent.h" />
     <ClInclude Include="include\LarvaEngine\Components\Draw\ModelComponent.h" />
     <ClInclude Include="include\LarvaEngine\Components\Draw\SpriteComponent.h" />

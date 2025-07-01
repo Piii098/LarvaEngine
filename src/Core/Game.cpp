@@ -12,7 +12,6 @@
 #include "LarvaEngine/Core/Resources/Font.h"
 #include "LarvaEngine/Renderer/3D/Mesh.h"
 #include "LarvaEngine/Core/Resources/Model.h"
-#include "LarvaEngine/GameObjects/TileMapObject.h"
 #include "LarvaEngine/Core/SceneManager.h"
 #include "LarvaEngine/Audio/AudioSystem.h"
 #include "LarvaEngine/Input/InputAction.h"
